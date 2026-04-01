@@ -11,4 +11,3 @@ Defines `DESTRUCTIVE_PATTERNS` array with RegExp patterns matched against comman
 
 ## Exports
 - `getDestructiveCommandWarning(command)` - Returns warning string or null
-- `DESTRUCTIVE_PATTERNS` - Array of pattern/warning objects

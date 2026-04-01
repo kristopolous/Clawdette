@@ -14,5 +14,3 @@ Normalizes PowerShell path arguments via `normalizeGitPathArg` (handles paramete
 ## Exports
 - `isGitInternalPathPS(arg)` - True if arg resolves to any git-internal path (bare or standard)
 - `isDotGitPathPS(arg)` - True if arg resolves to path inside `.git/` only
-- `normalizeGitPathArg(arg)` - Normalizes raw PowerShell path argument to canonical form
-- `GIT_INTERNAL_PREFIXES` - Constant array of internal git path components

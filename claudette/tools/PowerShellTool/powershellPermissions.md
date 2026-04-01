@@ -33,3 +33,5 @@ Implements the permission decision flow for PowerShell:
 - `powershellPermissionRule(permissionRule)` - Parses rule string into ShellPermissionRule
 - `powershellToolCheckExactMatchPermission(input, context)` - Checks exact command rule match
 - `powershellToolCheckPermission(input, context)` - Main permission check with prefix and integration
+- `powershellToolHasPermission(input, context)` - Full permission check with collect-then-reduce decision flow
+- `powershellToolHasPermission(input, context)` - Full permission check with collect-then-reduce decision flow

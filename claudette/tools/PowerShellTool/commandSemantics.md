@@ -15,6 +15,3 @@ Defines `CommandSemantic` type for functions that interpret exit codes. `COMMAND
 ## Exports
 - `CommandSemantic` - Type for semantic functions (exitCode, stdout, stderr) => result
 - `interpretCommandResult(command, exitCode, stdout, stderr)` - Returns isError and optional message
-- `DEFAULT_SEMANTIC` - Default error-on-non-zero semantic
-- `GREP_SEMANTIC` - Semantic for grep-like tools
-- `COMMAND_SEMANTICS` - Map of command names to semantics

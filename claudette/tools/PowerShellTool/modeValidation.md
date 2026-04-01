@@ -26,4 +26,3 @@ Non-`acceptEdits` modes return `passthrough`. Returns `allow` with updatedInput 
 ## Exports
 - `checkPermissionMode(input, parsed, toolPermissionContext)` - Returns PermissionResult
 - `isSymlinkCreatingCommand(cmd)` - Detects New-Item creating links
-- `ACCEPT_EDITS_ALLOWED_CMDLETS` - Set of auto-allowed cmdlet names (lowercase)

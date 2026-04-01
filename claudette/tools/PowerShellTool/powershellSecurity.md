@@ -5,10 +5,9 @@ Performs AST-based security analysis on PowerShell commands, detecting dangerous
 - **Stdlib**: none
 - **External**: none
 - **Internal** (selected):
-  - `ParsedCommandElement`, `ParsedPowerShellCommand`, `COMMON_ALIASES`, `commandHasArgAbbreviation`, `deriveSecurityFlags`, `getAllCommands`, `getVariablesByScope`, `hasCommandNamed`, `parsePowerShellCommand`, `stripModulePrefix` (utils/powershell/parser)
+  - `ParsedCommandElement`, `ParsedPowerShellCommand`, `COMMON_ALIASES`, `commandHasArgAbbreviation`, `deriveSecurityFlags`, `getAllCommands`, `getVariablesByScope`, `hasCommandNamed` (utils/powershell/parser)
   - `DANGEROUS_SCRIPT_BLOCK_CMDLETS`, `FILEPATH_EXECUTION_CMDLETS`, `MODULE_LOADING_CMDLETS` (utils/powershell/dangerousCmdlets)
   - `isClmAllowedType` (PowerShellTool/clmTypes)
-  - `containsVulnerableUncPath` (utils/shell/readOnlyCommandValidation)
 
 ## Logic
 `powershellCommandIsSafe(parsed)` runs 19+ AST-based validators in sequence. If any returns `ask`, that result is returned immediately. Validators check for:
