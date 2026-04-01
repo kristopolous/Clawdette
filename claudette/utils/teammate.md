@@ -1,70 +1,43 @@
-# teammate
+# utils/teammate
 
 ## Purpose
-Re-export in-process teammate utilities from teammateContext.ts
+Provides teammate utilities for agent swarm coordination.
 
 ## Imports
-- **Internal**: ../state/AppState.js, ./envUtils.js, ./teammateContext.js
+- **Stdlib**: (none)
+- **External**: (none)
+- **Internal**: state AppState, envUtils, teammateContext
 
-## Items
-
-### getParentSessionId
-**Type**: Function
-
-### setDynamicTeamContext
-**Type**: Function
-
-### clearDynamicTeamContext
-**Type**: Function
-
-### getDynamicTeamContext
-**Type**: Function
-
-### getAgentId
-**Type**: Function
-
-### getAgentName
-**Type**: Function
-
-### getTeamName
-**Type**: Function
-
-### isTeammate
-**Type**: Function
-
-### getTeammateColor
-**Type**: Function
-
-### isPlanModeRequired
-**Type**: Function
-
-### isTeamLead
-**Type**: Function
-
-### hasActiveInProcessTeammates
-**Type**: Function
-
-### hasWorkingInProcessTeammates
-**Type**: Function
-
-### waitForTeammatesToBecomeIdle
-**Type**: Function
+## Logic
+1. Re-exports in-process teammate utilities from teammateContext.ts
+2. `createTeammateContext`, `getTeammateContext`, `isInProcessTeammate`, `runWithTeammateContext`, `TeammateContext` - teammate context functions/types
+3. `getParentSessionId` - gets parent session ID for teammate
+4. For in-process teammates: team lead's session ID
+5. Priority: AsyncLocalStorage (in-process) > dynamicTeamContext (tmux teammates)
+6. `dynamicTeamContext` - dynamic team context for runtime team joining
+7. When set, values take precedence over environment variables
+8. Contains: agentId, agentName, teamName, color, planModeRequired, parentSessionId
+9. `setDynamicTeamContext` - sets dynamic team context (called when joining team at runtime)
+10. `clearDynamicTeamContext` - clears dynamic team context (called when leaving team)
+11. `getDynamicTeamContext` - gets current dynamic team context (for inspection/debugging)
+12. `getAgentId` - gets agent ID
+13. `getAgentName` - gets agent name
+14. `getTeamName` - gets team name
+15. `getTeammateColor` - gets teammate color
+16. `isTeammate` - checks if running as teammate
+17. `isPlanModeRequired` - checks if plan mode required
+18. `isEnvTruthy` - checks env var truthy
+19. `AppState` - app state type
 
 ## Exports
-- getParentSessionId
-- setDynamicTeamContext
-- clearDynamicTeamContext
-- getDynamicTeamContext
-- getAgentId
-- getAgentName
-- getTeamName
-- isTeammate
-- getTeammateColor
-- isPlanModeRequired
-- isTeamLead
-- hasActiveInProcessTeammates
-- hasWorkingInProcessTeammates
-- waitForTeammatesToBecomeIdle
-
-## Source
-`teammate.ts`
+- `createTeammateContext`, `getTeammateContext`, `isInProcessTeammate`, `runWithTeammateContext`, `TeammateContext` - teammate context functions/types
+- `getParentSessionId` - gets parent session ID
+- `setDynamicTeamContext` - sets dynamic team context
+- `clearDynamicTeamContext` - clears dynamic team context
+- `getDynamicTeamContext` - gets dynamic team context
+- `getAgentId` - gets agent ID
+- `getAgentName` - gets agent name
+- `getTeamName` - gets team name
+- `getTeammateColor` - gets teammate color
+- `isTeammate` - checks if teammate
+- `isPlanModeRequired` - checks plan mode required

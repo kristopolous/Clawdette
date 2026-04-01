@@ -1,38 +1,39 @@
-# truncate
+# utils/truncate
 
 ## Purpose
-Width-aware truncation/wrapping — needs ink/stringWidth (not leaf-safe).
+Provides width-aware truncation and wrapping utilities for terminal display.
 
 ## Imports
-- **Internal**: ../ink/stringWidth.js, ./intl.js
+- **Stdlib**: (none)
+- **External**: (none)
+- **Internal**: ink stringWidth, intl
 
-## Items
-
-### truncatePathMiddle
-**Type**: Function
-
-### truncateToWidth
-**Type**: Function
-
-### truncateStartToWidth
-**Type**: Function
-
-### truncateToWidthNoEllipsis
-**Type**: Function
-
-### truncate
-**Type**: Function
-
-### wrapText
-**Type**: Function
+## Logic
+1. `truncatePathMiddle` - truncates file path in middle to preserve directory context and filename
+2. Width-aware: uses stringWidth() for correct CJK/emoji measurement
+3. Example: "src/components/deeply/nested/folder/MyComponent.tsx" → "src/components/…/MyComponent.tsx"
+4. Handles edge cases: very small maxLength, filename alone too long
+5. `truncateToWidth` - truncates string to fit within max display width
+6. Splits on grapheme boundaries to avoid breaking emoji or surrogate pairs
+7. Appends '…' when truncation occurs
+8. Uses getGraphemeSegmenter() for grapheme-safe segmentation
+9. `truncateToWidthNoEllipsis` - truncates without adding ellipsis
+10. `truncateStartToWidth` - truncates from start, keeping tail end
+11. Prepends '…' when truncation occurs
+12. Width-aware and grapheme-safe
+13. `wrapText` - wraps text to specified width
+14. `wrapWords` - wraps on word boundaries
+15. `wrapGraphemes` - wraps on grapheme boundaries
+16. `stringWidth` - gets string width in terminal columns
+17. `getGraphemeSegmenter` - gets grapheme segmenter
 
 ## Exports
-- truncatePathMiddle
-- truncateToWidth
-- truncateStartToWidth
-- truncateToWidthNoEllipsis
-- truncate
-- wrapText
-
-## Source
-`truncate.ts`
+- `truncatePathMiddle` - truncates path in middle
+- `truncateToWidth` - truncates to width with ellipsis
+- `truncateToWidthNoEllipsis` - truncates to width without ellipsis
+- `truncateStartToWidth` - truncates from start
+- `wrapText` - wraps text
+- `wrapWords` - wraps on word boundaries
+- `wrapGraphemes` - wraps on grapheme boundaries
+- `stringWidth` - gets string width
+- `getGraphemeSegmenter` - gets grapheme segmenter
