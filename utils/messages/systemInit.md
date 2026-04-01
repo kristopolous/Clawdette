@@ -1,0 +1,30 @@
+# systemInit
+
+## Purpose
+TODO(next-minor): remove this translation once SDK consumers have migrated
+
+## Imports
+- **Stdlib**: bun:bundle, crypto, src/bootstrap/state.js, src/constants/outputStyles.js
+- **Internal**: ../auth.js, ../cwd.js, ../fastMode.js, ../settings/settings.js
+
+## Items
+
+### sdkCompatToolName
+**Type**: Function
+
+### buildSystemInitMessage
+**Type**: Function
+
+### CommandLike
+**Type**: Type alias
+
+### SystemInitInputs
+**Type**: Type alias
+
+## Exports
+- sdkCompatToolName
+- SystemInitInputs
+- buildSystemInitMessage
+
+## Source
+`systemInit.ts`

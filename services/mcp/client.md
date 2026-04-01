@@ -20,7 +20,7 @@ The core function that establishes connections to MCP servers with support for m
 - **`ws`** - WebSocket communication via custom WebSocketTransport
 - **`sse-ide`** - IDE SSE connections (no auth required)
 - **`ws-ide`** - IDE WebSocket connections with auth token header
-- **`claudeai-proxy`** - Claude.ai proxy for MCP servers via StreamableHTTPClientTransport
+- **`ai-proxy`** - AI provider proxy for MCP servers via StreamableHTTPClientTransport
 - **`sdk`** - In-process SDK servers
 
 **Connection Features:**
@@ -40,7 +40,7 @@ The core function that establishes connections to MCP servers with support for m
 ### Auth Cache
 - 15-minute TTL cache for servers that returned 401 (`MCP_AUTH_CACHE_TTL_MS`)
 - Prevents repeated connection attempts to servers that need authentication
-- Path: `~/.claude/mcp-needs-auth-cache.json`
+- Path: `~/.ai-assistant/mcp-needs-auth-cache.json`
 
 ## Tool Fetching
 
@@ -49,7 +49,7 @@ Fetches and transforms MCP tools into the Tool interface:
 - Converts MCP tool names to fully qualified names (`mcp__serverName__toolName`)
 - Extracts `searchHint` and `alwaysLoad` from `_meta` annotations
 - Truncates descriptions exceeding 2048 characters
-- Respects `CLAUDE_AGENT_SDK_MCP_NO_PREFIX` for SDK servers
+- Respects `AI_AGENT_SDK_MCP_NO_PREFIX` for SDK servers
 - Supports tool-specific features: concurrency safety, read-only hints, destructive flags
 
 ### fetchResourcesForClient
@@ -155,5 +155,5 @@ Creates in-process MCP server connections:
 - `mcpToolInputToAutoClassifierInput()` - Encode tool input for classifier
 - `mcpBaseUrlAnalytics()` - Get analytics-safe base URL
 - `wrapFetchWithTimeout()` - Wrap fetch with timeout
-- `createClaudeAiProxyFetch()` - Create auth-aware proxy fetch
+- `createAiProxyFetch()` - Create auth-aware proxy fetch
 - `clearMcpAuthCache()` - Clear auth cache

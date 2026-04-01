@@ -105,7 +105,7 @@ MAX_EDIT_FILE_SIZE = 1024 * 1024 * 1024  // 1 GiB
 {
   file_path: '/path/to/file.txt',
   old_string: 'Hello World',
-  new_string: 'Hello Claude',
+  new_string: 'Hello World',
   replace_all: false
 }
 

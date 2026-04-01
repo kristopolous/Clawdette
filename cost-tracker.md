@@ -1,7 +1,7 @@
 # cost-tracker.ts
 
 ## Purpose
-Tracks API costs, token usage, and duration metrics for a Claude Code session, with support for session persistence and multi-model tracking.
+Tracks API costs, token usage, and duration metrics for a Claudette session, with support for session persistence and multi-model tracking.
 
 ## Imports
 - **Stdlib**: None

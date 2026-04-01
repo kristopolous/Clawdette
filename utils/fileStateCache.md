@@ -1,4 +1,4 @@
-# fileStateCache.ts
+# fileStateCache
 
 ## Purpose
 Provides a file state caching system with LRU (Least Recently Used) eviction that normalizes all path keys before access. This ensures consistent cache hits regardless of path format variations (relative vs absolute paths, redundant segments like `/foo/../bar`, or mixed path separators on Windows).
@@ -17,7 +17,7 @@ type FileState = {
   timestamp: number     // Last modification time
   offset: number | undefined      // Read offset (for partial reads)
   limit: number | undefined       // Read limit (for partial reads)
-  isPartialView?: boolean         // True when populated by auto-injection (e.g. CLAUDE.md) where injected content did not match disk
+  isPartialView?: boolean         // True when populated by auto-injection (e.g. MEMORY.md) where injected content did not match disk
 }
 ```
 

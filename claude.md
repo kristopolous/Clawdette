@@ -1,7 +1,7 @@
-# services/api/claude.ts
+# services/api/claude
 
 ## Purpose
-Core API client for sending messages to Claude API, handling streaming responses, usage tracking, and prompt caching.
+Core API client for sending messages to Claudette's inference API, handling streaming responses, usage tracking, and prompt caching.
 
 ## Imports
 - **External**: `@anthropic-ai/sdk`, `@anthropic-ai/sdk/resources`, `@anthropic-ai/sdk/streaming`
@@ -58,7 +58,7 @@ type Options = {
 }
 ```
 
-## How Messages Are Sent to Claude API
+## How Messages Are Sent to the Inference API
 
 ### Message Preparation
 1. `normalizeMessagesForAPI()` - Normalizes conversation messages to API format
@@ -126,7 +126,7 @@ Adds cache breakpoints to messages for prompt caching.
 
 ## Other Exported Functions
 
-- `getExtraBodyParams(betaHeaders?)` - Parse CLAUDE_CODE_EXTRA_BODY env var
+- `getExtraBodyParams(betaHeaders?)` - Parse EXTRA_BODY env var
 - `verifyApiKey()` - Verify API key is valid
 - `userMessageToMessageParam()` - Convert UserMessage to API format
 - `assistantMessageToMessageParam()` - Convert AssistantMessage to API format

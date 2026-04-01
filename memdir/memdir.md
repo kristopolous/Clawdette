@@ -1,10 +1,10 @@
-# memdir.ts
+# memdir
 
 Memory directory management for persistent, file-based memory systems.
 
 ## Overview
 
-This module provides the core functionality for managing Claude's persistent memory system. It handles:
+This module provides the core functionality for managing Claudette's persistent memory system. It handles:
 - Building memory prompts with behavioral instructions
 - Truncating MEMORY.md content to line and byte caps
 - Ensuring memory directories exist

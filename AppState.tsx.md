@@ -1,4 +1,4 @@
-# state/AppState.tsx
+# state/AppState
 
 ## Purpose
 React context provider and re-exports for application state management, providing a centralized store for UI state, permissions, MCP connections, tasks, and plugins.

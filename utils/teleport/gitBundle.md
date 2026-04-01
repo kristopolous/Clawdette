@@ -1,0 +1,35 @@
+# gitBundle
+
+## Purpose
+Tunable via tengu_ccr_bundle_max_bytes.
+
+## Imports
+- **Stdlib**: fs/promises
+- **Internal**: ../../services/analytics/growthbook.js, ../../services/api/filesApi.js, ../cwd.js, ../debug.js, ../execFileNoThrow.js, ../git.js, ../tempfile.js
+
+## Items
+
+### _bundleWithFallback
+**Type**: Function
+
+### createAndUploadGitBundle
+**Type**: Function
+
+### BundleScope
+**Type**: Type alias
+
+### BundleUploadResult
+**Type**: Type alias
+
+### BundleFailReason
+**Type**: Type alias
+
+### BundleCreateResult
+**Type**: Type alias
+
+## Exports
+- BundleUploadResult
+- createAndUploadGitBundle
+
+## Source
+`gitBundle.ts`

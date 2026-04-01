@@ -1,7 +1,7 @@
 # WebSearchTool.ts
 
 ## Purpose
-Implements a web search tool that allows Claude to search the web for current information. Provides up-to-date information for current events, recent data, and information beyond Claude's knowledge cutoff.
+Implements a web search tool that allows the AI to search the web for current information. Provides up-to-date information for current events, recent data, and information beyond the model's knowledge cutoff.
 
 ## Items
 
@@ -30,7 +30,7 @@ Implements a web search tool that allows Claude to search the web for current in
 ### WebSearchTool
 **Purpose**: Main tool definition that satisfies `ToolDef<InputSchema, Output, WebSearchProgress>`.
 **Key Methods**:
-- `isEnabled`: Returns true for firstParty, vertex (with Claude 4.0+ models), and foundry providers
+- `isEnabled`: Returns true for firstParty, vertex (with flagship models), and foundry providers
 - `validateInput`: Checks for missing query and validates that `allowed_domains` and `blocked_domains` are not both specified
 - `checkPermissions`: Returns passthrough behavior with suggestion to add allow rules
 - `call`: Main execution - streams API responses, tracks progress, handles tool_use_id mapping for queries

@@ -1,4 +1,4 @@
-# QueryEngine.ts
+# QueryEngine
 
 ## Purpose
 Orchestrates the query lifecycle and session state for a conversation. Owns the conversation state (messages, usage, permissions) and delegates to the query() loop for actual API calls.

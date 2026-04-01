@@ -1,7 +1,7 @@
-# state.ts
+# state
 
 ## Purpose
-Centralized global state management for the Claude Code application, providing session tracking, telemetry, metrics collection, and feature flags. The module exports accessors and mutators for all application state, with careful consideration given to avoiding unnecessary global state ("BE JUDICIOUS WITH GLOBAL STATE").
+Centralized global state management for Claudette, providing session tracking, telemetry, metrics collection, and feature flags. The module exports accessors and mutators for all application state, with careful consideration given to avoiding unnecessary global state ("BE JUDICIOUS WITH GLOBAL STATE").
 
 ## Imports
 - **Stdlib**: `fs` (realpathSync), `process` (cwd), `lodash-es/sumBy`
@@ -57,12 +57,12 @@ Centralized global state management for the Claude Code application, providing s
 - **Slow Operations**: `addSlowOperation`, `getSlowOperations`
 - **Remote & Agent**: `getMainThreadAgentType`, `setMainThreadAgentType`, `getIsRemoteMode`, `setIsRemoteMode`, `getDirectConnectServerUrl`, `setDirectConnectServerUrl`
 - **System Prompt Cache**: `getSystemPromptSectionCache`, `setSystemPromptSectionCacheEntry`, `clearSystemPromptSectionState`
-- **Date & Directories**: `getLastEmittedDate`, `setLastEmittedDate`, `getAdditionalDirectoriesForClaudeMd`, `setAdditionalDirectoriesForClaudeMd`
+- **Date & Directories**: `getLastEmittedDate`, `setLastEmittedDate`, `getAdditionalDirectoriesForMd`, `setAdditionalDirectoriesForMd`
 - **Channels**: `getAllowedChannels`, `setAllowedChannels`, `getHasDevChannels`, `setHasDevChannels`
 - **Prompt Cache**: `getPromptCache1hAllowlist`, `setPromptCache1hAllowlist`, `getPromptCache1hEligible`, `setPromptCache1hEligible`
 - **Beta Headers**: `getAfkModeHeaderLatched`, `setAfkModeHeaderLatched`, `getFastModeHeaderLatched`, `setFastModeHeaderLatched`, `getCacheEditingHeaderLatched`, `setCacheEditingHeaderLatched`, `getThinkingClearLatched`, `setThinkingClearLatched`, `clearBetaHeaderLatches`
 - **Error Log**: `addToInMemoryErrorLog`
-- **Cached Content**: `setCachedClaudeMdContent`, `getCachedClaudeMdContent`
+- **Cached Content**: `setCachedMdContent`, `getCachedMdContent`
 - **Stats Store**: `getStatsStore`, `setStatsStore`
 - **Cost State**: `resetCostState`, `setCostStateForRestore`, `resetTotalDurationStateAndCost_FOR_TESTS_ONLY`
 - **Reset**: `resetStateForTests`, `resetModelStringsForTestingOnly`

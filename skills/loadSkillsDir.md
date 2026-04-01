@@ -1,4 +1,4 @@
-# loadSkillsDir.ts
+# loadSkillsDir
 
 ## Purpose
 Loads and manages skills from filesystem directories, supporting multiple sources (managed, user, project, additional dirs) with deduplication, symlink resolution, and dynamic/conditional skill activation.
@@ -8,11 +8,11 @@ Loads and manages skills from filesystem directories, supporting multiple source
 - **Stdlib**: `fs/promises` (realpath), `path` (basename, dirname, isAbsolute, join, sep, relative)
 - **External**: `ignore`, `lodash-es/memoize`
 - **Internal**: 
-  - Bootstrap: `getAdditionalDirectoriesForClaudeMd`, `getSessionId`
+  - Bootstrap: `getAdditionalDirectoriesForMd`, `getSessionId`
   - Analytics: `logEvent`
   - Token estimation: `roughTokenCountEstimation`
   - Types: `Command`, `PromptCommand`
-  - Utils: `parseArgumentNames`, `substituteArguments`, `logForDebugging`, `EFFORT_LEVELS`, `parseEffortValue`, `getClaudeConfigHomeDir`, `isBareMode`, `isEnvTruthy`, `isENOENT`, `isFsInaccessible`, `coerceDescriptionToString`, `parseFrontmatter`, `parseBooleanFrontmatter`, `parseShellFrontmatter`, `splitPathInFrontmatter`, `getFsImplementation`, `isPathGitignored`, `logError`, `extractDescriptionFromMarkdown`, `getProjectDirsUpToHome`, `loadMarkdownFilesForSubdir`, `parseSlashCommandToolsFromFrontmatter`, `parseUserSpecifiedModel`, `executeShellCommandsInPrompt`, `isSettingSourceEnabled`, `getManagedFilePath`, `isRestrictedToPluginOnly`, `HooksSchema`, `createSignal`
+  - Utils: `parseArgumentNames`, `substituteArguments`, `logForDebugging`, `EFFORT_LEVELS`, `parseEffortValue`, `getConfigHomeDir`, `isBareMode`, `isEnvTruthy`, `isENOENT`, `isFsInaccessible`, `coerceDescriptionToString`, `parseFrontmatter`, `parseBooleanFrontmatter`, `parseShellFrontmatter`, `splitPathInFrontmatter`, `getFsImplementation`, `isPathGitignored`, `logError`, `extractDescriptionFromMarkdown`, `getProjectDirsUpToHome`, `loadMarkdownFilesForSubdir`, `parseSlashCommandToolsFromFrontmatter`, `parseUserSpecifiedModel`, `executeShellCommandsInPrompt`, `isSettingSourceEnabled`, `getManagedFilePath`, `isRestrictedToPluginOnly`, `HooksSchema`, `createSignal`
   - Skills: `registerMCPSkillBuilders`
 
 ## Logic
@@ -34,10 +34,10 @@ The module loads skills from two directory structures:
 
 Skills are loaded from multiple sources in parallel:
 
-1. **Managed** (`policySettings`): `~/.claude/skills` or managed path `/.claude/skills`
-2. **User** (`userSettings`): `~/.claude/skills`
-3. **Project** (`projectSettings`): `.claude/skills` directories found by walking up from cwd to home
-4. **Additional** (`projectSettings`): `--add-dir` paths at `<dir>/.claude/skills`
+1. **Managed** (`policySettings`): `~/.ai-assistant/skills` or managed path `/.ai-assistant/skills`
+2. **User** (`userSettings`): `~/.ai-assistant/skills`
+3. **Project** (`projectSettings`): `.ai-assistant/skills` directories found by walking up from cwd to home
+4. **Additional** (`projectSettings`): `--add-dir` paths at `<dir>/.ai-assistant/skills`
 5. **Legacy commands** (`commands_DEPRECATED`): `commands/` directories
 
 ### Deduplication
@@ -58,7 +58,7 @@ When `--bare` flag is set:
 
 During a session, new skill directories can be discovered when:
 - File operations occur in nested directories
-- `discoverSkillDirsForPaths()` walks up from file paths to cwd looking for `.claude/skills`
+- `discoverSkillDirsForPaths()` walks up from file paths to cwd looking for `.ai-assistant/skills`
 - Gitignored directories are skipped
 - New skills are loaded and merged, with deeper paths taking precedence
 
@@ -72,8 +72,8 @@ Skills can specify `paths` frontmatter for conditional activation:
 ### Shell Command Execution
 
 For non-MCP skills, inline shell commands (`!`...`` `` ` `` or ```!` `` ```` ```) in skill markdown are executed via `executeShellCommandsInPrompt()` with:
-- `${CLAUDE_SKILL_DIR}` replaced with the skill's directory
-- `${CLAUDE_SESSION_ID}` replaced with the current session ID
+- `${SKILL_DIR}` replaced with the skill's directory
+- `${SESSION_ID}` replaced with the current session ID
 - Allowed tools passed from skill's `allowed-tools` frontmatter
 
 MCP skills skip shell execution for security (remote/untrusted).

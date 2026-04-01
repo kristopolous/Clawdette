@@ -18,7 +18,7 @@ Brief description of the core logic/algorithm this module implements.
 
 ---
 
-# EXAMPLE (main.tsx)
+# EXAMPLE (main)
 
 ## Purpose
 Entry point that parses CLI arguments, initializes the application, and launches either the REPL interface or headless mode.
@@ -40,22 +40,22 @@ Entry point that parses CLI arguments, initializes the application, and launches
 
 ---
 
-# commands.ts
+# commands
 
 ## Purpose
-Central registry and loader for all Claude Code slash commands, including built-in commands, skills, plugin commands, and dynamic skills.
+Central registry and loader for all Claudette slash commands, including built-in commands, skills, plugin commands, and dynamic skills.
 
 ## Imports
 - **Stdlib**: `lodash-es/memoize`
 - **External**: `bun:bundle` (feature flags)
-- **Internal**: Over 70 command modules from `./commands/*`, skill loaders (`getSkillDirCommands`, `getBundledSkills`, `getPluginSkills`), auth utilities (`isUsing3PServices`, `isClaudeAISubscriber`), and type definitions from `./types/command.js`
+- **Internal**: Over 70 command modules from `./commands/*`, skill loaders (`getSkillDirCommands`, `getBundledSkills`, `getPluginSkills`), auth utilities (`isUsing3PServices`, `isAiSubscriber`), and type definitions from `./types/command.js`
 
 ## Logic
 1. **Static Command Registration**: Import and register all built-in commands at module load time
 2. **Feature-Gated Commands**: Conditional imports based on feature flags (PROACTIVE, KAIROS, VOICE_MODE, WORKFLOW_SCRIPTS, etc.)
 3. **Memoized Command Lists**: Use lodash memoization to cache expensive command loading operations
 4. **Dynamic Skill Loading**: Load skills from `./skills/` directory, plugins, bundled skills, and workflow commands via async imports
-5. **Availability Filtering**: Filter commands by auth/provider requirements (claude-ai, console)
+5. **Availability Filtering**: Filter commands by auth/provider requirements
 6. **Command Deduplication**: Ensure dynamic skills don't duplicate built-in commands
 7. **Remote Mode Filtering**: Provide safe command lists for remote/bridge execution contexts
 

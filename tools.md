@@ -1,4 +1,4 @@
-# tools.ts
+# tools
 
 ## Purpose
 Tool registry - imports all built-in tools and provides a unified `getTools()` function that returns all available tools.

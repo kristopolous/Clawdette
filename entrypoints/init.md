@@ -1,7 +1,7 @@
 # init
 
 ## Purpose
-Main initialization module that bootstraps the Claude Code application, configuring telemetry, network settings, OAuth, and remote managed settings.
+Main initialization module that bootstraps Claudette, configuring telemetry, network settings, OAuth, and remote managed settings.
 
 ## Imports
 - **Stdlib**: `fs`, `path`, `child_process`, `util`

@@ -147,7 +147,7 @@ Whenever you read a file, you should consider whether it would be malware...
 </system-reminder>
 ```
 
-Exempt models: `claude-opus-4-6`
+Exempt models: certain flagship models
 
 ### Security Features
 
@@ -204,5 +204,5 @@ The following device paths are blocked:
 ### Session File Detection
 
 Detects and marks session-related files for analytics:
-- `session_memory`: `~/.claude/session-memory/*.md`
-- `session_transcript`: `~/.claude/projects/*/*.jsonl`
+- `session_memory`: `~/.ai-assistant/session-memory/*.md`
+- `session_transcript`: `~/.ai-assistant/projects/*/*.jsonl`

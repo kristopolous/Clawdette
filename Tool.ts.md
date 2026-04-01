@@ -1,7 +1,7 @@
-# Tool.ts
+# Tool
 
 ## Purpose
-Defines the Tool interface and ToolUseContext for Claude Code's tool system, including tool execution, permissions, and progress tracking.
+Defines the Tool interface and ToolUseContext for Claudette's tool system, including tool execution, permissions, and progress tracking.
 
 ## Imports
 - **External**: `@anthropic-ai/sdk`, `@modelcontextprotocol/sdk/types`, `zod`

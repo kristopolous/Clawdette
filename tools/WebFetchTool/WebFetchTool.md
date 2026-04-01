@@ -16,7 +16,7 @@ Fetches content from specified URLs, converts HTML to markdown, and processes th
 - `isReadOnly`: true
 
 **Key Methods**:
-- `description(input)`: Returns description about what hostname Claude wants to fetch from
+- `description(input)`: Returns description about what hostname the AI wants to fetch from
 - `userFacingName()`: Returns "Fetch"
 - `checkPermissions(input, context)`: Handles permission checks including preapproved hosts and permission rules (allow/ask/deny)
 - `prompt()`: Returns auth warning and tool description

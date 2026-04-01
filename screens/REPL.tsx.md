@@ -1,4 +1,4 @@
-# screens/REPL.tsx
+# screens/REPL
 
 ## Purpose
 The main interactive terminal UI - renders messages, handles user input, displays tool results, and manages the overall REPL experience.

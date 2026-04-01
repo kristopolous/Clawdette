@@ -1,4 +1,4 @@
-# Task.ts
+# Task
 
 ## Purpose
 Defines core Task types, states, and ID generation utilities used across the application for managing task lifecycle and identification.

@@ -1,4 +1,4 @@
-# BashTool.tsx
+# BashTool
 
 ## Purpose
 Implements a shell command execution tool with sandboxing, permission checking, progress reporting, auto-backgrounding, and output handling.
@@ -54,7 +54,7 @@ Implements a shell command execution tool with sandboxing, permission checking, 
 - Uses async generator pattern to stream progress updates while awaiting command completion
 - Auto-backgrounding is sophisticated: respects `sleep` blacklist, has assistant-mode budget (15s), supports Ctrl+B
 - Large output (>64MB) is truncated after copying to tool-results dir
-- Claude Code hints protocol uses stderr as zero-token side channel for plugin recommendations
+- Claudette hints protocol uses stderr as zero-token side channel for plugin recommendations
 - Simulated sed edit bypasses actual sed to guarantee preview matches execution
 - Compound commands parsed for security hooks ensure `ls && git push` triggers `Bash(git *)` hook
 

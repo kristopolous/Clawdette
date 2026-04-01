@@ -1,4 +1,4 @@
-# main.tsx
+# main
 
 ## Purpose
 Entry point that parses CLI arguments, initializes the application, and launches either the REPL interface or headless/SDK mode.

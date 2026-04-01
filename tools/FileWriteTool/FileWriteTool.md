@@ -38,7 +38,7 @@ Implements a file write tool that creates new files or overwrites existing files
   7. Writes content with LF line endings (preserves model's explicit line endings)
   8. Notifies LSP servers (didChange, didSave) and VSCode
   9. Updates read timestamp to invalidate stale writes
-  10. Logs CLAUDE.md writes as analytics events
+  10. Logs MEMORY.md writes as analytics events
   11. Computes git diff if remote and feature flag enabled
   12. Returns result with patch and original content
 - **`mapToolResultToToolResultBlockParam({ filePath, type }, toolUseID)`**: Formats output message based on create vs update type
