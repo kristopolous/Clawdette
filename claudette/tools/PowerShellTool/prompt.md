@@ -38,7 +38,4 @@ Provides PowerShell tool prompt generation utilities.
 ## Exports
 - `getDefaultTimeoutMs` - gets default timeout
 - `getMaxTimeoutMs` - gets max timeout
-- `getBackgroundUsageNote` - gets background note
-- `getSleepGuidance` - gets sleep guidance
-- `getEditionSection` - gets edition section
-- `getPrompt` - gets PowerShell prompt
+- `getPrompt` - gets PowerShell tool prompt (async)

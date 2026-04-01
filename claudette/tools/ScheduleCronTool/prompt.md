@@ -2,7 +2,7 @@
 Provides feature gating, tool names, descriptions, and system prompts for the cron scheduling system.
 
 ## Imports
-- **Stdlib**: `process.env`
+- **Stdlib**: None
 - **External**: `bun:bundle`
 - **Internal**: `getFeatureValue_CACHED_WITH_REFRESH`, `DEFAULT_CRON_JITTER_CONFIG`, `isEnvTruthy`
 

@@ -39,7 +39,13 @@ Provides PowerShell read-only command validation utilities.
 28. `COMMON_PARAMETERS` - common parameters
 
 ## Exports
-- `ParsedStatement` - parsed statement type
-- `CommandConfig` - command config type
-- `DOTNET_READ_ONLY_FLAGS` - dotnet read-only flags
-- `argLeaksValue` - checks if arg leaks value
+- `argLeaksValue(_cmd, element?)` - checks if arg leaks value via print/coerce to stdout/stderr
+- `CMDLET_ALLOWLIST` - Record of allowlisted cmdlets with safeFlags/allowAllFlags/regex/callbacks
+- `resolveToCanonical(name)` - resolves command name to canonical form (alias resolution, PATHEXT stripping)
+- `isCwdChangingCmdlet(name)` - checks if cmdlet alters path-resolution namespace (Set-Location, Push-Location, Pop-Location, New-PSDrive)
+- `isSafeOutputCommand(name)` - checks if cmdlet is a safe output cmdlet (Out-Null)
+- `isAllowlistedPipelineTail(cmd, originalCommand)` - checks if command is a pipeline-tail transformer with argLeaksValue guard
+- `isProvablySafeStatement(stmt)` - fail-closed gate: true only for PipelineAst with all CommandAst elements
+- `hasSyncSecurityConcerns(command)` - regex-based pre-filter for dangerous patterns (subexpressions, splatting, member invocations, assignments, --%, UNC, ::)
+- `isReadOnlyCommand(command, parsed?)` - main read-only check using allowlist + flag validation
+- `isAllowlistedCommand(cmd, originalCommand)` - checks if a single command element passes allowlist + flag validation

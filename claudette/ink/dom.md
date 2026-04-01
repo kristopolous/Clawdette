@@ -1,45 +1,30 @@
-# ink/dom
-
 ## Purpose
-Provides DOM node types and utilities for Ink rendering.
+Provides DOM node types and utilities for Ink rendering, including tree manipulation, dirty tracking, text measurement, and scroll state.
 
 ## Imports
-- **Stdlib**: (none)
-- **External**: (none)
-- **Internal**: ink focus, ink layout/engine/node, ink measure-text, ink node-cache, ink squash-text-nodes, ink styles, ink tabstops, ink wrap-text
+- **Internal**: `ink/focus`, `ink/layout/engine`, `ink/layout/node`, `ink/measure-text`, `ink/node-cache`, `ink/squash-text-nodes`, `ink/styles`, `ink/tabstops`, `ink/wrap-text`
 
 ## Logic
-1. `InkNode` - { parentNode, yogaNode?, style }
-2. `TextName` - '#text'
-3. `ElementNames` - 'ink-root' | 'ink-box' | 'ink-text' | 'ink-virtual-text' | 'ink-link' | 'ink-progress' | 'ink-raw-ansi'
-4. `NodeNames` - ElementNames | TextName
-5. `DOMElement` - DOM element type with nodeName, attributes, childNodes, textStyles
-6. Internal properties: onComputeLayout, onRender, onImmediateRender, hasRenderedContent, dirty, isHidden, _eventHandlers
-7. Scroll state: scrollTop, pendingScrollDelta, scrollClampMin, scrollClampMax, scrollHeight, scrollViewportHeight, scrollViewportTop, stickyScroll
-8. `DOMNodeAttribute` - DOM node attribute type
-9. `TextNode` - text node type
-10. `createNode` - creates DOM node
-11. `createTextNode` - creates text node
-12. `appendChildNode`, `insertBeforeNode`, `removeChildNode` - child manipulation
-13. `setAttribute`, `setStyle`, `setTextNodeValue`, `setTextStyles` - attribute setters
-14. `markDirty` - marks node dirty
-15. `clearYogaNodeReferences` - clears yoga node references
-16. `FocusManager` - focus manager class
-17. `createLayoutNode`, `LayoutNode` - layout types
-18. `LayoutDisplay`, `LayoutMeasureMode` - layout constants
-19. `measureText` - measures text
-20. `addPendingClear`, `nodeCache` - node cache functions
-21. `squashTextNodes` - squashes text nodes
-22. `Styles`, `TextStyles` - style types
-23. `expandTabs` - expands tabs
-24. `wrapText` - wraps text
+Defines `DOMElement` and `TextNode` types that form the Ink DOM tree. Each element optionally has a Yoga layout node (skipped for `ink-virtual-text`, `ink-link`, `ink-progress`). Text nodes (`ink-text`, `ink-raw-ansi`) get Yoga measure functions. Tree manipulation (`appendChildNode`, `insertBeforeNode`, `removeChildNode`) updates both DOM child lists and Yoga child trees, marking ancestors dirty. Attribute/style setters dirty-check before marking dirty. `markDirty` walks up to the root, setting `.dirty` on element ancestors and calling `yogaNode.markDirty()` on leaf text/raw-ansi nodes. `collectRemovedRects` gathers cached layout rects from removed subtrees for stale-content clearing. `scheduleRenderFrom` walks to the root and calls its throttled `onRender`. `findOwnerChainAtRow` DFS-accumulates yoga offsets to find the React component stack at a screen row (for repaint debugging).
 
 ## Exports
-- `InkNode` - ink node type
-- `TextName` - text name type
-- `ElementNames` - element names type
-- `NodeNames` - node names type
-- `DOMElement` - DOM element type
-- `DOMNodeAttribute` - DOM node attribute type
-- `TextNode` - text node type
-- (DOM manipulation functions)
+- `TextName` - literal type '#text'
+- `ElementNames` - union of all element node names
+- `NodeNames` - ElementNames | TextName
+- `DOMElement` - element type with attributes, childNodes, scroll state, focusManager, debugOwnerChain
+- `TextNode` - text node type with nodeValue
+- `DOMNode` - discriminated union resolving to DOMElement or TextNode
+- `DOMNodeAttribute` - boolean | string | number
+- `createNode` - creates a DOMElement, attaching Yoga nodes and measure functions as needed
+- `createTextNode` - creates a TextNode
+- `appendChildNode` - appends a child, updating Yoga tree and marking dirty
+- `insertBeforeNode` - inserts before a sibling, computing correct Yoga index
+- `removeChildNode` - removes a child, collecting cached rects and marking dirty
+- `setAttribute` - sets an attribute with dirty-checking
+- `setStyle` - sets styles with dirty-checking
+- `setTextStyles` - sets text styles with dirty-checking
+- `setTextNodeValue` - sets text content with dirty-checking
+- `markDirty` - marks a node and all ancestors dirty for re-rendering
+- `scheduleRenderFrom` - walks to root and triggers throttled render
+- `clearYogaNodeReferences` - recursively clears yogaNode references before freeing
+- `findOwnerChainAtRow` - finds React component stack at a screen row for debug attribution

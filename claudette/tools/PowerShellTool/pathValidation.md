@@ -31,4 +31,3 @@ Huge module mirroring BashTool/pathValidation with PowerShell-specific adaptatio
 - `checkPathConstraints(input, parsed, toolPermissionContext, compoundCommandHasCd?)` - Main validation function, returns PermissionResult
 - `isDangerousRemovalRawPath(filePath)` - Boolean pre-check for dangerous removal targets
 - `dangerousRemovalDeny(path)` - Constructs deny PermissionResult for system path removal
-- `CMDLET_PATH_CONFIG` - Configuration object mapping cmdlet names to path parameter specifications

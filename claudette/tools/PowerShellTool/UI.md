@@ -3,7 +3,7 @@ Renders PowerShell tool UI messages for tool use, progress, queued, result, and 
 
 ## Imports
 - **Stdlib**: none
-- **External**: react, @inference-provider/sdk
+- **External**: react, @anthropic-ai/sdk
 - **Internal**: KeyboardShortcutHint, FallbackToolUseErrorMessage, MessageResponse, OutputLine, ShellProgressMessage, ShellTimeDisplay, Box, Text, Tool, ProgressMessage, PowerShellProgress, ThemeName, PowerShellTool types
 
 ## Logic
