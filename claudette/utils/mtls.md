@@ -5,7 +5,7 @@ Note: NODE_EXTRA_CA_CERTS is automatically handled by Node.js at runtime
 
 ## Imports
 - **Stdlib**: https, https, lodash-es/memoize.js, tls, undici
-- **Internal**: ./caCerts.js, ./debug.js, ./fsOperations
+- **Internal**: ./caCerts, ./debug, ./fsOperations
 
 ## Items
 

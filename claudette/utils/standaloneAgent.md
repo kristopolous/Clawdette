@@ -4,7 +4,7 @@
 If in a team (swarm), don't return standalone name
 
 ## Imports
-- **Internal**: ../state/AppState.js, ./teammate
+- **Internal**: ../state/AppState, ./teammate
 
 ## Items
 

@@ -5,7 +5,7 @@ cleanup.ts always unhides at turn end — no user preference to disable it.
 
 ## Imports
 - **Stdlib**: util
-- **Internal**: ../debug.js, ./common.js, ./executor.js, ./gates.js, ./swiftLoader
+- **Internal**: ../debug.js, ./common.js, ./executor, ./gates, ./swiftLoader
 
 ## Items
 

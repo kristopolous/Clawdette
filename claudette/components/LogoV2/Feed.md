@@ -35,6 +35,5 @@ Provides feed component for rendering feed content with title, lines, and footer
 ## Exports
 - `FeedLine` - feed line type
 - `FeedConfig` - feed config type
-- `FeedProps` - feed props type
 - `calculateFeedWidth` - calculates feed width
 - `Feed` - feed component

@@ -31,6 +31,3 @@ Provides fallback component for highlighted code with caching.
 
 ## Exports
 - `HighlightedCodeFallback` - highlighted code fallback component
-- `HL_CACHE_MAX` - max cache size constant
-- `hlCache` - highlight cache
-- `cachedHighlight` - cached highlight function

@@ -5,7 +5,7 @@ Slot written by handleStopHooks after each turn so post-turn forks
 
 ## Imports
 - **Stdlib**: crypto, crypto
-- **Internal**: ../commands.js, ../constants/querySource.js, ../hooks/useCanUseTool.js, ../query.js, ../services/api/claude.js, ../services/api/logging.js, ../Tool.js, ../tools/AgentTool/loadAgentsDir.js, ../types/ids.js, ../types/message...
+- **Internal**: ../commands.js, ../constants/querySource.js, ../hooks/useCanUseTool.js, ../query.js, ../services/api/claude.js, ../services/api/logging.js, ../Tool.js, ../tools/AgentTool/loadAgentsDir, ../types/ids, ../types/message...
 
 ## Items
 

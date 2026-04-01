@@ -5,7 +5,7 @@ Global state for the Perfetto tracer
 
 ## Imports
 - **Stdlib**: bun:bundle, fs, fs/promises, path
-- **Internal**: ../../bootstrap/state.js, ../cleanupRegistry.js, ../debug.js, ../errors.js, ../hash.js, ../slowOperations.js, ../teammate
+- **Internal**: ../../bootstrap/state.js, ../cleanupRegistry.js, ../debug.js, ../errors.js, ../hash, ../slowOperations, ../teammate
 
 ## Items
 

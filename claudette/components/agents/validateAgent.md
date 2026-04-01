@@ -2,7 +2,7 @@
 Provides validation functions for agent type identifiers and complete agent configurations.
 
 ## Imports
-- **Internal**: Tool.js (Tools type), tools/AgentTool/agentToolUtils.js (resolveAgentTools), tools/AgentTool/loadAgentsDir.js (AgentDefinition type, CustomAgentDefinition type), utils (getAgentSourceDisplayName)
+- **Internal**: Tool.js (Tools type), tools/AgentTool/agentToolUtils (resolveAgentTools), tools/AgentTool/loadAgentsDir (AgentDefinition type, CustomAgentDefinition type), utils (getAgentSourceDisplayName)
 
 ## Logic
 Validates agent type identifiers against naming rules (alphanumeric with hyphens, 3-50 characters, must start and end with alphanumeric). Validates complete agent configurations including type uniqueness, description length, tool validity, and system prompt requirements. Returns errors and warnings arrays.

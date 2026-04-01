@@ -5,7 +5,7 @@ Ignore cleanup errors
 
 ## Imports
 - **Stdlib**: fs/promises, os, path
-- **Internal**: ./ansiToPng.js, ./execFileNoThrow.js, ./log.js, ./platform
+- **Internal**: ./ansiToPng.js, ./execFileNoThrow, ./log, ./platform
 
 ## Items
 

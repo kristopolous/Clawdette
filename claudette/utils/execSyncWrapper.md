@@ -4,7 +4,7 @@
 Provides utility functions: execSync_DEPRECATED, execSync_DEPRECATED, execSync_DEPRECATED, execSync_DEPRECATED, execSync_DEPRECATED.
 
 ## Imports
-- **Internal**: ./slowOperations.js, ./execSyncWrapper
+- **Internal**: ./slowOperations, ./execSyncWrapper
 
 ## Items
 

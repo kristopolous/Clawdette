@@ -5,7 +5,7 @@ Scheduled prompts, stored in <project>/.claude/scheduled_tasks.json.
 
 ## Imports
 - **Stdlib**: crypto, fs, fs/promises, path
-- **Internal**: ./cron.js, ./debug.js, ./errors.js, ./fsOperations.js, ./json.js, ./log.js, ./slowOperations
+- **Internal**: ./cron.js, ./debug.js, ./errors.js, ./fsOperations.js, ./json, ./log, ./slowOperations
 
 ## Items
 

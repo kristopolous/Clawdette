@@ -5,7 +5,7 @@ Spread over defaults so a partial JSON ({"enabled": true} alone) inherits the
 
 ## Imports
 - **External**: @ant/computer-use-mcp/types
-- **Internal**: ../../services/analytics/growthbook.js, ../auth.js, ../envUtils
+- **Internal**: ../../services/analytics/growthbook, ../auth, ../envUtils
 
 ## Items
 

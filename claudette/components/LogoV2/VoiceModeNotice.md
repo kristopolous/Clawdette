@@ -37,5 +37,4 @@ Provides voice mode availability notice component.
 26. `shouldShowOpus1mMergeNotice` - checks if should show Opus 1M merge notice
 
 ## Exports
-- `MAX_SHOW_COUNT` - max show count constant
 - `VoiceModeNotice` - voice mode notice component

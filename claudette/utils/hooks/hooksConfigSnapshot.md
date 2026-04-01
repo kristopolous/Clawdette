@@ -4,7 +4,7 @@
 Import as module object so spyOn works in tests (direct imports bypass spies)
 
 ## Imports
-- **Internal**: ../../bootstrap/state.js, ../settings/pluginOnlyPolicy.js, ../settings/settings.js, ../settings/settingsCache.js, ../settings/types
+- **Internal**: ../../bootstrap/state.js, ../settings/pluginOnlyPolicy.js, ../settings/settings, ../settings/settingsCache, ../settings/types
 
 ## Items
 

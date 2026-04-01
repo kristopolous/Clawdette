@@ -20,6 +20,5 @@ Provides context for indicating shell output should be shown in full (not trunca
 9. Uses useContext(ExpandShellOutputContext)
 
 ## Exports
-- `ExpandShellOutputContext` - expand shell output context
 - `ExpandShellOutputProvider` - expand shell output provider component
 - `useExpandShellOutput` - hook for checking expand shell output

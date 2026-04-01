@@ -5,7 +5,7 @@ GrowthBook-backed cron jitter configuration.
 
 ## Imports
 - **Stdlib**: zod/v4
-- **Internal**: ../services/analytics/growthbook.js, ./lazySchema
+- **Internal**: ../services/analytics/growthbook, ./lazySchema
 
 ## Items
 

@@ -5,7 +5,7 @@ Provides utility functions: markITerm2SetupComplete, getIterm2RecoveryInfo, getI
 
 ## Imports
 - **Stdlib**: fs/promises, os, path
-- **Internal**: ./config.js, ./log
+- **Internal**: ./config, ./log
 
 ## Items
 

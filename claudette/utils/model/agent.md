@@ -4,7 +4,7 @@
 Extract Bedrock region prefix from parent model to inherit for subagents.
 
 ## Imports
-- **Internal**: ../permissions/PermissionMode.js, ../stringUtils.js, ./aliases.js, ./bedrock.js, ./providers
+- **Internal**: ../permissions/PermissionMode.js, ../stringUtils.js, ./aliases, ./bedrock, ./providers
 
 ## Items
 

@@ -27,6 +27,7 @@ Implements the Agent tool for spawning subagents with isolated execution.
 
 ## Exports
 - `AgentTool` - agent tool definition
-- `AGENT_TOOL_NAME`, `LEGACY_AGENT_TOOL_NAME` - tool name constants
-- `ONE_SHOT_BUILTIN_AGENT_TYPES` - one-shot agent types
-- `GENERAL_PURPOSE_AGENT` - general purpose agent definition
+- `inputSchema` - input Zod schema
+- `outputSchema` - output Zod schema
+- `Progress` - type for progress events (AgentToolProgress | ShellProgress)
+- `RemoteLaunchedOutput` - type for remote agent launch result

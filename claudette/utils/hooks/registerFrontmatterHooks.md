@@ -5,7 +5,7 @@ For agents, convert Stop hooks to SubagentStop since that's what fires when an a
 
 ## Imports
 - **Stdlib**: src/entrypoints/agentSdkTypes.js, src/state/AppState.js
-- **Internal**: ../debug.js, ../settings/types.js, ./sessionHooks
+- **Internal**: ../debug, ../settings/types, ./sessionHooks
 
 ## Items
 

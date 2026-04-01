@@ -37,13 +37,4 @@ Provides Clawd component with click-triggered animations.
 26. `Box` - ink box component
 
 ## Exports
-- `Frame` - frame type
-- `hold` - hold pose function
-- `JUMP_WAVE` - jump wave animation
-- `LOOK_AROUND` - look around animation
-- `CLICK_ANIMATIONS` - click animations array
-- `IDLE` - idle frame
-- `FRAME_MS` - frame ms constant
-- `incrementFrame` - increment frame function
-- `CLAWD_HEIGHT` - Clawd height constant
 - `AnimatedClawd` - animated Clawd component

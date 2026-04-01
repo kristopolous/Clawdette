@@ -4,7 +4,7 @@
 nameType === 'application' means the raw name had path chars (./x, x\y,
 
 ## Imports
-- **Internal**: ../bash/registry.js, ../shell/specPrefix.js, ../stringUtils.js, ./dangerousCmdlets
+- **Internal**: ../bash/registry.js, ../shell/specPrefix, ../stringUtils, ./dangerousCmdlets
 
 ## Items
 

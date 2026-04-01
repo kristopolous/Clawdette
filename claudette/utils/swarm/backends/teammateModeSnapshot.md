@@ -4,7 +4,7 @@
 Module-level variable to hold the captured mode at startup
 
 ## Imports
-- **Internal**: ../../../utils/config.js, ../../../utils/debug.js, ../../../utils/log
+- **Internal**: ../../../utils/config, ../../../utils/debug, ../../../utils/log
 
 ## Items
 

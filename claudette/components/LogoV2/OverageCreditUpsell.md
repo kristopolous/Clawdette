@@ -38,13 +38,10 @@ Provides overage credit upsell component and utilities.
 27. `FeedConfig` - feed config type
 
 ## Exports
-- `MAX_IMPRESSIONS` - max impressions constant
 - `isEligibleForOverageCreditGrant` - checks eligibility
 - `shouldShowOverageCreditUpsell` - checks if should show upsell
 - `maybeRefreshOverageCreditCache` - refreshes cache
 - `useShowOverageCreditUpsell` - hook for showing upsell
 - `incrementOverageCreditUpsellSeenCount` - increments seen count
-- `getUsageText` - gets usage text
-- `FEED_SUBTITLE` - feed subtitle constant
-- `getFeedTitle` - gets feed title
 - `OverageCreditUpsell` - overage credit upsell component
+- `createOverageCreditFeed` - creates overage credit feed config

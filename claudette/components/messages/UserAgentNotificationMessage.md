@@ -13,4 +13,3 @@ Renders agent/task notification messages with status-colored indicators and summ
 
 ## Exports
 - `UserAgentNotificationMessage` - React component rendering agent notifications with status-colored indicators
-- `getStatusColor` - Internal function mapping status string to text color

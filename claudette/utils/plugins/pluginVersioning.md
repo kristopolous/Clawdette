@@ -5,7 +5,7 @@
 
 ## Imports
 - **Stdlib**: crypto
-- **Internal**: ../debug.js, ../git/gitFilesystem.js, ./schemas
+- **Internal**: ../debug, ../git/gitFilesystem, ./schemas
 
 ## Items
 

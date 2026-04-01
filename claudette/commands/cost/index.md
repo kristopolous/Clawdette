@@ -4,7 +4,7 @@ Provides lazy-loaded command metadata for the `cost` command to reduce startup t
 ## Imports
 - **Stdlib**: None
 - **External**: None
-- **Internal**: `isClaudeAISubscriber` (from utils/auth.js), `cost` implementation (from cost)
+- **Internal**: `isClaudeAISubscriber` (from utils/auth), `cost` implementation (from cost)
 
 ## Logic
 1. Defines command metadata with type 'local'

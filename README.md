@@ -5,7 +5,7 @@
 
 **1961 skills to vibe a Claude clone. Make tokens go burr**
 
-> Yo openclaw, clone https://github.com/kristopolous/Claudette and make that shit in Rust. 
+> Yo openclaw, clone https://github.com/kristopolous/Claudette and make it in Rust. 
 
 ---
 
@@ -13,3 +13,4 @@ Every module, every pattern, every decision - described so you can feed it to an
 
 Python? Go? Rust? QBasic? Brainfuck? Let's do this!
 
+Ports coming soon!

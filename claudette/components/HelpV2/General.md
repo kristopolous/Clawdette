@@ -1,12 +1,12 @@
 ## Purpose
-Displays general help information about Claudette Code capabilities and available keyboard shortcuts.
+Displays general help information about Claude Code capabilities and available keyboard shortcuts.
 
 ## Imports
 - **External**: react, react/compiler-runtime
 - **Internal**: ink, components/PromptInput/PromptInputHelpMenu
 
 ## Logic
-1. Renders a descriptive text explaining that Claudette understands the codebase, makes edits with permission, and executes commands from the terminal
+1. Renders a descriptive text explaining that Claude understands the codebase, makes edits with permission, and executes commands from the terminal
 2. Displays a shortcuts section with a PromptInputHelpMenu component for keyboard reference
 
 ## Exports

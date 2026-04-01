@@ -19,7 +19,7 @@ Provides teammate spinner tree component for displaying teammate status.
 8. Calculates isLeaderSelected (isInSelectionMode && selectedIndex === -1)
 9. Calculates isLeaderHighlighted (isLeaderForegrounded || isLeaderSelected)
 10. Calculates isHideSelected (isInSelectionMode === true && selectedIndex === teammateTasks.length)
-11. Renders Box with flexDirection="column", gap={1}
+11. Renders Box with flexDirection="column", marginTop={1}
 12. Renders leader line with pointer figure if selected
 13. Renders teammate lines via TeammateSpinnerLine
 14. Shows TEAMMATE_SELECT_HINT for selection mode

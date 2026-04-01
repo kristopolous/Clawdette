@@ -6,7 +6,7 @@ Defines core Task types, states, and ID generation utilities used across the app
 ## Imports
 - **Stdlib**: `crypto` (for `randomBytes`)
 - **External**: None
-- **Internal**: `AppState` from `./state/AppState.js`, `AgentId` from `./types/ids.js`, `getTaskOutputPath` from `./utils/task/diskOutput`
+- **Internal**: `AppState` from `./state/AppState`, `AgentId` from `./types/ids`, `getTaskOutputPath` from `./utils/task/diskOutput`
 
 ## Logic
 1. Defines `TaskType` union for all supported task variants (local_bash, local_agent, remote_agent, in_process_teammate, local_workflow, monitor_mcp, dream)

@@ -4,7 +4,7 @@
 --
 
 ## Imports
-- **Internal**: ../tools/BashTool/toolName.js, ../tools/FileReadTool/prompt.js, ../tools/GrepTool/prompt.js, ../tools/WebFetchTool/prompt.js, ./analyzeContext.js, ./file.js, ./format
+- **Internal**: ../tools/BashTool/toolName, ../tools/FileReadTool/prompt, ../tools/GrepTool/prompt, ../tools/WebFetchTool/prompt, ./analyzeContext, ./file, ./format
 
 ## Items
 

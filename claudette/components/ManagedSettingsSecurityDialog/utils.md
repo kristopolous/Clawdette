@@ -25,7 +25,6 @@ Provides utilities for extracting and formatting dangerous settings.
 14. `jsonStringify` - JSON stringify for comparison
 
 ## Exports
-- `DangerousShellSetting` - dangerous shell setting type
 - `DangerousSettings` - dangerous settings type
 - `extractDangerousSettings` - extracts dangerous settings
 - `hasDangerousSettings` - checks dangerous settings

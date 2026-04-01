@@ -5,7 +5,7 @@ Text rendering utilities for terminal display
 
 ## Imports
 - **Stdlib**: chalk
-- **Internal**: ../components/CtrlOToExpand.js, ../ink/stringWidth.js, ./sliceAnsi
+- **Internal**: ../components/CtrlOToExpand, ../ink/stringWidth, ./sliceAnsi
 
 ## Items
 

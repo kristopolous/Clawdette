@@ -17,7 +17,7 @@ Provides glimmer message component for animated message display.
 6. Segments message into graphemes via getGraphemeSegmenter
 7. Calculates message width via stringWidth
 8. Calculates glimmer position based on glimmerIndex
-9. Handles spinner modes: 'spinner', 'glimmer', 'thinking'
+9. Handles spinner modes: 'tool-use' (with shimmer interpolation) and default (with shimmer position)
 10. Applies stalled intensity for red transition when tokens stop
 11. Interpolates colors for shimmer effect
 12. Renders Text components with appropriate colors
@@ -29,5 +29,4 @@ Provides glimmer message component for animated message display.
 18. `SpinnerMode` - spinner mode type
 
 ## Exports
-- `ERROR_RED` - error red color constant
 - `GlimmerMessage` - glimmer message component

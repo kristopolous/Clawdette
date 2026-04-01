@@ -5,7 +5,7 @@ Snap launcher hangs in subprocesses. Prefer the direct binary.
 
 ## Imports
 - **Stdlib**: fs/promises
-- **Internal**: ../platform.js, ../which
+- **Internal**: ../platform, ../which
 
 ## Items
 

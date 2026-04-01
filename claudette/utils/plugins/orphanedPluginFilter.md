@@ -5,7 +5,7 @@ Inlined from cacheUtils.ts to avoid a circular dep through commands.js.
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../ripgrep.js, ./pluginDirectories
+- **Internal**: ../ripgrep, ./pluginDirectories
 
 ## Items
 

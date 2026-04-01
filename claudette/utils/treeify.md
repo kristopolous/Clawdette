@@ -5,7 +5,7 @@ Check for circular references
 
 ## Imports
 - **Stdlib**: figures
-- **Internal**: ../components/design-system/color.js, ./theme
+- **Internal**: ../components/design-system/color, ./theme
 
 ## Items
 

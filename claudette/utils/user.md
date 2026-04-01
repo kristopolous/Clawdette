@@ -5,7 +5,7 @@ Cache for email fetched asynchronously at startup
 
 ## Imports
 - **Stdlib**: execa, lodash-es/memoize.js
-- **Internal**: ../bootstrap/state.js, ./config.js, ./cwd.js, ./env.js, ./envUtils
+- **Internal**: ../bootstrap/state.js, ./config.js, ./cwd, ./env, ./envUtils
 
 ## Items
 

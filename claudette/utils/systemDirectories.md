@@ -5,7 +5,7 @@ Default paths used by most platforms
 
 ## Imports
 - **Stdlib**: os, path
-- **Internal**: ./debug.js, ./platform
+- **Internal**: ./debug, ./platform
 
 ## Items
 

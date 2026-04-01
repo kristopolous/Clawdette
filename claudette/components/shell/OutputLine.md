@@ -42,8 +42,7 @@ Provides output line component for rendering shell output with JSON formatting a
 
 ## Exports
 - `tryFormatJson` - tries to format JSON
-- `MAX_JSON_FORMAT_LENGTH` - max JSON format length
 - `tryJsonFormatContent` - tries to JSON format content
-- `URL_IN_JSON` - URL in JSON regex
 - `linkifyUrlsInText` - linkifies URLs
 - `OutputLine` - output line component
+- `stripUnderlineAnsi` - strips underline ANSI codes

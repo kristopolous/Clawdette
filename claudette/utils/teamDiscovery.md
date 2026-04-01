@@ -4,7 +4,7 @@
 Exclude team-lead from the list
 
 ## Imports
-- **Internal**: ./swarm/backends/types.js, ./swarm/teamHelpers
+- **Internal**: ./swarm/backends/types, ./swarm/teamHelpers
 
 ## Items
 

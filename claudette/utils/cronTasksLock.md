@@ -5,7 +5,7 @@ Scheduler lease lock for .claude/scheduled_tasks.json.
 
 ## Imports
 - **Stdlib**: fs/promises, path, zod/v4
-- **Internal**: ../bootstrap/state.js, ./cleanupRegistry.js, ./debug.js, ./errors.js, ./genericProcessUtils.js, ./json.js, ./lazySchema.js, ./slowOperations
+- **Internal**: ../bootstrap/state.js, ./cleanupRegistry.js, ./debug.js, ./errors.js, ./genericProcessUtils.js, ./json, ./lazySchema, ./slowOperations
 
 ## Items
 

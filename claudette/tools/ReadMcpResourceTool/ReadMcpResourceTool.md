@@ -20,6 +20,6 @@ Tool for reading a specific resource from an MCP server by URI, handling both te
 
 ## Exports
 - `ReadMcpResourceTool` - Main tool definition
-- `Input` - Type for input (server, uri)
-- `Output` - Type for output (array of content objects)
-- `ReadResourceResult`, `ReadResourceResultSchema` - MCP types (re-exported)
+- `inputSchema` - input Zod schema (server, uri)
+- `outputSchema` - output Zod schema (contents array)
+- `Output` - type for output

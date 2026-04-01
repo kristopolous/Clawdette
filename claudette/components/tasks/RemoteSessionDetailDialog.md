@@ -50,8 +50,5 @@ Provides remote session detail dialog component for viewing remote agent task de
 39. `formatReviewStageCounts`, `RemoteSessionProgress` - remote session utilities
 
 ## Exports
-- `Props` - props type
 - `formatToolUseSummary` - formats tool use summary
-- `PHASE_LABEL` - phase label constant
-- `AGENT_VERB` - agent verb constant
 - `RemoteSessionDetailDialog` - remote session detail dialog component

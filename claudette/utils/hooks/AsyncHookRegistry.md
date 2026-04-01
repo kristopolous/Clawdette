@@ -4,7 +4,7 @@
 Global registry state
 
 ## Imports
-- **Internal**: ../debug.js, ../ShellCommand.js, ../sessionEnvironment.js, ../slowOperations.js, ./hookEvents
+- **Internal**: ../debug.js, ../ShellCommand.js, ../sessionEnvironment, ../slowOperations, ./hookEvents
 
 ## Items
 

@@ -17,7 +17,7 @@ Provides Grove privacy settings dialog component.
 6. Shows update to Consumer Terms and Privacy Policy effective October 8, 2025
 7. Explains changes: help improve Claude (opt-in for chat usage), data retention extended to 5 years
 8. Links to data privacy controls, news, and terms
-9. `Grove` - main React component for Grove dialog
+9. `GroveDialog` - main React component for Grove dialog
 10. Uses useEffect, useState for state management
 11. Uses useInput for keyboard input handling
 12. Uses Select component for decision selection
@@ -35,5 +35,5 @@ Provides Grove privacy settings dialog component.
 
 ## Exports
 - `GroveDecision` - Grove decision type
-- `Grove` - Grove dialog component
-- `GracePeriodContentBody` - grace period content component
+- `GroveDialog` - Grove dialog component
+- `PrivacySettingsDialog` - privacy settings dialog component

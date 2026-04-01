@@ -5,7 +5,7 @@ Provides utility functions: validateManifest, parseAndValidateManifestFromText, 
 
 ## Imports
 - **External**: @anthropic-ai/mcpb
-- **Internal**: ../errors.js, ../slowOperations
+- **Internal**: ../errors, ../slowOperations
 
 ## Items
 

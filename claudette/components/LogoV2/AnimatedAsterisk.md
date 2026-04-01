@@ -37,8 +37,4 @@ Provides animated asterisk component with rainbow sweep effect.
 26. `hueToRgb`, `toRGBColor` - color utilities
 
 ## Exports
-- `SWEEP_DURATION_MS` - sweep duration constant
-- `SWEEP_COUNT` - sweep count constant
-- `TOTAL_ANIMATION_MS` - total animation constant
-- `SETTLED_GREY` - settled grey color
 - `AnimatedAsterisk` - animated asterisk component

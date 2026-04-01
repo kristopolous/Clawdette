@@ -17,8 +17,7 @@ Provides shimmer character component for message shimmer animation.
 6. Calculates shouldUseShimmer = isHighlighted || isNearHighlight
 7. Uses shimmerColor if shouldUseShimmer, else messageColor
 8. Renders Text with appropriate color
-9. `useTheme` - gets current theme
-10. `Theme` - theme type
+9. `Theme` - theme type
 
 ## Exports
 - `ShimmerChar` - shimmer character component

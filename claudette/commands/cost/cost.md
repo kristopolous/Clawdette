@@ -4,7 +4,7 @@ Display the total cost and duration of the current Claude Code session.
 ## Imports
 - **Stdlib**: None
 - **External**: None
-- **Internal**: `formatTotalCost` (from cost-tracker.js), `currentLimits` (from services/claudeAiLimits.js), `isClaudeAISubscriber` (from utils/auth)
+- **Internal**: `formatTotalCost` (from cost-tracker), `currentLimits` (from services/claudeAiLimits), `isClaudeAISubscriber` (from utils/auth)
 
 ## Logic
 1. Check if user is a Claude AI subscriber

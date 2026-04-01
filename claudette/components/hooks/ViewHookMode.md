@@ -15,5 +15,3 @@ Displays read-only details for a single configured hook, including event, matche
 
 ## Exports
 - `ViewHookMode` - renders a read-only detail view for a single hook configuration
-- `getContentFieldLabel` - returns a human-readable label for the primary content field based on hook type
-- `getContentFieldValue` - returns the actual content value for a hook's primary field

@@ -6,7 +6,7 @@ Poll interval and deadline for MCP settle before launching a background
 ## Imports
 - **Stdlib**: bun:bundle, crypto, src/bootstrap/state.js, src/commands.js, src/constants/messages.js, src/Tool.js, src/types/message.js
 - **External**: @anthropic-ai/sdk/resources
-- **Internal**: ../../bootstrap/state.js, ../../constants/xml.js, ../../hooks/useCanUseTool.js, ../../services/analytics/index.js, ../../services/api/dumpPrompts.js, ../../services/compact/compact.js, ../../services/compact/microCompact.js, ../../tools/AgentTool/AgentTool.js, ../../tools/AgentTool/runAgent.js, ../../tools/AgentTool/UI...
+- **Internal**: ../../bootstrap/state.js, ../../constants/xml.js, ../../hooks/useCanUseTool.js, ../../services/analytics/index.js, ../../services/api/dumpPrompts.js, ../../services/compact/compact.js, ../../services/compact/microCompact.js, ../../tools/AgentTool/AgentTool, ../../tools/AgentTool/runAgent, ../../tools/AgentTool/UI...
 
 ## Items
 

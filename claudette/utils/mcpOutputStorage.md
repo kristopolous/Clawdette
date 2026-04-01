@@ -5,7 +5,7 @@ Strip any charset/boundary parameter
 
 ## Imports
 - **Stdlib**: fs/promises, path
-- **Internal**: ../services/mcp/client.js, ./errors.js, ./format.js, ./log.js, ./toolResultStorage
+- **Internal**: ../services/mcp/client.js, ./errors.js, ./format, ./log, ./toolResultStorage
 
 ## Items
 

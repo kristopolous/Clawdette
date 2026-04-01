@@ -4,7 +4,7 @@
 Track session IDs for teammates
 
 ## Imports
-- **Internal**: ../../../tools/AgentTool/agentColorManager.js, ../../../utils/debug.js, ../../../utils/execFileNoThrow.js, ./detection.js, ./registry.js, ./types
+- **Internal**: ../../../tools/AgentTool/agentColorManager.js, ../../../utils/debug.js, ../../../utils/execFileNoThrow.js, ./detection, ./registry, ./types
 
 ## Items
 

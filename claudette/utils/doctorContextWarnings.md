@@ -4,7 +4,7 @@
 Thresholds (matching status notices and existing patterns)
 
 ## Imports
-- **Internal**: ../services/tokenEstimation.js, ../Tool.js, ../tools/AgentTool/loadAgentsDir.js, ./analyzeContext.js, ./model/model.js, ./permissions/permissionRuleParser.js, ./permissions/shadowedRuleDetection.js, ./sandbox/sandbox-adapter.js, ./stringUtils
+- **Internal**: ../services/tokenEstimation.js, ../Tool.js, ../tools/AgentTool/loadAgentsDir.js, ./analyzeContext.js, ./model/model.js, ./permissions/permissionRuleParser.js, ./permissions/shadowedRuleDetection, ./sandbox/sandbox-adapter, ./stringUtils
 
 ## Items
 

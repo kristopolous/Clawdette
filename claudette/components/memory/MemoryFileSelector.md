@@ -40,6 +40,4 @@ Provides memory file selector component for choosing memory files.
 29. `updateSettingsForSource` - updates settings for source
 
 ## Exports
-- `ExtendedMemoryFileInfo` - extended memory file info type
-- `OPEN_FOLDER_PREFIX` - open folder prefix constant
 - `MemoryFileSelector` - memory file selector component

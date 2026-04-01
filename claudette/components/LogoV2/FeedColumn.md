@@ -25,5 +25,4 @@ Provides feed column component for rendering multiple feeds vertically.
 14. `calculateFeedWidth`, `Feed` - feed utilities
 
 ## Exports
-- `FeedColumnProps` - feed column props type
 - `FeedColumn` - feed column component

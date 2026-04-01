@@ -28,6 +28,5 @@ Provides Opus 1M merge notice component and utilities.
 17. `AnimatedAsterisk` - animated asterisk component
 
 ## Exports
-- `MAX_SHOW_COUNT` - max show count constant
 - `shouldShowOpus1mMergeNotice` - checks if should show notice
 - `Opus1mMergeNotice` - Opus 1M merge notice component

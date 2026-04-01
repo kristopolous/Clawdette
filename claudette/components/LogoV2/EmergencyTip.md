@@ -33,8 +33,4 @@ Provides emergency tip component for displaying dynamic config tips at top of fe
 19. `getGlobalConfig`, `saveGlobalConfig` - config functions
 
 ## Exports
-- `CONFIG_NAME` - config name constant
 - `EmergencyTip` - emergency tip component
-- `TipOfFeed` - tip of feed type
-- `DEFAULT_TIP` - default tip constant
-- `getTipOfFeed` - gets tip of feed

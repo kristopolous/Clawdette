@@ -34,9 +34,7 @@ Provides utilities for trust dialog source detection.
 23. `getPermissionRulesForSource` - gets permission rules for source
 
 ## Exports
-- `hasHooks` - checks if hooks enabled
 - `getHooksSources` - gets hooks sources
-- `hasBashPermission` - checks bash permission
 - `getBashPermissionSources` - gets bash permission sources
 - `formatListWithAnd` - formats list with "and"
 - `getApiKeyHelperSources` - gets API key helper sources

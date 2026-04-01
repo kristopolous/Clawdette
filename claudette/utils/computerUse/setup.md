@@ -6,7 +6,7 @@ command/args are never spawned — client.ts intercepts by name and
 ## Imports
 - **Stdlib**: path, url
 - **External**: @ant/computer-use-mcp
-- **Internal**: ../../services/mcp/mcpStringUtils.js, ../../services/mcp/types.js, ../bundledMode.js, ./common.js, ./gates
+- **Internal**: ../../services/mcp/mcpStringUtils.js, ../../services/mcp/types.js, ../bundledMode, ./common, ./gates
 
 ## Items
 

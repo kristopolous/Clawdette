@@ -5,7 +5,7 @@ Monotonically-increasing counter incremented on every snapshot, even when
 
 ## Imports
 - **Stdlib**: crypto, diff, fs, path, src/services/analytics/index.js, src/services/mcp/vscodeSdkMcp.js, src/types/logs.js, util
-- **Internal**: ./config.js, ./debug.js, ./envUtils.js, ./errors.js, ./file.js, ./log.js, ./sessionStorage
+- **Internal**: ./config.js, ./debug.js, ./envUtils.js, ./errors.js, ./file, ./log, ./sessionStorage
 
 ## Items
 

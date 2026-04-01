@@ -5,7 +5,7 @@ Check if this is a claude alias
 
 ## Imports
 - **Stdlib**: fs/promises, os, path
-- **Internal**: ./errors.js, ./localInstaller
+- **Internal**: ./errors, ./localInstaller
 
 ## Items
 

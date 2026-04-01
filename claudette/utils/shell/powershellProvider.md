@@ -5,7 +5,7 @@ Stash sandboxTmpDir for getEnvironmentOverrides (mirrors bashProvider)
 
 ## Imports
 - **Stdlib**: os, path, path/posix
-- **Internal**: ../sessionEnvVars.js, ./shellProvider
+- **Internal**: ../sessionEnvVars, ./shellProvider
 
 ## Items
 

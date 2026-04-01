@@ -4,7 +4,7 @@
 _PROTO_skill_name routes to the privileged skill_name BQ column.
 
 ## Imports
-- **Internal**: ../../commands.js, ../../tools/SkillTool/prompt
+- **Internal**: ../../commands, ../../tools/SkillTool/prompt
 
 ## Items
 

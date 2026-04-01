@@ -5,7 +5,7 @@ Check uv first (preferred for isolated environments)
 
 ## Imports
 - **Stdlib**: os
-- **Internal**: ../../../utils/config.js, ../../../utils/debug.js, ../../../utils/log
+- **Internal**: ../../../utils/config, ../../../utils/debug, ../../../utils/log
 
 ## Items
 

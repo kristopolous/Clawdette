@@ -32,9 +32,4 @@ Provides spinner glyph component for animated spinner display.
 21. `getDefaultCharacters`, `interpolateColor`, `parseRGB`, `toRGBColor` - spinner utils
 
 ## Exports
-- `DEFAULT_CHARACTERS` - default characters constant
-- `SPINNER_FRAMES` - spinner frames constant
-- `REDUCED_MOTION_DOT` - reduced motion dot constant
-- `REDUCED_MOTION_CYCLE_MS` - reduced motion cycle constant
-- `ERROR_RED` - error red color constant
 - `SpinnerGlyph` - spinner glyph component

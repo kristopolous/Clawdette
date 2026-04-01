@@ -5,7 +5,7 @@ Cached stdin override - computed once per process
 
 ## Imports
 - **Stdlib**: fs, tty
-- **Internal**: ../ink.js, ./envUtils.js, ./log
+- **Internal**: ../ink, ./envUtils, ./log
 
 ## Items
 

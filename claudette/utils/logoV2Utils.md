@@ -4,7 +4,7 @@
 Layout constants
 
 ## Imports
-- **Internal**: ../bootstrap/state.js, ../ink/stringWidth.js, ../types/logs.js, ./auth.js, ./cwd.js, ./file.js, ./releaseNotes.js, ./semver.js, ./sessionStorage.js, ./settings/settings
+- **Internal**: ../bootstrap/state.js, ../ink/stringWidth.js, ../types/logs.js, ./auth.js, ./cwd.js, ./file.js, ./releaseNotes.js, ./semver, ./sessionStorage, ./settings/settings
 
 ## Items
 

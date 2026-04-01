@@ -6,7 +6,7 @@ Provides session ID tag translation between `cse_*` (infrastructure/worker) and 
 ## Imports
 - **Stdlib**: (none)
 - **External**: (none)
-- **Internal**: (none - avoids bridgeEnabled.ts → growthbook.ts → config dependency chain)
+- **Internal**: (none - avoids bridgeEnabled → growthbook → config dependency chain)
 
 ## Logic
 1. `setCseShimGate` - injects GrowthBook gate function to avoid static import of banned modules

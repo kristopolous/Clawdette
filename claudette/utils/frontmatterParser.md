@@ -4,7 +4,7 @@
 YAML can return null for keys with no value (e.g., "key:" with nothing after)
 
 ## Imports
-- **Internal**: ./debug.js, ./settings/types.js, ./yaml
+- **Internal**: ./debug, ./settings/types, ./yaml
 
 ## Items
 

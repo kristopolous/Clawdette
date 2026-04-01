@@ -4,7 +4,7 @@
 Environment variable override takes precedence
 
 ## Imports
-- **Internal**: ../services/analytics/growthbook.js, ./auth.js, ./envUtils
+- **Internal**: ../services/analytics/growthbook, ./auth, ./envUtils
 
 ## Items
 

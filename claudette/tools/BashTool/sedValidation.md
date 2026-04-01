@@ -56,12 +56,9 @@ Rejects if expression contains:
 
 ## Exports
 
-- `validateFlagsAgainstAllowlist(flags: string[], allowedFlags: string[]): boolean`
 - `isLinePrintingCommand(command: string, expressions: string[]): boolean`
 - `isPrintCommand(cmd: string): boolean`
-- `isSubstitutionCommand(command: string, expressions: string[], hasFileArguments: boolean, options?: {allowFileWrites?: boolean}): boolean`
 - `sedCommandIsAllowedByAllowlist(command: string, options?: {allowFileWrites?: boolean}): boolean`
 - `hasFileArgs(command: string): boolean`
 - `extractSedExpressions(command: string): string[]`
-- `containsDangerousOperations(expression: string): boolean`
 - `checkSedConstraints(input: {command: string}, toolPermissionContext: ToolPermissionContext): PermissionResult`

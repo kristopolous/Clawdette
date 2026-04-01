@@ -4,7 +4,7 @@
 Git-related behaviors that depend on user settings.
 
 ## Imports
-- **Internal**: ./envUtils.js, ./settings/settings
+- **Internal**: ./envUtils, ./settings/settings
 
 ## Items
 

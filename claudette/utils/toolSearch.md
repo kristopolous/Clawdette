@@ -5,7 +5,7 @@ Clamp to valid range
 
 ## Imports
 - **Stdlib**: lodash-es/memoize.js
-- **Internal**: ../services/analytics/growthbook.js, ../Tool.js, ../tools/AgentTool/loadAgentsDir.js, ../types/message.js, ./array.js, ./betas.js, ./context.js, ./debug.js, ./envUtils.js, ./slowOperations...
+- **Internal**: ../services/analytics/growthbook.js, ../Tool.js, ../tools/AgentTool/loadAgentsDir.js, ../types/message.js, ./array.js, ./betas.js, ./context.js, ./debug, ./envUtils, ./slowOperations...
 
 ## Items
 

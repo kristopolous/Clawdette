@@ -5,7 +5,7 @@ Not sure if this path is still used, but adding as a fallback
 
 ## Imports
 - **External**: @anthropic-ai/sdk/resources/beta/messages/messages.mjs
-- **Internal**: ../services/tokenEstimation.js, ./messages.js, ./slowOperations
+- **Internal**: ../services/tokenEstimation, ./messages, ./slowOperations
 
 ## Items
 

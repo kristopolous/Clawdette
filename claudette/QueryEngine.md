@@ -64,7 +64,7 @@ When HISTORY_SNIP feature is enabled:
 
 ## Imports
 - **External**: `lodash-es`, `@anthropic-ai/sdk`, `strip-ansi`
-- **Internal**: `query` (query.ts), `Tools` (Tool), `accumulateUsage` (services/api/claude), `loadMemoryPrompt` (memdir)
+- **Internal**: `query` (query), `Tools` (Tool), `accumulateUsage` (services/api/claude), `loadMemoryPrompt` (memdir)
 
 ## Insights
 - **One QueryEngine per conversation**: Singleton pattern for conversation

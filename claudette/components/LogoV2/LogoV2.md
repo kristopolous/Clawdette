@@ -74,5 +74,4 @@ Provides main LogoV2 component for terminal header display with feeds.
 63. `renderModelSetting` - renders model setting
 
 ## Exports
-- `LEFT_PANEL_MAX_WIDTH` - left panel max width constant
 - `LogoV2` - LogoV2 component

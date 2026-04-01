@@ -30,6 +30,4 @@ Provides welcome screen component for Claude Code startup display.
 19. `MACRO.VERSION` - version constant
 
 ## Exports
-- `WELCOME_V2_WIDTH` - welcome width constant
 - `WelcomeV2` - welcome screen component
-- `AppleTerminalWelcomeV2` - Apple Terminal welcome component

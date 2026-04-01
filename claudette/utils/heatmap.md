@@ -5,7 +5,7 @@ Day labels take 4 characters ("Mon "), calculate weeks that fit
 
 ## Imports
 - **Stdlib**: chalk
-- **Internal**: ./stats.js, ./statsCache
+- **Internal**: ./stats, ./statsCache
 
 ## Items
 

@@ -37,8 +37,6 @@ Provides guest passes upsell component and utilities.
 26. `getGlobalConfig`, `saveGlobalConfig` - config functions
 
 ## Exports
-- `resetIfPassesRefreshed` - resets if passes refreshed
-- `shouldShowGuestPassesUpsell` - checks if should show upsell
 - `useShowGuestPassesUpsell` - hook for showing upsell
 - `incrementGuestPassesSeenCount` - increments seen count
 - `GuestPassesUpsell` - guest passes upsell component

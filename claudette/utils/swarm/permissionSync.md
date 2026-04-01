@@ -5,7 +5,7 @@ Create a directory-level lock file for atomic writes
 
 ## Imports
 - **Stdlib**: fs/promises, path, zod/v4
-- **Internal**: ../debug.js, ../errors.js, ../lazySchema.js, ../lockfile.js, ../log.js, ../permissions/PermissionUpdateSchema.js, ../slowOperations.js, ./teamHelpers
+- **Internal**: ../debug.js, ../errors.js, ../lazySchema.js, ../lockfile.js, ../log.js, ../permissions/PermissionUpdateSchema, ../slowOperations, ./teamHelpers
 
 ## Items
 

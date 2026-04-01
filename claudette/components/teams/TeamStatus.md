@@ -25,5 +25,4 @@ Provides team status footer component showing teammate count.
 14. `useAppState` - gets app state
 
 ## Exports
-- `Props` - props type
 - `TeamStatus` - team status component

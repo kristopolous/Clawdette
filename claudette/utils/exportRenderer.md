@@ -5,7 +5,7 @@ Upper-bound how many NormalizedMessages a Message can produce.
 
 ## Imports
 - **Stdlib**: react, strip-ansi
-- **Internal**: ../components/Messages.js, ../keybindings/KeybindingContext.js, ../keybindings/loadUserBindings.js, ../keybindings/types.js, ../state/AppState.js, ../Tool.js, ../types/message.js, ./staticRender
+- **Internal**: ../components/Messages.js, ../keybindings/KeybindingContext.js, ../keybindings/loadUserBindings.js, ../keybindings/types.js, ../state/AppState.js, ../Tool, ../types/message, ./staticRender
 
 ## Items
 

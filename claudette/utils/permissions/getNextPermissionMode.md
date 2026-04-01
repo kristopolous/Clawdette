@@ -5,7 +5,7 @@ Checks both the cached isAutoModeAvailable (set at startup by
 
 ## Imports
 - **Stdlib**: bun:bundle
-- **Internal**: ../../Tool.js, ../debug.js, ./PermissionMode
+- **Internal**: ../../Tool, ../debug, ./PermissionMode
 
 ## Items
 

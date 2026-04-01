@@ -4,9 +4,9 @@
 Default configuration for metrics cardinality
 
 ## Imports
-- **Stdlib**: src/bootstrap/state.js
+- **Stdlib**: src/bootstrap/state
 - **External**: @opentelemetry/api
-- **Internal**: ./auth.js, ./config.js, ./envDynamic.js, ./envUtils.js, ./taggedId
+- **Internal**: ./auth, ./config, ./envDynamic, ./envUtils, ./taggedId
 
 ## Items
 

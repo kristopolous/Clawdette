@@ -5,7 +5,7 @@ Use the git root as the canonical path for this repo clone.
 
 ## Imports
 - **Stdlib**: fs/promises
-- **Internal**: ../bootstrap/state.js, ./config.js, ./debug.js, ./file.js, ./git/gitFilesystem.js, ./git
+- **Internal**: ../bootstrap/state.js, ./config.js, ./debug.js, ./file, ./git/gitFilesystem, ./git
 
 ## Items
 

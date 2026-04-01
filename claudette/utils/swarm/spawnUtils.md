@@ -4,7 +4,7 @@
 Propagate permission mode to teammates, but NOT if plan mode is required
 
 ## Imports
-- **Internal**: ../bash/shellQuote.js, ../bundledMode.js, ../permissions/PermissionMode.js, ./backends/teammateModeSnapshot.js, ./constants
+- **Internal**: ../bash/shellQuote.js, ../bundledMode.js, ../permissions/PermissionMode, ./backends/teammateModeSnapshot, ./constants
 
 ## Items
 

@@ -4,7 +4,7 @@ Displays the detailed diff content for a single selected file using word-level d
 ## Imports
 - **Stdlib**: `path` (resolve)
 - **External**: `react/compiler-runtime`, `diff` (StructuredPatchHunk type), `react`
-- **Internal**: `../../hooks/useTerminalSize.js`, `../../ink.js`, `../../utils/cwd.js`, `../../utils/file.js`, `../design-system/Divider.js`, `../StructuredDiff`
+- **Internal**: `../../hooks/useTerminalSize.js`, `../../ink.js`, `../../utils/cwd.js`, `../../utils/file`, `../design-system/Divider`, `../StructuredDiff`
 
 ## Logic
 1. Reads the file content from disk using the current working directory and file path

@@ -4,7 +4,7 @@
 CGEvent.tapCreate failed — typically missing Accessibility permission.
 
 ## Imports
-- **Internal**: ../debug.js, ./drainRunLoop.js, ./swiftLoader
+- **Internal**: ../debug, ./drainRunLoop, ./swiftLoader
 
 ## Items
 

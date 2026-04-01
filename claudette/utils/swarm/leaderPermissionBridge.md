@@ -4,7 +4,7 @@
 Provides utility functions: registerLeaderToolUseConfirmQueue, getLeaderToolUseConfirmQueue, unregisterLeaderToolUseConfirmQueue, registerLeaderSetToolPermissionContext, getLeaderSetToolPermissionContext.
 
 ## Imports
-- **Internal**: ../../components/permissions/PermissionRequest.js, ../../Tool
+- **Internal**: ../../components/permissions/PermissionRequest, ../../Tool
 
 ## Items
 

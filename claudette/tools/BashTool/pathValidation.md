@@ -88,8 +88,10 @@ Each command has a function extracting paths from args:
 - sed command allowlist ensures only safe edits are treated as read; else default write
 
 ## Exports
-
 - `PathCommand` type
-- `checkPathConstraints(input: z.infer<typeof BashTool.inputSchema>, cwd: string, toolPermissionContext: ToolPermissionContext, compoundCommandHasCd?: boolean, astRedirects?: Redirect[], astCommands?: SimpleCommand[]): PermissionResult`
-- `stripWrappersFromArgv(argv: string[]): string[]`
-- (internal) `PATH_EXTRACTORS`, `COMMAND_OPERATION_TYPE`, `COMMAND_VALIDATOR`, `createPathChecker`, `validateSinglePathCommand`, `validateSinglePathCommandArgv`, `validateOutputRedirections`, etc.
+- `PATH_EXTRACTORS` constant
+- `COMMAND_OPERATION_TYPE` constant
+- `COMMAND_VALIDATOR` constant
+- `createPathChecker(command, operationTypeOverride?)` function
+- `checkPathConstraints(input, cwd, toolPermissionContext, compoundCommandHasCd?, astRedirects?, astCommands?)` function
+- `stripWrappersFromArgv(argv)` function

@@ -43,5 +43,4 @@ Provides teammate spinner line component for displaying individual teammate stat
 32. `TEAMMATE_SELECT_HINT` - teammate select hint
 
 ## Exports
-- `getMessagePreview` - gets message preview
 - `TeammateSpinnerLine` - teammate spinner line component

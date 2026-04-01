@@ -40,12 +40,5 @@ Provides spinner animation row component for 50ms-animated spinner portion.
 29. `interpolateColor`, `toRGBColor` - color utilities
 
 ## Exports
-- `SEP_WIDTH` - separator width constant
-- `THINKING_BARE_WIDTH` - thinking bare width constant
-- `SHOW_TOKENS_AFTER_MS` - show tokens after constant
-- `THINKING_INACTIVE` - thinking inactive color
-- `THINKING_INACTIVE_SHIMMER` - thinking inactive shimmer color
-- `THINKING_DELAY_MS` - thinking delay constant
-- `THINKING_GLOW_PERIOD_S` - thinking glow period constant
 - `SpinnerAnimationRowProps` - props type
 - `SpinnerAnimationRow` - spinner animation row component

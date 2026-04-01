@@ -4,7 +4,7 @@
 Provides utility functions: getMaxTaskOutputLength, formatTaskOutput.
 
 ## Imports
-- **Internal**: ../envValidation.js, ./diskOutput
+- **Internal**: ../envValidation, ./diskOutput
 
 ## Items
 

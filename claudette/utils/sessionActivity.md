@@ -4,7 +4,7 @@
 Restart timer if work is already in progress (e.g. reconnect during streaming)
 
 ## Imports
-- **Internal**: ./cleanupRegistry.js, ./diagLogs.js, ./envUtils
+- **Internal**: ./cleanupRegistry, ./diagLogs, ./envUtils
 
 ## Items
 

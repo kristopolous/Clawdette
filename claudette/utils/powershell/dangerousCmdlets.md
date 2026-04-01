@@ -4,7 +4,7 @@
 Native executables with callback-gated args (e.g. ipconfig /flushdns
 
 ## Imports
-- **Internal**: ../permissions/dangerousPatterns.js, ./parser
+- **Internal**: ../permissions/dangerousPatterns, ./parser
 
 ## Items
 

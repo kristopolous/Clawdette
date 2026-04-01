@@ -5,7 +5,7 @@ Delta batch of workflow state changes. Clients upsert by
 
 ## Imports
 - **Stdlib**: crypto, crypto
-- **Internal**: ../bootstrap/state.js, ../types/tools
+- **Internal**: ../bootstrap/state, ../types/tools
 
 ## Items
 

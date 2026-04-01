@@ -33,8 +33,4 @@ Provides Clawd ASCII art component with pose support.
 
 ## Exports
 - `ClawdPose` - Clawd pose type
-- `Props` - props type
-- `Segments` - segments type
-- `POSES` - poses record
-- `APPLE_EYES` - Apple Terminal eyes record
 - `Clawd` - Clawd component

@@ -5,7 +5,7 @@ GUI editors that open in a separate window and can be spawned detached
 
 ## Imports
 - **Stdlib**: lodash-es/memoize.js, path
-- **Internal**: ../ink/instances.js, ./debug.js, ./which
+- **Internal**: ../ink/instances, ./debug, ./which
 
 ## Items
 

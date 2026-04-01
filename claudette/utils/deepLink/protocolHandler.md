@@ -5,7 +5,7 @@ biome-ignore lint/suspicious/noConsole: intentional error output
 
 ## Imports
 - **Stdlib**: os
-- **Internal**: ../debug.js, ../slowOperations.js, ./banner.js, ./parseDeepLink.js, ./registerProtocol.js, ./terminalLauncher
+- **Internal**: ../debug.js, ../slowOperations.js, ./banner.js, ./parseDeepLink, ./registerProtocol, ./terminalLauncher
 
 ## Items
 

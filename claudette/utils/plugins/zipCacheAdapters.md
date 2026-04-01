@@ -5,7 +5,7 @@
 
 ## Imports
 - **Stdlib**: fs/promises, path
-- **Internal**: ../debug.js, ../slowOperations.js, ./marketplaceManager
+- **Internal**: ../debug, ../slowOperations, ./marketplaceManager
 
 ## Items
 

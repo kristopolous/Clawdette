@@ -4,7 +4,7 @@
 Fetch available environments
 
 ## Imports
-- **Internal**: ../settings/constants.js, ./environments
+- **Internal**: ../settings/constants, ./environments
 
 ## Items
 

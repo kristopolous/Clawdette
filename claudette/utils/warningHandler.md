@@ -5,7 +5,7 @@ Track warnings to avoid spam — bounded to prevent unbounded memory growth
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ./debug.js, ./envUtils.js, ./platform
+- **Internal**: ./debug, ./envUtils, ./platform
 
 ## Items
 

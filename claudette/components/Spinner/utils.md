@@ -31,5 +31,4 @@ Provides spinner utility functions for color interpolation and character selecti
 - `toRGBColor` - converts RGB to string
 - `hueToRgb` - converts hue to RGB
 - `parseRGB` - parses RGB string
-- `RGB_CACHE` - RGB cache
-- `RGBColorString`, `RGBColorType` - RGB color types
+- `RGB_CACHE` - RGB cache (const, not exported)

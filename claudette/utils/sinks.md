@@ -4,7 +4,7 @@
 Provides utility functions: initSinks.
 
 ## Imports
-- **Internal**: ../services/analytics/sink.js, ./errorLogSink
+- **Internal**: ../services/analytics/sink, ./errorLogSink
 
 ## Items
 

@@ -4,7 +4,7 @@ React hook that returns the display text for a configured shortcut action, falli
 ## Imports
 - **Stdlib**: none
 - **External**: `react` (useEffect, useRef)
-- **Internal**: `services/analytics/index.js` (logEvent, AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS), `KeybindingContext.js` (useOptionalKeybindingContext), `types` (KeybindingContextName)
+- **Internal**: `services/analytics/index` (logEvent, AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS), `KeybindingContext` (useOptionalKeybindingContext), `types` (KeybindingContextName)
 
 ## Logic
 Retrieves the configured binding display text from the keybinding context and returns a fallback if unavailable. Logs a telemetry event once per mount when a fallback is used, to track migration stability without flooding analytics on re-renders.

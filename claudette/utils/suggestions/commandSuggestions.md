@@ -5,7 +5,7 @@ Treat these characters as word separators for command search
 
 ## Imports
 - **Stdlib**: fuse.js
-- **Internal**: ../../components/PromptInput/PromptInputFooterSuggestions.js, ./skillUsageTracking
+- **Internal**: ../../components/PromptInput/PromptInputFooterSuggestions, ./skillUsageTracking
 
 ## Items
 

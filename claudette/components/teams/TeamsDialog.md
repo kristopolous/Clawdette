@@ -55,6 +55,4 @@ Provides teams dialog component for viewing and managing team members.
 44. `Dialog`, `ThemedText` - design system components
 
 ## Exports
-- `Props` - props type
-- `DialogLevel` - dialog level type
 - `TeamsDialog` - teams dialog component

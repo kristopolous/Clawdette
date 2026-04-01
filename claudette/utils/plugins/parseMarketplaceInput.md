@@ -5,7 +5,7 @@ Handle git SSH URLs with any valid username (not just 'git')
 
 ## Imports
 - **Stdlib**: os, path
-- **Internal**: ../errors.js, ../fsOperations.js, ./schemas
+- **Internal**: ../errors, ../fsOperations, ./schemas
 
 ## Items
 

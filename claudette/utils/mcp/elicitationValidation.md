@@ -5,7 +5,7 @@ No specific format validation
 
 ## Imports
 - **Stdlib**: zod/v4
-- **Internal**: ../slowOperations.js, ../stringUtils
+- **Internal**: ../slowOperations, ../stringUtils
 
 ## Items
 

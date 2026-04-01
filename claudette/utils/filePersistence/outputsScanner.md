@@ -5,7 +5,7 @@ Use recursive flag to get all entries in one call
 
 ## Imports
 - **Stdlib**: fs/promises, path
-- **Internal**: ../debug.js, ../teleport/environments.js, ./types
+- **Internal**: ../debug, ../teleport/environments, ./types
 
 ## Items
 

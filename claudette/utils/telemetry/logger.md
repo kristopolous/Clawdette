@@ -5,7 +5,7 @@ Provides ClaudeCodeDiagLogger class/function.
 
 ## Imports
 - **External**: @opentelemetry/api
-- **Internal**: ../debug.js, ../log
+- **Internal**: ../debug, ../log
 
 ## Items
 

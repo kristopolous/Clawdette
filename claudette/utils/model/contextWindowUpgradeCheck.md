@@ -4,7 +4,7 @@
 @[MODEL LAUNCH]: Add a branch for the new model if it supports a 1M context upgrade path.
 
 ## Imports
-- **Internal**: ./check1mAccess.js, ./model
+- **Internal**: ./check1mAccess, ./model
 
 ## Items
 

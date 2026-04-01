@@ -18,6 +18,5 @@ Exports:
 Used in permission flow to auto-allow common filesystem operations when the session is in Accept Edits mode.
 
 ## Exports
-- `checkPermissionMode(input, context)` (function)
-- `getAutoAllowedCommands(mode)` (function)
-- `validateCommandForMode(cmd, context)` (function, possibly internal)
+- `checkPermissionMode(input, context)` - function
+- `getAutoAllowedCommands(mode)` - function
