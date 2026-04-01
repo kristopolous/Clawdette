@@ -49,3 +49,7 @@ Handles conversation compaction (summarization) to manage context window size. C
 - `createSkillAttachmentIfNeeded(agentId?)` - Creates attachment for invoked skills with truncation
 - `createPlanModeAttachmentIfNeeded(context)` - Creates plan_mode attachment if in plan mode
 - `createAsyncAgentAttachmentsIfNeeded(context)` - Creates task_status attachments for async agents
+
+### Helpful Prompt Templates
+
+- **System prompt for compact API call** - "You are a helpful AI assistant tasked with summarizing conversations."

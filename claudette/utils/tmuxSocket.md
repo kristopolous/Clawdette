@@ -66,3 +66,11 @@ Constants for tmux socket management
 
 ## Source
 `tmuxSocket.ts`
+
+### Helpful Prompt Templates
+
+- **(No prompt templates found in this file)** - This file contains tmux socket management logic but no prompt strings.
+
+### Helpful Prompt Templates
+
+- **(No prompt templates found in this file)** - This file contains tmux socket management logic but no prompt strings.

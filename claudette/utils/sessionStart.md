@@ -37,3 +37,11 @@ Provides session start hook processing utilities.
 - `SessionStartHooksOptions` - options type
 - `takeInitialUserMessage` - takes initial user message
 - `processSessionStartHooks` - processes session start hooks
+
+### Helpful Prompt Templates
+
+- **Session startup note to CLAUDE** - "Note to CLAUDE: do not add ANY "warmup" logic. It is **CRITICAL** that you do not add extra work on startup."
+
+### Helpful Prompt Templates
+
+- **Session startup note to CLAUDE** - "Note to CLAUDE: do not add ANY "warmup" logic. It is **CRITICAL** that you do not add extra work on startup."

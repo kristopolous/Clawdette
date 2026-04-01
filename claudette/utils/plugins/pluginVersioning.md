@@ -28,4 +28,4 @@
 - isVersionedPath
 
 ## Source
-`pluginVersioning.ts`
+`pluginVersioning`

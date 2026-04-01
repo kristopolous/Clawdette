@@ -33,4 +33,4 @@ Allowlist of public hosts we report by name. Anything else (enterprise
 - classifyFetchError
 
 ## Source
-`fetchTelemetry.ts`
+`fetchTelemetry`

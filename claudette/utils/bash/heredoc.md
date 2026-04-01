@@ -28,3 +28,7 @@ Heredoc extraction and restoration utilities for shell-quote parsing compatibili
 - `extractHeredocs` - extracts heredocs from command
 - `restoreHeredocs` - restores heredocs to command
 - `HEREDOC_START_PATTERN` - heredoc start regex
+
+### Helpful Prompt Templates
+
+- **(No prompt templates found in this file)** - This file contains heredoc extraction/restoration logic but no prompt strings.

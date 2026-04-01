@@ -41,3 +41,7 @@ Provides ripgrep command configuration and execution utilities.
 - `ripgrep` - executes ripgrep
 - `ripgrepSync` - executes ripgrep synchronously
 - (Ripgrep execution functions)
+
+### Helpful Prompt Templates
+
+- **(No prompt templates found in this file)** - This file contains ripgrep configuration and execution logic but no prompt strings.

@@ -31,6 +31,7 @@ Provides utility functions for agent tool execution and result handling.
 ## Exports
 - `ResolvedAgentTools` - resolved agent tools type
 - `filterToolsForAgent` - filters tools for agent
+- `resolveAgentTools` - resolves and validates agent tools
 - `agentToolResultSchema` - agent result schema
 - `AgentToolResult` - agent result type
 - `classifyHandoffIfNeeded` - classifies handoff need

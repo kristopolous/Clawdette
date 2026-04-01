@@ -15,4 +15,4 @@ Only plugin@marketplace boolean entries (true OR false) are
 - getManagedPluginNames
 
 ## Source
-`managedPlugins.ts`
+`managedPlugins`

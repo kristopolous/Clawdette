@@ -27,3 +27,11 @@ Creates LSP client wrapper for communicating with language server processes via 
 ## Exports
 - `LSPClient` - client interface type
 - `createLSPClient` - factory function creating LSP client
+
+### Helpful Prompt Templates
+
+_No prompt strings found in this file._
+
+### Helpful Prompt Templates
+
+_No prompt strings found in this file._

@@ -26,21 +26,38 @@ Loads agent definitions from markdown files in agent directories.
 15. Supports user, project, local, managed, plugin, flag settings sources
 
 ## Exports
-- `AgentMcpServerSpec` - MCP server spec type
+### Types
+- `AgentMcpServerSpec` - MCP server spec type (string | inline object)
+- `AgentMcpServerSpecSchema` - Zod schema for MCP server specs
+- `AgentJsonSchema` - Zod schema for single agent JSON validation
+- `AgentsJsonSchema` - Zod schema for multiple agents JSON validation
 - `BaseAgentDefinition` - base agent definition type
 - `BuiltInAgentDefinition` - built-in agent type
 - `CustomAgentDefinition` - custom agent type
 - `PluginAgentDefinition` - plugin agent type
-- `AgentDefinition` - union agent definition type
-- `AgentDefinitionsResult` - agent definitions result type
+- `AgentDefinition` - union of all agent definition types
+- `AgentDefinitionsResult` - result type for agent definitions loading
+
+### Type Guards
 - `isBuiltInAgent` - checks if agent is built-in
 - `isCustomAgent` - checks if agent is custom
 - `isPluginAgent` - checks if agent is plugin
-- `getActiveAgentsFromList` - gets active agents from list
-- `hasRequiredMcpServers` - checks MCP server requirements
-- `filterAgentsByMcpRequirements` - filters agents by MCP availability
-- `getAgentDefinitionsWithOverrides` - loads agents with override resolution
+
+### Agent Loading
+- `getActiveAgentsFromList` - filters active agents from list (dedup by type, priority order)
+- `getAgentDefinitionsWithOverrides` - loads all agents with override resolution (memoized)
 - `clearAgentDefinitionsCache` - clears the agent definitions cache
-- `parseAgentFromJson` - parses agent from JSON
-- `parseAgentsFromJson` - parses multiple agents from JSON
-- `parseAgentFromMarkdown` - parses agent from markdown
+
+### MCP Requirements
+- `hasRequiredMcpServers` - checks if agent's required MCP servers are available
+- `filterAgentsByMcpRequirements` - filters agents by MCP server availability
+
+### Parsing
+- `parseAgentFromJson` - parses single agent from JSON object
+- `parseAgentsFromJson` - parses multiple agents from JSON object
+- `parseAgentFromMarkdown` - parses agent from markdown file
+- `getParseError` - determines parsing error for agent file
+- `parseHooksFromFrontmatter` - parses hooks from frontmatter
+
+### Memory Snapshots
+- `initializeAgentMemorySnapshots` - initializes agent memory from project snapshots

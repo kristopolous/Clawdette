@@ -29,3 +29,17 @@ Tool for performing web searches using Claude's native web search capability, re
 - `WebSearchProgress` - Progress type (re-exported)
 - Helper: `makeToolSchema` (builds Beta tool schema)
 - Helper: `makeOutputFromSearchResponse` (parses API response)
+
+### Helpful Prompt Templates
+
+- **(system prompt for web search query model)** - "You are an assistant for performing a web search tool use"
+
+- **(tool description)** - "Claude wants to search the web for: [query]"
+
+- **(formatted output reminder)** - "REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+
+- **(search result formatted output)** - "Web search results for query: \"[query]\"\n\n[results]\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+
+- **(activity description)** - "Searching for [summary]" / "Searching the web"
+
+- **(user message for search)** - "Perform a web search for the query: [query]"
