@@ -8,7 +8,7 @@
 
 Every module, every pattern, every decision - described so you can feed it to an LLM and get working code back.
 
-Probably. let's roll!
+Python? Go? Rust? QBasic? Brainfuck? The instructions describe what to build.
 
-Python? Go? Rust? QBasic? Brainfuck? The instructions describe *what to build*, not *how to type it*.
+Get in the game and make one yourself
 
