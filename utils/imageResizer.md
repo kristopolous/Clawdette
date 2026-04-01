@@ -1,95 +1,32 @@
-# imageResizer
+# utils/imageResizer
 
 ## Purpose
-Error type constants for analytics (numeric to comply with logEvent restrictions)
+Provides image resizing utilities for API compliance.
 
 ## Imports
-- **Internal**: ../services/analytics/index.js, ./debug.js, ./errors.js, ./format.js, ./log.js
+- **Stdlib**: (none)
+- **External**: `@anthropic-ai/sdk`
+- **Internal**: apiLimits, analytics, FileReadTool imageProcessor, debug, errors, format, log
 
-## Items
-
-### ImageResizeError
-**Type**: Class
-
-### classifyImageError
-**Type**: Function
-
-### hashString
-**Type**: Function
-
-### maybeResizeAndDownsampleImageBuffer
-**Type**: Function
-
-### maybeResizeAndDownsampleImageBlock
-**Type**: Function
-
-### compressImageBuffer
-**Type**: Function
-
-### compressImageBufferWithTokenLimit
-**Type**: Function
-
-### compressImageBlock
-**Type**: Function
-
-### createCompressedImageResult
-**Type**: Function
-
-### tryProgressiveResizing
-**Type**: Function
-
-### applyFormatOptimizations
-**Type**: Function
-
-### tryPalettePNG
-**Type**: Function
-
-### tryJPEGConversion
-**Type**: Function
-
-### createUltraCompressedJPEG
-**Type**: Function
-
-### detectImageFormatFromBuffer
-**Type**: Function
-
-### detectImageFormatFromBase64
-**Type**: Function
-
-### createImageMetadataText
-**Type**: Function
-
-### ResizeResult
-**Type**: Interface
-
-### ImageCompressionContext
-**Type**: Interface
-
-### CompressedImageResult
-**Type**: Interface
-
-### ImageBlockWithDimensions
-**Type**: Interface
-
-### ImageMediaType
-**Type**: Type alias
-
-### ImageDimensions
-**Type**: Type alias
+## Logic
+1. `ImageMediaType` - 'image/png' | 'image/jpeg' | 'image/gif' | 'image/webp'
+2. Error type constants: MODULE_LOAD, PROCESSING, UNKNOWN, PIXEL_LIMIT, MEMORY, TIMEOUT, VIPS, PERMISSION
+3. `ImageResizeError` - error class for resize failures
+4. `classifyImageError` - classifies errors for analytics
+5. Checks Node.js error codes (MODULE_NOT_FOUND, EACCES, ENOMEM)
+6. Falls back to message matching for sharp/vips errors
+7. `IMAGE_MAX_HEIGHT`, `IMAGE_MAX_WIDTH` - max dimensions
+8. `IMAGE_TARGET_RAW_SIZE` - target size for resizing
+9. `API_IMAGE_MAX_BASE64_SIZE` - max base64 size
+10. `maybeResizeAndDownsampleImageBlock` - resizes image if needed
+11. Uses sharp for image processing
+12. Handles module loading errors gracefully
+13. Logs events for analytics tracking
+14. Formats error messages for user display
 
 ## Exports
-- ImageResizeError
-- ImageDimensions
-- ResizeResult
-- maybeResizeAndDownsampleImageBuffer
-- ImageBlockWithDimensions
-- maybeResizeAndDownsampleImageBlock
-- compressImageBuffer
-- compressImageBufferWithTokenLimit
-- compressImageBlock
-- detectImageFormatFromBuffer
-- detectImageFormatFromBase64
-- createImageMetadataText
-
-## Source
-`imageResizer.ts`
+- `ImageMediaType` - image media type
+- `ImageResizeError` - resize error class
+- `classifyImageError` - classifies image errors
+- `maybeResizeAndDownsampleImageBlock` - resizes image block
+- (Image resizing constants)

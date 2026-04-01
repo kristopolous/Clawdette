@@ -1,45 +1,37 @@
-# localInstaller
+# utils/localInstaller
 
 ## Purpose
-Lazy getters: getClaudeConfigHomeDir() is memoized and reads process.env.
+Provides utilities for local installation management.
 
 ## Imports
-- **Stdlib**: fs/promises, path
-- **Internal**: ./config.js, ./envUtils.js, ./errors.js, ./execFileNoThrow.js, ./fsOperations.js, ./log.js, ./slowOperations.js
+- **Stdlib**: `fs/promises`, `path`
+- **External**: (none)
+- **Internal**: config, envUtils, errors, execFileNoThrow, fsOperations, log, JSON utils
 
-## Items
-
-### getLocalInstallDir
-**Type**: Function
-
-### getLocalClaudePath
-**Type**: Function
-
-### isRunningFromLocalInstallation
-**Type**: Function
-
-### writeIfMissing
-**Type**: Function
-
-### ensureLocalPackageEnvironment
-**Type**: Function
-
-### installOrUpdateClaudePackage
-**Type**: Function
-
-### localInstallationExists
-**Type**: Function
-
-### getShellType
-**Type**: Function
+## Logic
+1. `getLocalInstallDir` - gets local install directory (~/.claude/local)
+2. Lazy getter to avoid capturing stale CLAUDE_CONFIG_DIR value
+3. `getLocalClaudePath` - gets local claude path
+4. `isRunningFromLocalInstallation` - checks if running from local install
+5. Checks if process.argv[1] includes '/.claude/local/node_modules/'
+6. `writeIfMissing` - writes file only if it doesn't exist
+7. Uses O_EXCL ('wx') flag for atomic create-if-missing
+8. Returns true if created, false if already exists
+9. `ensureLocalPackageEnvironment` - ensures local package environment
+10. Creates installation directory (recursive, idempotent)
+11. Creates package.json if missing
+12. Creates wrapper script if missing (#!/bin/sh exec claude "$@")
+13. Sets wrapper permissions to 0o755
+14. `installLocalPackage` - installs package locally
+15. `uninstallLocalPackage` - uninstalls local package
+16. `getLocalPackageVersion` - gets local package version
 
 ## Exports
-- getLocalClaudePath
-- isRunningFromLocalInstallation
-- ensureLocalPackageEnvironment
-- installOrUpdateClaudePackage
-- localInstallationExists
-- getShellType
-
-## Source
-`localInstaller.ts`
+- `getLocalInstallDir` - gets local install directory
+- `getLocalClaudePath` - gets local claude path
+- `isRunningFromLocalInstallation` - checks local installation
+- `writeIfMissing` - writes file if missing
+- `ensureLocalPackageEnvironment` - ensures package environment
+- `installLocalPackage` - installs local package
+- `uninstallLocalPackage` - uninstalls local package
+- `getLocalPackageVersion` - gets local package version

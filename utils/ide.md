@@ -1,172 +1,37 @@
-# ide
+# utils/ide
 
 ## Purpose
-Lazy: IdeOnboardingDialog.tsx pulls React/ink; only needed in interactive onboarding path
+Provides IDE detection and integration utilities.
 
 ## Imports
-- **Stdlib**: axios, execa, lodash-es/capitalize.js, lodash-es/memoize.js, net, os, path, src/services/analytics/index.js
-- **External**: @modelcontextprotocol/sdk/client/index.js
-- **Internal**: ../bootstrap/state.js, ../services/mcp/client.js, ./config.js, ./env.js, ./envUtils.js, ./fsOperations.js, ./genericProcessUtils.js, ./jetbrains.js, ./log.js, ./platform.js...
+- **Stdlib**: `net`, `os`, `path`
+- **External**: `@modelcontextprotocol/sdk`, `axios`, `execa`, `lodash-es/capitalize/memoize`
+- **Internal**: analytics, bootstrap state, MCP client/types, config, env, envUtils, execFileNoThrow, fsOperations, genericProcessUtils, jetbrains, log, platform, semver, ideOnboardingDialog, abortController, debug, envDynamic, errors, idePathConversion, sleep, JSON utils
 
-## Items
-
-### isProcessRunning
-**Type**: Function
-
-### makeAncestorPidLookup
-**Type**: Function
-
-### isVSCodeIde
-**Type**: Function
-
-### isJetBrainsIde
-**Type**: Function
-
-### getTerminalIdeType
-**Type**: Function
-
-### getSortedIdeLockfiles
-**Type**: Function
-
-### readIdeLockfile
-**Type**: Function
-
-### checkIdeConnection
-**Type**: Function
-
-### getIdeLockfilesPaths
-**Type**: Function
-
-### cleanupStaleIdeLockfiles
-**Type**: Function
-
-### maybeInstallIDEExtension
-**Type**: Function
-
-### findAvailableIDE
-**Type**: Function
-
-### detectIDEs
-**Type**: Function
-
-### maybeNotifyIDEConnected
-**Type**: Function
-
-### hasAccessToIDEExtensionDiffFeature
-**Type**: Function
-
-### isIDEExtensionInstalled
-**Type**: Function
-
-### installIDEExtension
-**Type**: Function
-
-### getInstallationEnv
-**Type**: Function
-
-### getClaudeCodeVersion
-**Type**: Function
-
-### getInstalledVSCodeExtensionVersion
-**Type**: Function
-
-### getVSCodeIDECommandByParentProcess
-**Type**: Function
-
-### getVSCodeIDECommand
-**Type**: Function
-
-### isCursorInstalled
-**Type**: Function
-
-### isWindsurfInstalled
-**Type**: Function
-
-### isVSCodeInstalled
-**Type**: Function
-
-### detectRunningIDEsImpl
-**Type**: Function
-
-### detectRunningIDEs
-**Type**: Function
-
-### detectRunningIDEsCached
-**Type**: Function
-
-### resetDetectRunningIDEs
-**Type**: Function
-
-### getConnectedIdeName
-**Type**: Function
-
-### getIdeClientName
-**Type**: Function
-
-### toIDEDisplayName
-**Type**: Function
-
-### getConnectedIdeClient
-**Type**: Function
-
-### closeOpenDiffs
-**Type**: Function
-
-### initializeIdeIntegration
-**Type**: Function
-
-### installFromArtifactory
-**Type**: Function
-
-### IDEExtensionInstallationStatus
-**Type**: Interface
-
-### LockfileJsonContent
-**Type**: Type alias
-
-### IdeLockfileInfo
-**Type**: Type alias
-
-### DetectedIDEInfo
-**Type**: Type alias
-
-### IdeType
-**Type**: Type alias
-
-### IdeConfig
-**Type**: Type alias
+## Logic
+1. `isProcessRunning` - checks if process with PID is running
+2. `makeAncestorPidLookup` - creates lazy ancestor PID lookup function
+3. Caches ancestor PIDs within closure lifetime
+4. `LockfileJsonContent` - { workspaceFolders, pid, ideName, transport, runningInWindows, authToken }
+5. IDE detection via lockfile parsing
+6. `getConnectedIdeName` - gets connected IDE name
+7. `isIdeConnected` - checks if IDE is connected
+8. `callIdeRpc` - calls IDE RPC endpoint
+9. `checkWSLDistroMatch` - checks WSL distro match
+10. `WindowsToWSLConverter` - converts Windows paths to WSL
+11. `isJetBrainsPluginInstalledCached` - checks JetBrains plugin installed
+12. `showIdeOnboardingDialog` - shows IDE onboarding dialog
+13. Lazy-loads IdeOnboardingDialog component
+14. Supports VS Code, JetBrains, and other IDEs
+15. Handles Windows/WSL path conversion
 
 ## Exports
-- DetectedIDEInfo
-- IdeType
-- isVSCodeIde
-- isJetBrainsIde
-- isSupportedVSCodeTerminal
-- isSupportedJetBrainsTerminal
-- isSupportedTerminal
-- getTerminalIdeType
-- getSortedIdeLockfiles
-- getIdeLockfilesPaths
-- cleanupStaleIdeLockfiles
-- IDEExtensionInstallationStatus
-- maybeInstallIDEExtension
-- findAvailableIDE
-- detectIDEs
-- maybeNotifyIDEConnected
-- hasAccessToIDEExtensionDiffFeature
-- isIDEExtensionInstalled
-- isCursorInstalled
-- isWindsurfInstalled
-- isVSCodeInstalled
-- detectRunningIDEs
-- detectRunningIDEsCached
-- resetDetectRunningIDEs
-- getConnectedIdeName
-- getIdeClientName
-- toIDEDisplayName
-- getConnectedIdeClient
-- closeOpenDiffs
-- initializeIdeIntegration
-
-## Source
-`ide.ts`
+- `isProcessRunning` - checks process running
+- `makeAncestorPidLookup` - creates ancestor PID lookup
+- `getConnectedIdeName` - gets IDE name
+- `isIdeConnected` - checks IDE connected
+- `callIdeRpc` - calls IDE RPC
+- `checkWSLDistroMatch` - checks WSL distro match
+- `WindowsToWSLConverter` - Windows to WSL converter
+- `isJetBrainsPluginInstalledCached` - checks JetBrains plugin
+- `showIdeOnboardingDialog` - shows onboarding dialog

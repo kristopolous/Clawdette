@@ -1,79 +1,37 @@
-# log
+# utils/log
 
 ## Purpose
-Skip firstPrompt if it's a tick/goal message (autonomous mode auto-prompt)
+Provides logging utilities for error logging and session display titles.
 
 ## Imports
-- **Stdlib**: bun:bundle, fs/promises, lodash-es/memoize.js, path, src/constants/querySource.js
-- **External**: @anthropic-ai/sdk/resources/beta/messages/messages.mjs
-- **Internal**: ../constants/xml.js, ./cachePaths.js, ./displayTags.js, ./envUtils.js, ./errors.js, ./privacyLevel.js, ./slowOperations.js
+- **Stdlib**: `fs/promises`
+- **External**: `bun:bundle`, `@anthropic-ai/sdk`, `lodash-es/memoize`
+- **Internal**: querySource, bootstrap state, xml constants, logs types, cachePaths, displayTags, envUtils, errors, privacyLevel, JSON utils
 
-## Items
-
-### getLogDisplayTitle
-**Type**: Function
-
-### dateToFilename
-**Type**: Function
-
-### addToInMemoryErrorLog
-**Type**: Function
-
-### attachErrorLogSink
-**Type**: Function
-
-### logError
-**Type**: Function
-
-### getInMemoryErrors
-**Type**: Function
-
-### loadErrorLogs
-**Type**: Function
-
-### getErrorLogByIndex
-**Type**: Function
-
-### loadLogList
-**Type**: Function
-
-### parseISOString
-**Type**: Function
-
-### logMCPError
-**Type**: Function
-
-### logMCPDebug
-**Type**: Function
-
-### captureAPIRequest
-**Type**: Function
-
-### _resetErrorLogForTesting
-**Type**: Function
-
-### for
-**Type**: Interface
-
-### ErrorLogSink
-**Type**: Type alias
-
-### QueuedErrorEvent
-**Type**: Type alias
+## Logic
+1. `getLogDisplayTitle` - gets display title for log/session with fallbacks
+2. Skips firstPrompt if starts with tick/goal tag (autonomous mode)
+3. Strips display-unfriendly tags (ide_opened_file, command-name, etc.)
+4. Falls back to: agentName, customTitle, summary, firstPrompt, defaultTitle, sessionId
+5. For autonomous sessions without context: shows "Autonomous session"
+6. `dateToFilename` - converts Date to filename-safe string
+7. `MAX_IN_MEMORY_ERRORS` (100) - max errors in memory log
+8. `inMemoryErrorLog` - in-memory error log array
+9. `addToInMemoryErrorLog` - adds error to in-memory log
+10. `getInMemoryErrors` - gets in-memory errors
+11. `clearInMemoryErrors` - clears in-memory errors
+12. `logError` - logs error to file and in-memory
+13. `logAntError` - logs ant-specific error
+14. `logMCPDebug` - logs MCP debug info
+15. `captureAPIRequest` - captures API request for logging
+16. `setLastAPIRequest`, `setLastAPIRequestMessages` - sets last API request
 
 ## Exports
-- getLogDisplayTitle
-- dateToFilename
-- ErrorLogSink
-- attachErrorLogSink
-- logError
-- getInMemoryErrors
-- loadErrorLogs
-- getErrorLogByIndex
-- logMCPError
-- logMCPDebug
-- captureAPIRequest
-- _resetErrorLogForTesting
-
-## Source
-`log.ts`
+- `getLogDisplayTitle` - gets display title for log
+- `dateToFilename` - converts date to filename
+- `getInMemoryErrors` - gets in-memory errors
+- `clearInMemoryErrors` - clears in-memory errors
+- `logError` - logs error
+- `logAntError` - logs ant error
+- `logMCPDebug` - logs MCP debug
+- `captureAPIRequest` - captures API request

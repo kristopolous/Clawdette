@@ -1,14 +1,19 @@
-# types
+# utils/memory/types
 
 ## Purpose
-Source file: types.ts
+Provides memory type definitions.
 
 ## Imports
-- **Stdlib**: bun:bundle
+- **Stdlib**: (none)
+- **External**: `bun:bundle`
+- **Internal**: (none)
+
+## Logic
+1. `MEMORY_TYPE_VALUES` - array of memory type values
+2. Values: User, Project, Local, Managed, AutoMem
+3. TeamMem included when TEAMMEM feature enabled
+4. `MemoryType` - type derived from MEMORY_TYPE_VALUES
 
 ## Exports
-- MEMORY_TYPE_VALUES
-- MemoryType
-
-## Source
-`types.ts`
+- `MEMORY_TYPE_VALUES` - memory type values array
+- `MemoryType` - memory type
