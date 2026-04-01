@@ -1,81 +1,42 @@
-# zipCache
+# utils/plugins/zipCache
 
 ## Purpose
-Session plugin cache: a temp directory on local disk (NOT in the mounted zip cache)
+Manages plugins as ZIP archives in a mounted directory for headless mode.
 
 ## Imports
-- **Stdlib**: crypto, os, path
-- **Internal**: ../debug.js, ../dxt/zip.js, ../envUtils.js, ../fsOperations.js, ../permissions/pathValidation.js, ./schemas.js
+- **Stdlib**: `crypto`, `fs/promises`, `os`, `path`
+- **External**: (none)
+- **Internal**: debug, dxt zip, envUtils, fsOperations, permissions pathValidation, plugins schemas
 
-## Items
-
-### isPluginZipCacheEnabled
-**Type**: Function
-
-### getPluginZipCachePath
-**Type**: Function
-
-### getZipCacheKnownMarketplacesPath
-**Type**: Function
-
-### getZipCacheInstalledPluginsPath
-**Type**: Function
-
-### getZipCacheMarketplacesDir
-**Type**: Function
-
-### getZipCachePluginsDir
-**Type**: Function
-
-### getSessionPluginCachePath
-**Type**: Function
-
-### cleanupSessionPluginCache
-**Type**: Function
-
-### resetSessionPluginCache
-**Type**: Function
-
-### atomicWriteToZipCache
-**Type**: Function
-
-### createZipFromDirectory
-**Type**: Function
-
-### collectFilesForZip
-**Type**: Function
-
-### extractZipToDirectory
-**Type**: Function
-
-### convertDirectoryToZipInPlace
-**Type**: Function
-
-### getMarketplaceJsonRelativePath
-**Type**: Function
-
-### isMarketplaceSourceSupportedByZipCache
-**Type**: Function
-
-### ZipEntry
-**Type**: Type alias
+## Logic
+1. When CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE enabled and CLAUDE_CODE_PLUGIN_CACHE_DIR set:
+   - Plugins stored as ZIPs in cache directory
+   - Extracted to session-local temp directory at startup
+2. Limitations: headless mode only, all settings sources used, only github/git/url sources, only strict:true entries, auto-update non-blocking
+3. Directory structure: /mnt/plugins-cache/known_marketplaces.json, installed_plugins.json, marketplaces/, plugins/
+4. `isPluginZipCacheEnabled` - checks if zip cache mode enabled
+5. `getPluginZipCachePath` - gets zip cache directory path
+6. `getZipCacheKnownMarketplacesPath` - gets known_marketplaces.json path in zip cache
+7. `getZipCacheInstalledPluginsPath` - gets installed_plugins.json path in zip cache
+8. `getZipCacheMarketplacesDir` - gets marketplaces directory in zip cache
+9. `getZipCachePluginsDir` - gets plugins directory in zip cache
+10. `getPluginZipPath` - gets plugin ZIP path in cache
+11. `extractPluginZip` - extracts plugin ZIP to temp directory
+12. `cachePluginZip` - caches plugin as ZIP
+13. `shouldUseZipCache` - checks if should use zip cache for plugin
+14. `parseZipModes` - parses ZIP modes
+15. `unzipFile` - unzips file
 
 ## Exports
-- isPluginZipCacheEnabled
-- getPluginZipCachePath
-- getZipCacheKnownMarketplacesPath
-- getZipCacheInstalledPluginsPath
-- getZipCacheMarketplacesDir
-- getZipCachePluginsDir
-- getSessionPluginCachePath
-- cleanupSessionPluginCache
-- resetSessionPluginCache
-- atomicWriteToZipCache
-- createZipFromDirectory
-- extractZipToDirectory
-- convertDirectoryToZipInPlace
-- getMarketplaceJsonRelativePath
-- isMarketplaceSourceSupportedByZipCache
-
-## Source
-`zipCache.ts`
+- `isPluginZipCacheEnabled` - checks zip cache enabled
+- `getPluginZipCachePath` - gets zip cache path
+- `getZipCacheKnownMarketplacesPath` - gets known marketplaces path
+- `getZipCacheInstalledPluginsPath` - gets installed plugins path
+- `getZipCacheMarketplacesDir` - gets marketplaces dir
+- `getZipCachePluginsDir` - gets plugins dir
+- `getPluginZipPath` - gets plugin ZIP path
+- `extractPluginZip` - extracts plugin ZIP
+- `cachePluginZip` - caches plugin ZIP
+- `shouldUseZipCache` - checks if should use zip cache
+- `parseZipModes` - parses ZIP modes
+- `unzipFile` - unzips file

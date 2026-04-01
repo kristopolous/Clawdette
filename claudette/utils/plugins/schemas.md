@@ -1,123 +1,45 @@
-# schemas
+# utils/plugins/schemas
 
 ## Purpose
-If it's in the allowed list, it's not blocked
+Provides plugin schema definitions and validation utilities.
 
 ## Imports
-- **Stdlib**: zod/v4
-- **Internal**: ../../schemas/hooks.js, ../../services/mcp/types.js, ../lazySchema.js
+- **Stdlib**: (none)
+- **External**: `zod/v4`
+- **Internal**: schemas hooks, services mcp types, lazySchema
 
-## Items
-
-### isMarketplaceAutoUpdate
-**Type**: Function
-
-### isBlockedOfficialName
-**Type**: Function
-
-### validateOfficialNameSource
-**Type**: Function
-
-### isLocalPluginSource
-**Type**: Function
-
-### isLocalMarketplaceSource
-**Type**: Function
-
-### CommandMetadata
-**Type**: Type alias
-
-### MarketplaceSource
-**Type**: Type alias
-
-### PluginAuthor
-**Type**: Type alias
-
-### PluginSource
-**Type**: Type alias
-
-### PluginManifest
-**Type**: Type alias
-
-### PluginManifestChannel
-**Type**: Type alias
-
-### PluginMarketplace
-**Type**: Type alias
-
-### PluginMarketplaceEntry
-**Type**: Type alias
-
-### PluginId
-**Type**: Type alias
-
-### InstalledPlugin
-**Type**: Type alias
-
-### InstalledPluginsFileV1
-**Type**: Type alias
-
-### InstalledPluginsFileV2
-**Type**: Type alias
-
-### PluginScope
-**Type**: Type alias
-
-### PluginInstallationEntry
-**Type**: Type alias
-
-### KnownMarketplace
-**Type**: Type alias
-
-### KnownMarketplacesFile
-**Type**: Type alias
+## Logic
+1. `ALLOWED_OFFICIAL_MARKETPLACE_NAMES` - Set of reserved official marketplace names
+2. Includes: claude-code-marketplace, claude-code-plugins, claude-plugins-official, anthropic-marketplace, etc.
+3. First-layer defense against official marketplace impersonation
+4. `NO_AUTO_UPDATE_OFFICIAL_MARKETPLACES` - official marketplaces that don't auto-update by default
+5. Includes: knowledge-work-plugins
+6. `isMarketplaceAutoUpdate` - checks if auto-update enabled for marketplace
+7. Uses stored value if set, otherwise defaults based on official status
+8. `BLOCKED_OFFICIAL_NAME_PATTERN` - regex detecting impersonation attempts
+9. Matches: official+anthropic/claude, anthropic/claude+official, anthropic/claude+marketplace/plugins
+10. `NON_ASCII_PATTERN` - detects non-ASCII characters for homograph attack prevention
+11. Marketplace names should only contain ASCII to prevent lookalike Unicode impersonation
+12. `PluginManifest` - plugin manifest schema
+13. `PluginScope` - plugin scope type (user, project, local, managed, flag)
+14. `InstalledPlugin` - installed plugin schema
+15. `InstalledPluginsFileSchemaV1` - V1 installed plugins file schema
+16. `InstalledPluginsFileSchemaV2` - V2 installed plugins file schema
+17. `PluginInstallationEntry` - plugin installation entry type
+18. `KnownMarketplace` - known marketplace type
+19. `MarketplaceSource` - marketplace source type
 
 ## Exports
-- ALLOWED_OFFICIAL_MARKETPLACE_NAMES
-- isMarketplaceAutoUpdate
-- BLOCKED_OFFICIAL_NAME_PATTERN
-- isBlockedOfficialName
-- OFFICIAL_GITHUB_ORG
-- validateOfficialNameSource
-- PluginAuthorSchema
-- PluginHooksSchema
-- CommandMetadataSchema
-- LspServerConfigSchema
-- PluginManifestSchema
-- MarketplaceSourceSchema
-- gitSha
-- PluginSourceSchema
-- isLocalPluginSource
-- isLocalMarketplaceSource
-- PluginMarketplaceEntrySchema
-- PluginMarketplaceSchema
-- PluginIdSchema
-- DependencyRefSchema
-- SettingsPluginEntrySchema
-- InstalledPluginSchema
-- InstalledPluginsFileSchemaV1
-- PluginScopeSchema
-- PluginInstallationEntrySchema
-- InstalledPluginsFileSchemaV2
-- InstalledPluginsFileSchema
-- KnownMarketplaceSchema
-- KnownMarketplacesFileSchema
-- CommandMetadata
-- MarketplaceSource
-- PluginAuthor
-- PluginSource
-- PluginManifest
-- PluginManifestChannel
-- PluginMarketplace
-- PluginMarketplaceEntry
-- PluginId
-- InstalledPlugin
-- InstalledPluginsFileV1
-- InstalledPluginsFileV2
-- PluginScope
-- PluginInstallationEntry
-- KnownMarketplace
-- KnownMarketplacesFile
-
-## Source
-`schemas.ts`
+- `ALLOWED_OFFICIAL_MARKETPLACE_NAMES` - allowed official names Set
+- `NO_AUTO_UPDATE_OFFICIAL_MARKETPLACES` - no auto-update names Set
+- `isMarketplaceAutoUpdate` - checks auto-update status
+- `BLOCKED_OFFICIAL_NAME_PATTERN` - blocked name pattern regex
+- `NON_ASCII_PATTERN` - non-ASCII pattern regex
+- `PluginManifest` - manifest schema
+- `PluginScope` - scope type
+- `InstalledPlugin` - installed plugin schema
+- `InstalledPluginsFileSchemaV1` - V1 file schema
+- `InstalledPluginsFileSchemaV2` - V2 file schema
+- `PluginInstallationEntry` - installation entry type
+- `KnownMarketplace` - marketplace type
+- `MarketplaceSource` - source type

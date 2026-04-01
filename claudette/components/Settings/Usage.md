@@ -1,0 +1,15 @@
+## Purpose
+Displays API usage statistics including session limits, weekly limits, and extra usage with progress bars for subscription plans.
+
+## Imports
+- **Stdlib**: none
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: `commands/extra-usage/index`, `cost-tracker`, `utils/auth`, `hooks/useTerminalSize`, `ink`, `keybindings/useKeybinding`, `services/api/usage`, `utils/format`, `utils/log`, `utils/slowOperations`, `components/ConfigurableShortcutHint`, `components/design-system/Byline`, `components/design-system/ProgressBar`, `components/LogoV2/OverageCreditUpsell`
+
+## Logic
+Fetches utilization data on mount and displays rate limit bars for current session (5-hour), current week (all models), and current week (Sonnet only, for Max/Team plans). Each bar shows utilization percentage, progress bar, and reset time. An ExtraUsageSection displays extra usage credits for Pro/Max subscribers. Supports retry keybinding on error and shows a message when usage data is unavailable for the current plan.
+
+## Exports
+- `Usage` - React component that renders usage statistics with progress bars for session and weekly rate limits
+- `LimitBar` - internal component that renders a single rate limit bar with title, progress, and reset info
+- `ExtraUsageSection` - internal component that displays extra usage credits for eligible subscription plans
