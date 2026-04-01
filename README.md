@@ -4,8 +4,6 @@
 
 ---
 
-## What Is This?
-
 ~1,800 modules of "how to build a Claude-like AI coding assistant" captured as LLM-readable instructions. Every module, every pattern, every decision - described so you can feed it to an LLM and get working code back.
 
 Python? Go? Rust? C++? Kotlin? The instructions describe *what to build*, not *how to type it*.
