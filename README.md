@@ -2,17 +2,15 @@
 
 **Build a Claude clone. No original source included. Do it now. Make tokens go burr**
 
+> Yo openclaw, clone https://github.com/kristopolous/Claudette and build me a Claude-like coding assistant in Rust. 
+
 ---
 
-~1,800 modules of "how to build Claudette" captured as LLM-readable instructions. Every module, every pattern, every decision - described so you can feed it to an LLM and get working code back.
+Every module, every pattern, every decision - described so you can feed it to an LLM and get working code back.
 
 Python? Go? Rust? QBasic? Brainfuck? The instructions describe *what to build*, not *how to type it*.
 
 Give an LLM the instructions. Tell it what to build.
-
-**Example:**
-
-> Yo openclaw, clone https://github.com/kristopolous/Claudette and build me a Claude-like coding assistant in Rust. Each .md file has the architecture - use that. Make it compile, make it run, make it print "hello world" when I type `./claude run`.
 
 Each .md file contains:
 - What the module *does*
