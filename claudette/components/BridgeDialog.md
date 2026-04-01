@@ -1,13 +1,26 @@
 ## Purpose
-Displays a dialog for managing remote control bridge connections with QR code support.
+A dialog component that handles the connection status and user interaction for establishing and controlling remote REPL or shell sessions, providing visual feedback and actionable controls.
 
 ## Imports
 - **Stdlib**: `path`
 - **External**: `qrcode`, `react`
-- **Internal**: `../bootstrap/state`, `../bridge/bridgeStatusUtil`, `../constants/figures`, `../context/overlayContext`, `../ink`, `../keybindings/useKeybinding`, `../state/AppState`, `../utils/config`, `../utils/git`, `./design-system/Dialog`
+- **Internal**: `bootstrap/state`, `bridge/bridgeStatusUtil`, `constants/figures`, `context/overlayContext`, `ink`, `keybindings/useKeybindings`, `state/AppState`, `utils/config`, `utils/git`, `components/design-system/Dialog`
 
 ## Logic
-Reads app state for bridge connection status, session URLs, and errors. Fetches the current git branch on mount. Generates QR codes for connection URLs on demand. Displays connection status with indicators, environment/session IDs in verbose mode, and optional QR code rendering. Handles disconnect via raw 'd' key input and toggles QR display via space bar.
+1. **Connection Status Monitoring**:
+    - Tracks the state of the remote connection using context hooks (`useAppState`), reflecting states such as `connected`, `sessionActive`, `reconnecting`, and `error`.
+    - Displays a status indicator and label that dynamically updates based on the current connection state.
+2. **Contextual Information Display**:
+    - Shows the relevant URL for connecting or the active session URL.
+    - Displays the current Git repository name and branch for context.
+    - Includes an option to show a QR code for the connection URL, facilitating mobile or alternative client connections.
+3. **User Interaction and Control**:
+    - Provides clear keyboard shortcuts for common actions:
+        - `Enter` or `Esc` to close the dialog.
+        - `Space` to toggle the QR code visibility.
+        - `d` to disconnect the active remote session (with explicit confirmation if remote control was manually enabled).
+4. **Error Handling**: Prominently displays any connection errors encountered, guiding the user towards resolution.
+5. **State Persistence**: Allows explicit disabling of remote control at startup by saving a preference to the global configuration.
 
 ## Exports
-- `BridgeDialog` - dialog that shows remote control bridge status and allows disconnection
+- `BridgeDialog` - A functional component that renders the remote control connection interface.

@@ -1,17 +1,40 @@
+# components/Spinner/SpinnerGlyph
+
 ## Purpose
-Renders an animated spinner character glyph with color transitions for stall detection and reduced motion support.
+Provides spinner glyph component for animated spinner display.
 
 ## Imports
-- **Stdlib**: None
-- **External**: `react`
-- **Internal**: `ink` (Box, Text, useTheme), `utils/theme` (getTheme, Theme), `utils` (getDefaultCharacters, interpolateColor, parseRGB, toRGBColor)
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: ink, theme, Spinner utils
 
 ## Logic
-1. Builds spinner frames from default characters in forward and reverse order
-2. In reduced motion mode, shows a pulsing dot with 2-second cycle (1s visible, 1s dim)
-3. When stalled intensity is positive, interpolates from base theme color to error red
-4. Falls back to named color when RGB parsing fails
-5. Renders normal spinner character with theme color when not stalled
+1. `DEFAULT_CHARACTERS` - default spinner characters from getDefaultCharacters()
+2. `SPINNER_FRAMES` - spinner frames: characters + reversed characters
+3. `REDUCED_MOTION_DOT` - '●' for reduced motion
+4. `REDUCED_MOTION_CYCLE_MS` (2000) - 2-second cycle: 1s visible, 1s dim
+5. `ERROR_RED` - { r: 171, g: 43, b: 63 } for error color
+6. `Props` - { frame, messageColor, stalledIntensity?, reducedMotion?, time? }
+7. `SpinnerGlyph` - React component for spinner glyph
+8. Uses React compiler runtime (_c) for memoization
+9. Gets theme via useTheme and getTheme
+10. Reduced motion: slowly flashing orange dot
+11. Calculates isDim based on time and cycle
+12. Renders Box with flexWrap="wrap", height={1}, width={2}
+13. Renders Text with messageColor and dimColor={isDim}
+14. Stalled intensity > 0: smoothly interpolates from current color to red
+15. Gets base color from theme[messageColor]
+16. Parses base color to RGB, interpolates with ERROR_RED
+17. Falls back to ANSI themes: error color if stalledIntensity > 0.5, else messageColor
+18. Normal mode: renders spinner character with messageColor
+19. `useTheme` - gets current theme
+20. `getTheme`, `Theme` - theme functions/types
+21. `getDefaultCharacters`, `interpolateColor`, `parseRGB`, `toRGBColor` - spinner utils
 
 ## Exports
-- `SpinnerGlyph` - renders a single animated spinner character with stall-based color shifting and reduced motion support
+- `DEFAULT_CHARACTERS` - default characters constant
+- `SPINNER_FRAMES` - spinner frames constant
+- `REDUCED_MOTION_DOT` - reduced motion dot constant
+- `REDUCED_MOTION_CYCLE_MS` - reduced motion cycle constant
+- `ERROR_RED` - error red color constant
+- `SpinnerGlyph` - spinner glyph component

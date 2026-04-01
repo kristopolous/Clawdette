@@ -1,16 +1,18 @@
 ## Purpose
-Top-level wrapper for interactive sessions that provides FPS metrics, stats context, and app state to the component tree.
+The root container for interactive CLI sessions, responsible for initializing the application's global state and providing essential performance and statistics contexts to the entire component tree.
 
 ## Imports
 - **Stdlib**: None
-- **External**: react, react/compiler-runtime
-- **Internal**: context/fpsMetrics (FpsMetricsProvider), context/stats (StatsProvider, StatsStore), state/AppState (AppState, AppStateProvider), state/onChangeAppState (onChangeAppState), utils/fpsTracker (FpsMetrics)
+- **External**: `ui-framework` (e.g., react)
+- **Internal**: `context/fpsMetrics`, `context/stats`, `state/AppState`, `state/onChangeAppState`, `utils/fpsTracker`
 
 ## Logic
-1. Wraps children in an AppStateProvider with initial state and onChange handler
-2. Wraps the result in a StatsProvider with the optional stats store
-3. Wraps everything in an FpsMetricsProvider with the metrics getter function
-4. Returns the fully wrapped component tree
+1. **Context Initialization**: Wraps all child components in a multi-layered provider structure to manage global services:
+    - **Performance Monitoring**: The `FpsMetricsProvider` provides real-time access to UI responsiveness metrics (FPS), allowing components to optimize rendering behavior under load.
+    - **Session Analytics**: The `StatsProvider` maintains a central store for session-level statistics and event tracking.
+    - **Application State**: The `AppStateProvider` establishes the primary state management system, injecting the initial session data and attaching a global change listener to synchronize state transitions across the application.
+2. **State Hydration**: Receives the `initialState` from the application entry point, ensuring that the interactive session begins with correctly resolved configurations, tool definitions, and user settings.
+3. **Structural Composition**: Serves as a pure structural orchestrator, ensuring that foundational contexts are available before any functional UI components (passed as `children`) are rendered.
 
 ## Exports
-- `App` - Root component that sets up all provider contexts for the application
+- `App` - The top-level functional component that bootstraps the interactive session environment.

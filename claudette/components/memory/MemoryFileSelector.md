@@ -1,33 +1,45 @@
 # components/memory/MemoryFileSelector
 
 ## Purpose
-Provides file selector dialog for choosing which memory file to edit.
+Provides memory file selector component for choosing memory files.
 
 ## Imports
-- **Stdlib**: bun:bundle (feature), chalk, fs/promises (mkdir), path (join)
-- **External**: `react`, `react/compiler-runtime`
-- **Internal**: bootstrap/state (getOriginalCwd), hooks/useExitOnCtrlCDWithKeybindings, ink (Box, Text), keybindings/useKeybinding, memdir/paths (getAutoMemPath, isAutoMemoryEnabled), services/analytics/index (logEvent), services/autoDream/config (isAutoDreamEnabled), services/autoDream/consolidationLock (readLastConsolidatedAt), state/AppState (useAppState), tools/AgentTool/agentMemory (getAgentMemoryDir), utils/browser (openPath), utils/claudemd (getMemoryFiles, MemoryFileInfo), utils/envUtils (getClaudeConfigHomeDir), utils/file (getDisplayPath), utils/format (formatRelativeTimeAgo), utils/memory/versions (projectIsInGitRepo), utils/settings/settings (updateSettingsForSource), CustomSelect/index (Select), design-system/ListItem (ListItem), memdir/teamMemPaths (conditional require)
+- **Stdlib**: `fs/promises`, `path`
+- **External**: `bun:bundle`, `chalk`, `react`, `react/compiler-runtime`
+- **Internal**: bootstrap state, hooks useExitOnCtrlCDWithKeybindings, ink, keybindings useKeybinding, memdir paths, analytics, autoDream config/consolidationLock, state AppState, AgentTool agentMemory, browser, claudemd, envUtils, file, format, memory versions, settings settings, CustomSelect index, design-system ListItem
 
 ## Logic
-1. `ExtendedMemoryFileInfo` - MemoryFileInfo with isNested and exists fields
-2. `Props` - { onSelect, onCancel }
-3. `lastSelectedPath` - module-level state for remembering selection
-4. `OPEN_FOLDER_PREFIX` - prefix for folder-open options
+1. `ExtendedMemoryFileInfo` - MemoryFileInfo with isNested?, exists
+2. `lastSelectedPath` - remembers last selected path
+3. `OPEN_FOLDER_PREFIX` - '__open_folder__'
+4. `Props` - { onSelect, onCancel }
 5. `MemoryFileSelector` - React component for memory file selection
 6. Uses React compiler runtime (_c) for memoization
-7. Loads existing memory files via getMemoryFiles()
-8. Constructs user and project memory paths
-9. Builds allMemoryFiles array with existing files and placeholder entries
-10. Computes depth for nested files
-11. Creates memoryOptions with labels, descriptions, and values
-12. Labels show indented paths for nested files
-13. Descriptions indicate source (User, Project, @-imported, dynamically loaded)
-14. Adds folder options for auto-memory, team memory, and agent memory
-15. State: autoMemoryOn, autoDreamOn, showDreamRow, isDreamRunning, lastDreamAt
-16. Toggle handlers update settings and log analytics events
-17. Keybindings for navigation (select:next, select:previous) and confirmation
-18. onSelect: folder paths are opened in system browser, memory paths are selected
-19. dreamStatus shows running/never/last ran X ago
+7. Gets existing memory files via use(getMemoryFiles())
+8. Creates userMemoryPath (~/.claude/CLAUDE.md) and projectMemoryPath (cwd/CLAUDE.md)
+9. Checks hasUserMemory and hasProjectMemory
+10. Builds allMemoryFiles array with existing files + placeholders for missing user/project memory
+11. Calculates depths for nested files
+12. Creates memoryOptions with display paths, exists labels, depth-based indentation
+13. Labels: "User memory", "Project memory", or indented nested paths
+14. Uses Select component for file selection
+15. Handles OPEN_FOLDER_PREFIX for opening folder in editor
+16. Uses useKeybinding for keyboard shortcuts
+17. Uses useExitOnCtrlCDWithKeybindings for exit on Ctrl+C
+18. `getAutoMemPath`, `isAutoMemoryEnabled` - auto memory functions
+19. `logEvent` - logs analytics event
+20. `isAutoDreamEnabled` - checks auto dream enabled
+21. `readLastConsolidatedAt` - reads last consolidated at
+22. `getAgentMemoryDir` - gets agent memory directory
+23. `openPath` - opens path in system
+24. `getMemoryFiles`, `MemoryFileInfo` - memory file functions
+25. `getClaudeConfigHomeDir` - gets config home directory
+26. `getDisplayPath` - gets display path
+27. `formatRelativeTimeAgo` - formats relative time
+28. `projectIsInGitRepo` - checks if project in git repo
+29. `updateSettingsForSource` - updates settings for source
 
 ## Exports
-- `MemoryFileSelector` - memory file selector dialog component
+- `ExtendedMemoryFileInfo` - extended memory file info type
+- `OPEN_FOLDER_PREFIX` - open folder prefix constant
+- `MemoryFileSelector` - memory file selector component

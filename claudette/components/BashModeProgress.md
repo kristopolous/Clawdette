@@ -1,16 +1,22 @@
 ## Purpose
-Renders a progress display for bash command execution showing user input and shell output status.
+A UI component designed to display the real-time progress and output of bash commands executed within an interactive shell or "bash mode" context.
 
 ## Imports
-- **Stdlib**: none
-- **External**: `react`, `react/compiler-runtime`
-- **Internal**: `ink`, `tools/BashTool/BashTool`, `types/tools`, `components/messages/UserBashInputMessage`, `components/shell/ShellProgressMessage`
+- **Stdlib**: None
+- **External**: `react`
+- **Internal**: `tools/BashTool/BashTool`, `types/tools`, `components/messages/UserBashInputMessage`, `components/shell/ShellProgressMessage`
 
 ## Logic
-1. Wraps the bash input in XML-style tags and displays it via UserBashInputMessage
-2. Shows ShellProgressMessage with full output, elapsed time, and line count when progress data is available
-3. Falls back to BashTool's default progress message rendering when no progress data exists
-4. Stacks input and progress messages vertically in a column layout
+1. **Input Echo**: Renders the original bash command provided by the user, clearly indicating what was executed.
+2. **Progress Visualization**:
+    - If detailed progress information is available (via the `progress` prop), it displays:
+        - Elapsed time since execution began.
+        - Total number of output lines captured.
+        - A preview of the most recent output (specifically, the last 5 lines).
+        - Verbose details if the `verbose` flag is enabled.
+    - **Fallback**: If no specific progress data is provided, it defaults to a generic tool use progress message.
+3. **Component Structure**: Utilizes Ink components (`Box`, `Text`) to structure the output, ensuring it integrates well within a terminal UI environment.
+4. **Clarity and Context**: Provides essential feedback to the user about the ongoing execution of shell commands, including partial output and timing information.
 
 ## Exports
-- `BashModeProgress` - React component that displays bash command input and execution progress in the terminal UI
+- `BashModeProgress` - A functional component for rendering interactive bash command progress.

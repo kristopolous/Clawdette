@@ -1,21 +1,51 @@
+# components/Spinner/SpinnerAnimationRow
+
 ## Purpose
-Renders the main animated spinner row with glyph, message, elapsed time, token count, and thinking status.
+Provides spinner animation row component for 50ms-animated spinner portion.
 
 ## Imports
-- **Stdlib**: None
-- **External**: `figures`, `react`
-- **Internal**: `ink/stringWidth`, `ink` (Box, Text, useAnimationFrame), `tasks/InProcessTeammateTask/types`, `utils/format` (formatDuration, formatNumber), `utils/ink` (toInkColor), `utils/theme` (Theme), `design-system/Byline`, `GlimmerMessage`, `SpinnerGlyph`, `types` (SpinnerMode), `useStalledAnimation`, `utils` (interpolateColor, toRGBColor)
+- **Stdlib**: (none)
+- **External**: `figures`, `react`, `react/compiler-runtime`
+- **Internal**: ink stringWidth, ink, tasks InProcessTeammateTask types, format, ink, theme, design-system Byline, Spinner GlimmerMessage/SpinnerGlyph/types/useStalledAnimation/utils
 
 ## Logic
-1. Runs 50ms animation frame loop for all derived animation values
-2. Calculates elapsed time with pause tracking and teammate-aware turn start anchoring
-3. Derives stall detection, spinner frame, glimmer index, and flash opacity from animation clock
-4. Implements smooth token counter animation with incremental catch-up
-5. Progressively gates display of thinking text, timer, and token count based on available terminal width
-6. Computes thinking shimmer color using shared animation clock instead of separate interval
-7. Assembles status parts (suffix, timer, tokens, thinking) with conditional rendering
-8. Renders spinner glyph, glimmer message, and status in a single animated row
+1. `SEP_WIDTH` - stringWidth(' · ')
+2. `THINKING_BARE_WIDTH` - stringWidth('thinking')
+3. `SHOW_TOKENS_AFTER_MS` (30,000) - show tokens after this time
+4. `THINKING_INACTIVE` - { r: 153, g: 153, b: 153 }
+5. `THINKING_INACTIVE_SHIMMER` - { r: 185, g: 185, b: 185 }
+6. `THINKING_DELAY_MS` (3000) - thinking delay
+7. `THINKING_GLOW_PERIOD_S` (2) - thinking glow period
+8. `SpinnerAnimationRowProps` - props for spinner animation row
+9. Animation inputs: mode, reducedMotion, hasActiveTools, responseLengthRef
+10. Message (stable within turn): message, messageColor, shimmerColor, overrideColor?
+11. Timer refs: loadingStartTimeRef, totalPausedMsRef, pauseStartTimeRef
+12. Display flags: spinnerSuffix?, verbose, columns
+13. Teammate-derived: hasRunningTeammates, teammateTokens, foregroundedTeammate, leaderIsIdle?
+14. Thinking: thinkingStatus ('thinking' | number | null), effortSuffix
+15. `SpinnerAnimationRow` - 50ms-animated portion of SpinnerWithVerb
+16. Owns useAnimationFrame(50) and all values derived from animation clock
+17. Parent SpinnerWithVerb freed from 50ms render loop (~25x/turn instead of ~383x)
+18. Keeps outer Box shells, useAppState selectors, task filtering, tip/tree subtrees out of hot animation path
+19. `figures` - figures library
+20. `useMemo`, `useRef` - React hooks
+21. `stringWidth` - gets string width
+22. `useAnimationFrame` - animation frame hook
+23. `formatDuration`, `formatNumber` - format functions
+24. `toInkColor` - converts to ink color
+25. `Byline` - byline component
+26. `GlimmerMessage`, `SpinnerGlyph` - spinner components
+27. `SpinnerMode` - spinner mode type
+28. `useStalledAnimation` - stalled animation hook
+29. `interpolateColor`, `toRGBColor` - color utilities
 
 ## Exports
-- `SpinnerAnimationRow` - the 50ms-animated portion of the spinner that owns the animation frame loop and renders glyph, message, and status indicators
-- `SpinnerAnimationRowProps` - type defining all props for the animation row component
+- `SEP_WIDTH` - separator width constant
+- `THINKING_BARE_WIDTH` - thinking bare width constant
+- `SHOW_TOKENS_AFTER_MS` - show tokens after constant
+- `THINKING_INACTIVE` - thinking inactive color
+- `THINKING_INACTIVE_SHIMMER` - thinking inactive shimmer color
+- `THINKING_DELAY_MS` - thinking delay constant
+- `THINKING_GLOW_PERIOD_S` - thinking glow period constant
+- `SpinnerAnimationRowProps` - props type
+- `SpinnerAnimationRow` - spinner animation row component

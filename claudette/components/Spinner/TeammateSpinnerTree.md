@@ -1,18 +1,35 @@
+# components/Spinner/TeammateSpinnerTree
+
 ## Purpose
-Renders a tree structure displaying spinner lines for all running teammates with selection and highlighting support.
+Provides teammate spinner tree component for displaying teammate status.
 
 ## Imports
-- **Stdlib**: None
-- **External**: `figures`, `react`
-- **Internal**: `ink` (Box, Text), `state/AppState`, `tasks/InProcessTeammateTask/InProcessTeammateTask` (getRunningTeammatesSorted), `utils/format` (formatNumber), `TeammateSpinnerLine`, `teammateSelectHint`
+- **Stdlib**: (none)
+- **External**: `figures`, `react`, `react/compiler-runtime`
+- **Internal**: ink, state AppState, tasks InProcessTeammateTask, format, Spinner TeammateSpinnerLine/teammateSelectHint
 
 ## Logic
-1. Retrieves running teammate tasks sorted by priority from app state
-2. Returns null if no teammates are running
-3. Determines leader highlight state based on foreground and selection mode
-4. Renders leader row with pointer, tree characters, name, verb, token count, and hints
-5. Maps each teammate to a TeammateSpinnerLine component
-6. Optionally renders a hide row when in selection mode
+1. `Props` - { selectedIndex?, isInSelectionMode?, allIdle?, leaderVerb?, leaderTokenCount?, leaderIdleText? }
+2. `TeammateSpinnerTree` - React component for teammate spinner tree
+3. Uses React compiler runtime (_c) for memoization
+4. Gets tasks, viewingAgentTaskId, showTeammateMessagePreview via useAppState
+5. Gets running teammates sorted via getRunningTeammatesSorted
+6. Returns null if no teammate tasks
+7. Calculates isLeaderForegrounded (viewingAgentTaskId === undefined)
+8. Calculates isLeaderSelected (isInSelectionMode && selectedIndex === -1)
+9. Calculates isLeaderHighlighted (isLeaderForegrounded || isLeaderSelected)
+10. Calculates isHideSelected (isInSelectionMode === true && selectedIndex === teammateTasks.length)
+11. Renders Box with flexDirection="column", gap={1}
+12. Renders leader line with pointer figure if selected
+13. Renders teammate lines via TeammateSpinnerLine
+14. Shows TEAMMATE_SELECT_HINT for selection mode
+15. Uses formatNumber for token count formatting
+16. `figures` - figures library for Unicode symbols
+17. `useAppState` - gets app state
+18. `getRunningTeammatesSorted` - gets sorted running teammates
+19. `formatNumber` - formats number
+20. `TeammateSpinnerLine` - teammate spinner line component
+21. `TEAMMATE_SELECT_HINT` - teammate select hint constant
 
 ## Exports
-- `TeammateSpinnerTree` - renders a vertical tree layout of all active teammates with selection, highlighting, and leader status display
+- `TeammateSpinnerTree` - teammate spinner tree component

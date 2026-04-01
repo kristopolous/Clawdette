@@ -1,21 +1,35 @@
+# components/Spinner/utils
+
 ## Purpose
-Provides color interpolation utilities and terminal-specific spinner character selection.
+Provides spinner utility functions for color interpolation and character selection.
 
 ## Imports
-- **Stdlib**: None
-- **External**: None
-- **Internal**: `ink/styles` (RGBColor), `types` (RGBColor)
+- **Stdlib**: (none)
+- **External**: (none)
+- **Internal**: ink styles, Spinner types
 
 ## Logic
-1. Returns different default character sets based on terminal type (Ghostty, darwin, other) to avoid rendering issues
-2. Interpolates between two RGB colors using linear interpolation with parameter t
-3. Converts RGB object to rgb() color string for Text components
-4. Converts HSL hue to RGB using voice-mode waveform parameters (s=0.7, l=0.6)
-5. Parses rgb() color strings with caching for performance
+1. `getDefaultCharacters` - gets default spinner characters based on platform
+2. Ghostty terminal: ['·', '✢', '✳', '✶', '✻', '*'] (uses * instead of ✽ for proper rendering)
+3. macOS: ['·', '✢', '✳', '✶', '✻', '✽']
+4. Other platforms: ['·', '✢', '*', '✶', '✻', '✽']
+5. `interpolateColor` - interpolates between two RGB colors
+6. Takes color1, color2, and t (0 to 1)
+7. Returns interpolated RGB color
+8. `toRGBColor` - converts RGB object to rgb() color string for Text component
+9. `hueToRgb` - converts HSL hue (0-360) to RGB using voice-mode waveform parameters (s=0.7, l=0.6)
+10. Implements HSL to RGB conversion algorithm
+11. `RGB_CACHE` - cache for parsed RGB strings
+12. `parseRGB` - parses rgb() color string to RGB object
+13. Uses cache for performance
+14. Returns null if parse fails
+15. `RGBColorString`, `RGBColorType` - RGB color types
 
 ## Exports
-- `getDefaultCharacters` - returns spinner character array optimized for the current terminal
-- `interpolateColor` - linearly interpolates between two RGB colors given a 0-1 parameter
-- `toRGBColor` - converts RGB object to rgb() string format
-- `hueToRgb` - converts HSL hue value to RGB color
-- `parseRGB` - parses rgb() string to RGB object with memoization cache
+- `getDefaultCharacters` - gets default spinner characters
+- `interpolateColor` - interpolates RGB colors
+- `toRGBColor` - converts RGB to string
+- `hueToRgb` - converts hue to RGB
+- `parseRGB` - parses RGB string
+- `RGB_CACHE` - RGB cache
+- `RGBColorString`, `RGBColorType` - RGB color types

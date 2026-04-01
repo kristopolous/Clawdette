@@ -1,13 +1,26 @@
+# components/shell/ShellTimeDisplay
+
 ## Purpose
-Displays elapsed time and optional timeout duration for shell commands in a dimmed text format.
+Provides shell time display component for showing elapsed time and timeout.
 
 ## Imports
-- **Stdlib**: None
+- **Stdlib**: (none)
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `ink.js` (Text), `utils/format.js` (formatDuration)
+- **Internal**: ink, format
 
 ## Logic
-Formats and displays elapsed time (converted from seconds to milliseconds) and/or a timeout value using formatDuration. Returns null if neither value is provided. Renders different formats: timeout only, elapsed only, or both combined with a separator.
+1. `Props` - { elapsedTimeSeconds?, timeoutMs? }
+2. `ShellTimeDisplay` - React component for shell time display
+3. Uses React compiler runtime (_c) for memoization
+4. Returns null if elapsedTimeSeconds undefined and no timeoutMs
+5. Formats timeout via formatDuration with hideTrailingZeros: true
+6. If elapsedTimeSeconds undefined: shows "(timeout {timeout})"
+7. Calculates elapsed = formatDuration(elapsedTimeSeconds * 1000)
+8. If timeout: shows "({elapsed} · timeout {timeout})"
+9. Otherwise: shows "({elapsed})"
+10. All text rendered with dimColor
+11. `formatDuration` - formats duration
+12. `Text` - ink text component
 
 ## Exports
-- `ShellTimeDisplay` - React component that renders elapsed time and/or timeout duration as dimmed text
+- `ShellTimeDisplay` - shell time display component

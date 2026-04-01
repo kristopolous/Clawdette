@@ -1,19 +1,21 @@
 ## Purpose
-A UI module that monitors and displays the real-time status of cloud provider authentication processes, including progress logs, interactive authorization links, and error messages.
+A UI component that displays the current status of AWS authentication, including ongoing processes, captured output, and any errors encountered during authentication.
 
 ## Imports
-- **Internal**: 
-    - UI: `ink`
-    - Utilities: `utils/awsAuthStatusManager`
+- **Stdlib**: None
+- **External**: `react`
+- **Internal**: `utils/awsAuthStatusManager`, `components/AwsAuthStatusBox`
 
 ## Logic
-1. **Status Subscription**: The module initializes by retrieving the current authentication state from a singleton manager and establishes a subscription to receive reactive updates whenever the state changes.
-2. **Conditional Visibility**: The component remains hidden (returns null) unless an authentication process is actively running, an error has occurred, or there is relevant output to display. It automatically dismisses itself upon successful authentication if no errors are present.
-3. **Log Processing**: 
-    - It retrieves and displays the last 5 lines of output from the authentication manager to provide immediate context without overwhelming the UI.
-    - Each line of output is scanned for URLs. If a link is detected, it is rendered as an interactive element, allowing users to click through to complete web-based authorization flows (e.g., SSO login).
-4. **Error Handling**: Explicitly surfaces authentication failures or configuration errors in a high-visibility format to assist with troubleshooting.
-5. **Visual Framing**: Displays all information within a rounded, themed border to distinguish cloud authentication activity from standard agent processing or tool output.
+1. **Real-time Status Updates**:
+    - Subscribes to a singleton manager (`AwsAuthStatusManager`) to receive continuous updates on the AWS authentication state.
+    - Stores the latest status (including whether authentication is in progress, any errors, and recent output messages) in local component state.
+2. **Conditional Visibility**: The component is only rendered if there's active information to display: either an ongoing authentication process, a recorded error, or recent log output. This prevents it from cluttering the UI when authentication is idle and successful.
+3. **Information Display**:
+    - Presents a clear, branded header: "Cloud Authentication".
+    - Shows the last few lines of authentication output, with detected URLs automatically rendered as interactive links.
+    - Displays any authentication errors prominently in a distinct error color.
+4. **Visual Grouping**: Uses a bordered box with a specific color theme (`permission`) to visually delineate this status information from the main application content.
 
 ## Exports
-- `AwsAuthStatusBox` - The primary UI component for rendering the cloud authentication status interface.
+- `AwsAuthStatusBox` - A functional component that displays the dynamic status of AWS authentication.

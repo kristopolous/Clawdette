@@ -1,38 +1,29 @@
 # components/skills/SkillsMenu
 
 ## Purpose
-Provides skills menu component for browsing and selecting skills.
+Provides skills menu dialog displaying available skills grouped by source.
 
 ## Imports
 - **Stdlib**: (none)
 - **External**: `react`, `react/compiler-runtime`, `lodash-es/capitalize`
-- **Internal**: commands, ink, skills loadSkillsDir, file, format, settings constants, stringUtils, ConfigurableShortcutHint, design-system Dialog
+- **Internal**: commands (Command, CommandBase, CommandResultDisplay, getCommandName, PromptCommand), ink (Box, Text), skills/loadSkillsDir (estimateSkillFrontmatterTokens, getSkillsPath), utils/file (getDisplayPath), utils/format (formatTokens), utils/settings/constants (getSettingSourceName, SettingSource), utils/stringUtils (plural), ConfigurableShortcutHint, design-system/Dialog (Dialog)
 
 ## Logic
-1. `SkillCommand` - CommandBase & PromptCommand type
-2. `SkillSource` - SettingSource | 'plugin' | 'mcp'
+1. `SkillCommand` - type alias for CommandBase & PromptCommand
+2. `SkillSource` - type for skill sources (SettingSource | 'plugin' | 'mcp')
 3. `Props` - { onExit, commands }
-4. `getSourceTitle` - gets title for skill source
-5. plugin → 'Plugin skills', mcp → 'MCP skills', else → capitalized source name + ' skills'
-6. `getSourceSubtitle` - gets subtitle for skill source
-7. MCP skills show server names (skill names are `<server>:<skill>`)
-8. File-based skills show filesystem paths
-9. Shows skillsPath and commands path if hasCommandsSkills
-10. `SkillsMenu` - React component for skills menu
-11. Uses React compiler runtime (_c) for memoization
-12. Filters commands to skills only
-13. Groups skills by source (policySettings, userSettings, projectSettings, localSettings, flagSettings, plugin, mcp)
-14. Sorts each group alphabetically
-15. Renders Dialog with skill groups
-16. Shows source title and subtitle for each group
-17. Uses ConfigurableShortcutHint for keyboard shortcuts
-18. `estimateSkillFrontmatterTokens`, `getSkillsPath` - skills functions
-19. `getDisplayPath` - gets display path
-20. `formatTokens` - formats tokens
-21. `getSettingSourceName` - gets setting source name
-22. `plural` - pluralizes string
+4. `getSourceTitle` - returns title for skill source group
+5. `getSourceSubtitle` - returns subtitle with paths or server names
+6. `SkillsMenu` - React component for skills dialog
+7. Uses React compiler runtime (_c) for memoization
+8. Filters commands to find skills (prompt type from skills/commands_DEPRECATED/plugin/mcp)
+9. Groups skills by source (policySettings, userSettings, projectSettings, localSettings, flagSettings, plugin, mcp)
+10. Sorts each group alphabetically by command name
+11. Renders each group with title and subtitle
+12. Each skill shows name, optional plugin name, and estimated token count
+13. Empty state shows creation hints and close shortcut
+14. Uses Dialog with title "Skills" and skill count subtitle
+15. onCancel calls onExit with dismiss message
 
 ## Exports
-- `SkillsMenu` - skills menu component
-- `getSourceTitle` - gets source title
-- `getSourceSubtitle` - gets source subtitle
+- `SkillsMenu` - skills menu dialog component

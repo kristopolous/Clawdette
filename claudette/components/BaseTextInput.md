@@ -1,13 +1,25 @@
 ## Purpose
-Base component for text inputs that handles rendering, cursor management, paste handling, placeholders, and text highlighting.
+A foundational, reusable text input component for CLI applications that handles core input logic, cursor management, placeholder rendering, and paste event processing.
 
 ## Imports
-- **Stdlib**: none
-- **External**: react, react/compiler-runtime
-- **Internal**: ../hooks/renderPlaceholder.js (renderPlaceholder), ../hooks/usePasteHandler.js (usePasteHandler), ../ink/hooks/use-declared-cursor.js (useDeclaredCursor), ../ink.js (Ansi, Box, Text, useInput), ../types/textInputTypes.js (BaseInputState, BaseTextInputProps), ../utils/textHighlighting.js (TextHighlight), ./PromptInput/ShimmeredInput.js (HighlightedInput)
+- **Stdlib**: None
+- **External**: `react`
+- **Internal**: `hooks/renderPlaceholder`, `hooks/usePasteHandler`, `ink/hooks/use-declared-cursor`, `ink`, `types/textInputTypes`, `utils/textHighlighting`, `components/PromptInput/ShimmeredInput`
 
 ## Logic
-Manages text input rendering by combining input state with cursor positioning, paste handling, and placeholder display. Uses useDeclaredCursor for cursor placement and usePasteHandler to intercept paste events while filtering return keys during pastes. Computes placeholder visibility based on focus, cursor, and value state. Filters text highlights based on cursor position and viewport offset, adjusting highlight positions for scrolled content. Renders either a HighlightedInput component when highlights exist, or standard Text with optional argument hints and placeholder content.
+1. **Core Input Handling**:
+    - Captures keyboard input and key events, passing processed input to the parent component via the `onInput` callback.
+    - Manages the input state, including the current text value, cursor position, and line/column details.
+2. **Cursor and Focus Management**:
+    - Integrates with Ink's focus system (`useInput`) to ensure input is only processed when the component is active and focused.
+    - Utilizes `useDeclaredCursor` to accurately render and manage the text cursor's position within the terminal interface.
+3. **Placeholder and Input Display**:
+    - Renders a placeholder text when the input field is empty, with logic to control its visibility and appearance based on focus and inversion states.
+    - Displays the actual user input, supporting custom text highlighting.
+4. **Advanced Input Features**:
+    - **Paste Handling**: Integrates `usePasteHandler` to correctly process pasted content, including detecting multi-line pastes and image pasting events.
+    - **Command Hints**: Provides optional support for displaying hints related to command arguments based on the current input.
+5. **Reusability**: Designed as a base component, it accepts various props for customization, such as input validation, highlighting, and specific paste event handlers.
 
 ## Exports
-- `BaseTextInput` - Renders a text input with cursor, paste handling, placeholders, highlights, and optional argument hints
+- `BaseTextInput` - A configurable base component for creating text input fields in a terminal environment.

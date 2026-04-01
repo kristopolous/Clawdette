@@ -1,19 +1,22 @@
 ## Purpose
-A UI dialog module that prompts the user to decide how to handle a version mismatch when switching from a "latest" or "experimental" release channel back to the "stable" channel.
+A user confirmation dialog that appears when a user attempts to switch to a stable update channel, warning them about potential version downgrades and offering choices for proceeding.
 
 ## Imports
-- **Internal**: 
-    - UI: `ink`, `CustomSelect/index`, `design-system/Dialog`
+- **Stdlib**: None
+- **External**: `react`
+- **Internal**: `utils/settings/constants`, `components/CustomSelect`, `components/design-system/Dialog`
 
 ## Logic
-1. **Selection Handling**: Provides an interactive selection menu where users can choose between three outcomes:
-    - **Downgrade**: Accept installing the older version currently hosted on the stable channel.
-    - **Stay**: Remain on the current version until the stable channel reaches or exceeds it.
-    - **Cancel**: Abort the channel switch entirely.
-2. **Dynamic Messaging**: Displays the user's current version within the dialog text and selection labels to provide clear context for the decision.
-3. **Modal Behavior**: Utilizes a standard dialog component with specific UI overrides (hidden borders and input guides) to maintain a focused, high-priority interaction state.
-4. **Input Abstraction**: Maps user interactions (selection or cancellation) to a callback function provided by the parent controller, ensuring clean separation between UI state and version management logic.
+1. **Version Mismatch Warning**:
+    - Informs the user that switching to the stable channel might result in downgrading their current version, displaying the current version number for context.
+2. **User Choice Presentation**:
+    - Offers distinct options for handling the potential downgrade:
+        - **Downgrade**: Allows the user to proceed with switching to the stable channel.
+        - **Stay**: Keeps the user on their current version, indicating they will wait for the stable channel to catch up.
+        - **Cancel**: Aborts the channel switching operation.
+3. **Interactive Selection**: Utilizes a `Select` component for users to make their choice via keyboard navigation and confirmation.
+4. **Callback Mechanism**: Triggers an `onChoice` callback with the user's selected action (`downgrade`, `stay`, or `cancel`), enabling the application to respond accordingly.
+5. **UI Presentation**: Renders the options within a `Dialog` component styled with a "permission" color, indicating a choice that impacts the application's update stability.
 
 ## Exports
-- `ChannelDowngradeDialog` - The primary UI component for the channel switch decision interface.
-- `ChannelDowngradeChoice` (Type) - Defines the allowed response values: `'downgrade'`, `'stay'`, or `'cancel'`.
+- `ChannelDowngradeDialog` - A functional component that manages the channel switch confirmation prompt.

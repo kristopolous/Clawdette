@@ -1,19 +1,27 @@
 ## Purpose
-Handles automatic updates for npm-based installations by checking for new versions and performing global or local package updates.
+A component that manages the automatic checking, downloading, and installation of application updates to ensure the user is running the latest stable version.
 
 ## Imports
-- **Stdlib**: none
-- **External**: `react` (useEffect, useRef, useState), `usehooks-ts` (useInterval)
-- **Internal**: `services/analytics` (logEvent), `hooks/useUpdateNotification`, `ink` (Box, Text), `utils/autoUpdater` (getLatestVersion, getMaxVersion, installGlobalPackage, shouldSkipVersion), `utils/config` (getGlobalConfig, isAutoUpdaterDisabled), `utils/debug` (logForDebugging), `utils/doctorDiagnostic` (getCurrentInstallationType), `utils/localInstaller` (installOrUpdateClaudePackage, localInstallationExists), `utils/nativeInstaller` (removeInstalledSymlink), `utils/semver` (gt, gte), `utils/settings/settings` (getInitialSettings)
+- **Stdlib**: None
+- **External**: `react`, `usehooks-ts`
+- **Internal**: `hooks/useUpdateNotification`, `services/analytics`, `utils/autoUpdater`, `utils/config`, `utils/debug`, `utils/doctorDiagnostic`, `utils/localInstaller`, `utils/nativeInstaller`, `utils/semver`
 
 ## Logic
-1. Checks for updates on mount and every 30 minutes using a ref-based guard to prevent concurrent installs
-2. Detects the current installation type (npm-local, npm-global, native, development) and chooses the appropriate update method
-3. Caps the latest version if a server-side max version is set
-4. Removes the native installer symlink when using JS-based updates for non-migrated users
-5. Performs the update via installOrUpdateClaudePackage or installGlobalPackage based on installation type
-6. Logs analytics events for success and failure with version and duration metadata
-7. Displays version info, update progress, success messages, or error states with remediation hints
+1. **Version Checking**:
+    - Periodically polls for the latest available application version from a specified update channel (e.g., 'latest').
+    - Compares the latest version against the currently running version and a server-side maximum version cap (`getMaxVersion`), which acts as a kill switch.
+    - Respects user preferences and configuration flags to disable auto-updates or skip specific versions.
+2. **Update Mechanism**:
+    - Detects the installation type (local npm, global npm, or native) to determine the appropriate update strategy.
+    - Executes package manager commands (`npm update` for local, `npm i -g` for global) to install the new version.
+    - Manages a state flag (`isUpdating`) to prevent concurrent update processes.
+    - Handles legacy symlink removal if migrating to a different installation method.
+3. **User Feedback and Reporting**:
+    - Displays real-time status messages to the user (e.g., "Auto-updating...", success notifications, or detailed error messages with troubleshooting advice).
+    - Logs detailed telemetry events for both successful updates and failures, including version numbers, duration, and installation method.
+4. **Error Handling and Resiliency**:
+    - Implements robust error logging and display for failed updates, suggesting common manual fixes (e.g., running `claude doctor` or manual package updates).
+    - Gracefully handles scenarios like development builds or unexpected installation types.
 
 ## Exports
-- `AutoUpdater` - manages background update checks and installations for npm-based builds, showing status feedback
+- `AutoUpdater` - A component that handles the lifecycle of checking for and applying application updates.

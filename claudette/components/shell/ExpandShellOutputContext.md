@@ -1,14 +1,25 @@
+# components/shell/ExpandShellOutputContext
+
 ## Purpose
-Provides a React context to indicate when shell output should be shown in full rather than truncated.
+Provides context for indicating shell output should be shown in full (not truncated).
 
 ## Imports
-- **Stdlib**: None
+- **Stdlib**: (none)
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: None
+- **Internal**: (none)
 
 ## Logic
-Creates a boolean context (defaulting to false) that child components can consume to determine whether to display full shell output. The provider sets the context value to true, and the hook returns the current context value.
+1. `ExpandShellOutputContext` - React.createContext(false)
+2. Boolean context that child components can check to modify behavior
+3. Follows same pattern as MessageResponseContext and SubAgentContext
+4. Used to auto-expand most recent user `!` command output
+5. `ExpandShellOutputProvider` - provides context with value=true
+6. Wraps children in ExpandShellOutputContext.Provider
+7. `useExpandShellOutput` - returns true if rendered inside ExpandShellOutputProvider
+8. Indicates shell output should be shown in full rather than truncated
+9. Uses useContext(ExpandShellOutputContext)
 
 ## Exports
-- `ExpandShellOutputProvider` - Context provider that sets shell output expansion to true for its children
-- `useExpandShellOutput` - Hook that returns true when rendered inside an ExpandShellOutputProvider
+- `ExpandShellOutputContext` - expand shell output context
+- `ExpandShellOutputProvider` - expand shell output provider component
+- `useExpandShellOutput` - hook for checking expand shell output

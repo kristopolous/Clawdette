@@ -1,13 +1,16 @@
+# components/Spinner/teammateSelectHint
+
 ## Purpose
-Defines the hint text displayed when teammate selection mode is active.
+Provides teammate select hint constant.
 
 ## Imports
-- **Stdlib**: None
-- **External**: None
-- **Internal**: None
+- **Stdlib**: (none)
+- **External**: (none)
+- **Internal**: (none)
 
 ## Logic
-Exports a single constant string used across teammate spinner components to inform users of the keyboard shortcut for selecting teammates.
+1. `TEAMMATE_SELECT_HINT` - 'shift + ↑/↓ to select'
+2. Displayed hint for teammate selection mode
 
 ## Exports
-- `TEAMMATE_SELECT_HINT` - constant string 'shift + ↑/↓ to select' displayed as a hint in selection mode
+- `TEAMMATE_SELECT_HINT` - teammate select hint constant
