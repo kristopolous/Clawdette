@@ -1,13 +1,39 @@
+# components/LogoV2/ChannelsNotice
+
 ## Purpose
-Displays status and warning messages for the channels feature, showing channel configuration state and any unmatched entries.
+Provides channels notice component for MCP channel availability notifications.
 
 ## Imports
-- **Stdlib**: Object, Set
-- **External**: react, react/compiler-runtime
-- **Internal**: bootstrap/state, ink/Box, ink/Text, services/mcp/channelAllowlist, services/mcp/channelNotification, services/mcp/config, utils/auth, utils/plugins/installedPluginsManager, utils/settings/settings
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: bootstrap state, ink, MCP channelAllowlist/channelNotification/config, auth, plugins installedPluginsManager, settings settings
 
 ## Logic
-Evaluates channel state including whether channels are disabled, missing auth, blocked by org policy, or actively listening. Identifies unmatched channel entries that are either uninstalled plugins, unconfigured servers, or not on the approved allowlist. Renders appropriate error or warning messages for each state.
+1. Conditionally require()'d in LogoV2.tsx behind feature('KAIROS') || feature('KAIROS_CHANNELS')
+2. No feature() guard here - whole file tree-shakes via require pattern when both flags false
+3. Do NOT import this module statically from unguarded code
+4. `ChannelsNotice` - React component for channels notice
+5. Uses React compiler runtime (_c) for memoization
+6. Uses useState for channels, disabled, noAuth, policyBlocked, list, unmatched
+7. Returns null if channels.length === 0
+8. hasNonDev = channels.some(channel => !channel.isDev)
+9. flag = getHasDevChannels() && hasNonDev ? "Channels" : getHasDevChannels() ? "--dangerously-load-development-channels" : "--channels"
+10. If disabled: shows "{flag} ignored ({list})" in error color
+11. Shows "Channels are not currently available" in dim color
+12. If noAuth: shows "{flag} ignored ({list})" in error color
+13. Shows "Channels require claude.ai authentication · run /login, then restart" in dim color
+14. If policyBlocked: shows policy blocked message
+15. If unmatched: shows unmatched channels message
+16. Renders Box with paddingLeft={2}, flexDirection="column"
+17. `useState` - React hook
+18. `ChannelEntry`, `getAllowedChannels`, `getHasDevChannels` - bootstrap state functions
+19. `Box`, `Text` - ink components
+20. `isChannelsEnabled` - checks if channels enabled
+21. `getEffectiveChannelAllowlist` - gets effective channel allowlist
+22. `getMcpConfigsByScope` - gets MCP configs by scope
+23. `getClaudeAIOAuthTokens`, `getSubscriptionType` - auth functions
+24. `loadInstalledPluginsV2` - loads installed plugins
+25. `getSettingsForSource` - gets settings for source
 
 ## Exports
-- `ChannelsNotice` - renders channel status messages and warnings for unmatched entries
+- `ChannelsNotice` - channels notice component

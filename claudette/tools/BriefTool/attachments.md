@@ -1,29 +1,51 @@
+# BriefTool/attachments.ts
+
 ## Purpose
-Provides attachment validation and resolution utilities for the Brief tool (SendUserMessage).
+
+Provides attachment handling utilities for BriefTool: validation of attachment paths and resolution of attachment metadata (path, size, image flag, optional file_uuid). Uploads attachments to the private API in BRIDGE_MODE to enable web preview.
 
 ## Imports
-- **Stdlib**: `fs/promises` (stat)
-- **External**: `feature` from 'bun:bundle'
+
+- **Stdlib**:
+  - `fs/promises/stat`
+  - `bun:bundle/feature` (compile-time feature flag)
+- **External**: None
 - **Internal**:
-  - `ValidationResult` type from Tool
-  - `getCwd` utility
-  - `isEnvTruthy` utility
-  - `getErrnoCode` utility
-  - `IMAGE_EXTENSION_REGEX` constant
-  - `expandPath` utility
+  - Types: `ValidationResult` (from Tool)
+  - CWD: `getCwd`
+  - Env: `isEnvTruthy`
+  - Errors: `getErrnoCode`
+  - Images: `IMAGE_EXTENSION_REGEX`
+  - Paths: `expandPath`
 
 ## Logic
-Exports two async functions:
-1. `validateAttachmentPaths(rawPaths)`: Checks each path exists as a regular file. Returns early with error for non-file, ENOENT, or EACCES/EPERM. Throws other errors. Returns `{ result: true }` if all valid.
-2. `resolveAttachments(rawPaths, uploadCtx)`: 
-   - First stats each file to get size and determine if it's an image (using IMAGE_EXTENSION_REGEX).
-   - Builds `ResolvedAttachment[]` with `path`, `size`, `isImage`.
-   - If BRIDGE_MODE is enabled AND (replBridgeEnabled OR CLAUDE_CODE_BRIEF_UPLOAD=true), dynamically imports `./upload.js` and uploads attachments in parallel using `uploadBriefAttachment`. Merges returned `file_uuid` into each attachment (undefined uploads keep original fields).
-   - Returns the array (with file_uuid if upload succeeded).
 
-The `ResolvedAttachment` type includes optional `file_uuid` used by web viewer to fetch from backend instead of local path.
+**Types**:
+- `ResolvedAttachment`: `{ path: string; size: number; isImage: boolean; file_uuid?: string }`
+
+**Functions**:
+- `validateAttachmentPaths(rawPaths): Promise<ValidationResult>`:
+  - Expands each path with `expandPath`
+  - Uses `stat` to check file exists and is a regular file
+  - Returns `{result: false, message, errorCode: 1}` for:
+    - Not a regular file (`!stats.isFile()`)
+    - `ENOENT` (file does not exist) — includes current working directory in message
+    - `EACCES`/`EPERM` (permission denied)
+  - Throws other errors (e.g., TOCTOU race where file disappears after existence check)
+  - Returns `{result: true}` if all paths valid
+- `resolveAttachments(rawPaths, uploadCtx): Promise<ResolvedAttachment[]>`:
+  - First phase (serial, fast): `stat` each file to get size and determine `isImage` via `IMAGE_EXTENSION_REGEX`
+  - Builds `stated` array with `{path, size, isImage}`
+  - Second phase (conditional, slow network):
+    - Only if `feature('BRIDGE_MODE')` is true
+    - Determines `shouldUpload` = `uploadCtx.replBridgeEnabled` OR `CLAUDE_CODE_BRIEF_UPLOAD` env truthy
+    - Dynamically imports `./upload.js` (to keep upload module tree-shaken from non-bridge builds)
+    - Parallel upload via `Promise.all(uploadBriefAttachment(...))`
+    - Merges results: if `file_uuid` returned, adds it; otherwise keeps original stated object
+  - Returns array of resolved attachments (with `file_uuid` if upload succeeded)
 
 ## Exports
-- `validateAttachmentPaths(rawPaths)` (async)
-- `resolveAttachments(rawPaths, uploadCtx)` (async)
-- `ResolvedAttachment` (type)
+
+- `ResolvedAttachment` type
+- `validateAttachmentPaths(rawPaths: string[]): Promise<ValidationResult>`
+- `resolveAttachments(rawPaths: string[], uploadCtx: {replBridgeEnabled: boolean; signal?: AbortSignal}): Promise<ResolvedAttachment[]>`

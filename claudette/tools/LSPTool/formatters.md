@@ -1,38 +1,47 @@
+# LSPTool/formatters.ts
+
 ## Purpose
-Provides formatting functions for LSP (Language Server Protocol) operation results into human-readable strings.
+
+Provides formatting functions for LSP (Language Server Protocol) operation results. Converts various LSP response types (definitions, references, hover, symbols, call hierarchy) into human-readable strings for terminal display. Handles URI formatting, grouping by file, and conversion of LSP-specific data structures.
 
 ## Imports
-- **Stdlib**: `path` (relative)
-- **External**: Types from 'vscode-languageserver-types' (CallHierarchyIncomingCall, CallHierarchyItem, CallHierarchyOutgoingCall, DocumentSymbol, Hover, Location, LocationLink, MarkedString, MarkupContent, SymbolInformation, SymbolKind)
+
+- **Stdlib**: `path/relative`
+- **External**: Types from `vscode-languageserver-types` (CallHierarchyIncomingCall, CallHierarchyItem, CallHierarchyOutgoingCall, DocumentSymbol, Hover, Location, LocationLink, MarkedString, MarkupContent, SymbolInformation, SymbolKind)
 - **Internal**:
-  - `logForDebugging` utility
-  - `errorMessage` utility
-  - `plural` utility
+  - Debug: `logForDebugging`
+  - Errors: `errorMessage`
+  - Utils: `plural`, `lazySchema`
 
 ## Logic
-Exports multiple format functions, each handling a specific LSP operation:
-- `formatUri()`: Converts file URIs to relative paths when shorter; decodes URI encoding; normalizes path separators.
-- `formatLocation()`: Formats Location as `file:line:character` (1-based).
-- `formatGoToDefinitionResult()`: Handles single/array/multiple definitions; groups by file; filters invalid locations.
-- `formatFindReferencesResult()`: Groups references by file; lists line:character positions.
-- `extractMarkupText()`: Extracts text from MarkupContent/MarkedString variants.
-- `formatHoverResult()`: Returns hover documentation with optional position.
-- `symbolKindToString()`: Maps SymbolKind enum numbers to readable strings.
-- `formatDocumentSymbolResult()`: Hierarchical outline for DocumentSymbol[]; delegates flat SymbolInformation[] to workspace symbol formatter.
-- `formatWorkspaceSymbolResult()`: Flat list grouped by file, includes container names.
-- `formatCallHierarchyItem()`: Formats a single call hierarchy item with location validation.
-- `formatPrepareCallHierarchyResult()`: Formats prepare call hierarchy results.
-- `formatIncomingCallsResult()`: Groups incoming calls by file, shows call sites.
-- `formatOutgoingCallsResult()`: Groups outgoing calls by file, shows call sites.
 
-All functions filter invalid data (undefined URIs) and log warnings via `logForDebugging`.
+**Core Utilities**:
+- `formatUri(uri, cwd?)`: Converts file:// URIs to relative (or absolute) paths; handles Windows drive letters, URI decoding, and malformed data
+- `groupByFile<T>(items, cwd?)`: Groups Location[] or SymbolInformation[] by file path
+- `formatLocation(location, cwd?)`: Formats as `filePath:line:character` (1-based)
+- `locationLinkToLocation(link)`: Converts LocationLink to Location
+- `isLocationLink(item)`: Type guard distinguishes Location vs LocationLink
+- `symbolKindToString(kind)`: Maps SymbolKind enum (1-26) to readable strings (File, Class, Function, etc.)
+
+**Operation-Specific Formatters** (all export as `format*Result`):
+- `formatGoToDefinitionResult`: Handles Location/LocationLink or arrays; filters invalid URIs; returns "Defined in..." or multi-location list
+- `formatFindReferencesResult`: Returns grouped references by file with line:character positions
+- `formatHoverResult`: Extracts text from MarkupContent/MarkedString; includes position if range present
+- `formatDocumentSymbolResult`: Hierarchical document outline; supports both DocumentSymbol[] (recursive) and SymbolInformation[] (delegates to workspace formatter)
+- `formatWorkspaceSymbolResult`: Flat workspace symbol list, grouped by file, with container names
+- `formatPrepareCallHierarchyResult`: Formats CallHierarchyItem[] with location and detail
+- `formatIncomingCallsResult`: Shows functions calling the target, grouped by file, with call sites
+- `formatOutgoingCallsResult`: Shows functions called by the target, grouped by file, with call sites
+
+All formatters handle null/empty results with helpful "no data" messages. Invalid/malformed LSP data is logged at debug level and filtered out.
 
 ## Exports
-- `formatGoToDefinitionResult(result, cwd?)`
-- `formatFindReferencesResult(result, cwd?)`
-- `formatHoverResult(result, cwd?)`
-- `formatDocumentSymbolResult(result, cwd?)`
-- `formatWorkspaceSymbolResult(result, cwd?)`
-- `formatPrepareCallHierarchyResult(result, cwd?)`
-- `formatIncomingCallsResult(result, cwd?)`
-- `formatOutgoingCallsResult(result, cwd?))`
+
+- `formatGoToDefinitionResult(result, cwd?): string`
+- `formatFindReferencesResult(result, cwd?): string`
+- `formatHoverResult(result, cwd?): string`
+- `formatDocumentSymbolResult(result, cwd?): string`
+- `formatWorkspaceSymbolResult(result, cwd?): string`
+- `formatPrepareCallHierarchyResult(result, cwd?): string`
+- `formatIncomingCallsResult(result, cwd?): string`
+- `formatOutgoingCallsResult(result, cwd?): string`

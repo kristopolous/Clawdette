@@ -1,17 +1,30 @@
+# TeamDeleteTool/UI.tsx
+
 ## Purpose
-React components for rendering TeamDelete tool usage and result messages.
+
+Renders terminal UI messages for the TeamDeleteTool, which removes a team member from the agent team. Displays a simple "cleanup team: current" message during tool use and suppresses the cleanup result because a batched shutdown message covers it.
 
 ## Imports
-- **Stdlib**: `react`
+
+- **Stdlib**: React (for React.ReactNode)
 - **External**: None
 - **Internal**:
-  - `jsonParse` utility
-  - `Output` type from TeamDeleteTool
+  - Utilities: `jsonParse` (from slow operations)
+  - Types: `Output` (from TeamDeleteTool)
+  - UI Library: None (returns plain strings or null)
 
 ## Logic
-- `renderToolUseMessage`: Returns static string 'cleanup team: current' indicating tool use.
-- `renderToolResultMessage`: Parses the result (string or Output object), checks for success with team_name and message, and suppresses cleanup result (returns null) because batched shutdown message covers it. Returns null for all other cases as well.
+
+- **`renderToolUseMessage`**: Returns static string `'cleanup team: current'` - indicates the tool is executing cleanup
+- **`renderToolResultMessage`**:
+  - Accepts `content` which can be either `Output` object or JSON string
+  - Parses string content with `jsonParse` if needed
+  - Checks if result is a successful team deletion (`success`, `team_name`, `message` properties present)
+  - Returns `null` for successful deletion (suppressed - batched shutdown message covers it)
+  - Returns `null` for all other cases (no special rendering)
+- The component essentially provides minimal UI feedback; most communication happens through the batched shutdown sequence
 
 ## Exports
-- `renderToolUseMessage(input)` - renders tool use message
-- `renderToolResultMessage(content, progressMessages, options)` - renders (suppressed) tool result
+
+- `renderToolUseMessage(_input: Record<string, unknown>): React.ReactNode`
+- `renderToolResultMessage(content: Output | string, _progressMessages: unknown, options: {verbose: boolean}): React.ReactNode`

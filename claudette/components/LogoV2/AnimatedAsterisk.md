@@ -1,13 +1,44 @@
+# components/LogoV2/AnimatedAsterisk
+
 ## Purpose
-Renders an animated asterisk character that sweeps through hues before settling on a grey color.
+Provides animated asterisk component with rainbow sweep effect.
 
 ## Imports
-- **Stdlib**: none
-- **External**: react
-- **Internal**: constants/figures, ink/Box, ink/Text, ink/useAnimationFrame, utils/settings/settings, Spinner/utils
+- **Stdlib**: (none)
+- **External**: `react`
+- **Internal**: constants figures, ink, settings settings, Spinner utils
 
 ## Logic
-Uses a shared animation frame clock to sweep through hues over 1500ms, repeated twice. Captures start time on first frame to ensure consistent hue progression. Respects prefersReducedMotion by starting in the done state. Automatically stops when scrolled off-screen via viewport-pause support.
+1. `SWEEP_DURATION_MS` (1500) - sweep duration
+2. `SWEEP_COUNT` (2) - number of sweeps
+3. `TOTAL_ANIMATION_MS` - total animation duration (SWEEP_DURATION_MS * SWEEP_COUNT)
+4. `SETTLED_GREY` - settled grey color { r: 153, g: 153, b: 153 }
+5. `AnimatedAsterisk` - React component for animated asterisk
+6. Default char: TEARDROP_ASTERISK
+7. Reads prefersReducedMotion once at mount - no useSettings() subscription
+8. Since that would re-render whenever settings change
+9. `done` state initialized to reducedMotion
+10. useAnimationFrame's clock is shared - capture start offset so sweep always begins at hue 0
+11. Regardless of when we mount
+12. `startTimeRef` - ref for start time
+13. Wires ref so useAnimationFrame's viewport-pause kicks in
+14. If user submits message before sweep finishes, clock stops automatically
+15. Once row enters scrollback (prevents flicker)
+16. useEffect sets timeout to setDone after TOTAL_ANIMATION_MS
+17. If done: renders Box with Text in SETTLED_GREY color
+18. If startTimeRef.current === null: sets to time
+19. elapsed = time - startTimeRef.current
+20. hue = (elapsed / SWEEP_DURATION_MS) * 360 % 360
+21. Renders Box with Text in hueToRgb(hue) color
+22. `TEARDROP_ASTERISK` - teardrop asterisk constant
+23. `useEffect`, `useRef`, `useState` - React hooks
+24. `Box`, `Text`, `useAnimationFrame` - ink components/hooks
+25. `getInitialSettings` - gets initial settings
+26. `hueToRgb`, `toRGBColor` - color utilities
 
 ## Exports
-- `AnimatedAsterisk` - renders a color-sweeping animated asterisk that settles to grey
+- `SWEEP_DURATION_MS` - sweep duration constant
+- `SWEEP_COUNT` - sweep count constant
+- `TOTAL_ANIMATION_MS` - total animation constant
+- `SETTLED_GREY` - settled grey color
+- `AnimatedAsterisk` - animated asterisk component

@@ -1,11 +1,20 @@
+# EnterPlanModeTool/constants.ts
+
 ## Purpose
-Defines the tool name constant for the EnterPlanMode tool.
+
+Exports a single constant defining the canonical tool name for the EnterPlanModeTool.
 
 ## Imports
-- None
+
+- **Stdlib**: None
+- **External**: None
+- **Internal**: None
 
 ## Logic
-Exports a single string constant identifying the tool name.
+
+- `ENTER_PLAN_MODE_TOOL_NAME`: String constant with value `'EnterPlanMode'`
+- Used to identify the tool across the codebase, particularly in agent instructions and plan mode operations
 
 ## Exports
-- `ENTER_PLAN_MODE_TOOL_NAME` - tool name string 'EnterPlanMode'
+
+- `ENTER_PLAN_MODE_TOOL_NAME: string`

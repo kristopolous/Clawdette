@@ -1,22 +1,32 @@
+# TodoWriteTool/prompt.ts
+
 ## Purpose
-Provides the comprehensive prompt for the TodoWrite tool, explaining when and how to use it to manage a task list.
+
+Exports the prompt documentation and description for TodoWriteTool. The prompt provides comprehensive guidance on when to create and maintain a todo list, task management best practices, state transitions, and numerous illustrative examples with reasoning.
 
 ## Imports
-- **Internal**: `FILE_EDIT_TOOL_NAME` from FileEditTool/constants
+
+- **Stdlib**: None
+- **External**: None
+- **Internal**: `FILE_EDIT_TOOL_NAME` (from FileEditTool constants)
 
 ## Logic
-Exports:
-- `PROMPT` - lengthy multi-section string covering:
-  - Purpose: track progress, organize complex tasks, demonstrate thoroughness
-  - When to use (7 scenarios): complex multi-step tasks, non-trivial tasks, explicit user request, multiple tasks, after new instructions, start of task (in_progress), completion
-  - When NOT to use (4 cases): single trivial task, conversational/informational
-  - Rich examples with reasoning for both use and skip cases
-  - Task states and management rules (states: pending/in_progress/completed; task must have content + activeForm; exactly one in_progress; completion requirements)
-  - Task breakdown guidance
-- `DESCRIPTION` - short summary: 'Update the todo list for the current session...'
 
-The prompt blends instruction, policy, and examples to guide model behavior.
+- `PROMPT`: Extensive multi-line string containing:
+  - **Purpose**: "Create and manage a structured task list" to track progress and demonstrate thoroughness
+  - **When to Use** (7 scenarios): complex multi-step tasks, non-trivial tasks, user requests, multiple tasks, after new instructions, starting work (mark in_progress before beginning), after completion (add follow-ups)
+  - **When NOT to Use** (4 cases): single straightforward task, trivial task, <3 trivial steps, purely conversational/informational
+  - **Examples with Reasoning**: Four detailed "GOOD" examples showing todo list value; Four "BAD" examples explaining why not used
+  - **Task States and Management**:
+    - States: `pending`, `in_progress` (max ONE at a time), `completed`
+    - Requirement: Every task has two forms: `content` (imperative, e.g., "Run tests") and `activeForm` (present continuous, e.g., "Running tests")
+    - Management rules: update status in real-time, mark complete immediately, complete current before starting new, remove irrelevant tasks
+    - Completion conditions: ONLY when fully accomplished; keep in_progress if errors/blockers/unresolved issues
+    - Task breakdown guidelines: specific, actionable, small steps; always provide both forms
+  - Final note: "When in doubt, use this tool"
+- `DESCRIPTION`: Short string explaining tool purpose and key constraints (proactive use, always at least one in_progress, provide both content/activeForm)
 
 ## Exports
-- `PROMPT` (string)
-- `DESCRIPTION` (string)
+
+- `PROMPT: string`
+- `DESCRIPTION: string`

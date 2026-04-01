@@ -1,24 +1,45 @@
+# FileReadTool/imageProcessor.ts
+
 ## Purpose
-Provides image processing capabilities for the Read tool, supporting image operations like resizing, format conversion, and metadata extraction.
+
+Provides dynamic loading of image processing libraries (Sharp or native `image-processor-napi`) for reading and manipulating images in the FileReadTool. Handles image resizing, format conversion, and metadata extraction. Manages fallbacks between bundled native modules and standard Sharp.
 
 ## Imports
-- **Stdlib**: `buffer` (Buffer type), `crypto` (randomUUID used via upload but not here)
-- **External**: `feature` from 'bun:bundle', `sharp` (or native `image-processor-napi`)
-- **Internal**: `isInBundledMode` utility
+
+- **Stdlib**: Type `Buffer` from 'buffer'
+- **External**: None (only dynamic imports of 'sharp' and 'image-processor-napi')
+- **Internal**: `isInBundledMode` (utility)
 
 ## Logic
-Exports:
-- `SharpInstance` type: Interface to image processor with methods `metadata()`, `resize()`, `jpeg()`, `png()`, `webp()`, `toBuffer()`.
-- `SharpFunction` type: Function type for creating a SharpInstance from Buffer.
-- `SharpCreator` type: Function for creating new images (used for image generation, distinct from processing).
-- `getImageProcessor()`: Async singleton that returns a SharpFunction. Prefers native `image-processor-napi` in bundled mode; falls back to `sharp`. Caches module globally.
-- `getImageCreator()`: Async singleton that returns SharpCreator; always uses `sharp` (creator not supported by native module). Caches module globally.
 
-Dynamic import handling accommodates ESM/CJS interop via `MaybeDefault` and `unwrapDefault`.
+**Types**:
+- `SharpInstance`: Subset of Sharp's API:
+  - `metadata(): Promise<{width, height, format}>`
+  - `resize(width, height, options?)` returns `SharpInstance`
+  - `jpeg(options?)`, `png(options?)`, `webp(options?)` return `SharpInstance`
+  - `toBuffer(): Promise<Buffer>`
+- `SharpFunction`: `(input: Buffer) => SharpInstance`
+- `SharpCreator`: `(options: {create: {width, height, channels, background}}) => SharpInstance`
+- `MaybeDefault<T>`: `T | { default: T }` (handles ESM/CJS interop)
+- Module caches: `imageProcessorModule`, `imageCreatorModule`
+
+**Functions**:
+- `getImageProcessor(): Promise<SharpFunction>`:
+  - Returns cached module if already loaded
+  - If `isInBundledMode()`: tries dynamic import of `image-processor-napi` (native module) first
+    - On failure, logs warning and falls back to Sharp
+  - For non-bundled builds or as fallback: imports `sharp` via dynamic import
+  - Uses `unwrapDefault` to handle both CJS and ESM forms
+  - Caches and returns the Sharp function
+- `getImageCreator(): Promise<SharpCreator>`:
+  - Always uses Sharp directly (image-processor-napi doesn't support creation)
+  - Caches and returns Sharp creator function
+- `unwrapDefault(mod)`: Returns `mod` if it's a function, otherwise `mod.default`
 
 ## Exports
-- `getImageProcessor()` (async)
-- `getImageCreator()` (async)
-- `SharpInstance` (type)
-- `SharpFunction` (type)
-- `SharpCreator` (type)
+
+- `SharpInstance` type
+- `SharpFunction` type
+- `SharpCreator` type
+- `getImageProcessor(): Promise<SharpFunction>`
+- `getImageCreator(): Promise<SharpCreator>`

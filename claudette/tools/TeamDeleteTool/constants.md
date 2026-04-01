@@ -1,11 +1,20 @@
+# TeamDeleteTool/constants.ts
+
 ## Purpose
-Defines the tool name constant for the TeamDelete tool.
+
+Exports a single constant defining the canonical tool name for the TeamDeleteTool.
 
 ## Imports
-- None
+
+- **Stdlib**: None
+- **External**: None
+- **Internal**: None
 
 ## Logic
-Exports a single string constant identifying the tool name.
+
+- `TEAM_DELETE_TOOL_NAME`: String constant with value `'TeamDelete'`
+- Used to identify the tool across the codebase, particularly in agent instructions and plan mode operations
 
 ## Exports
-- `TEAM_DELETE_TOOL_NAME` - tool name string 'TeamDelete'
+
+- `TEAM_DELETE_TOOL_NAME: string`

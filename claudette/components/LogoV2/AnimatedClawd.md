@@ -1,13 +1,49 @@
+# components/LogoV2/AnimatedClawd
+
 ## Purpose
-Adds click-triggered animations to the character, including crouch-jump and look-around sequences.
+Provides Clawd component with click-triggered animations.
 
 ## Imports
-- **Stdlib**: Array, Math
-- **External**: react, react/compiler-runtime
-- **Internal**: ink/Box, utils/settings/settings, Clawd
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: ink, settings settings, LogoV2 Clawd
 
 ## Logic
-Manages animation frame state with a timer-based sequence player. On click, randomly selects between a jump wave (crouch and spring up twice) or look-around (glance right then left) animation. Uses a fixed container height so layout never shifts. Respects the prefersReducedMotion setting.
+1. `Frame` - { pose: ClawdPose, offset: number }
+2. `hold` - holds a pose for n frames (60ms each)
+3. Returns array of frames with same pose and offset
+4. Offset semantics: marginTop in fixed-height-3 container
+5. 0 = normal, 1 = crouched
+6. Container height stays 3 so layout never shifts
+7. During crouch (offset=1) Clawd's feet row dips below container and gets clipped
+8. Reads as "ducking below the frame" before springing back up
+9. `JUMP_WAVE` - click animation: crouch, spring up with arms raised, twice
+10. `LOOK_AROUND` - click animation: glance right, left, back
+11. `CLICK_ANIMATIONS` - array of click animations
+12. `IDLE` - default idle frame
+13. `FRAME_MS` (60) - frame duration in ms
+14. `incrementFrame` - increments frame index
+15. `CLAWD_HEIGHT` (3) - Clawd height
+16. `AnimatedClawd` - React component for animated Clawd
+17. Uses useClawdAnimation for pose, bounceOffset, onClick
+18. Renders Clawd with pose
+19. Wraps in Box with marginTop={bounceOffset}, flexShrink={0}
+20. Click only fires when mouse tracking enabled (inside AlternateScreen/fullscreen)
+21. Otherwise renders and behaves identically to plain Clawd
+22. `useEffect`, `useRef`, `useState` - React hooks
+23. `useClawdAnimation` - Clawd animation hook
+24. `Clawd`, `ClawdPose` - Clawd component and pose type
+25. `getInitialSettings` - gets initial settings
+26. `Box` - ink box component
 
 ## Exports
-- `AnimatedClawd` - renders the character with click-triggered animation sequences
+- `Frame` - frame type
+- `hold` - hold pose function
+- `JUMP_WAVE` - jump wave animation
+- `LOOK_AROUND` - look around animation
+- `CLICK_ANIMATIONS` - click animations array
+- `IDLE` - idle frame
+- `FRAME_MS` - frame ms constant
+- `incrementFrame` - increment frame function
+- `CLAWD_HEIGHT` - Clawd height constant
+- `AnimatedClawd` - animated Clawd component

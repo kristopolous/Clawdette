@@ -1,26 +1,36 @@
+# EnterPlanModeTool/UI.tsx
+
 ## Purpose
-React components for rendering EnterPlanMode tool usage and result messages.
+
+Renders terminal UI components for the EnterPlanModeTool, which transitions the AI into "plan mode" for designing implementation approaches. Shows entry confirmation messages and handles user rejection of plan mode.
 
 ## Imports
-- **Stdlib**: `react`
+
+- **Stdlib**: React (for React.ReactNode)
 - **External**: None
 - **Internal**:
-  - `BLACK_CIRCLE` constant
-  - `getModeColor` utility
-  - `Box`, `Text` from ink
-  - `ProgressMessage` type
-  - `ThemeName` type
-  - `ToolProgressData` type
-  - `Output` type from EnterPlanModeTool
+  - Constants: `BLACK_CIRCLE`
+  - Utilities: `getModeColor`
+  - UI Library: `Box`, `Text` from `ink.js`
+  - Types: `ToolProgressData`, `ProgressMessage`, `ThemeName`, `Output`
+  - Related Tool: `EnterPlanModeTool` (for Output type)
 
 ## Logic
-- `renderToolUseMessage`: Returns null (no message when entering plan mode).
-- `renderToolResultMessage`: Renders success message showing user entered plan mode with explanation that Claude is exploring/designing.
-- `renderToolUseRejectedMessage`: Renders message when user declines plan mode entry.
 
-Uses theme colors from permission mode.
+- **`renderToolUseMessage`**: Returns null - tool use has no visual representation
+- **`renderToolResultMessage`**: Renders the result of successfully entering plan mode
+  - Accepts `_output` and `_progressMessagesForMessage` with theme option
+  - Displays a box with:
+    - Black circle icon with `getModeColor('plan')` color
+    - "Entered plan mode" text
+    - Indented dimmed message: "Claude is now exploring and designing an implementation approach."
+  - Uses margin spacing for visual separation
+- **`renderToolUseRejectedMessage`**: Renders when user declines to enter plan mode
+  - Returns a row with black circle in default color and "User declined to enter plan mode" text
+  - Includes top margin
 
 ## Exports
-- `renderToolUseMessage()` - returns null
-- `renderToolResultMessage(output, progressMessages, options)` - renders entered plan mode message
-- `renderToolUseRejectedMessage()` - renders user declined message
+
+- `renderToolUseMessage(): React.ReactNode`
+- `renderToolResultMessage(_output: Output, _progressMessages: ProgressMessage<ToolProgressData>[], _options: {theme: ThemeName}): React.ReactNode`
+- `renderToolUseRejectedMessage(): React.ReactNode`

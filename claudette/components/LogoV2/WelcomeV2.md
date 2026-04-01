@@ -1,13 +1,35 @@
+# components/LogoV2/WelcomeV2
+
 ## Purpose
-Renders the welcome screen with ASCII art character and version information, with special handling for Apple Terminal.
+Provides welcome screen component for Claude Code startup display.
 
 ## Imports
-- **Stdlib**: String.repeat
-- **External**: react, react/compiler-runtime
-- **Internal**: ink/Box, ink/Text, ink/useTheme, utils/env
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: ink, env
 
 ## Logic
-Detects the terminal environment and theme to render the appropriate welcome layout. For Apple Terminal, uses a simplified bg-fill rendering approach. For light themes, renders ASCII art with lighter shade characters. For dark themes, renders the full ASCII art with stars and block characters. All variants include the welcome message and version number.
+1. `WELCOME_V2_WIDTH` (58) - welcome screen width
+2. `WelcomeV2` - React component for welcome screen
+3. Uses React compiler runtime (_c) for memoization
+4. Uses useTheme for theme
+5. Checks env.terminal === "Apple_Terminal" for special handling
+6. If Apple Terminal: renders AppleTerminalWelcomeV2 with theme
+7. If light theme (light, light-daltonized, light-ansi): renders light theme welcome
+8. Uses memoized Text components for ASCII art
+9. Renders "Welcome to Claude Code" with version
+10. Renders Clawd ASCII art with block characters
+11. If dark theme: renders dark theme welcome
+12. Uses color="clawd_body" for Clawd body
+13. Uses dimColor for background elements
+14. `AppleTerminalWelcomeV2` - Apple Terminal specific welcome
+15. Uses bg-fill trick for Apple Terminal compatibility
+16. `env` - environment utilities
+17. `useTheme` - gets current theme
+18. `Box`, `Text` - ink components
+19. `MACRO.VERSION` - version constant
 
 ## Exports
-- `WelcomeV2` - renders the full welcome screen with ASCII art based on terminal and theme
+- `WELCOME_V2_WIDTH` - welcome width constant
+- `WelcomeV2` - welcome screen component
+- `AppleTerminalWelcomeV2` - Apple Terminal welcome component

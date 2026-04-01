@@ -1,32 +1,38 @@
+# ExitPlanModeTool/UI.tsx
+
 ## Purpose
-React components for rendering ExitPlanMode tool usage and result messages in the CLI interface.
+
+Renders terminal UI components for the ExitPlanModeTool, displaying status messages when exiting plan mode. Shows different messages for: simple exit (empty plan), team lead approval pending, and user-approved plans with the plan content.
 
 ## Imports
-- **Stdlib**: `react`
+
+- **Stdlib**: React (for React.ReactNode, React component types)
 - **External**: None
-- **Internal**: 
-  - `Markdown` component
-  - `MessageResponse` component  
-  - `RejectedPlanMessage` component
-  - `BLACK_CIRCLE` constant
-  - `getModeColor` utility
-  - `Box`, `Text` from ink
-  - `ToolProgressData` type
-  - `ProgressMessage` type
-  - `getDisplayPath` utility
-  - `getPlan` utility
-  - `ThemeName` type
-  - `Output` type from ExitPlanModeV2Tool
+- **Internal**:
+  - Components: `Markdown`, `MessageResponse`, `RejectedPlanMessage`
+  - Constants: `BLACK_CIRCLE`
+  - Utilities: `getModeColor`, `getDisplayPath`, `getPlan`
+  - UI Library: `Box`, `Text` from `ink.js`
+  - Types: `ToolProgressData`, `ProgressMessage`, `ThemeName`, `Output`
+  - Related Tool: `ExitPlanModeV2Tool` (for Output type)
 
 ## Logic
-Renders messages for different ExitPlanMode states:
-- `renderToolUseMessage`: Returns null (no UI for tool use)
-- `renderToolResultMessage`: Displays plan approval outcome (exited plan mode, awaiting leader approval, or user approved plan)
-- `renderToolUseRejectedMessage`: Shows rejected plan with plan content
 
-Handles empty plans, displays file paths, and integrates with theme/permission mode colors.
+- **`renderToolUseMessage`**: Returns null - tool use has no visual representation
+- **`renderToolResultMessage`**: Main function that renders the result of exiting plan mode
+  - Accepts `output` (contains `plan`, `filePath`, `awaitingLeaderApproval`) and progress messages with theme
+  - Determines display state: empty plan, awaiting leader approval, or approved plan
+  - **Empty plan**: Shows simple "Exited plan mode" message with black circle icon
+  - **Awaiting approval**: Shows "Plan submitted for team lead approval" with plan file path and waiting message
+  - **Approved plan**: Shows "User approved Claude's plan" with plan file path and full markdown plan content
+  - Uses `getModeColor('plan')` for consistent theming, `getDisplayPath` for file paths
+- **`renderToolUseRejectedMessage`**: Renders when exiting plan mode is rejected
+  - Accepts optional `plan` and theme parameters
+  - Retrieves plan from `getPlan()` as fallback
+  - Displays `RejectedPlanMessage` component with plan content
 
 ## Exports
-- `renderToolUseMessage()` - renders tool use message (returns null)
-- `renderToolResultMessage(output, progressMessages, options)` - renders tool result based on plan state
-- `renderToolUseRejectedMessage(output, options)` - renders rejected plan message
+
+- `renderToolUseMessage(): React.ReactNode`
+- `renderToolResultMessage(output: Output, progressMessages: ProgressMessage<ToolProgressData>[], options: {theme: ThemeName}): React.ReactNode`
+- `renderToolUseRejectedMessage(options: {plan?: string}, context: {theme: ThemeName}): React.ReactNode`

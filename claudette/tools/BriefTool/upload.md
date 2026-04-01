@@ -1,23 +1,53 @@
+# BriefTool/upload.ts
+
 ## Purpose
-Handles uploading attachment files to the private_api backend for web viewer preview when in bridge mode (e.g., cowork desktop).
+
+Provides `uploadBriefAttachment`, an async function that uploads attachment files (from BriefTool) to the private API (`/api/oauth/file_upload`) so web viewers can preview them. Enables cross-device rendering where file paths on Claude's machine are meaningless to a web client. Implements best-effort upload with graceful degradation on any failure.
 
 ## Imports
-- **Stdlib**: `crypto` (randomUUID), `fs/promises` (readFile), `path` (basename, extname)
-- **External**: `axios`, `z` from 'zod/v4', `feature` from 'bun:bundle'
+
+- **Stdlib**:
+  - `crypto/randomUUID`
+  - `fs/promises/readFile`
+  - `path/basename`, `path/extname`
+- **External**:
+  - `axios` (HTTP client)
+  - `zod/v4` (`z`, `lazySchema`)
+  - `bun:bundle/feature` (compile-time feature flag)
 - **Internal**:
-  - `getBridgeAccessToken`, `getBridgeBaseUrlOverride` from bridge config
-  - `getOauthConfig` from constants/oauth
-  - `logForDebugging` utility
-  - `lazySchema` utility
-  - `jsonStringify` utility
+  - Bridge: `getBridgeAccessToken`, `getBridgeBaseUrlOverride`
+  - OAuth: `getOauthConfig`
+  - Debug: `logForDebugging`
+  - Utils: `lazySchema`, `jsonStringify`
 
 ## Logic
-Exports:
-- `BriefUploadContext` type: `{ replBridgeEnabled: boolean; signal?: AbortSignal }`
-- `uploadBriefAttachment(fullPath, size, ctx)`: Async function that uploads attachment via multipart/form-data to `/api/oauth/file_upload` when in BRIDGE_MODE and replBridgeEnabled (or CLAUDE_CODE_BRIEF_UPLOAD env). Checks size limit (30MB), reads file, guesses MIME type (images only: png/jpg/gif/webp). On success returns `file_uuid`; on any failure logs debug and returns undefined. Graceful degradation ensures local rendering still works without upload.
 
-The upload endpoint expects bearer token; response validated with Zod schema `{ file_uuid: string }`. Timeout 30s. Non-201 statuses or parse failures return undefined.
+**Constants**:
+- `MAX_UPLOAD_BYTES = 30 * 1024 * 1024` (30 MB, matches backend limit)
+- `UPLOAD_TIMEOUT_MS = 30000`
+- `MIME_BY_EXT`: Maps image extensions to MIME types (png, jpg, jpeg, gif, webp)
+- `uploadResponseSchema`: Zod schema expecting `{ file_uuid: string }`
+
+**Functions**:
+- `guessMimeType(filename)`: Returns image/* for whitelisted extensions, else `application/octet-stream`
+- `debug(msg)`: Prefixes log with `[brief:upload]`
+- `getBridgeBaseUrl()`: Resolves base URL from env `ANTHROPIC_BASE_URL`, override, or OAuth config
+- `uploadBriefAttachment(fullPath, size, ctx): Promise<string | undefined>`:
+  - Only executes if `feature('BRIDGE_MODE')` is true (compiled-in)
+  - Early returns (graceful degradation):
+    - If `replBridgeEnabled` false
+    - If size exceeds 30 MB
+    - If OAuth token missing
+    - If file read fails
+  - Builds multipart/form-data body with file part, boundary, and content
+  - POSTs to `${baseUrl}/api/oauth/file_upload` with `Authorization: Bearer <token>`
+  - Accepts any HTTP status (`validateStatus: () => true`) and checks explicitly for 201
+  - Parses response with Zod; returns `file_uuid` on success
+  - Logs debug on any failure (non-201 status, parse error, network error) and returns `undefined`
+
+The upload is best-effort; attachments without `file_uuid` still render in local/desktop via the original path.
 
 ## Exports
-- `uploadBriefAttachment(fullPath, size, ctx)` (async function)
-- `BriefUploadContext` (type)
+
+- `BriefUploadContext` interface: `{ replBridgeEnabled: boolean; signal?: AbortSignal }`
+- `uploadBriefAttachment(fullPath: string, size: number, ctx: BriefUploadContext): Promise<string | undefined>`

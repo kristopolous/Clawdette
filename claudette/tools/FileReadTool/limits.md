@@ -1,28 +1,44 @@
+# FileReadTool/limits.ts
+
 ## Purpose
-Defines output limits for the FileRead tool: maximum file size and output token count, with configurable overrides.
+
+Defines and computes the output limits for the FileReadTool: maximum file size (bytes) and maximum token count. Supports dynamic configuration via environment variable and GrowthBook feature flags, with sensible defaults and memoization for consistency within a session.
 
 ## Imports
-- **External**: `memoize` from 'lodash-es'
+
+- **Stdlib**: None (except types)
+- **External**: `lodash-es/memoize`
 - **Internal**:
-  - `getFeatureValue_CACHED_MAY_BE_STALE` from analytics/growthbook
-  - `MAX_OUTPUT_SIZE` constant from utils/file
-  - `FileReadingLimits` type (defined here)
+  - Analytics: `getFeatureValue_CACHED_MAY_BE_STALE` from GrowthBook
+  - Utils: `MAX_OUTPUT_SIZE` from file utilities
 
 ## Logic
-Exports:
-- `DEFAULT_MAX_OUTPUT_TOKENS` = 25000
-- `FileReadingLimits` type: `{ maxTokens: number; maxSizeBytes: number; includeMaxSizeInPrompt?: boolean; targetedRangeNudge?: boolean }`
-- `getEnvMaxTokens()`: Returns env var `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS` if valid, else undefined.
-- `getDefaultFileReadingLimits()`: Memoized function that computes limits with precedence:
-  - `maxSizeBytes`: GrowthBook `tengu_amber_wren` override > fallback to `MAX_OUTPUT_SIZE`
-  - `maxTokens`: env var > GrowthBook override > `DEFAULT_MAX_OUTPUT_TOKENS`
-  - `includeMaxSizeInPrompt` and `targetedRangeNudge`: optional boolean from GrowthBook
-  - All numeric values validated to be finite and > 0; invalid fall back to defaults.
 
-Memoization ensures GrowthBook value is read once per session; the flag might refresh in background but memo prevents cap changes mid-session.
+**Limits Overview** (documented in header comment):
+- `maxSizeBytes`: Default 256 KB. Checks total file size before reading. If exceeded, throws pre-read error.
+- `maxTokens`: Default 25000. Checks actual output token count after reading. If exceeded, throws post-read error.
+- Known tradeoff: Earlier rejection (byte size) prevents wasted work; truncation reverted due to token inflation.
+
+**Types**:
+- `FileReadingLimits`: Interface with `maxTokens`, `maxSizeBytes`, and optional `includeMaxSizeInPrompt`, `targetedRangeNudge`
+
+**Functions**:
+- `getEnvMaxTokens(): number | undefined`:
+  - Reads `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS`
+  - Parses to positive integer; returns undefined if unset, invalid, or <= 0
+- `getDefaultFileReadingLimits(): FileReadingLimits` (memoized):
+  - Queries GrowthBook feature `'tengu_amber_wren'` for partial overrides
+  - Computes `maxSizeBytes`: GrowthBook value if valid number > 0; else `MAX_OUTPUT_SIZE`
+  - Computes `maxTokens`: precedence: env var > GrowthBook valid number > `DEFAULT_MAX_OUTPUT_TOKENS`
+  - Copies optional boolean flags from GrowthBook (`includeMaxSizeInPrompt`, `targetedRangeNudge`)
+  - Returns stable limits object; memoization ensures GrowthBook refresh doesn't change cap mid-session
+
+**Constants**:
+- `DEFAULT_MAX_OUTPUT_TOKENS = 25000`
 
 ## Exports
-- `DEFAULT_MAX_OUTPUT_TOKENS` (constant)
-- `FileReadingLimits` (type)
-- `getDefaultFileReadingLimits()` (function)
-- `getEnvMaxTokens()` (internal helper)
+
+- `FileReadingLimits` type
+- `DEFAULT_MAX_OUTPUT_TOKENS: number`
+- `getDefaultFileReadingLimits(): FileReadingLimits`
+- `getEnvMaxTokens(): number | undefined` (internal but exported)

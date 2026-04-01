@@ -1,38 +1,51 @@
+# FileReadTool/prompt.ts
+
 ## Purpose
-Provides tool constants and the prompt template for the Read tool, explaining file reading capabilities and instructions.
+
+Exports constants and a template function for generating the Read tool's prompt. Documents tool capabilities (text, images, PDFs, notebooks), usage parameters, and instructions. Dynamically includes PDF support based on runtime feature detection.
 
 ## Imports
+
+- **Stdlib**: None
+- **External**: None
 - **Internal**:
-  - `isPDFSupported` from utils/pdfUtils
-  - `BASH_TOOL_NAME` from BashTool/toolName
+  - PDF: `isPDFSupported` (utility)
+  - Tool: `BASH_TOOL_NAME` from BashTool
 
 ## Logic
-Exports:
-- `FILE_READ_TOOL_NAME` - 'Read'
-- `FILE_UNCHANGED_STUB` - constant message for unchanged files
-- `MAX_LINES_TO_READ` - constant 2000 (default line limit)
-- `DESCRIPTION` - 'Read a file from the local filesystem.'
-- `LINE_FORMAT_INSTRUCTION` - explains cat -n format, 1-based line numbers
-- `OFFSET_INSTRUCTION_DEFAULT` - recommends reading whole file by default
-- `OFFSET_INSTRUCTION_TARGETED` - guidance for reading specific parts of large files
-- `renderPromptTemplate(lineFormat, maxSizeInstruction, offsetInstruction)`: Function that assembles the full tool prompt by interpolating the provided instruction fragments into a comprehensive description. The prompt covers:
-  - Basic usage and assumption that all files are accessible
-  - Parameter requirements (absolute path)
-  - Default and optional limits (lines, offset, limit)
-  - Image support, PDF support (conditionally includes PDF max pages note)
-  - Jupyter notebook support
-  - Distinction between files and directories (use Bash for directories)
-  - Handling screenshots
-  - Empty file warning
 
-The template is called by the main tool with appropriate values based on configuration.
+**Constants**:
+- `FILE_READ_TOOL_NAME`: `'Read'` - canonical tool name
+- `FILE_UNCHANGED_STUB`: Message used when file unchanged since last read
+- `MAX_LINES_TO_READ = 2000` - default line limit
+- `DESCRIPTION = 'Read a file from the local filesystem.'`
+- `LINE_FORMAT_INSTRUCTION = '- Results are returned using cat -n format, with line numbers starting at 1'`
+- `OFFSET_INSTRUCTION_DEFAULT`: Recommends reading whole file by default; offset/limit optional for long files
+- `OFFSET_INSTRUCTION_TARGETED`: Encourages reading only the needed part when target is known
+
+**Function**:
+- `renderPromptTemplate(lineFormat, maxSizeInstruction, offsetInstruction): string`:
+  - Builds multi-line prompt with:
+    - Tool name and premise ("Reads a file... Assume this tool is able to read all files")
+    - Parameters: `file_path` must be absolute; default reads up to `MAX_LINES_TO_READ` from start; includes `maxSizeInstruction`
+    - `offsetInstruction` and `lineFormat`
+    - Image support note (multimodal visual presentation)
+    - Conditional PDF support: if `isPDFSupported()`, adds paragraph about reading PDFs, mandatory pages parameter for large PDFs (>10 pages), 20-page max per request
+    - Notebook support (.ipynb) with all cells/outputs
+    - Directories note: use BashTool instead
+    - Screenshot encouragement: always read provided screenshot path
+    - Empty file warning note
+  - Returns the complete prompt string
+
+**Note**: The caller (FileReadTool) supplies runtime values for `maxSizeInstruction` (e.g., token/byte limits) and chooses which offset instruction to use.
 
 ## Exports
-- `FILE_READ_TOOL_NAME` (string)
-- `FILE_UNCHANGED_STUB` (string)
-- `MAX_LINES_TO_READ` (number)
-- `DESCRIPTION` (string)
-- `LINE_FORMAT_INSTRUCTION` (string)
-- `OFFSET_INSTRUCTION_DEFAULT` (string)
-- `OFFSET_INSTRUCTION_TARGETED` (string)
-- `renderPromptTemplate(...)` (function)
+
+- `FILE_READ_TOOL_NAME: string`
+- `FILE_UNCHANGED_STUB: string`
+- `MAX_LINES_TO_READ: number`
+- `DESCRIPTION: string`
+- `LINE_FORMAT_INSTRUCTION: string`
+- `OFFSET_INSTRUCTION_DEFAULT: string`
+- `OFFSET_INSTRUCTION_TARGETED: string`
+- `renderPromptTemplate(lineFormat: string, maxSizeInstruction: string, offsetInstruction: string): string`
