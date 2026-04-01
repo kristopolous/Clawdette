@@ -1,18 +1,11 @@
 ## Purpose
-Toggle brief-only mode, which restricts output to only the Brief tool and hides plain text responses.
+Provides a concise codebase summary for the user with a strategic plan to tackle the task.
 
 ## Imports
-- **External**: `zod/v4` (schema validation), `bun:bundle` (feature flags)
-- **Internal**: GrowthBook feature flags, BriefTool entitlement check, userMsgOptIn state management, analytics logging
+- **Internal**: `Command` type, `getProjectPath`, `getCurrentTask`, `formatAsPlan`, `createMovedToPluginCommand`
 
 ## Logic
-1. Checks if KAIROS or KAIROS_BRIEF feature is enabled
-2. Toggles `isBriefOnly` state in app state
-3. Validates user entitlement before enabling (can disable anytime)
-4. Updates `userMsgOptIn` to match brief mode state for tool availability
-5. Injects system reminder about Brief tool usage change
-6. Logs analytics events for toggle actions
-7. Returns null (interactive JSX command)
+Uses a markdown prompt embedded in the command to guide the assistant in analyzing the codebase and creating a plan. The prompt asks for: clear problem statement, relevant file analysis, detailed step-by-step plan with file paths and code snippets, and time estimates. The plan is formatted as a structured markdown document. This command is implemented as a plugin command that can be moved to the marketplace.
 
 ## Exports
-- `default` - local-jsx Command object with React-based call function
+- `default` - Command object created by `createMovedToPluginCommand` for 'brief' command

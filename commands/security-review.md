@@ -1,21 +1,11 @@
 ## Purpose
-Perform a security-focused code review of pending changes on the current branch.
+Performs a security-focused code review of pending changes on the current branch, identifying high-confidence vulnerabilities.
 
 ## Imports
-- **Internal**: Frontmatter parser, markdown config loader, shell execution utility, createMovedToPluginCommand helper
+- **Internal**: `parseFrontmatter`, `parseSlashCommandToolsFromFrontmatter`, `executeShellCommandsInPrompt`, `createMovedToPluginCommand`
 
 ## Logic
-1. Uses createMovedToPluginCommand wrapper for plugin migration path
-2. Contains extensive SECURITY_REVIEW_MARKDOWN with:
-   - Allowed tools: git diff/status/log/show, Read, Glob, Grep, LS, Task
-   - Detailed security review methodology (3 phases)
-   - Categories to examine (injection, auth, crypto, data exposure, etc.)
-   - Severity and confidence guidelines
-   - False positive filtering rules (16 hard exclusions)
-   - Required markdown output format with examples
-3. Parses frontmatter to extract allowed tools
-4. Executes shell commands in prompt to gather git diff data
-5. Command delegates actual review to Claude with comprehensive security instructions
+Wraps a large embedded markdown prompt (SECURITY_REVIEW_MARKDOWN) that guides an assistant through a structured 3-phase security review: repository context research, comparative analysis, and vulnerability assessment. The prompt includes strict false positive filtering, exclusion lists, severity guidelines, and confidence scoring. It uses shell command execution to gather git diff, status, and log data, and requires output in a specific markdown format. Implemented as a plugin command via `createMovedToPluginCommand`.
 
 ## Exports
-- `default` - Command created by createMovedToPluginCommand, may redirect to plugin
+- `default` - Command object for security-review, delegating to `getPromptWhileMarketplaceIsPrivate`

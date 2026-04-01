@@ -1,24 +1,14 @@
 ## Purpose
-Initialize new CLAUDE.md file(s) and optionally skills/hooks for the repository.
+Initializes a Claude project directory with configuration files and project structure.
 
 ## Imports
-- **External**: `bun:bundle` (feature flags)
-- **Internal**: Project onboarding state, environment utils, extensive prompt templates (OLD_INIT_PROMPT, NEW_INIT_PROMPT)
+- **Stdlib**: `fs/promises`, `path`
+- **Internal**: `Command` type, utilities for paths, git, logs, task framework, and many others
 
 ## Logic
-1. Marks project onboarding as complete
-2. Generates prompt based on feature flag (NEW_INIT or OLD_INIT)
-3. NEW_INIT flow (Ant/enterprise):
-   - Phase 1: AskUserQuestion to determine what to set up (project CLAUDE.md, personal CLAUDE.local.md, skills, hooks)
-   - Phase 2: Launch subagent to survey codebase (manifests, README, configs, existing CLAUDE files)
-   - Phase 3: Use AskUserQuestion to fill gaps not discoverable from code
-   - Phase 4: Write minimal CLAUDE.md with only critical, non-obvious instructions
-   - Phase 5: Write minimal CLAUDE.local.md with user preferences
-   - Phase 6: Suggest and create skills based on detected workflows
-   - Phase 7: Suggest optimizations (GitHub CLI, linting, hooks, plugins)
-   - Phase 8: Summary and next steps
-4. OLD_INIT flow (simpler): just creates CLAUDE.md via analysis
-5. Command type: 'prompt' (uses Claude to generate the files)
+Interactive 'local-jsx' command that walks users through project initialization: setting project name, description, CLAUDE.md instructions, allowed tools, rules, skill creation, and git integration. Uses React Ink UI components. Handles both new project creation and re-initialization. Saves configuration to .claude/ directory with settings.json, CLAUDE.md, and optional skills.
 
 ## Exports
-- `command` - prompt Command object with dynamic getPromptForCommand
+- `default` - Command object (type: 'local-jsx') with `load`, `call`, and `supportsNonInteractive`
+- `CLAUDE_MD_TEMPLATE` - Default CLAUDE.md template string
+- Many internal helper functions for the multi-step wizard

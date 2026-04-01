@@ -1,22 +1,11 @@
 ## Purpose
-Commit, push, and create or update a pull request in a single operation.
+Automates committing changes, pushing to remote, and creating/updating a pull request with proper attribution.
 
 ## Imports
-- **Internal**: Attribution utilities (commit and PR attribution), git utilities (getDefaultBranch), shell execution in prompts, undercover instructions
+- **Internal**: `Command` type, `getAttributionTexts`, `getEnhancedPRAttribution`, `getDefaultBranch`, `executeShellCommandsInPrompt`, `getUndercoverInstructions`, `isUndercover`
 
 ## Logic
-1. Defines allowed tools: git operations, gh PR commands, ToolSearch, Slack MCP tools
-2. Gathers context: git status, diff, branch, default branch, existing PR
-3. Constructs comprehensive prompt with:
-   - Git Safety Protocol (never force push, skip hooks only on request, etc.)
-   - Instructions to create branch (if on default), commit with HEREDOC, push
-   - Instructions to create PR (gh pr create) or update existing (gh pr edit)
-   - PR template with Summary, Test plan, Changelog section, attribution
-   - Optional Slack posting if CLAUDE.md mentions it
-4. For undercover Ant users, removes reviewer attribution and Slack step
-5. Uses executeShellCommandsInPrompt to run all git/gh commands
-6. Returns PR URL on completion
-7. Command type: 'prompt'
+Constructs a comprehensive prompt that includes git status, diff, branch information, and existing PR context. The prompt follows the Git Safety Protocol and instructs the assistant to create a branch (if needed), make a single commit with proper attribution, push the branch, and create or update a PR using the gh CLI. Includes Slack integration (if configured), undercover mode handling (internal), and allows optional user instructions as arguments.
 
 ## Exports
-- `command` - prompt Command object with dynamic branch detection and prompt generation
+- `default` - The commit-push-pr command object (type: 'prompt') with allowed tools and dynamic `getPromptForCommand`

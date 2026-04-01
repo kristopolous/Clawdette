@@ -1,34 +1,15 @@
 ## Purpose
-Analyze Claude Code usage data and generate insights about user behavior, patterns, and optimization opportunities.
+Analyzes Claude Code usage data to generate insights about user behavior, session patterns, and productivity trends.
 
 ## Imports
-- **External**: `diff` (line diffing), multiple Node.js built-ins (fs, os, path, child_process)
-- **Internal**: Claude API (queryWithModel), session storage utils, analytics services, config utils, error handling, various type definitions
+- **Stdlib**: `child_process`, `diff`, `fs/promises`, `os`, `path`
+- **External**: `diff`
+- **Internal**: `Command` type, `queryWithModel`, `AGENT_TOOL_NAME`, `LEGACY_AGENT_TOOL_NAME`, `LogOption` type, `getClaudeConfigHomeDir`, `toError`, `execFileNoThrow`, `logError`, `extractTextContent`, `getDefaultOpusModel`, session storage utils, `jsonParse`, `jsonStringify`, `countCharInString`, `asSystemPrompt`, `escapeXmlAttr`
 
 ## Logic
-1. Collects session data from local storage and optionally remote hosts (Ant-only)
-2. Processes session logs to extract:
-   - Session metadata (duration, messages, tokens, languages, git activity)
-   - Tool usage statistics
-   - Error tracking and categorization
-   - User response times and interruptions
-   - Lines added/removed, files modified
-   - Multi-clauding detection (overlapping sessions within 30min window)
-3. Extracts "facets" from transcripts using AI analysis:
-   - Goal categories, outcomes, satisfaction, helpfulness, session types, friction, success factors
-4. Aggregates data across all sessions (sums, averages, distributions)
-5. Launches parallel AI analysis for 6 insight sections:
-   - project_areas: Identify distinct work areas
-   - interaction_style: Analyze how user interacts with Claude
-   - what_works: Highlight impressive workflows
-   - friction_analysis: Identify pain points
-   - suggestions: Recommend improvements (CLAUDE.md additions, CC features to try, usage patterns)
-   - on_the_horizon: Future opportunities (big, ambitious)
-   - [Ant-only] cc_team_improvements, model_behavior_improvements
-   - fun_ending: Memorable qualitative moment
-6. Caches facets and session metadata to disk
-7. Command is prompt-based but does heavy background processing; user typically runs and receives report
+Collects session data from local storage and optionally from remote hosts (for internal users). Processes session logs to extract metadata (SessionMeta) and facets (SessionFacets) using AI models (Opus). Aggregates statistics about tool usage, languages, git activity, interruptions, errors, multi-clauding patterns, lines modified, and more. Generates six parallel insight sections (project areas, interaction style, what works, friction analysis, suggestions, on_the_horizon) using AI prompts, plus optional internal-specific sections (cc_team_improvements, model_behavior_improvements). Results provide comprehensive usage analytics with time-of-day patterns and multi-clauding detection.
 
 ## Exports
-- `call` - async function that collects data, runs analyses, returns insights report
-- Helper functions: deduplicateSessionBranches, extractToolStats, logToSessionMeta, formatTranscriptForFacets, aggregateData, detectMultiClauding, etc.
+- `deduplicateSessionBranches` - Removes duplicate conversation branches from same session, keeping the one with most user messages
+- `detectMultiClauding` - Detects overlapping multiple Claude sessions within 30-minute window
+- Many internal helper functions for data collection, processing, and formatting

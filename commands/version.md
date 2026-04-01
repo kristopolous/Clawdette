@@ -1,17 +1,11 @@
 ## Purpose
-Print the version of Claude Code currently running (not the autoupdate downloaded version).
+Displays the current version of Claude Code and exits.
 
 ## Imports
-- **Stdlib**: None
-- **External**: None
-- **Internal**: None (uses MACRO compile-time constants)
+- **Internal**: `Command` type, `getVersionString`
 
 ## Logic
-1. Returns version string from MACRO.VERSION
-2. If MACRO.BUILD_TIME exists, includes build timestamp
-3. Simple text response with version information
-4. Only enabled for Ant users (internal)
+Simple 'local' command that retrieves the version string from package.json (or build info) and displays it to the user. For external builds, shows CHANGELOG.md link; for internal builds, shows git SHA.
 
 ## Exports
-- `call` - async function returning version text
-- `version` - Command object with metadata
+- `default` - The version command object with `call` function

@@ -1,23 +1,16 @@
 ## Purpose
-Launch advanced multi-agent planning session in Claude Code on the web (CCR).
+Launches an advanced multi-agent planning session on Claude Code on the web (CCR) with parallel exploration and plan generation.
 
 ## Imports
-- **Internal**: Remote control/teleport utilities, remote agent task management, ultraplan prompt template, session polling
+- **Stdlib**: `fs`
+- **Internal**: Many modules: bridge types, Command type, constants, analytics, RemoteAgentTask, AppStateStore, teleport utils, ultraplan utils, and prompt file
 
 ## Logic
-1. Checks for existing active or launching session (prevents duplicates)
-2. Validates arguments (requires prompt/blurb, otherwise shows usage)
-3. Checks eligibility for remote agent tasks (requires login, etc.)
-4. Teleports to remote CCR session with ultraplan prompt
-5. Registers RemoteAgentTask with task system
-6. Starts detached polling for plan approval:
-   - Waits for user to approve/reject plan in browser
-   - If approved for remote execution: completes task, notifies user
-   - If approved for teleport: shows UltraplanChoiceDialog in REPL
-7. Handles errors, timeouts (30min), and cancellation
-8. Shows live status via pill and notifications
-9. Command type: 'local-jsx' with interactive pre-launch dialog
+Provides `launchUltraplan` function that creates a remote CCR (Claude Code on the web) session, polls for approval/execution, and handles both teleport (local execution) and remote execution paths. Includes eligibility checks, pre-launch dialog, session creation via `teleportToRemote`, task registration, and detached polling with 30-minute timeout. Handles errors gracefully and provides user-facing notifications. The command shows usage for bare invocation and displays a dialog for non-empty prompts.
 
 ## Exports
-- `default` - local-jsx Command with launchUltraplan and stopUltraplan
-- `buildUltraplanPrompt`, `startDetachedPoll`, `stopUltraplan` - exported utilities
+- `default` - Command object (type: 'local-jsx') with `isEnabled` gated to internal builds
+- `buildUltraplanPrompt` - Assembles the initial CCR prompt with seed plan and user blurb
+- `startDetachedPoll` - Polls for plan approval/execution outcome
+- `stopUltraplan` - Stops a running ultraplan session
+- `launchUltraplan` - Entry point for launching

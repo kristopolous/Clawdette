@@ -1,18 +1,11 @@
 ## Purpose
-Factory function that creates command objects that redirect to plugin marketplace commands.
+Creates a command that redirects users to a plugin when functionality has been moved.
 
 ## Imports
-- **External**: `@anthropic-ai/sdk` (ContentBlockParam type)
-- **Internal**: Command type, ToolUseContext type
+- **Internal**: `Command` type, `createMovedToPluginCommand`
 
 ## Logic
-1. Takes options: name, description, progressMessage, pluginName, pluginCommand, getPromptWhileMarketplaceIsPrivate
-2. Returns Command object with type 'prompt'
-3. For Ant users (internal): returns message instructing user to install plugin from marketplace
-4. For external users: calls getPromptWhileMarketplaceIsPrivate to provide working prompt (while marketplace is private/external)
-5. Designed to replace commands that have been migrated to plugins
-6. Provides graceful degradation and migration path
+Factory function that generates a command wrapper which detects when the old command is invoked and informs the user that the functionality has moved to a plugin. Provides instructions to enable the plugin. Useful for deprecating built-in commands in favor of modular plugins.
 
 ## Exports
-- `createMovedToPluginCommand` - function that creates redirect-style commands
-- Used by commands like security-review that moved to plugin
+- `createMovedToPluginCommand` - Function that creates redirect command objects

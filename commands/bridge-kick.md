@@ -1,23 +1,11 @@
 ## Purpose
-Inject bridge failure states for manual testing of recovery paths in Remote Control.
+Removes the current user's authentication credentials and logs them out.
 
 ## Imports
-- **Internal**: `getBridgeDebugHandle` (from bridge/bridgeDebug.js), Command types
+- **Internal**: `Command` type, `deleteCredential`, `deleteAuthHeader`
 
 ## Logic
-1. Gets bridge debug handle (only available for Ant users with Remote Control connected)
-2. Parses subcommand arguments:
-   - `close <code>`: fire WebSocket closed event with exit code
-   - `poll <status> [type]`: make next poll throw BridgeFatalError
-   - `poll transient`: next poll throws transient axios rejection
-   - `register fail [N]`: next N register attempts transient-fail
-   - `register fatal`: next register returns 403 (terminal)
-   - `reconnect-session fail`: reconnect POST fails (tests Strategy 2)
-   - `heartbeat <status>`: next heartbeat throws error
-   - `reconnect`: call reconnectEnvironmentWithSession directly
-   - `status`: print current bridge state
-3. Returns text confirmation and instructions for watching debug.log
+Simple 'local' command that deletes stored credentials (API key) and auth headers from both persistent storage and in-memory state. Asks for confirmation if user is in a managed workspace. Needs /login or /key to set credentials again.
 
 ## Exports
-- `call` - async LocalCommandCall function
-- `bridgeKick` - local Command object (Ant-only)
+- `default` - The bridge-kick command object with `call` function
