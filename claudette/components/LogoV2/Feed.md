@@ -1,16 +1,40 @@
+# components/LogoV2/Feed
+
 ## Purpose
-Renders a single feed section with a title, timestamped lines, optional footer, or custom content.
+Provides feed component for rendering feed content with title, lines, and footer.
 
 ## Imports
-- **Stdlib**: Math
-- **External**: react, react/compiler-runtime
-- **Internal**: ink/stringWidth, ink/Box, ink/Text, utils/format
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: ink stringWidth, ink, format
 
 ## Logic
-Calculates the maximum width needed for the feed by measuring the title, lines (including timestamps), footer, and custom content. Renders lines with aligned timestamps and truncated text, or falls back to an empty message or custom content when appropriate.
+1. `FeedLine` - { text, timestamp? }
+2. `FeedConfig` - { title, lines, footer?, emptyMessage?, customContent? }
+3. `customContent` - { content: React.ReactNode, width: number }
+4. `FeedProps` - { config, actualWidth }
+5. `calculateFeedWidth` - calculates feed width based on content
+6. Gets title, lines, footer, emptyMessage, customContent from config
+7. maxWidth = stringWidth(title)
+8. If customContent: maxWidth = Math.max(maxWidth, customContent.width)
+9. Else if lines.length === 0 && emptyMessage: maxWidth = Math.max(maxWidth, stringWidth(emptyMessage))
+10. Else: calculates maxTimestampWidth, then iterates lines to find max lineWidth
+11. lineWidth = stringWidth(line.text) + (timestampWidth > 0 ? timestampWidth + gap.length : 0)
+12. If footer: maxWidth = Math.max(maxWidth, stringWidth(footer))
+13. `Feed` - React component for feed display
+14. Uses React compiler runtime (_c) for memoization
+15. Renders title in bold with color="claude"
+16. Renders lines with timestamps if present
+17. Renders footer if present
+18. Renders emptyMessage if lines.length === 0
+19. Renders customContent if present
+20. `stringWidth` - gets string width
+21. `Box`, `Text` - ink components
+22. `truncate` - truncates text
 
 ## Exports
-- `FeedLine` - type representing a feed line with text and optional timestamp
-- `FeedConfig` - type defining feed configuration with title, lines, footer, emptyMessage, and customContent
-- `calculateFeedWidth` - computes the display width needed for a feed config
-- `Feed` - renders a single feed section based on its config
+- `FeedLine` - feed line type
+- `FeedConfig` - feed config type
+- `FeedProps` - feed props type
+- `calculateFeedWidth` - calculates feed width
+- `Feed` - feed component

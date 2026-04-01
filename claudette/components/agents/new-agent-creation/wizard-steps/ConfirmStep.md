@@ -1,12 +1,12 @@
 ## Purpose
-Wizard step displaying a summary of the agent configuration for final review before saving.
+Provides the final confirmation step that displays a summary of the agent configuration before saving.
 
 ## Imports
-- **External**: react
-- **Internal**: ink components (Box, Text), keyboard event types, keybinding utilities, memdir/paths (isAutoMemoryEnabled), Tool types, agent memory utilities, AgentDefinition types, formatting utilities, model display utilities, configurable shortcut hints, design system components, wizard utilities, agent file utilities, validateAgent utility, AgentWizardData types
+- **External**: react, react/compiler-runtime
+- **Internal**: ink/events/keyboard-event.js (KeyboardEvent type), ink.js (Box, Text), keybindings/useKeybinding.js, memdir/paths.js (isAutoMemoryEnabled), Tool.js (Tools type), tools/AgentTool/agentMemory.js (getMemoryScopeDisplay), tools/AgentTool/loadAgentsDir.js (AgentDefinition type), utils/format.js (truncateToWidth), utils/model/agent.js (getAgentModelDisplay), ConfigurableShortcutHint.js, design-system/Byline.js, design-system/KeyboardShortcutHint.js, wizard/index.js (useWizard), wizard/WizardDialogLayout.js, agentFileUtils.js (getNewRelativeAgentFilePath), validateAgent.js (validateAgent), types.js (AgentWizardData type)
 
 ## Logic
-Validates the complete agent configuration and displays all settings (name, location, tools, model, memory, description, system prompt) with truncation for long values. Shows validation warnings and errors. Provides save and save-and-edit actions with keyboard shortcuts.
+Validates the complete agent configuration and displays a summary including name, location, tools, model, memory, description, and system prompt preview. Shows validation warnings and errors. Handles keyboard shortcuts for save (s/Enter) and save-and-edit (e).
 
 ## Exports
-- `ConfirmStep` - renders a summary view of the agent configuration with validation results and save options
+- `ConfirmStep` - renders an agent configuration summary with validation feedback and save actions

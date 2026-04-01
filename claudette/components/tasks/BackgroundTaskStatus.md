@@ -1,19 +1,46 @@
+# components/tasks/BackgroundTaskStatus
+
 ## Purpose
-Renders a status bar footer showing active background tasks as clickable pills or a summary count, with horizontal scrolling for teammate views.
+Provides background task status component for displaying running task status.
 
 ## Imports
-- **Stdlib**: None
-- **External**: `react` (useMemo, useState), `react/compiler-runtime`, `figures`
-- **Internal**: `hooks/useTerminalSize`, `ink/stringWidth`, `state/AppState`, `state/teammateViewHelpers`, `tasks/LocalAgentTask/LocalAgentTask`, `tasks/pillLabel`, `tasks/types`, `utils/horizontalScroll`, `ink`, `tools/AgentTool/agentColorManager`, `design-system/KeyboardShortcutHint`
+- **Stdlib**: (none)
+- **External**: `figures`, `react`, `react/compiler-runtime`
+- **Internal**: hooks useTerminalSize, ink stringWidth, state AppState/teammateViewHelpers, tasks LocalAgentTask/pillLabel/types, utils horizontalScroll, ink, AgentTool agentColorManager, theme, design-system KeyboardShortcutHint, tasks taskStatusUtils
 
 ## Logic
-1. **Teammate Pill Mode**: When viewing teammates or all tasks are teammates, renders individual agent pills with horizontal scrolling, arrow indicators, and click-to-foreground behavior.
-2. **Summary Mode**: Otherwise, shows a single summary pill with a count of running tasks and a "press down to view" hint when actionable.
-3. **Pill Styling**: Agent pills display with color-coded backgrounds, bold for viewed agents, dimmed for idle agents, and inverse highlighting on selection or hover.
-4. **Scroll Calculation**: Computes a horizontal scroll window based on pill widths and available terminal width to keep the selected pill visible.
+1. `Props` - { tasksSelected, isViewingTeammate?, teammateFooterIndex?, isLeaderIdle?, onOpenDialog? }
+2. `BackgroundTaskStatus` - React component for background task status
+3. Uses React compiler runtime (_c) for memoization
+4. Uses useTerminalSize for columns
+5. Uses useAppState, useSetAppState for state management
+6. Uses enterTeammateView, exitTeammateView for teammate view
+7. Gets tasks from app state
+8. Filters running tasks via isBackgroundTask
+9. Gets expandedView state for spinner tree display
+10. Calculates showSpinnerTree = expandedView === "teammates"
+11. Calculates allTeammates if all running tasks are teammate tasks
+12. Filters teammate entries via isPanelAgentTask
+13. Creates mainPill for leader status
+14. Maps teammate entries to pills with color, name, status
+15. Uses getPillLabel for pill label generation
+16. Uses pillNeedsCta to check if pill needs CTA
+17. Uses AGENT_COLOR_TO_THEME_COLOR, AGENT_COLORS for agent colors
+18. Uses calculateHorizontalScrollWindow for horizontal scrolling
+19. Uses shouldHideTasksFooter to check if footer should be hidden
+20. Renders Box with task pills
+21. Shows KeyboardShortcutHint for dialog opening
+22. `useTerminalSize` - gets terminal size
+23. `stringWidth` - gets string width
+24. `isPanelAgentTask` - checks if panel agent task
+25. `getPillLabel`, `pillNeedsCta` - pill utilities
+26. `isBackgroundTask`, `TaskState`, `BackgroundTaskState` - task types/functions
+27. `calculateHorizontalScrollWindow` - calculates scroll window
+28. `AGENT_COLOR_TO_THEME_COLOR`, `AGENT_COLORS`, `AgentColorName` - agent color utilities
+29. `Theme` - theme type
+30. `KeyboardShortcutHint` - keyboard shortcut hint component
+31. `shouldHideTasksFooter` - checks if footer should be hidden
 
 ## Exports
-- `BackgroundTaskStatus` - A component that renders the background task status bar, either as individual teammate pills or a summary count pill.
-- `AgentPill` - A clickable pill component displaying an agent name with color, selection, viewed, and idle states.
-- `SummaryPill` - A pill component showing a summary of running tasks with hover and selection highlighting.
-- `getAgentThemeColor` - Maps an agent color name to a theme color key.
+- `Props` - props type
+- `BackgroundTaskStatus` - background task status component

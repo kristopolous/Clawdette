@@ -1,16 +1,35 @@
+# components/tasks/DreamDetailDialog
+
 ## Purpose
-Displays a detail dialog for a dream task, showing its status, elapsed time, sessions reviewing, files touched, and recent turns.
+Provides dream detail dialog component for viewing dream task details.
 
 ## Imports
-- **Stdlib**: None
+- **Stdlib**: (none)
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `hooks/useElapsedTime`, `ink`, `keybindings/useKeybinding`, `utils/stringUtils`, `design-system/Byline`, `design-system/Dialog`, `design-system/KeyboardShortcutHint`
+- **Internal**: types utils, hooks useElapsedTime, ink events keyboard-event, ink, keybindings useKeybinding, tasks DreamTask, stringUtils, design-system Byline/Dialog/KeyboardShortcutHint
 
 ## Logic
-1. **Time Tracking**: Computes elapsed time from the task start, updating every second while the task is running.
-2. **Turn Display**: Shows the most recent 6 turns with text output and tool use counts, collapsing earlier turns into a count label.
-3. **Key Handling**: Binds keyboard shortcuts for close (Esc/Enter/Space), go back (left arrow), and stop (x key for running tasks).
-4. **Status Rendering**: Displays the task status with color-coded text (running, completed, or error) and a subtitle with elapsed time, session count, and file touch count.
+1. `Props` - { task, onDone, onBack?, onKill? }
+2. `VISIBLE_TURNS` (6) - number of recent turns to render
+3. Earlier turns collapse to a count
+4. `DreamDetailDialog` - React component for dream detail dialog
+5. Uses React compiler runtime (_c) for memoization
+6. Uses useElapsedTime for elapsed time calculation
+7. Uses useKeybindings for keyboard shortcuts
+8. Keybindings: 'confirm:yes' → onDone
+9. handleKeyDown: space → onDone, left → onBack, x → onKill (if running)
+10. Renders Dialog with dream task details
+11. Shows elapsed time, task status
+12. Shows recent turns (last VISIBLE_TURNS)
+13. Shows collapsed count for earlier turns
+14. `DeepImmutable` - deep immutable type
+15. `useElapsedTime` - gets elapsed time
+16. `KeyboardEvent` - keyboard event type
+17. `DreamTaskState` - dream task state type
+18. `plural` - pluralizes string
+19. `Byline`, `Dialog`, `KeyboardShortcutHint` - design system components
 
 ## Exports
-- `DreamDetailDialog` - A dialog component that shows detailed information about a dream task including status, runtime, sessions reviewing, files touched, and recent turns.
+- `Props` - props type
+- `VISIBLE_TURNS` - visible turns constant
+- `DreamDetailDialog` - dream detail dialog component

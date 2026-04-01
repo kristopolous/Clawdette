@@ -1,12 +1,12 @@
 ## Purpose
-Wrapper component that handles agent saving and file operations for the confirmation step.
+Wraps the confirmation step with agent saving, state management, and analytics logging logic.
 
 ## Imports
-- **External**: chalk, react (useCallback, useState)
-- **Internal**: analytics services, app state utilities, Tool types, AgentDefinition types, prompt editor utilities, wizard utilities, agent file utilities, ConfirmStep component, AgentWizardData types
+- **External**: chalk, react, react/compiler-runtime, useCallback, useState
+- **Internal**: src/services/analytics/index.js (logEvent, AnalyticsMetadata type), src/state/AppState.js (useSetAppState), Tool.js (Tools type), tools/AgentTool/loadAgentsDir.js (AgentDefinition type, getActiveAgentsFromList), utils/promptEditor.js (editFileInEditor), wizard/index.js (useWizard), agentFileUtils.js (getNewAgentFilePath, saveAgentToFile), types.js (AgentWizardData type), ConfirmStep.js (ConfirmStep)
 
 ## Logic
-Provides save and save-and-edit handlers that persist the agent configuration to file, update application state with the new agent, log analytics events, and optionally open the file in an editor. Wraps ConfirmStep with error handling for save operations.
+Handles the complete agent save workflow: persists the agent to file, updates application state with the new agent, optionally opens the file in an external editor, and logs analytics events. Provides save and save-and-edit callbacks to the ConfirmStep component.
 
 ## Exports
-- `ConfirmStepWrapper` - renders the confirmation step with save functionality and error handling
+- `ConfirmStepWrapper` - wraps ConfirmStep with save logic, state updates, and analytics tracking

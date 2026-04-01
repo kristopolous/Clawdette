@@ -1,15 +1,24 @@
+# components/Spinner/ShimmerChar
+
 ## Purpose
-Renders a single character with shimmer highlighting when it is at or near the glimmer position.
+Provides shimmer character component for message shimmer animation.
 
 ## Imports
-- **Stdlib**: None
-- **External**: `react`
-- **Internal**: `ink` (Text), `utils/theme` (Theme)
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: ink, theme
 
 ## Logic
-1. Determines if the character index matches the glimmer index (highlighted) or is adjacent (near highlight)
-2. Uses shimmer color when highlighted or near highlight, otherwise uses message color
-3. Renders the character with the computed color
+1. `Props` - { char, index, glimmerIndex, messageColor, shimmerColor }
+2. `ShimmerChar` - React component for shimmer character
+3. Uses React compiler runtime (_c) for memoization
+4. Calculates isHighlighted = index === glimmerIndex
+5. Calculates isNearHighlight = Math.abs(index - glimmerIndex) === 1
+6. Calculates shouldUseShimmer = isHighlighted || isNearHighlight
+7. Uses shimmerColor if shouldUseShimmer, else messageColor
+8. Renders Text with appropriate color
+9. `useTheme` - gets current theme
+10. `Theme` - theme type
 
 ## Exports
-- `ShimmerChar` - renders a character with shimmer color when at or adjacent to the glimmer index, otherwise uses base message color
+- `ShimmerChar` - shimmer character component

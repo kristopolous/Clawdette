@@ -1,13 +1,29 @@
+# components/LogoV2/FeedColumn
+
 ## Purpose
-Renders a vertical column of feed items separated by dividers, calculating optimal width from all feed configs.
+Provides feed column component for rendering multiple feeds vertically.
 
 ## Imports
-- **Stdlib**: Math
-- **External**: react, react/compiler-runtime
-- **Internal**: ink/Box, design-system/Divider, Feed
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: ink, design-system Divider, LogoV2 Feed
 
 ## Logic
-Calculates the maximum width needed across all feeds, constrains it to maxWidth, then renders each feed vertically with a divider between them.
+1. `FeedColumnProps` - { feeds: FeedConfig[], maxWidth: number }
+2. `FeedColumn` - React component for feed column
+3. Uses React compiler runtime (_c) for memoization
+4. Calculates feedWidths via feeds.map(calculateFeedWidth)
+5. Calculates maxOfAllFeeds via Math.max(...feedWidths)
+6. Calculates actualWidth via Math.min(maxOfAllFeeds, maxWidth)
+7. Renders Box with flexDirection="column"
+8. Maps feeds to Feed components with Divider between them
+9. Uses React.Fragment with key={index} for each feed
+10. Shows Divider with color="claude", width={actualWidth} between feeds
+11. `Box` - ink box component
+12. `Divider` - divider component
+13. `FeedConfig` - feed config type
+14. `calculateFeedWidth`, `Feed` - feed utilities
 
 ## Exports
-- `FeedColumn` - renders multiple feeds in a column with dividers between them
+- `FeedColumnProps` - feed column props type
+- `FeedColumn` - feed column component

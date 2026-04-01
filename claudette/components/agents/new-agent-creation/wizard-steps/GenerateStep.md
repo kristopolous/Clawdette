@@ -1,12 +1,12 @@
 ## Purpose
-Wizard step for generating agent configuration using an inference provider.
+Provides a wizard step for generating an agent configuration from a natural language description using the inference provider.
 
 ## Imports
-- **External**: @anthropic-ai/sdk (APIUserAbortError), react (useCallback, useRef, useState)
-- **Internal**: useMainLoopModel hook, ink components (Box, Text), keybinding utilities, abort controller utilities, prompt editor utilities, configurable shortcut hints, design system components, Spinner component, TextInput component, wizard utilities, generateAgent function, AgentWizardData types
+- **External**: @anthropic-ai/sdk (APIUserAbortError), react, react/compiler-runtime, useCallback, useRef, useState
+- **Internal**: hooks/useMainLoopModel.js (useMainLoopModel), ink.js (Box, Text), keybindings/useKeybinding.js, utils/abortController.js (createAbortController), utils/promptEditor.js (editPromptInEditor), ConfigurableShortcutHint.js, design-system/Byline.js, Spinner.js, TextInput.js, wizard/index.js (useWizard), wizard/WizardDialogLayout.js, generateAgent.js (generateAgent), types.js (AgentWizardData type)
 
 ## Logic
-Provides a text input for describing the desired agent, then calls the inference provider to generate a complete agent configuration (identifier, whenToUse, systemPrompt). Supports generation cancellation, external editor integration, and error handling. On success, populates wizard data and skips to the ToolsStep.
+Accepts a natural language prompt, calls the inference provider to generate agent configuration (identifier, whenToUse, systemPrompt), handles abort/cancellation, and skips to the tools step on success. Displays a spinner during generation and supports external editor for the prompt input.
 
 ## Exports
-- `GenerateStep` - renders an AI-powered agent generation interface with prompt input and loading state
+- `GenerateStep` - renders an AI-powered agent generation step with prompt input and loading state

@@ -1,12 +1,12 @@
 ## Purpose
-Wizard step for selecting the agent background color.
+Provides a wizard step for selecting the agent background color.
 
 ## Imports
-- **External**: react
-- **Internal**: ink components, keybinding utilities, AgentColorName types, configurable shortcut hints, design system components, wizard utilities, ColorPicker component, AgentWizardData types
+- **External**: react, react/compiler-runtime
+- **Internal**: ink.js (Box), keybindings/useKeybinding.js, tools/AgentTool/agentColorManager.js (AgentColorName type), ConfigurableShortcutHint.js, design-system/Byline.js, design-system/KeyboardShortcutHint.js, wizard/index.js (useWizard), wizard/WizardDialogLayout.js, ColorPicker.js, types.js (AgentWizardData type)
 
 ## Logic
-Renders a ColorPicker component for selecting the agent background color. On color selection, assembles the final agent object from all wizard data fields and advances to the next step.
+Wraps the ColorPicker component in a wizard dialog layout. On color selection, assembles the final agent definition from all accumulated wizard data and updates the wizard state before advancing.
 
 ## Exports
-- `ColorStep` - renders a color selection dialog within the wizard flow
+- `ColorStep` - renders a color selection step that finalizes the agent definition

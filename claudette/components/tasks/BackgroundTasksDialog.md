@@ -1,19 +1,52 @@
+# components/tasks/BackgroundTasksDialog
+
 ## Purpose
-Provides a dialog for viewing, navigating, and managing all active background tasks including shells, agents, teammates, workflows, and dream tasks.
+Provides background tasks dialog component for viewing and managing background tasks.
 
 ## Imports
-- **Stdlib**: None
-- **External**: `react` (ReactNode, useEffect, useEffectEvent, useMemo, useRef, useState), `react/compiler-runtime`, `bun:bundle`, `figures`
-- **Internal**: `coordinator/coordinatorMode`, `hooks/useTerminalSize`, `state/AppState`, `state/teammateViewHelpers`, `tasks/types`, `utils/array`, `utils/swarm/constants`, `commands/ultraplan`, `context/overlayContext`, `ink`, `keybindings/useKeybinding`, `keybindings/useShortcutDisplay`, `design-system/Byline`, `design-system/Dialog`, `design-system/KeyboardShortcutHint`
+- **Stdlib**: (none)
+- **External**: `bun:bundle`, `figures`, `react`, `react/compiler-runtime`
+- **Internal**: coordinator coordinatorMode, hooks useTerminalSize, state AppState/teammateViewHelpers, Tool, tasks DreamTask/InProcessTeammateTask/LocalAgentTask/LocalShellTask/LocalWorkflowTask/MonitorMcpTask/RemoteAgentTask/types, types utils, array, swarm constants, commands ultraplan, commands, context overlayContext, hooks useExitOnCtrlCDWithKeybindings, ink events keyboard-event, ink, keybindings useKeybinding/useShortcutDisplay, design-system Byline/Dialog/KeyboardShortcutHint, tasks AsyncAgentDetailDialog/BackgroundTask/DreamDetailDialog/InProcessTeammateDetailDialog/RemoteSessionDetailDialog/ShellDetailDialog
 
 ## Logic
-1. **Task Categorization**: Filters and sorts background tasks into categories (bash, remote agents, local agents, teammates, workflows, monitors, dreams) with running tasks listed first.
-2. **View State Management**: Supports list and detail modes, auto-skipping to detail view when only one task exists or when an initial task ID is provided.
-3. **Keyboard Navigation**: Handles up/down for list navigation, Enter to view details, x to stop running tasks, f to foreground teammates, and left/Esc to close.
-4. **Task Lifecycle**: Monitors task removal and automatically returns to list view or closes the dialog when the viewed task is no longer a background task.
-5. **Grouped Rendering**: Renders task groups with section headers, teammate grouping by team name, and leader entry for returning to the main agent view.
+1. `ViewState` - { mode: 'list' } | { mode: 'detail', itemId }
+2. `Props` - { onDone, toolUseContext, initialDetailTaskId? }
+3. `ListItem` - union type for different task types
+4. Types: local_bash, remote_agent, local_agent, in_process_teammate, dream, local_workflow, monitor_mcp
+5. Each has id, type, label, status, task (DeepImmutable<TaskState>)
+6. `BackgroundTasksDialog` - React component for background tasks
+7. Uses React compiler runtime (_c) for memoization
+8. Uses useTerminalSize for columns
+9. Uses useAppState, useSetAppState for state management
+10. Uses enterTeammateView, exitTeammateView for teammate view
+11. Uses useRegisterOverlay for overlay context
+12. Uses useKeybindings for keyboard shortcuts
+13. Uses useShortcutDisplay for shortcut display
+14. Filters background tasks via isBackgroundTask
+15. Renders Dialog with task list or detail view
+16. Shows task status, label, duration
+17. Handles task selection and detail view
+18. Handles task killing via stopUltraplan
+19. `isCoordinatorMode` - checks coordinator mode
+20. `DreamTask`, `DreamTaskState` - dream task types
+21. `InProcessTeammateTask`, `InProcessTeammateTaskState` - teammate task types
+22. `LocalAgentTask`, `LocalAgentTaskState` - local agent task types
+23. `LocalShellTask`, `LocalShellTaskState` - local shell task types
+24. `LocalWorkflowTask`, `LocalWorkflowTaskState` - local workflow task types
+25. `MonitorMcpTask`, `MonitorMcpTaskState` - monitor MCP task types
+26. `RemoteAgentTask`, `RemoteAgentTaskState` - remote agent task types
+27. `BackgroundTaskState`, `isBackgroundTask`, `TaskState` - task types/functions
+28. `DeepImmutable` - deep immutable type
+29. `intersperse`, `count` - array utilities
+30. `TEAM_LEAD_NAME` - team lead name constant
+31. `stopUltraplan` - stops ultraplan
+32. `CommandResultDisplay` - command result display type
+33. `ExitState` - exit state type
+34. `KeyboardEvent` - keyboard event type
+35. `Byline`, `Dialog`, `KeyboardShortcutHint` - design system components
 
 ## Exports
-- `BackgroundTasksDialog` - A dialog component that lists all active background tasks with navigation, detail views, and management actions (stop, foreground).
-- `toListItem` - Converts a background task state into a list item with id, type, label, status, and task reference.
-- `getSelectableBackgroundTasks` - Filters background tasks excluding any that are currently foregrounded.
+- `ViewState` - view state type
+- `Props` - props type
+- `ListItem` - list item type
+- `BackgroundTasksDialog` - background tasks dialog component

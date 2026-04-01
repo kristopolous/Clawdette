@@ -1,16 +1,29 @@
+# components/teams/TeamStatus
+
 ## Purpose
-Displays a footer status indicator showing the current teammate count with optional selection hint.
+Provides team status footer component showing teammate count.
 
 ## Imports
-- **Stdlib**: none
-- **External**: react, react/compiler-runtime
-- **Internal**: ink, state/AppState
+- **Stdlib**: (none)
+- **External**: `react`, `react/compiler-runtime`
+- **Internal**: ink, state AppState
 
 ## Logic
-1. Reads team context from app state to derive the total teammate count (excluding team-lead)
-2. Returns null when there are no teammates
-3. Renders the teammate count text with inverse styling when selected
-4. Optionally appends an "Enter to view" hint when teams are selected and hint is enabled
+1. `Props` - { teamsSelected, showHint }
+2. `TeamStatus` - React component for team status footer
+3. Similar to BackgroundTaskStatus but for teammates
+4. Uses React compiler runtime (_c) for memoization
+5. Gets teamContext via useAppState
+6. Derives teammate count from teamContext (no filesystem I/O needed)
+7. Filters out team-lead from count
+8. Returns null if totalTeammates === 0
+9. Shows hint if showHint && teamsSelected: "· Enter to view"
+10. Shows statusText: "{totalTeammates} teammate(s)"
+11. Uses key={teamsSelected ? 'selected' : 'normal'} for color switching
+12. Uses color="background", inverse={teamsSelected} for styling
+13. `Text` - ink text component
+14. `useAppState` - gets app state
 
 ## Exports
-- `TeamStatus` - renders a compact footer showing teammate count with optional navigation hint
+- `Props` - props type
+- `TeamStatus` - team status component

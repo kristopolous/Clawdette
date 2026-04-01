@@ -1,15 +1,31 @@
+# components/tasks/renderToolActivity
+
 ## Purpose
-Renders a human-readable description of a tool activity for display in task progress views.
+Provides tool activity rendering utility for displaying tool use in agent activity.
 
 ## Imports
-- **Stdlib**: None
+- **Stdlib**: (none)
 - **External**: `react`
-- **Internal**: `ink`, `Tool`
+- **Internal**: ink, Tool, tasks LocalAgentTask, theme
 
 ## Logic
-1. **Tool Lookup**: Finds the tool definition by name from the available tools registry.
-2. **Input Parsing**: Validates the activity input against the tool's input schema, using an empty object on parse failure.
-3. **Rendering**: Gets the user-facing tool name and renders the tool use message with arguments, falling back to the raw tool name if the tool is not found or rendering fails.
+1. `renderToolActivity` - renders tool activity as React node
+2. Takes activity, tools, theme parameters
+3. Finds tool by name via findToolByName
+4. Returns toolName if tool not found
+5. Parses input via tool.inputSchema.safeParse
+6. Gets parsedInput from parse result (empty object on failure)
+7. Gets userFacingName via tool.userFacingName(parsedInput)
+8. Returns toolName if no userFacingName
+9. Gets toolArgs via tool.renderToolUseMessage(parsedInput, { theme, verbose: false })
+10. Returns Text with userFacingName(toolArgs) if toolArgs present
+11. Returns userFacingName if no toolArgs
+12. Returns toolName on error
+13. `Text` - ink text component
+14. `Tools` - tools type
+15. `findToolByName` - finds tool by name
+16. `ToolActivity` - tool activity type
+17. `ThemeName` - theme name type
 
 ## Exports
-- `renderToolActivity` - Renders a tool activity as a React node showing the tool name and its arguments, using the tool registry for formatting.
+- `renderToolActivity` - renders tool activity

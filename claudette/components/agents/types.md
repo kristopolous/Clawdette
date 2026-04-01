@@ -1,13 +1,13 @@
 ## Purpose
-Defines type constants and state types for the agent management system.
+Defines types and constants for agent management state and validation.
 
 ## Imports
-- **Internal**: src/utils/settings/constants (SettingSource type), tools/AgentTool/loadAgentsDir (AgentDefinition type)
+- **Internal**: src/utils/settings/constants.js (SettingSource type), tools/AgentTool/loadAgentsDir.js (AgentDefinition type)
 
 ## Logic
-Provides path constants for agent file locations and defines the ModeState union type representing all possible UI states in the agent management flow (main menu, list, view, create, edit, delete). Also defines the validation result type for agent configurations.
+Defines the agent file path constants, a discriminated union type for the agent menu state machine covering all modes (main-menu, list-agents, agent-menu, view-agent, create-agent, edit-agent, delete-confirm), and a validation result type for agent configurations.
 
 ## Exports
-- `AGENT_PATHS` - constant object containing folder name and agents directory path
-- `ModeState` - union type representing all possible agent menu states
-- `AgentValidationResult` - type for agent validation outcomes with validity status, warnings, and errors
+- `AGENT_PATHS` - constant object containing folder name and agents directory name
+- `ModeState` - discriminated union type representing all possible states of the agent menu
+- `AgentValidationResult` - type for validation outcomes with isValid flag, warnings, and errors

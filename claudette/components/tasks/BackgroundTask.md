@@ -1,16 +1,36 @@
+# components/tasks/BackgroundTask
+
 ## Purpose
-Renders a compact one-line display for any background task type, showing its description and current status.
+Provides background task component for displaying individual background task status.
 
 ## Imports
-- **Stdlib**: None
+- **Stdlib**: (none)
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `ink`, `utils/format`, `utils/ink`, `utils/stringUtils`, `constants/figures`
+- **Internal**: ink, tasks types, types utils, format, ink, stringUtils, constants figures, tasks RemoteSessionProgress/ShellProgress/taskStatusUtils
 
 ## Logic
-1. **Type Dispatch**: Switches on the task type to render the appropriate display for each task category (local_bash, remote_agent, local_agent, in_process_teammate, local_workflow, monitor_mcp, dream).
-2. **Content Truncation**: Truncates task descriptions, commands, and titles to fit within the available width.
-3. **Status Indicators**: Appends status text (done, error, stopped, unread) with appropriate coloring for completed tasks.
-4. **Specialized Rendering**: Uses RemoteSessionProgress for remote agents, ShellProgress for bash tasks, and teammate activity descriptions for in-process teammates.
+1. `Props` - { task, maxActivityWidth? }
+2. `BackgroundTask` - React component for background task display
+3. Uses React compiler runtime (_c) for memoization
+4. activityLimit = maxActivityWidth ?? 40
+5. Switches on task.type:
+   - local_bash: shows command/description truncated to activityLimit, ShellProgress
+   - remote_agent: if isRemoteReview shows RemoteSessionProgress, else shows diamond icon (DIAMOND_OPEN/DIAMOND_FILLED) and title
+   - local_agent: shows agent color diamond and title
+   - in_process_teammate: shows teammate activity description via describeTeammateActivity
+   - dream: shows dream description
+   - local_workflow: shows workflow description
+   - monitor_mcp: shows MCP server name
+6. Uses truncate for text truncation
+7. Uses toInkColor for color conversion
+8. Uses plural for pluralization
+9. `DIAMOND_FILLED`, `DIAMOND_OPEN` - diamond figure constants
+10. `RemoteSessionProgress` - remote session progress component
+11. `ShellProgress`, `TaskStatusText` - shell progress components
+12. `describeTeammateActivity` - describes teammate activity
+13. `BackgroundTaskState` - background task state type
+14. `DeepImmutable` - deep immutable type
 
 ## Exports
-- `BackgroundTask` - A component that renders a compact one-line display for any background task, showing its description and status indicator.
+- `Props` - props type
+- `BackgroundTask` - background task component
