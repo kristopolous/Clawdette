@@ -19,5 +19,3 @@ Defines Zod schemas and TypeScript types for file edit tool input validation and
 - `hunkSchema` - Zod schema for diff patch hunk structure
 - `gitDiffSchema` - Zod schema for git diff output structure
 - `FileEditOutput` - type for file edit tool output including patch and metadata
-- `inputSchema` - Zod schema for validating file edit input
-- `outputSchema` - Zod schema for file edit tool output

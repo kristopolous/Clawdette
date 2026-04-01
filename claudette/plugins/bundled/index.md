@@ -4,7 +4,7 @@ Initializes built-in plugins that ship with the CLI and appear in the plugin UI 
 ## Imports
 - **Stdlib**: none
 - **External**: none
-- **Internal**: `plugins/builtinPlugins`
+- **Internal**: none
 
 ## Logic
 Provides a scaffolding function called during CLI startup to register built-in plugins. Currently empty, serving as the entry point for migrating bundled skills that should be user-toggleable.
