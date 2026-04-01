@@ -1,5 +1,5 @@
 ## Purpose
-Defines Zod validation schemas for the keybindings.json configuration file and enumerates all valid contexts and action identifiers.
+Defines Zod validation schemas for thekeybindingson configuration file and enumerates all valid contexts and action identifiers.
 
 ## Imports
 - **Stdlib**: none
@@ -14,5 +14,5 @@ Declares constant arrays of valid context names and action identifiers with huma
 - `KEYBINDING_CONTEXT_DESCRIPTIONS` - human-readable descriptions for each context
 - `KEYBINDING_ACTIONS` - array of all valid keybinding action identifiers
 - `KeybindingBlockSchema` - Zod schema for a single context's binding block
-- `KeybindingsSchema` - Zod schema for the entire keybindings.json file
+- `KeybindingsSchema` - Zod schema for the entirekeybindingson file
 - `KeybindingsSchemaType` - TypeScript type inferred from the schema

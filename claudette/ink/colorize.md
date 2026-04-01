@@ -9,8 +9,8 @@ Provides color utilities for terminal text styling with chalk.
 - **Internal**: ink styles
 
 ## Logic
-1. `boostChalkLevelForXtermJs` - boosts chalk level for xterm.js terminals
-2. xterm.js (VS Code, Cursor, code-server, Coder) supports truecolor since 2017
+1. `boostChalkLevelForXtermJs` - boosts chalk level forxterm terminals
+2.xterm (VS Code, Cursor, code-server, Coder) supports truecolor since 2017
 3. code-server/Coder containers often don't set COLORTERM=truecolor
 4. chalk's supports-color doesn't recognize TERM_PROGRAM=vscode
 5. Falls through to -256color regex → level 2

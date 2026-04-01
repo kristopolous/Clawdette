@@ -5,7 +5,7 @@ On Windows, convert backslashes to forward slashes for consistent path matching
 
 ## Imports
 - **Stdlib**: execa, fs/promises, os, path
-- **Internal**: ./autoUpdater.js, ./bundledMode.js, ./cwd.js, ./envUtils.js, ./execFileNoThrow.js, ./fsOperations.js, ./platform.js, ./ripgrep, ./sandbox/sandbox-adapter, ./settings/managedPath...
+- **Internal**: ./autoUpdater, /bundledMode, /cwd, /envUtils, /execFileNoThrow, /fsOperations, /platform, ./ripgrep, ./sandbox/sandbox-adapter, ./settings/managedPath...
 
 ## Items
 

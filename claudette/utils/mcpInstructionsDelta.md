@@ -4,7 +4,7 @@
 Servers with instructions to announce (either channel). A server can
 
 ## Imports
-- **Internal**: ../services/analytics/growthbook.js, ../services/analytics/index, ../types/message, ./envUtils
+- **Internal**: ../services/analytics/growthbook, ../services/analytics/index, ../types/message, ./envUtils
 
 ## Items
 

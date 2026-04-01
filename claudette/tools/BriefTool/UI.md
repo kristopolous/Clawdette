@@ -11,7 +11,7 @@ Renders terminal UI for BriefTool, which outputs assistant messages (Claude's re
 - **Internal**:
   - Components: `Markdown`
   - Constants: `BLACK_CIRCLE`
-  - UI: `Box`, `Text` from `ink.js`
+  - UI: `Box`, `Text` from ink`
   - Types: `ProgressMessage`
   - Utils: `getDisplayPath`, `formatFileSize`, `formatBriefTimestamp`
   - Related Tool: `BriefTool` (for Output type)

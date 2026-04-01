@@ -4,10 +4,10 @@ Registers keybinding handlers for "command:*" actions; invokes corresponding sla
 ## Imports
 - **External**: `react` (useMemo)
 - **Internal**:
-  - `../context/overlayContext.js` (useIsModalOverlayActive)
-  - `../keybindings/KeybindingContext.js` (useOptionalKeybindingContext)
-  - `../keybindings/useKeybinding.js` (useKeybindings)
-  - `../utils/handlePromptSubmit.js` (PromptInputHelpers)
+  - `./context/overlayContext` (useIsModalOverlayActive)
+  - `./keybindings/KeybindingContext` (useOptionalKeybindingContext)
+  - `./keybindings/useKeybinding` (useKeybindings)
+  - `./utils/handlePromptSubmit` (PromptInputHelpers)
 
 ## Logic
 1. Component reads current keybinding context; if missing, returns null (no handlers)

@@ -8,8 +8,8 @@ Defines the `sandbox` command, which toggles the command sandbox and displays it
 - `figures` (for warning, tick, circle icons)
 
 ### Internal
-- `Command` type from `../../commands.js`
-- `SandboxManager` from `../../utils/sandbox/sandbox-adapter.js`
+- `Command` type from `.././commands`
+- `SandboxManager` from `../../utils/sandbox/sandboxadapter`
 
 ## Logic
 Creates a command object:
@@ -25,7 +25,7 @@ Creates a command object:
 - `isHidden`: Getter returns true if `!isSupportedPlatform()` or `!isPlatformInEnabledList()`.
 - `immediate`: `true` (executes immediately when typed).
 - `type`: `'local-jsx'`
-- `load`: Dynamic import of `./sandbox-toggle.js` (or `.tsx`)
+- `load`: Dynamic import of `./sandboxtoggle` (or `.tsx`)
 
 ## Exports
 - `command` (Command) - The command definition (exported as default)

@@ -5,7 +5,7 @@ Defines the `vim` command to toggle between Vim and Normal editing modes.
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'vim'`
 - `description`: `'Toggle between Vim and Normal editing modes'`
 - `supportsNonInteractive`: `false` (requires interactive environment to show result)
-- `load`: Dynamic import of `./vim.js` (or `.ts`)
+- `load`: Dynamic import of `/vim` (or `.ts`)
 
 ## Exports
 - `command` (Command) - The command definition (exported as default)

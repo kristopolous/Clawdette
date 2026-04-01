@@ -9,7 +9,7 @@ Command entry for /mcp - registers the MCP management interface.
 Defines the 'mcp' command as a local-jsx type with:
 - immediate: true (shows UI instantly)
 - argumentHint: '[enable|disable [server-name]]'
-- Dynamic loader that imports './mcp.js'
+- Dynamic loader that imports '/mcp'
 
 For ant users, base /mcp redirects to /plugins installed tab to avoid confusion.
 

@@ -10,7 +10,7 @@ Renders terminal UI for BashTool, displaying command execution progress, results
 - **External**: `ToolResultBlockParam` type from Anthropic SDK
 - **Internal**:
   - Components: `KeyboardShortcutHint`, `FallbackToolUseErrorMessage`, `MessageResponse`, `ShellProgressMessage`
-  - UI: `Box`, `Text` from `ink.js`
+  - UI: `Box`, `Text` from ink`
   - State: `useAppStateStore`, `useSetAppState`
   - Tasks: `backgroundAll` from LocalShellTask
   - Types: `Tool`, `ProgressMessage`, `ThemeName`

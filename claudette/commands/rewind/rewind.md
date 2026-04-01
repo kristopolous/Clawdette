@@ -5,8 +5,8 @@ Opens the message selector to restore the code and/or conversation to a previous
 
 ## Imports
 ### Internal
-- `LocalCommandResult` type from `../../commands.js`
-- `ToolUseContext` type from `../../Tool.js`
+- `LocalCommandResult` type from `.././commands`
+- `ToolUseContext` type from `.././Tool`
 
 ## Logic
 The `call` async function receives `_args` and `context`:

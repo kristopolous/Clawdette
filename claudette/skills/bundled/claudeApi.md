@@ -11,7 +11,7 @@ Implements the /claude-api bundled skill with lazy-loaded documentation for mult
 ## Logic
 1. Lazy-loads claudeApiContent (247KB of .md strings) only when /claude-api invoked
 2. `LANGUAGE_INDICATORS` - maps languages to file/project indicators for detection
-3. `detectLanguage` - scans cwd for language-specific files (requirements.txt, tsconfig.json, etc.)
+3. `detectLanguage` - scans cwd for language-specific files (requirements.txt,tsconfigon, etc.)
 4. `getFilesForLanguage` - filters SKILL_FILES for detected language + shared docs
 5. Supports: python, typescript, java, go, ruby, csharp, php, curl
 6. Builds prompt with relevant language docs and shared reference material

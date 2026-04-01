@@ -5,11 +5,11 @@ Provides a semantic ANSI escape sequence parser that converts raw escape sequenc
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - Parser from ./termio/parser.js
-  - All types and helper functions from ./termio/types.js
+  - Parser from /termio/parser
+  - All types and helper functions from /termio/types
 
 ## Logic
-1. **Parser Re-export**: Re-exports the Parser class from termio/parser.js for external use
+1. **Parser Re-export**: Re-exports the Parser class fromtermio/parser for external use
 2. **Type Re-exports**: Re-exports all ANSI parser semantic types:
    * Action - Union of all possible parser outputs (text, cursor, erase, etc.)
    * Color - Named, indexed, RGB, or default color specification
@@ -32,8 +32,8 @@ Provides a semantic ANSI escape sequence parser that converts raw escape sequenc
 ## Usage
 The module provides a complete ANSI parsing solution:
 ```typescript
-import { Parser } from './termio.js'
-import type { Action } from './termio.js'
+import { Parser } from '/termio'
+import type { Action } from '/termio'
 
 const parser = new Parser()
 const actions: Action[] = parser.feed('\x1b[31mred\x1b[0m')

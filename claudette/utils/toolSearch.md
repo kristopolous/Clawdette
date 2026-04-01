@@ -4,8 +4,8 @@
 Clamp to valid range
 
 ## Imports
-- **Stdlib**: lodash-es/memoize.js
-- **Internal**: ../services/analytics/growthbook.js, ../Tool.js, ../tools/AgentTool/loadAgentsDir.js, ../types/message.js, ./array.js, ./betas.js, ./context.js, ./debug, ./envUtils, ./slowOperations...
+- **Stdlib**: lodashes/memoize
+- **Internal**: ../services/analytics/growthbook, ./Tool, ./tools/AgentTool/loadAgentsDir, ./types/message, /array, /betas, /context, ./debug, ./envUtils, ./slowOperations...
 
 ## Items
 

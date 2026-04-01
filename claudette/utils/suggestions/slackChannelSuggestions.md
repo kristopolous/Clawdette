@@ -5,7 +5,7 @@ Plain Map (not LRUCache) — findReusableCacheEntry needs to iterate all
 
 ## Imports
 - **Stdlib**: zod
-- **Internal**: ../../components/PromptInput/PromptInputFooterSuggestions.js, ../../services/mcp/types.js, ../debug.js, ../lazySchema, ../signal, ../slowOperations
+- **Internal**: ../../components/PromptInput/PromptInputFooterSuggestions, .././services/mcp/types, ./debug, ../lazySchema, ../signal, ../slowOperations
 
 ## Items
 

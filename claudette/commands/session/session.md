@@ -11,12 +11,12 @@ Displays the remote session URL and a QR code when Claudette is running in remot
 - `react` (including `useState`, `useEffect`)
 
 ### Internal
-- `Pane` from `../../components/design-system/Pane.js`
-- `Box`, `Text` from `../../ink.js`
-- `useKeybinding` from `../../keybindings/useKeybinding.js`
-- `useAppState` from `../../state/AppState.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
-- `logForDebugging` from `../../utils/debug.js`
+- `Pane` from `../../components/designsystem/Pane`
+- `Box`, `Text` from `.././ink`
+- `useKeybinding` from `.././keybindings/useKeybinding`
+- `useAppState` from `.././state/AppState`
+- `LocalJSXCommandCall` type from `.././types/command`
+- `logForDebugging` from `.././utils/debug`
 
 ## Logic
 The `call` async function renders the `SessionInfo` component.

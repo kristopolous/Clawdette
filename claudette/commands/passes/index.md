@@ -5,8 +5,8 @@ Defines the `passes` command for the referral program. The command is hidden whe
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `checkCachedPassesEligibility`, `getCachedReferrerReward` from `../../services/api/referral.js`
+- `Command` type from `.././commands`
+- `checkCachedPassesEligibility`, `getCachedReferrerReward` from `.././services/api/referral`
 
 ## Logic
 Creates a command object:
@@ -16,7 +16,7 @@ Creates a command object:
   - `'Share a free week of Claudette with friends and earn extra usage'` if there is a cached reward
   - `'Share a free week of Claudette with friends'` otherwise
 - `isHidden`: Getter that returns `!eligible || !hasCache` based on `checkCachedPassesEligibility()`
-- `load`: Dynamic import of `./passes.js` (or `.tsx`)
+- `load`: Dynamic import of `/passes` (or `.tsx`)
 
 ## Exports
 - Default command object (satisfies `Command`)

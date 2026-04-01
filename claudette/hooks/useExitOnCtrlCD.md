@@ -4,9 +4,9 @@ Handles Ctrl-C and Ctrl-D keybindings to exit the application using a double-pre
 ## Imports
 - **External**: `react` (useCallback, useMemo, useState)
 - **Internal**:
-  - `../ink/hooks/use-app.js` (useApp)
-  - `../keybindings/types.js` (KeybindingContextName)
-  - `./useDoublePress.js` (useDoublePress)
+  - `../ink/hooks/useapp` (useApp)
+  - `./keybindings/types` (KeybindingContextName)
+  - `/useDoublePress` (useDoublePress)
 
 ## Logic
 - Hook parameters:

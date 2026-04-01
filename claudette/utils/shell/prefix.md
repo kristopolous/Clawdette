@@ -5,7 +5,7 @@ Evict on rejection so aborted calls don't poison future turns.
 
 ## Imports
 - **Stdlib**: chalk
-- **Internal**: ../../constants/querySource.js, ../../services/analytics/growthbook.js, ../../services/api/claude.js, ../../services/api/errors.js, ../memoize, ../slowOperations, ../systemPromptType
+- **Internal**: ../../constants/querySource, .././services/analytics/growthbook, .././services/api/claude, .././services/api/errors, ../memoize, ../slowOperations, ../systemPromptType
 
 ## Items
 

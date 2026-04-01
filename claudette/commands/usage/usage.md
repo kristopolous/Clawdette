@@ -8,8 +8,8 @@ Opens the Settings UI with the "Usage" tab active, displaying the current plan's
 - `react`
 
 ### Internal
-- `Settings` component from `../../components/Settings/Settings.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
+- `Settings` component from `.././components/Settings/Settings`
+- `LocalJSXCommandCall` type from `.././types/command`
 
 ## Logic
 The `call` async function receives `onDone` and `context`. It renders the `<Settings>` component with:

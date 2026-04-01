@@ -4,9 +4,9 @@ Base hook for one-time startup notifications; handles remote-mode gating, single
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../../context/notifications.js` (Notification type, useNotifications)
-  - `../../utils/log.js` (logError)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `.././context/notifications` (Notification type, useNotifications)
+  - `.././utils/log` (logError)
 
 ## Logic
 - Hook parameter `compute`: function returning `Notification` | `Notification[]` | `null` | `Promise` of same

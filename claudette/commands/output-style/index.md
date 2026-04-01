@@ -5,7 +5,7 @@ Defines the `output-style` command (deprecated and hidden). Users should use `/c
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'output-style'`
 - `description`: `'Deprecated: use /config to change output style'`
 - `isHidden`: `true` (command is not shown in help)
-- `load`: Dynamic import of `./output-style.js` (or `.tsx`)
+- `load`: Dynamic import of `./outputstyle` (or `.tsx`)
 
 ## Exports
 - `outputStyle` (Command) - The deprecated command definition (exported as default)

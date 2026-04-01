@@ -4,7 +4,7 @@
 MCP tool name suffixes for PR activity subscription. These are lightweight
 
 ## Imports
-- **Stdlib**: bun:bundle, lodash-es/partition.js, lodash-es/uniqBy.js
+- **Stdlib**: bun:bundle, lodashes/partition, lodashes/uniqBy
 - **Internal**: ../constants/tools, ../services/mcp/utils, ../Tool
 
 ## Items

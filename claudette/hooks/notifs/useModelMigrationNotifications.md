@@ -3,9 +3,9 @@ Shows one-time high-priority startup notifications for recent model migrations (
 
 ## Imports
 - **Internal**:
-  - `src/context/notifications.js` (Notification type)
-  - `src/utils/config.js` (GlobalConfig type, getGlobalConfig)
-  - `./useStartupNotification.js` (useStartupNotification)
+  - src/context/notifications` (Notification type)
+  - src/utils/config` (GlobalConfig type, getGlobalConfig)
+  - `/useStartupNotification` (useStartupNotification)
 
 ## Logic
 - `MIGRATIONS`: array of functions `(config: GlobalConfig) => Notification | undefined`

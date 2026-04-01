@@ -5,7 +5,7 @@ Resolve both paths to absolute paths
 
 ## Imports
 - **Stdlib**: fs/promises, path, zod/v4
-- **Internal**: ../../services/mcp/envExpansion.js, ../../types/plugin.js, ../debug.js, ../errors.js, ../log.js, ../slowOperations, ./pluginDirectories, ./schemas
+- **Internal**: ../../services/mcp/envExpansion, .././types/plugin, ./debug, ./errors, ./log, ../slowOperations, ./pluginDirectories, ./schemas
 
 ## Items
 

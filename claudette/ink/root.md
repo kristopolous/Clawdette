@@ -26,7 +26,7 @@ Provides root rendering API for Ink applications.
 15. `Ink`, `Options` - Ink class and options type
 16. `instances` - instances map
 17. `logForDebugging` - debug logging
-18. `Stream` - Node.js stream
+18. `Stream` -Node stream
 
 ## Exports
 - `RenderOptions` - render options type

@@ -8,17 +8,17 @@ Internal command that displays a dialog with options when the rate limit is reac
 - `react` (including `useState`, `useMemo`)
 
 ### Internal
-- `CommandResultDisplay`, `LocalJSXCommandContext` types from `../../commands.js`
-- `OptionWithDescription` type and `Select` component from `../../components/CustomSelect/select.js`
-- `Dialog` from `../../components/design-system/Dialog.js`
-- `getFeatureValue_CACHED_MAY_BE_STALE` from `../../services/analytics/growthbook.js`
-- `logEvent` from `../../services/analytics/index.js`
-- `useClaudeAiLimits` from `../../services/claudeAiLimitsHook.js`
-- `ToolUseContext` type from `../../Tool.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- `getOauthAccountInfo`, `getRateLimitTier`, `getSubscriptionType` from `../../utils/auth.js`
-- `hasClaudeAiBillingAccess` from `../../utils/billing.js`
-- `extraUsageCall` (command call) and `extraUsage` (command module) from `../extra-usage/extra-usage.js` and index
+- `CommandResultDisplay`, `LocalJSXCommandContext` types from `.././commands`
+- `OptionWithDescription` type and `Select` component from `.././components/CustomSelect/select`
+- `Dialog` from `../../components/designsystem/Dialog`
+- `getFeatureValue_CACHED_MAY_BE_STALE` from `.././services/analytics/growthbook`
+- `logEvent` from `.././services/analytics/index`
+- `useClaudeAiLimits` from `.././services/claudeAiLimitsHook`
+- `ToolUseContext` type from `.././Tool`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- `getOauthAccountInfo`, `getRateLimitTier`, `getSubscriptionType` from `.././utils/auth`
+- `hasClaudeAiBillingAccess` from `.././utils/billing`
+- `extraUsageCall` (command call) and `extraUsage` (command module) from `../extra-usage/extrausage` and index
 - `upgrade` command module and `upgradeCall` from `../upgrade/` directory
 
 ## Logic

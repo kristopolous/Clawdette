@@ -52,4 +52,4 @@ Use plugin.repository directly - it's already in "plugin@marketplace" format
 - getPluginMcpServers
 
 ## Source
-`mcpPluginIntegration.ts`
+`mcpPluginIntegration`

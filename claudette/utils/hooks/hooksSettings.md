@@ -4,8 +4,8 @@
 Use switch for exhaustive type checking
 
 ## Imports
-- **Stdlib**: path, src/entrypoints/agentSdkTypes.js
-- **Internal**: ../../bootstrap/state.js, ../../state/AppState.js, ../settings/constants.js, ../settings/constants.js, ../settings/types, ../shell/shellProvider, ./sessionHooks
+- **Stdlib**: path,src/entrypoints/agentSdkTypes
+- **Internal**: ../../bootstrap/state, .././state/AppState, ./settings/constants, ./settings/constants, ../settings/types, ../shell/shellProvider, ./sessionHooks
 
 ## Items
 

@@ -4,8 +4,8 @@
 Import as namespace so spyOn works in tests (direct imports bypass spies)
 
 ## Imports
-- **Stdlib**: axios, src/entrypoints/agentSdkTypes.js
-- **Internal**: ../combinedAbortSignal.js, ../debug.js, ../errors.js, ../proxy.js, ../settings/settings, ../settings/types, ./ssrfGuard
+- **Stdlib**: axios,src/entrypoints/agentSdkTypes
+- **Internal**: ../combinedAbortSignal, ./debug, ./errors, ./proxy, ../settings/settings, ../settings/types, ./ssrfGuard
 
 ## Items
 

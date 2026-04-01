@@ -8,11 +8,11 @@ Opens a theme picker to change the user interface theme (e.g., light, dark, syst
 - `react`
 
 ### Internal
-- `CommandResultDisplay` type from `../../commands.js`
-- `Pane` from `../../components/design-system/Pane.js`
-- `ThemePicker` component from `../../components/ThemePicker.js`
-- `useTheme` from `../../ink.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
+- `CommandResultDisplay` type from `.././commands`
+- `Pane` from `../../components/designsystem/Pane`
+- `ThemePicker` component from `.././components/ThemePicker`
+- `useTheme` from `.././ink`
+- `LocalJSXCommandCall` type from `.././types/command`
 
 ## Logic
 The `call` async function renders the `ThemePickerCommand` component with `onDone`.

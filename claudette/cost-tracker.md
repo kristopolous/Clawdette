@@ -7,17 +7,17 @@ Tracks API costs, token usage, and duration metrics for a Claudette session, wit
 - **Stdlib**: None
 - **External**: `@anthropic-ai/sdk` (BetaUsage type), `chalk` (terminal formatting)
 - **Internal**: 
-  - `./bootstrap/state.js` (state management functions)
-  - `./entrypoints/agentSdkTypes.js` (ModelUsage type)
-  - `./services/analytics/index.js` (logEvent)
-  - `./utils/advisor.js` (getAdvisorUsage)
-  - `./utils/config.js` (project config functions)
-  - `./utils/context.js` (context window utilities)
-  - `./utils/fastMode.js` (isFastModeEnabled)
-  - `./utils/format.js` (formatDuration, formatNumber)
-  - `./utils/fpsTracker.js` (FpsMetrics type)
-  - `./utils/model/model.js` (getCanonicalName)
-  - `./utils/modelCost.js` (calculateUSDCost)
+  - `/bootstrap/state` (state management functions)
+  - `/entrypoints/agentSdkTypes` (ModelUsage type)
+  - `/services/analytics/index` (logEvent)
+  - `/utils/advisor` (getAdvisorUsage)
+  - `/utils/config` (project config functions)
+  - `/utils/context` (context window utilities)
+  - `/utils/fastMode` (isFastModeEnabled)
+  - `/utils/format` (formatDuration, formatNumber)
+  - `/utils/fpsTracker` (FpsMetrics type)
+  - `/utils/model/model` (getCanonicalName)
+  - `/utils/modelCost` (calculateUSDCost)
 
 ## Logic
 1. **Session Cost Storage**: Costs are persisted to project config, allowing retrieval when resuming a session

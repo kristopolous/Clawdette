@@ -4,7 +4,7 @@
 Orphan exclusions are session-frozen by default, but /reload-plugins is
 
 ## Imports
-- **Internal**: ../../bootstrap/state.js, ../../commands.js, ../../services/lsp/manager.js, ../../state/AppState.js, ../../tools/AgentTool/loadAgentsDir.js, ../../tools/AgentTool/loadAgentsDir.js, ../../types/plugin.js, ../debug, ../errors, ../log...
+- **Internal**: ../../bootstrap/state, ../../commands, ../../services/lsp/manager, ../../state/AppState, ../../tools/AgentTool/loadAgentsDir, ../../tools/AgentTool/loadAgentsDir, ../../types/plugin, ../debug, ../errors, ../log...
 
 ## Items
 
@@ -28,4 +28,4 @@ Orphan exclusions are session-frozen by default, but /reload-plugins is
 - refreshActivePlugins
 
 ## Source
-`refresh.ts`
+`refresh`

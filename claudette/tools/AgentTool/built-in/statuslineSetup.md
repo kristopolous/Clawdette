@@ -146,7 +146,7 @@ How to use the statusLine command:
 2. For longer commands, you can save a new file in the user's ~/.claude directory, e.g.:
    - ~/.claude/statusline-command.sh and reference that file in the settings.
 
-3. Update the user's ~/.claude/settings.json with:
+3. Update the user's ~/claude/settingson with:
    {
      \"statusLine\": {
        \"type\": \"command\", 
@@ -154,7 +154,7 @@ How to use the statusLine command:
      }
    }
 
-4. If ~/.claude/settings.json is a symlink, update the target file instead.
+4. If ~/claude/settingson is a symlink, update the target file instead.
 
 Guidelines:
 - Preserve existing settings when updating
@@ -280,7 +280,7 @@ How to use the statusLine command:
 2. For longer commands, you can save a new file in the user's ~/.claude directory, e.g.:
    - ~/.claude/statusline-command.sh and reference that file in the settings.
 
-3. Update the user's ~/.claude/settings.json with:
+3. Update the user's ~/claude/settingson with:
    {
      \"statusLine\": {
        \"type\": \"command\", 
@@ -288,7 +288,7 @@ How to use the statusLine command:
      }
    }
 
-4. If ~/.claude/settings.json is a symlink, update the target file instead.
+4. If ~/claude/settingson is a symlink, update the target file instead.
 
 Guidelines:
 - Preserve existing settings when updating

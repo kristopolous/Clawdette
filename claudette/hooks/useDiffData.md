@@ -4,7 +4,7 @@ Fetches current git diff data (stats and hunks) on mount; derives file list with
 ## Imports
 - **External**: `react` (useEffect, useMemo, useState), `diff` (StructuredPatchHunk type)
 - **Internal**:
-  - `../utils/gitDiff.js` (fetchGitDiff, fetchGitDiffHunks, GitDiffResult, GitDiffStats)
+  - `./utils/gitDiff` (fetchGitDiff, fetchGitDiffHunks, GitDiffResult, GitDiffStats)
 
 ## Logic
 - State: `diffResult` (GitDiffResult | null), `hunks` (Map<string, StructuredPatchHunk[]>), `loading`

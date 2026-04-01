@@ -3,8 +3,8 @@ Runs installation checks at startup and displays any resulting messages (errors,
 
 ## Imports
 - **Internal**:
-  - `src/utils/nativeInstaller/index.js` (checkInstall)
-  - `./useStartupNotification.js` (useStartupNotification)
+  - src/utils/nativeInstaller/index` (checkInstall)
+  - `/useStartupNotification` (useStartupNotification)
 
 ## Logic
 - Hook uses `useStartupNotification` with async `_temp2`

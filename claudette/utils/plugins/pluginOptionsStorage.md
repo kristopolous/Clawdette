@@ -11,8 +11,8 @@ Provides plugin option storage and substitution utilities.
 ## Logic
 1. Plugins declare user-configurable options in manifest.userConfig (McpbUserConfigurationOption schemas)
 2. At enable time, user prompted for values
-3. Storage splits by sensitive: true → secureStorage (keychain on macOS, .credentials.json elsewhere)
-4. Everything else → settings.json pluginConfigs[pluginId].options
+3. Storage splits by sensitive: true → secureStorage (keychain on macOS, credentialson elsewhere)
+4. Everything else →settingson pluginConfigs[pluginId].options
 5. `PluginOptionValues` - alias for UserConfigValues
 6. `PluginOptionSchema` - alias for UserConfigSchema
 7. `getPluginStorageId` - gets canonical storage key (plugin.source = "name@marketplace")

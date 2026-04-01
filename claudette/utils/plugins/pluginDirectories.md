@@ -17,7 +17,7 @@ Provides centralized plugin directory configuration.
 6. Priority: session state (--cowork flag) > env var > default 'plugins'
 7. `getPluginsDirectory` - gets full path to plugins directory
 8. Priority: CLAUDE_CODE_PLUGIN_CACHE_DIR env var > default
-9. expandTilde handles ~ in env var (settings.json env doesn't expand shell ~)
+9. expandTilde handles ~ in env var settingson env doesn't expand shell ~)
 10. `getPluginSeedDirs` - gets read-only plugin seed directories
 11. Customers can pre-bake plugins directory into container image
 12. CLAUDE_CODE_PLUGIN_SEED_DIR points to read-only fallback layer

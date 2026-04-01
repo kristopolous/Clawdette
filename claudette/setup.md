@@ -9,7 +9,7 @@ Implements main setup function that initializes Claudette session environment.
 - **Internal**: analytics, cwd, releaseNotes, Shell, bootstrap state, commands, SessionMemory, types, agentSwarmsEnabled, appleTerminalBackup, auth, claudemd, config, diagLogs, env, envDynamic, envUtils, errors, git, hooks, iTermBackup, log, logoV2Utils, nativeInstaller, permissions, plans, sessionStorage, startupProfiler, worktree utils
 
 ## Logic
-1. Checks Node.js version (requires ≥18)
+1. ChecksNode version (requires ≥18)
 2. Sets up working directory and project root
 3. Initializes session memory and memory file caches
 4. Handles worktree creation and tmux session setup

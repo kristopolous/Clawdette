@@ -1,5 +1,5 @@
 ## Purpose
-Displays a dialog for approving or rejecting a single MCP server found in .mcp.json.
+Displays a dialog for approving or rejecting a single MCP server found in mcpon.
 
 ## Imports
 - **Stdlib**: None

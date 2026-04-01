@@ -5,7 +5,7 @@ Deprecated command. Informs users to use `/config` to change output style or set
 
 ## Imports
 ### Internal
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
+- `LocalJSXCommandOnDone` type from `.././types/command`
 
 ## Logic
 The `call` async function immediately calls `onDone` with a deprecation message and `display: 'system'`. Returns `undefined`.

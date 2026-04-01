@@ -11,7 +11,7 @@ Fetches organization-level policy restrictions from API and disables CLI feature
 ## Logic
 1. Eligibility: Console users (API key) all eligible; OAuth users need Team/Enterprise/C4E subscription
 2. Fails open on API failure - continues without restrictions
-3. `CACHE_FILENAME` - policy-limits.json in config dir
+3. `CACHE_FILENAME` - policylimitson in config dir
 4. `FETCH_TIMEOUT_MS` (10s), `DEFAULT_MAX_RETRIES` (5), `POLLING_INTERVAL_MS` (1 hour)
 5. Background polling with ETag caching (same pattern as remote managed settings)
 6. `loadingCompletePromise` - resolves when initial loading completes

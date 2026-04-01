@@ -4,7 +4,7 @@
 Use similar phrasing to collapseReadSearch.ts
 
 ## Imports
-- **Stdlib**: src/entrypoints/agentSdkTypes.js, src/entrypoints/sdk/controlTypes.js, src/tools/FileEditTool/constants.js, src/tools/FileReadTool/prompt.js, src/tools/FileWriteTool/prompt.js, src/tools/GlobTool/prompt.js, src/tools/GrepTool/prompt.js, src/tools/ListMcpResourcesTool/prompt.js, src/tools/LSPTool/prompt.js, src/tools/NotebookEditTool/constants.js...
+- **Stdlib**:src/entrypoints/agentSdkTypes,src/entrypoints/sdk/controlTypes,src/tools/FileEditTool/constants,src/tools/FileReadTool/prompt,src/tools/FileWriteTool/prompt,src/tools/GlobTool/prompt,src/tools/GrepTool/prompt,src/tools/ListMcpResourcesTool/prompt,src/tools/LSPTool/prompt,src/tools/NotebookEditTool/constants...
 
 ## Items
 

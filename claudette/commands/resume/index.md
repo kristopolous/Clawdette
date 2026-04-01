@@ -5,7 +5,7 @@ Defines the `resume` command (alias: `continue`) for resuming a previous convers
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -14,7 +14,7 @@ Creates a command object:
 - `aliases`: `['continue']`
 - `description`: `'Resume a previous conversation'`
 - `argumentHint`: `'[conversation id or search term]'`
-- `load`: Dynamic import of `./resume.js` (or `.tsx`)
+- `load`: Dynamic import of `/resume` (or `.tsx`)
 
 ## Exports
 - `resume` (Command) - The command definition (exported as default)

@@ -5,7 +5,7 @@ Map risk levels to numeric values for analytics
 
 ## Imports
 - **Stdlib**: zod/v4
-- **Internal**: ../../services/analytics/index.js, ../../services/analytics/metadata.js, ../../types/message.js, ../config.js, ../debug.js, ../errors.js, ../lazySchema.js, ../log, ../model/model, ../sideQuery...
+- **Internal**: ../../services/analytics/index, .././services/analytics/metadata, .././types/message, ./config, ./debug, ./errors, ./lazySchema, ../log, ../model/model, ../sideQuery...
 
 ## Items
 

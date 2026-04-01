@@ -8,9 +8,9 @@ Opens a UI to manage tool permission allow/deny rules. Allows viewing and editin
 - `react`
 
 ### Internal
-- `PermissionRuleList` component from `../../components/permissions/rules/PermissionRuleList.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
-- `createPermissionRetryMessage` from `../../utils/messages.js`
+- `PermissionRuleList` component from `.././components/permissions/rules/PermissionRuleList`
+- `LocalJSXCommandCall` type from `.././types/command`
+- `createPermissionRetryMessage` from `.././utils/messages`
 
 ## Logic
 The `call` async function receives `onDone` and `context`. It renders the `PermissionRuleList` component, passing:

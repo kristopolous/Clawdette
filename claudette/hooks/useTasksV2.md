@@ -4,10 +4,10 @@ Provides reactive access to the persistent v2 task list (todos), with automatic 
 ## Imports
 - **External**: `fs` (watch), `react` (useEffect, useSyncExternalStore)
 - **Internal**:
-  - `../state/AppState.js` (useAppState, useSetAppState)
-  - `../utils/signal.js` (createSignal)
-  - `../utils/tasks.js` (Task type, getTaskListId, getTasksDir, isTodoV2Enabled, listTasks, onTasksUpdated, resetTaskList)
-  - `../utils/teammate.js` (isTeamLead)
+  - `./state/AppState` (useAppState, useSetAppState)
+  - `./utils/signal` (createSignal)
+  - `./utils/tasks` (Task type, getTaskListId, getTasksDir, isTodoV2Enabled, listTasks, onTasksUpdated, resetTaskList)
+  - `./utils/teammate` (isTeamLead)
 
 ## Logic
 - Store class (`TasksV2Store`) implements useSyncExternalStore contract:

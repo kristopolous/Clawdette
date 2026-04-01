@@ -11,7 +11,7 @@ Manages marketplace sources, caching, and plugin installation for Claudette plug
 ## Logic
 1. Manages known marketplace sources (URLs, GitHub repos, npm packages, local files)
 2. Caches marketplace manifests locally for offline access
-3. File structure: ~/.claude/plugins/known_marketplaces.json, marketplaces/
+3. File structure: ~/claude/plugins/known_marketplaceson, marketplaces/
 4. `loadKnownMarketplacesConfig` - loads marketplace configuration
 5. `saveKnownMarketplacesConfig` - saves marketplace configuration
 6. `addMarketplaceSource` - adds new marketplace source

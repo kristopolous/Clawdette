@@ -11,20 +11,20 @@ Allows users to select or set the AI model for Claudette. Supports interactive m
 - `react` (including `useState`, `useEffect`)
 
 ### Internal
-- `CommandResultDisplay` type from `../../commands.js`
-- `ModelPicker` component from `../../components/ModelPicker.js`
-- `COMMON_HELP_ARGS`, `COMMON_INFO_ARGS` from `../../constants/xml.js`
-- `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS` type and `logEvent` from `../../services/analytics/index.js`
-- `useAppState`, `useSetAppState` from `../../state/AppState.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
-- `EffortLevel` type from `../../utils/effort.js`
-- `isBilledAsExtraUsage` from `../../utils/extraUsage.js`
-- `clearFastModeCooldown`, `isFastModeAvailable`, `isFastModeEnabled`, `isFastModeSupportedByModel` from `../../utils/fastMode.js`
-- `MODEL_ALIASES` from `../../utils/model/aliases.js`
-- `checkOpus1mAccess`, `checkSonnet1mAccess` from `../../utils/model/check1mAccess.js`
-- `getDefaultMainLoopModelSetting`, `isOpus1mMergeEnabled`, `renderDefaultModelSetting` from `../../utils/model/model.js`
-- `isModelAllowed` from `../../utils/model/modelAllowlist.js`
-- `validateModel` from `../../utils/model/validateModel.js`
+- `CommandResultDisplay` type from `.././commands`
+- `ModelPicker` component from `.././components/ModelPicker`
+- `COMMON_HELP_ARGS`, `COMMON_INFO_ARGS` from `.././constants/xml`
+- `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS` type and `logEvent` from `.././services/analytics/index`
+- `useAppState`, `useSetAppState` from `.././state/AppState`
+- `LocalJSXCommandCall` type from `.././types/command`
+- `EffortLevel` type from `.././utils/effort`
+- `isBilledAsExtraUsage` from `.././utils/extraUsage`
+- `clearFastModeCooldown`, `isFastModeAvailable`, `isFastModeEnabled`, `isFastModeSupportedByModel` from `.././utils/fastMode`
+- `MODEL_ALIASES` from `.././utils/model/aliases`
+- `checkOpus1mAccess`, `checkSonnet1mAccess` from `.././utils/model/check1mAccess`
+- `getDefaultMainLoopModelSetting`, `isOpus1mMergeEnabled`, `renderDefaultModelSetting` from `.././utils/model/model`
+- `isModelAllowed` from `.././utils/model/modelAllowlist`
+- `validateModel` from `.././utils/model/validateModel`
 
 ## Logic
 The `call` async function receives `args` and dispatches:

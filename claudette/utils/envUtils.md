@@ -38,7 +38,7 @@ Provides environment variable utilities and path helpers.
 27. `isInProtectedNamespace` - checks if running in protected COO namespace/cluster
 28. Conservative: over-reports protected usage
 29. Unprotected: homespace, namespaces on open allowlist, no k8s/COO signals
-30. Uses checkProtectedNamespace from protectedNamespace.js (ant-only, DCE'd in external builds)
+30. Uses checkProtectedNamespace fromprotectedNamespace (ant-only, DCE'd in external builds)
 31. `VERTEX_REGION_OVERRIDES` - model prefix → env var for Vertex region overrides
 32. Order matters: specific prefixes before less specific (claude-opus-4-1 before claude-opus-4)
 33. `getVertexRegionForModel` - gets Vertex AI region for specific model

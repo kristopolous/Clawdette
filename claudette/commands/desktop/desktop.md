@@ -8,8 +8,8 @@ Renders the DesktopHandoff component to continue the current conversation sessio
 - `react`
 
 ### Internal
-- `CommandResultDisplay` type from `../../commands.js`
-- `DesktopHandoff` component from `../../components/DesktopHandoff.js`
+- `CommandResultDisplay` type from `.././commands`
+- `DesktopHandoff` component from `.././components/DesktopHandoff`
 
 ## Logic
 The `call` async function simply renders the `DesktopHandoff` component, passing the `onDone` callback. The component handles the handoff logic.

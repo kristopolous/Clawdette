@@ -5,7 +5,7 @@ Defines the `status` command, which shows Claudette status information (version,
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'status'`
 - `description`: `'Show Claudette status including version, model, account, API connectivity, and tool statuses'`
 - `immediate`: `true` (executes immediately)
-- `load`: Dynamic import of `./status.js` (or `.tsx`)
+- `load`: Dynamic import of `/status` (or `.tsx`)
 
 ## Exports
 - `status` (Command) - The command definition (exported as default)

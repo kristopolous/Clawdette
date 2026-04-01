@@ -4,11 +4,11 @@ Shows startup notification about Claude in Chrome extension availability and sub
 ## Imports
 - **External**: `react`
 - **Internal**:
-  - `../ink.js` (Text)
-  - `../utils/auth.js` (isClaudeAISubscriber)
-  - `../utils/claudeInChrome/setup.js` (isChromeExtensionInstalled, shouldEnableClaudeInChrome)
-  - `../utils/envUtils.js` (isRunningOnHomespace)
-  - `./notifs/useStartupNotification.js` (useStartupNotification)
+  - `./ink` (Text)
+  - `./utils/auth` (isClaudeAISubscriber)
+  - `./utils/claudeInChrome/setup` (isChromeExtensionInstalled, shouldEnableClaudeInChrome)
+  - `./utils/envUtils` (isRunningOnHomespace)
+  - `/notifs/useStartupNotification` (useStartupNotification)
 
 ## Logic
 1. `getChromeFlag()`: reads `--chrome`/`--no-chrome` CLI flags

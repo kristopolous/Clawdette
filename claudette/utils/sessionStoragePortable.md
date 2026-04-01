@@ -9,7 +9,7 @@ Provides portable session storage utilities for CLI and VS Code extension.
 - **Internal**: envUtils, getWorktreePathsPortable, hash
 
 ## Logic
-1. Pure Node.js - no internal dependencies on logging, experiments, or feature flags
+1. PureNode - no internal dependencies on logging, experiments, or feature flags
 2. Shared between CLI (src/utils/sessionStorage.ts) and VS Code extension (packages/claude-vscode/src/common-host/sessionStorage.ts)
 3. `LITE_READ_BUF_SIZE` (65536) - size of head/tail buffer for lite metadata reads
 4. `uuidRegex` - UUID validation regex

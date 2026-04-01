@@ -5,7 +5,7 @@ Defines the `permissions` command (alias: `allowed-tools`) for managing tool per
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'permissions'`
 - `aliases`: `['allowed-tools']`
 - `description`: `'Manage allow & deny tool permission rules'`
-- `load`: Dynamic import of `./permissions.js` (or `.tsx`)
+- `load`: Dynamic import of `/permissions` (or `.tsx`)
 
 ## Exports
 - `permissions` (Command) - The command definition (exported as default)

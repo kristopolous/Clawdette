@@ -4,7 +4,7 @@ Renders a scrollable, paginated list of changed files with selection highlightin
 ## Imports
 - **Stdlib**: none
 - **External**: `react/compiler-runtime`, `figures`, `react`
-- **Internal**: `../../hooks/useDiffData.js`, `../../hooks/useTerminalSize.js`, `../../ink`, `../../utils/format`, `../../utils/stringUtils`
+- **Internal**: `../../hooks/useDiffData`, `.././hooks/useTerminalSize`, `../../ink`, `../../utils/format`, `../../utils/stringUtils`
 
 ## Logic
 1. Calculates a visible window of files (max 5) centered around the selected index

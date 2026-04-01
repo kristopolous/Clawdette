@@ -4,7 +4,7 @@
 Check if the current directory has been trusted
 
 ## Imports
-- **Internal**: ../../services/plugins/PluginInstallationManager.js, ../../state/AppState.js, ../config.js, ../debug, ./marketplaceManager, ./pluginLoader
+- **Internal**: ../../services/plugins/PluginInstallationManager, .././state/AppState, ./config, ../debug, ./marketplaceManager, ./pluginLoader
 
 ## Items
 

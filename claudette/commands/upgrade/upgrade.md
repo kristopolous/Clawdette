@@ -8,13 +8,13 @@ Upgrades the user to the Max subscription plan for higher rate limits and more O
 - `react`
 
 ### Internal
-- `LocalJSXCommandContext` type from `../../commands.js`
-- `getOauthProfileFromOauthToken` from `../../services/oauth/getOauthProfile.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- `getClaudeAIOAuthTokens`, `isClaudeAISubscriber` from `../../utils/auth.js`
-- `openBrowser` from `../../utils/browser.js`
-- `logError` from `../../utils/log.js`
-- `Login` component from `../login/login.js`
+- `LocalJSXCommandContext` type from `.././commands`
+- `getOauthProfileFromOauthToken` from `.././services/oauth/getOauthProfile`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- `getClaudeAIOAuthTokens`, `isClaudeAISubscriber` from `.././utils/auth`
+- `openBrowser` from `.././utils/browser`
+- `logError` from `.././utils/log`
+- `Login` component from `./login/login`
 
 ## Logic
 The `call` async function receives `onDone` and `context`:
@@ -34,3 +34,7 @@ The `call` async function receives `onDone` and `context`:
 
 ## Exports
 - `call` (async function) - Handles upgrade flow and optional login
+
+### Helpful Prompt Templates
+
+_No prompt templates found in this file. The file contains JSX UI logic only._

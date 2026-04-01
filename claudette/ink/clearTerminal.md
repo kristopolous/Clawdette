@@ -5,7 +5,7 @@ Provides cross-platform terminal clearing with scrollback support, automatically
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - CURSOR_HOME, csi, ERASE_SCREEN, ERASE_SCROLLBACK from termio/csi.js
+  - CURSOR_HOME, csi, ERASE_SCREEN, ERASE_SCROLLBACK fromtermio/csi
 
 ## Logic
 1. **Helper Functions for Terminal Detection**:

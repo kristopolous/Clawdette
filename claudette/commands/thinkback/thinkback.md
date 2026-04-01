@@ -13,25 +13,25 @@ Generates and displays a personalized "Year in Review" animation showcasing the 
 - `react` (including `useState`, `useEffect`, `useCallback`)
 
 ### Internal
-- `CommandResultDisplay` type from `../../commands.js`
-- `Select` from `../../components/CustomSelect/select.js`
-- `Dialog` from `../../components/design-system/Dialog.js`
-- `Spinner` from `../../components/Spinner.js`
-- `instances` from `../../ink/instances.js`
-- `Box`, `Text` from `../../ink.js`
-- `enablePluginOp` from `../../services/plugins/pluginOperations.js`
-- `logForDebugging` from `../../utils/debug.js`
-- `isENOENT`, `toError` from `../../utils/errors.js`
-- `execFileNoThrow` from `../../utils/execFileNoThrow.js`
-- `pathExists` from `../../utils/file.js`
-- `logError` from `../../utils/log.js`
-- `getPlatform` from `../../utils/platform.js`
-- `clearAllCaches` from `../../utils/plugins/cacheUtils.js`
-- `isPluginInstalled` from `../../utils/plugins/installedPluginsManager.js`
-- `addMarketplaceSource`, `clearMarketplacesCache`, `loadKnownMarketplacesConfig`, `refreshMarketplace` from `../../utils/plugins/marketplaceManager.js`
-- `OFFICIAL_MARKETPLACE_NAME` from `../../utils/plugins/officialMarketplace.js`
-- `loadAllPlugins` from `../../utils/plugins/pluginLoader.js`
-- `installSelectedPlugins` from `../../utils/plugins/pluginStartupCheck.js`
+- `CommandResultDisplay` type from `.././commands`
+- `Select` from `.././components/CustomSelect/select`
+- `Dialog` from `../../components/designsystem/Dialog`
+- `Spinner` from `.././components/Spinner`
+- `instances` from `.././ink/instances`
+- `Box`, `Text` from `.././ink`
+- `enablePluginOp` from `.././services/plugins/pluginOperations`
+- `logForDebugging` from `.././utils/debug`
+- `isENOENT`, `toError` from `.././utils/errors`
+- `execFileNoThrow` from `.././utils/execFileNoThrow`
+- `pathExists` from `.././utils/file`
+- `logError` from `.././utils/log`
+- `getPlatform` from `.././utils/platform`
+- `clearAllCaches` from `.././utils/plugins/cacheUtils`
+- `isPluginInstalled` from `.././utils/plugins/installedPluginsManager`
+- `addMarketplaceSource`, `clearMarketplacesCache`, `loadKnownMarketplacesConfig`, `refreshMarketplace` from `.././utils/plugins/marketplaceManager`
+- `OFFICIAL_MARKETPLACE_NAME` from `.././utils/plugins/officialMarketplace`
+- `loadAllPlugins` from `.././utils/plugins/pluginLoader`
+- `installSelectedPlugins` from `.././utils/plugins/pluginStartupCheck`
 
 ## Logic
 The `call` async function renders the `ThinkbackFlow` component with `onDone`.
@@ -45,7 +45,7 @@ The `call` async function renders the `ThinkbackFlow` component with `onDone`.
   - Uses marketplace and plugin management to ensure thinkback plugin is installed and enabled. State phases: 'checking', 'installing-marketplace', 'installing-plugin', 'enabling-plugin', 'ready', 'error'.
 - After `installComplete`:
   - `useEffect` calls `getThinkbackSkillDir()` to find the `skills/thinkback` directory inside the installed plugin. If not found, triggers error.
-  - Then checks for existence of `year_in_review.js` in that directory to set `hasGenerated`.
+  - Then checks for existence of year_in_review` in that directory to set `hasGenerated`.
 - Rendering:
   - `installError`: shows error and hint.
   - `!installComplete`: shows `ThinkbackInstaller` (with spinner and progress messages).
@@ -62,9 +62,9 @@ The `call` async function renders the `ThinkbackFlow` component with `onDone`.
 - `handleCancel`: `onDone(undefined, { display: 'skip' })`.
 
 `playAnimation(skillDir)`:
-- Ensures `year_in_review.js` and `player.js` exist; returns errors if missing.
+- Ensures year_in_review` and player` exist; returns errors if missing.
 - Gets the Ink terminal instance and enters alternate screen.
-- Spawns `node player.js` with `stdio: 'inherit'` in the skill directory (reject: false).
+- Spawns `nodeplayer` with `stdio: 'inherit'` in the skill directory (reject: false).
 - On completion (or interruption), exits alternate screen.
 - If `year_in_review.html` exists, opens it in the browser using the platform-specific `open` command.
 - Returns `{ success: true, message: 'Year in review animation complete!' }` or an error object.

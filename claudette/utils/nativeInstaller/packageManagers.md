@@ -4,7 +4,7 @@
 Check if the executable is within a mise installs directory
 
 ## Imports
-- **Stdlib**: fs/promises, lodash-es/memoize.js
+- **Stdlib**: fs/promises, lodashes/memoize
 - **Internal**: ../debug, ../execFileNoThrow, ../platform
 
 ## Items

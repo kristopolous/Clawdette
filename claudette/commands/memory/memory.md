@@ -9,17 +9,17 @@ Opens a dialog to edit Claude memory files (claudemd). Allows selection of memor
 - `react`
 
 ### Internal
-- `CommandResultDisplay` type from `../../commands.js`
-- `Dialog` from `../../components/design-system/Dialog.js`
-- `MemoryFileSelector` from `../../components/memory/MemoryFileSelector.js`
-- `getRelativeMemoryPath` from `../../components/memory/MemoryUpdateNotification.js`
-- `Box`, `Link`, `Text` from `../../ink.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
-- `clearMemoryFileCaches`, `getMemoryFiles` from `../../utils/claudemd.js`
-- `getClaudeConfigHomeDir` from `../../utils/envUtils.js`
-- `getErrnoCode` from `../../utils/errors.js`
-- `logError` from `../../utils/log.js`
-- `editFileInEditor` from `../../utils/promptEditor.js`
+- `CommandResultDisplay` type from `.././commands`
+- `Dialog` from `../../components/designsystem/Dialog`
+- `MemoryFileSelector` from `.././components/memory/MemoryFileSelector`
+- `getRelativeMemoryPath` from `.././components/memory/MemoryUpdateNotification`
+- `Box`, `Link`, `Text` from `.././ink`
+- `LocalJSXCommandCall` type from `.././types/command`
+- `clearMemoryFileCaches`, `getMemoryFiles` from `.././utils/claudemd`
+- `getClaudeConfigHomeDir` from `.././utils/envUtils`
+- `getErrnoCode` from `.././utils/errors`
+- `logError` from `.././utils/log`
+- `editFileInEditor` from `.././utils/promptEditor`
 
 ## Logic
 The `call` async function:

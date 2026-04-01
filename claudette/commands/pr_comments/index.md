@@ -5,7 +5,7 @@ Fetches and displays comments from a GitHub pull request. This command is implem
 
 ## Imports
 ### Internal
-- `createMovedToPluginCommand` from `../createMovedToPluginCommand.js`
+- `createMovedToPluginCommand` from `./createMovedToPluginCommand`
 
 ## Logic
 Uses `createMovedToPluginCommand` to create a command that:
@@ -24,3 +24,7 @@ Uses `createMovedToPluginCommand` to create a command that:
 
 ## Exports
 - Default command object (created by `createMovedToPluginCommand`)
+
+### Helpful Prompt Templates
+
+- **(Fetch and display PR comments)** - "You are an AI assistant integrated into a git-based version control system. Your task is to fetch and display comments from a GitHub pull request. Follow these steps: 1. Use gh pr view --json number,headRepository. 2. Use gh api for PR-level comments. 3. Use gh api for review comments. 4. Parse and format all comments. 5. Return ONLY the formatted comments. Format: ## Comments with author, file#line, diff_hunk, quoted text, and threading."

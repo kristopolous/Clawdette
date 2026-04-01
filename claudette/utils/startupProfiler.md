@@ -10,7 +10,7 @@ Provides startup profiling utility for measuring initialization phases.
 
 ## Logic
 1. Two modes: sampled logging (100% ant, 0.1% external) and detailed profiling (CLAUDE_CODE_PROFILE_STARTUP=1)
-2. Uses Node.js built-in performance hooks API for standard timing measurement
+2. UsesNode built-in performance hooks API for standard timing measurement
 3. `DETAILED_PROFILING` - detailed profiling enabled via env var
 4. `STATSIG_SAMPLE_RATE` (0.005) - sampling rate for Statsig logging
 5. `STATSIG_LOGGING_SAMPLED` - whether this run is sampled for Statsig

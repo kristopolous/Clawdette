@@ -2,7 +2,7 @@
 Completely clear conversation, reset state, and start a fresh session.
 
 ## Imports
-- **External**: `crypto` (randomUUID), multiple Node.js built-ins
+- **External**: `crypto` (randomUUID), multipleNode built-ins
 - **Internal**: Bootstrapping state, analytics, session storage, task management, hooks execution, various utilities (config, git, context, skills, LSP, etc.)
 
 ## Logic

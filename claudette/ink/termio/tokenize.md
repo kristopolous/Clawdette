@@ -5,8 +5,8 @@ Splits terminal input into tokens (text chunks and raw escape sequences) by iden
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - C0, ESC_TYPE, isEscFinal from ./ansi.js
-  - isCSIFinal, isCSIIntermediate, isCSIParam from ./csi.js
+  - C0, ESC_TYPE, isEscFinal from /ansi
+  - isCSIFinal, isCSIIntermediate, isCSIParam from /csi
 
 ## Logic
 1. **Token Types**: Defines two token types:

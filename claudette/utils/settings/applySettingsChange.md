@@ -4,7 +4,7 @@
 Ant-only: re-strip overly broad Bash allow rules after settings sync
 
 ## Imports
-- **Internal**: ../../state/AppState.js, ../debug.js, ../hooks/hooksConfigSnapshot.js, ../permissions/permissions.js, ../permissions/permissionsLoader, ./constants, ./settings
+- **Internal**: ../../state/AppState, ./debug, ./hooks/hooksConfigSnapshot, ./permissions/permissions, ../permissions/permissionsLoader, ./constants, ./settings
 
 ## Items
 

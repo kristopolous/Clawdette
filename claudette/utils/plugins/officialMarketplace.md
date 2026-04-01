@@ -14,7 +14,7 @@ Provides constants for the official Anthropic plugins marketplace.
 3. Used when auto-installing marketplace on startup
 4. `OFFICIAL_MARKETPLACE_NAME` - 'claude-plugins-official'
 5. Display name for official marketplace
-6. Registered in known_marketplaces.json under this name
+6. Registered inknown_marketplaceson under this name
 
 ## Exports
 - `OFFICIAL_MARKETPLACE_SOURCE` - official marketplace source

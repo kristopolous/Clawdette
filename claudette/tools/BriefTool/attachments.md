@@ -39,7 +39,7 @@ Provides attachment handling utilities for BriefTool: validation of attachment p
   - Second phase (conditional, slow network):
     - Only if `feature('BRIDGE_MODE')` is true
     - Determines `shouldUpload` = `uploadCtx.replBridgeEnabled` OR `CLAUDE_CODE_BRIEF_UPLOAD` env truthy
-    - Dynamically imports `./upload.js` (to keep upload module tree-shaken from non-bridge builds)
+    - Dynamically imports `/upload` (to keep upload module tree-shaken from non-bridge builds)
     - Parallel upload via `Promise.all(uploadBriefAttachment(...))`
     - Merges results: if `file_uuid` returned, adds it; otherwise keeps original stated object
   - Returns array of resolved attachments (with `file_uuid` if upload succeeded)

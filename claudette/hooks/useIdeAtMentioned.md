@@ -4,10 +4,10 @@ Registers an MCP notification handler to detect when the user "@" mentions the a
 ## Imports
 - **External**: `react` (useEffect, useRef), `zod/v4` (z)
 - **Internal**:
-  - `src/utils/log.js` (logError)
-  - `../services/mcp/types.js` (MCPServerConnection, ConnectedMCPServer)
-  - `../utils/ide.js` (getConnectedIdeClient)
-  - `../utils/lazySchema.js` (lazySchema)
+  - src/utils/log` (logError)
+  - `./services/mcp/types` (MCPServerConnection, ConnectedMCPServer)
+  - `./utils/ide` (getConnectedIdeClient)
+  - `./utils/lazySchema` (lazySchema)
 
 ## Logic
 - Defines `IDEAtMentioned` type: `{ filePath: string, lineStart?: number, lineEnd?: number }`

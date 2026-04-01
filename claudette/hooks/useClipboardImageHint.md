@@ -4,9 +4,9 @@ Notifies user when terminal regains focus and clipboard contains an image, sugge
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../context/notifications.js` (useNotifications)
-  - `../keybindings/shortcutFormat.js` (getShortcutDisplay)
-  - `../utils/imagePaste.js` (hasImageInClipboard)
+  - `./context/notifications` (useNotifications)
+  - `./keybindings/shortcutFormat` (getShortcutDisplay)
+  - `./utils/imagePaste` (hasImageInClipboard)
 
 ## Logic
 1. Triggers on focus regain: previous `isFocused` false → current true

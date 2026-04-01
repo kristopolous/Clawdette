@@ -4,13 +4,13 @@ Listens for prompt notifications from the Claude for Chrome extension, enqueues 
 ## Imports
 - **External**: `react` (useEffect, useRef), `@anthropic-ai/sdk` (ContentBlockParam), `zod/v4` (z)
 - **Internal**:
-  - `src/utils/log.js` (logError)
-  - `../services/mcp/client.js` (callIdeRpc)
-  - `../services/mcp/types.js` (MCPServerConnection, ConnectedMCPServer)
-  - `../types/permissions.js` (PermissionMode)
-  - `../utils/claudeInChrome/common.js` (CLAUDE_IN_CHROME_MCP_SERVER_NAME, isTrackedClaudeInChromeTabId)
-  - `../utils/lazySchema.js` (lazySchema)
-  - `../utils/messageQueueManager.js` (enqueuePendingNotification)
+  - src/utils/log` (logError)
+  - `./services/mcp/client` (callIdeRpc)
+  - `./services/mcp/types` (MCPServerConnection, ConnectedMCPServer)
+  - `./types/permissions` (PermissionMode)
+  - `./utils/claudeInChrome/common` (CLAUDE_IN_CHROME_MCP_SERVER_NAME, isTrackedClaudeInChromeTabId)
+  - `./utils/lazySchema` (lazySchema)
+  - `./utils/messageQueueManager` (enqueuePendingNotification)
 
 ## Logic
 - Hook parameters: `mcpClients`, `toolPermissionMode`

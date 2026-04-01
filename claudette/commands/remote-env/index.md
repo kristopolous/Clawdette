@@ -5,9 +5,9 @@ Defines the `remote-env` command for configuring the default remote environment 
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `isPolicyAllowed` from `../../services/policyLimits/index.js`
-- `isClaudeAISubscriber` from `../../utils/auth.js`
+- `Command` type from `.././commands`
+- `isPolicyAllowed` from `.././services/policyLimits/index`
+- `isClaudeAISubscriber` from `.././utils/auth`
 
 ## Logic
 Creates a command object:
@@ -16,7 +16,7 @@ Creates a command object:
 - `description`: `'Configure the default remote environment for teleport sessions'`
 - `isEnabled`: Returns true only if `isClaudeAISubscriber()` and `isPolicyAllowed('allow_remote_sessions')` are both true.
 - `isHidden`: Getter returns `!isClaudeAISubscriber() || !isPolicyAllowed('allow_remote_sessions')` (hides command when not available).
-- `load`: Dynamic import of `./remote-env.js` (or `.tsx`)
+- `load`: Dynamic import of `./remoteenv` (or `.tsx`)
 
 ## Exports
 - Default command object (satisfies `Command`)

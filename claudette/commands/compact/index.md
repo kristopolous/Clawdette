@@ -5,8 +5,8 @@ Defines the `/compact` command, which summarizes conversation history to reduce 
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `isEnvTruthy` from `../../utils/envUtils.js`
+- `Command` type from `.././commands`
+- `isEnvTruthy` from `.././utils/envUtils`
 
 ## Logic
 Creates a command object:
@@ -16,7 +16,7 @@ Creates a command object:
 - `isEnabled`: Returns false if `DISABLE_COMPACT` environment variable is truthy
 - `supportsNonInteractive`: true
 - `argumentHint`: `'<optional custom summarization instructions>'`
-- `load`: Dynamic import of `./compact.js` (or `.ts`)
+- `load`: Dynamic import of `/compact` (or `.ts`)
 
 ## Exports
 - `compact` (Command) - The command definition (exported as default)

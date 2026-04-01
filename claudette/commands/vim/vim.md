@@ -5,9 +5,9 @@ Toggles the editor mode between Vim (with INSERT/NORMAL modes) and Normal (stand
 
 ## Imports
 ### Internal
-- `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS` type and `logEvent` from `../../services/analytics/index.js`
-- `LocalCommandCall` type from `../../types/command.js`
-- `getGlobalConfig`, `saveGlobalConfig` from `../../utils/config.js`
+- `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS` type and `logEvent` from `.././services/analytics/index`
+- `LocalCommandCall` type from `.././types/command`
+- `getGlobalConfig`, `saveGlobalConfig` from `.././utils/config`
 
 ## Logic
 The `call` async function (no arguments):

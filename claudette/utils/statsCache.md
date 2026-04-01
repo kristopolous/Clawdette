@@ -5,7 +5,7 @@ Wait for any existing lock to be released
 
 ## Imports
 - **Stdlib**: bun:bundle, crypto, fs/promises, path
-- **Internal**: ../entrypoints/agentSdkTypes.js, ./debug.js, ./envUtils.js, ./errors.js, ./fsOperations.js, ./log, ./slowOperations, ./stats
+- **Internal**: ../entrypoints/agentSdkTypes, /debug, /envUtils, /errors, /fsOperations, ./log, ./slowOperations, ./stats
 
 ## Items
 

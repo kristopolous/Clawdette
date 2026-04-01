@@ -5,7 +5,7 @@ Defines the `rewind` command (alias: `checkpoint`) for restoring the code and/or
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -15,7 +15,7 @@ Creates a command object:
 - `argumentHint`: `''` (no arguments)
 - `type`: `'local'` (non-JSX, returns a skip result)
 - `supportsNonInteractive`: `false` (requires interactive UI)
-- `load`: Dynamic import of `./rewind.js` (or `.ts`)
+- `load`: Dynamic import of `/rewind` (or `.ts`)
 
 ## Exports
 - `rewind` (Command) - The command definition (exported as default)

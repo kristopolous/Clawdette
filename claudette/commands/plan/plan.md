@@ -8,17 +8,17 @@ Enables plan mode (where a predefined plan guides the session) or displays the c
 - `react`
 
 ### Internal
-- `handlePlanModeTransition` from `../../bootstrap/state.js`
-- `LocalJSXCommandContext` type from `../../commands.js`
-- `Box`, `Text` from `../../ink.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- `getExternalEditor` from `../../utils/editor.js`
-- `toIDEDisplayName` from `../../utils/ide.js`
-- `applyPermissionUpdate` from `../../utils/permissions/PermissionUpdate.js`
-- `prepareContextForPlanMode` from `../../utils/permissions/permissionSetup.js`
-- `getPlan`, `getPlanFilePath` from `../../utils/plans.js`
-- `editFileInEditor` from `../../utils/promptEditor.js`
-- `renderToString` from `../../utils/staticRender.js`
+- `handlePlanModeTransition` from `.././bootstrap/state`
+- `LocalJSXCommandContext` type from `.././commands`
+- `Box`, `Text` from `.././ink`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- `getExternalEditor` from `.././utils/editor`
+- `toIDEDisplayName` from `.././utils/ide`
+- `applyPermissionUpdate` from `.././utils/permissions/PermissionUpdate`
+- `prepareContextForPlanMode` from `.././utils/permissions/permissionSetup`
+- `getPlan`, `getPlanFilePath` from `.././utils/plans`
+- `editFileInEditor` from `.././utils/promptEditor`
+- `renderToString` from `.././utils/staticRender`
 
 ## Logic
 The `call` async function receives `context` and `args`. It dispatches based on current mode:

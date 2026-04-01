@@ -4,32 +4,32 @@ Polls teammate/team-lead mailbox for messages, submitting them as turns when idl
 ## Imports
 - **External**: `react` (useCallback, useEffect, useRef), `usehooks-ts` (useInterval)
 - **Internal**:
-  - `../components/permissions/PermissionRequest.js` (ToolUseConfirm type)
-  - `../constants/xml.js` (TEAMMATE_MESSAGE_TAG)
-  - `../ink/useTerminalNotification.js` (useTerminalNotification)
-  - `../services/notifier.js` (sendNotification)
-  - `../state/AppState.js` (useAppState, useAppStateStore, useSetAppState)
-  - `../Tool.js` (findToolByName)
-  - `../tasks/InProcessTeammateTask/types.js` (isInProcessTeammateTask)
-  - `../tools.js` (getAllBaseTools)
-  - `../types/permissions.js` (PermissionUpdate type)
-  - `../utils/debug.js` (logForDebugging)
-  - `../utils/inProcessTeammateHelpers.js` (findInProcessTeammateTaskId, handlePlanApprovalResponse)
-  - `../utils/messages.js` (createAssistantMessage)
-  - `../utils/permissions/PermissionMode.js` (permissionModeFromString, toExternalPermissionMode)
-  - `../utils/permissions/PermissionUpdate.js` (applyPermissionUpdate)
-  - `../utils/slowOperations.js` (jsonStringify)
-  - `../utils/swarm/backends/detection.js` (isInsideTmux)
-  - `../utils/swarm/backends/registry.js` (ensureBackendsRegistered, getBackendByType)
-  - `../utils/swarm/constants.js` (TEAM_LEAD_NAME)
-  - `../utils/swarm/leaderPermissionBridge.js` (getLeaderToolUseConfirmQueue)
-  - `../utils/swarm/permissionSync.js` (sendPermissionResponseViaMailbox)
-  - `../utils/swarm/teamHelpers.js` (removeTeammateFromTeamFile, setMemberMode)
-  - `../utils/tasks.js` (unassignTeammateTasks)
-  - `../utils/teammate.js` (getAgentName, isPlanModeRequired, isTeamLead, isTeammate)
-  - `../utils/teammateContext.js` (isInProcessTeammate)
-  - `../utils/teammateMailbox.js` (various is* parsing functions, readUnreadMessages, markMessagesAsRead, writeToMailbox, TeammateMessage, etc.)
-  - `./useSwarmPermissionPoller.js` (hasPermissionCallback, hasSandboxPermissionCallback, processMailboxPermissionResponse, processSandboxPermissionResponse)
+  - `./components/permissions/PermissionRequest` (ToolUseConfirm type)
+  - `./constants/xml` (TEAMMATE_MESSAGE_TAG)
+  - `./ink/useTerminalNotification` (useTerminalNotification)
+  - `./services/notifier` (sendNotification)
+  - `./state/AppState` (useAppState, useAppStateStore, useSetAppState)
+  - `./Tool` (findToolByName)
+  - `./tasks/InProcessTeammateTask/types` (isInProcessTeammateTask)
+  - `./tools` (getAllBaseTools)
+  - `./types/permissions` (PermissionUpdate type)
+  - `./utils/debug` (logForDebugging)
+  - `./utils/inProcessTeammateHelpers` (findInProcessTeammateTaskId, handlePlanApprovalResponse)
+  - `./utils/messages` (createAssistantMessage)
+  - `./utils/permissions/PermissionMode` (permissionModeFromString, toExternalPermissionMode)
+  - `./utils/permissions/PermissionUpdate` (applyPermissionUpdate)
+  - `./utils/slowOperations` (jsonStringify)
+  - `./utils/swarm/backends/detection` (isInsideTmux)
+  - `./utils/swarm/backends/registry` (ensureBackendsRegistered, getBackendByType)
+  - `./utils/swarm/constants` (TEAM_LEAD_NAME)
+  - `./utils/swarm/leaderPermissionBridge` (getLeaderToolUseConfirmQueue)
+  - `./utils/swarm/permissionSync` (sendPermissionResponseViaMailbox)
+  - `./utils/swarm/teamHelpers` (removeTeammateFromTeamFile, setMemberMode)
+  - `./utils/tasks` (unassignTeammateTasks)
+  - `./utils/teammate` (getAgentName, isPlanModeRequired, isTeamLead, isTeammate)
+  - `./utils/teammateContext` (isInProcessTeammate)
+  - `./utils/teammateMailbox` (various is* parsing functions, readUnreadMessages, markMessagesAsRead, writeToMailbox, TeammateMessage, etc.)
+  - `/useSwarmPermissionPoller` (hasPermissionCallback, hasSandboxPermissionCallback, processMailboxPermissionResponse, processSandboxPermissionResponse)
 
 ## Logic
 - Props: `{ enabled, isLoading, focusedInputDialog, onSubmitMessage }`
@@ -45,7 +45,7 @@ Polls teammate/team-lead mailbox for messages, submitting them as turns when idl
   - **Sandbox permission requests** (leader): add to workerSandboxPermissions.queue; desktop notification
   - **Sandbox permission responses** (worker): invoke callback; clear pendingSandboxRequest
   - **Team permission updates** (teammate): apply rules via applyPermissionUpdate to session context
-  - **Mode set requests** (teammate): change session mode; write to config.json for leader visibility
+  - **Mode set requests** (teammate): change session mode; write toconfigon for leader visibility
   - **Plan approval requests** (leader): auto-approve, write response, update in-process task state
   - **Shutdown requests** (teammate): pass through as regular message
   - **Shutdown approvals** (leader): kill pane (if tmux), remove teammate from team file, unassign tasks, mark task completed, add System message to inbox

@@ -4,8 +4,8 @@
 Output text for non-interactive mode (e.g., forked commands)
 
 ## Imports
-- **Stdlib**: bun:bundle, crypto, src/constants/querySource.js, src/services/analytics/index.js, src/utils/messages.js
-- **Internal**: ../../hooks/useCanUseTool.js, ../../hooks/useIdeSelection.js, ../../Tool.js, ../../types/permissions.js, ../config.js, ../effort.js, ../generators.js, ../imageStore, ../queryProfiler, ../slashCommandParsing...
+- **Stdlib**: bun:bundle, crypto,src/constants/querySource,src/services/analytics/index,src/utils/messages
+- **Internal**: ../../hooks/useCanUseTool, .././hooks/useIdeSelection, .././Tool, .././types/permissions, ./config, ./effort, ./generators, ../imageStore, ../queryProfiler, ../slashCommandParsing...
 
 ## Items
 

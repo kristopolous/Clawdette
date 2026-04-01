@@ -11,7 +11,7 @@ Defines the plugin command with:
 - Name: 'plugin' with aliases ['plugins', 'marketplace']
 - Description: 'Manage Claudette plugins'
 - immediate: true (shows UI immediately)
-- load: dynamically imports ./plugin.js
+- load: dynamically imports /plugin
 
 ## Exports
 - `default` - Command object for the plugin management interface

@@ -21,10 +21,10 @@ Loads CA certificates for TLS connections with custom CA configuration support.
 6. Deferred tls module load (~750KB heap cost) only when needed
 7. `getCACertificates('system')` - Bun API for system CAs
 8. Falls back to tls.rootCertificates if system CA unavailable
-9. Under Node.js without extra certs, returns undefined for native handling
+9. UnderNode without extra certs, returns undefined for native handling
 10. Always includes base CAs since `ca` option replaces defaults
 11. Memoized for performance, clearCACertsCache() invalidates after env changes
-12. Reads only NODE_EXTRA_CA_CERTS (populated from settings.json at init)
+12. Reads only NODE_EXTRA_CA_CERTS (populated fromsettingson at init)
 
 ## Exports
 - `getCACertificates` - memoized function loading CA certificates

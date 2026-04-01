@@ -11,16 +11,16 @@ Toggles a searchable tag on the current session. Tags appear after the branch na
 - `crypto` (`UUID` type)
 
 ### Internal
-- `getSessionId` from `../../bootstrap/state.js`
-- `CommandResultDisplay` type from `../../commands.js`
-- `Select` from `../../components/CustomSelect/select.js`
-- `Dialog` from `../../components/design-system/Dialog.js`
-- `COMMON_HELP_ARGS`, `COMMON_INFO_ARGS` from `../../constants/xml.js`
-- `Box`, `Text` from `../../ink.js`
-- `logEvent` from `../../services/analytics/index.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- `recursivelySanitizeUnicode` from `../../utils/sanitization.js`
-- `getCurrentSessionTag`, `getTranscriptPath`, `saveTag` from `../../utils/sessionStorage.js`
+- `getSessionId` from `.././bootstrap/state`
+- `CommandResultDisplay` type from `.././commands`
+- `Select` from `.././components/CustomSelect/select`
+- `Dialog` from `../../components/designsystem/Dialog`
+- `COMMON_HELP_ARGS`, `COMMON_INFO_ARGS` from `.././constants/xml`
+- `Box`, `Text` from `.././ink`
+- `logEvent` from `.././services/analytics/index`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- `recursivelySanitizeUnicode` from `.././utils/sanitization`
+- `getCurrentSessionTag`, `getTranscriptPath`, `saveTag` from `.././utils/sessionStorage`
 
 ## Logic
 The `call` async function receives `onDone`, `_context`, and optional `args`:

@@ -12,15 +12,15 @@ Creates a fork/branch of the current conversation at the current point. Copies t
 - `bun:bundle` (`feature` function for feature flags)
 
 ### Internal
-- `getOriginalCwd`, `getSessionId` from `../../bootstrap/state.js`
-- `LocalJSXCommandContext` type from `../../commands.js`
-- `logEvent` from `../../services/analytics/index.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- Types: `ContentReplacementEntry`, `Entry`, `LogOption`, `SerializedMessage`, `TranscriptMessage` from `../../types/logs.js`
-- `parseJSONL` from `../../utils/json.js`
-- `getProjectDir`, `getTranscriptPath`, `getTranscriptPathForSession`, `isTranscriptMessage`, `saveCustomTitle`, `searchSessionsByCustomTitle` from `../../utils/sessionStorage.js`
-- `jsonStringify` from `../../utils/slowOperations.js`
-- `escapeRegExp` from `../../utils/stringUtils.js`
+- `getOriginalCwd`, `getSessionId` from `.././bootstrap/state`
+- `LocalJSXCommandContext` type from `.././commands`
+- `logEvent` from `.././services/analytics/index`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- Types: `ContentReplacementEntry`, `Entry`, `LogOption`, `SerializedMessage`, `TranscriptMessage` from `.././types/logs`
+- `parseJSONL` from `.././utils/json`
+- `getProjectDir`, `getTranscriptPath`, `getTranscriptPathForSession`, `isTranscriptMessage`, `saveCustomTitle`, `searchSessionsByCustomTitle` from `.././utils/sessionStorage`
+- `jsonStringify` from `.././utils/slowOperations`
+- `escapeRegExp` from `.././utils/stringUtils`
 
 ## Logic
 The `call` function orchestrates the branching process:

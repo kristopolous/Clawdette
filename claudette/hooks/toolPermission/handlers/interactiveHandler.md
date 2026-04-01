@@ -15,7 +15,7 @@ Manages the interactive permission dialog for tool use, racing local hooks, clas
   - `utils/classifierApprovals` - classifier state setters
   - `utils/errors` - `errorMessage`
   - `utils/permissions/PermissionResult` - `PermissionDecision`
-  - `utils/permissions/permissions.js` - `hasPermissionsToUseTool`
+  - utils/permissions/permissions` - `hasPermissionsToUseTool`
   - `hooks/toolPermission/PermissionContext` - `PermissionContext`, `createResolveOnce`
 
 ## Logic

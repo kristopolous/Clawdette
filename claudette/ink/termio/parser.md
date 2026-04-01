@@ -5,16 +5,16 @@ Streaming parser for ANSI escape sequences that produces semantic actions for te
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - getGraphemeSegmenter from utils/intl.js
-  - C0 from termio/ansi.js
-  - CSI, CURSOR_STYLES, ERASE_DISPLAY, ERASE_LINE_REGION from termio/csi.js
-  - DEC from termio/dec.js
-  - parseEsc from termio/esc.js
-  - parseOSC from termio/osc.js
-  - applySGR from termio/sgr.js
-  - createTokenizer, Token, Tokenizer from termio/tokenize.js
-  - Action, Grapheme, TextStyle types from termio/types.js
-  - defaultStyle from termio/types.js
+  - getGraphemeSegmenter fromutils/intl
+  - C0 fromtermio/ansi
+  - CSI, CURSOR_STYLES, ERASE_DISPLAY, ERASE_LINE_REGION fromtermio/csi
+  - DEC fromtermio/dec
+  - parseEsc fromtermio/esc
+  - parseOSC fromtermio/osc
+  - applySGR fromtermio/sgr
+  - createTokenizer, Token, Tokenizer fromtermio/tokenize
+  - Action, Grapheme, TextStyle types fromtermio/types
+  - defaultStyle fromtermio/types
 
 ## Logic
 1. **Grapheme Utilities**: Helper functions for text processing:

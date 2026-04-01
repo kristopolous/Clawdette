@@ -5,14 +5,14 @@ Defines the `skills` command to list available skills.
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
 - `type`: `'local-jsx'`
 - `name`: `'skills'`
 - `description`: `'List available skills'`
-- `load`: Dynamic import of `./skills.js` (or `.tsx`)
+- `load`: Dynamic import of `/skills` (or `.tsx`)
 
 ## Exports
 - `skills` (Command) - The command definition (exported as default)

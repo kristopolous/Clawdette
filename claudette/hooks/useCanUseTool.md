@@ -4,27 +4,27 @@ Determines if a tool can be used, handling allow/deny/ask decisions with auto-mo
 ## Imports
 - **External**: `react` (useCallback), `@anthropic-ai/sdk` (APIUserAbortError)
 - **Internal**:
-  - `src/services/analytics/index.js` (logEvent, AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS)
-  - `src/services/analytics/metadata.js` (sanitizeToolNameForAnalytics)
-  - `../components/permissions/PermissionRequest.js` (ToolUseConfirm type)
-  - `../ink.js` (Text)
-  - `../Tool.js` (ToolPermissionContext, Tool, ToolUseContext)
-  - `../tools/BashTool/bashPermissions.js` (consumeSpeculativeClassifierCheck, peekSpeculativeClassifierCheck)
-  - `../tools/BashTool/toolName.js` (BASH_TOOL_NAME)
-  - `../types/message.js` (AssistantMessage)
-  - `../utils/autoModeDenials.js` (recordAutoModeDenial)
-  - `../utils/classifierApprovals.js` (clearClassifierChecking, setClassifierApproval, setYoloClassifierApproval)
-  - `../utils/debug.js` (logForDebugging)
-  - `../utils/errors.js` (AbortError)
-  - `../utils/log.js` (logError)
-  - `../utils/permissions/PermissionResult.js` (PermissionDecision)
-  - `../utils/permissions/permissions.js` (hasPermissionsToUseTool)
-  - `../utils/slowOperations.js` (jsonStringify)
-  - `./toolPermission/handlers/coordinatorHandler.js`
-  - `./toolPermission/handlers/interactiveHandler.js`
-  - `./toolPermission/handlers/swarmWorkerHandler.js`
-  - `./toolPermission/PermissionContext.js` (createPermissionContext, createPermissionQueueOps)
-  - `./toolPermission/permissionLogging.js` (logPermissionDecision)
+  - src/services/analytics/index` (logEvent, AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS)
+  - src/services/analytics/metadata` (sanitizeToolNameForAnalytics)
+  - `./components/permissions/PermissionRequest` (ToolUseConfirm type)
+  - `./ink` (Text)
+  - `./Tool` (ToolPermissionContext, Tool, ToolUseContext)
+  - `./tools/BashTool/bashPermissions` (consumeSpeculativeClassifierCheck, peekSpeculativeClassifierCheck)
+  - `./tools/BashTool/toolName` (BASH_TOOL_NAME)
+  - `./types/message` (AssistantMessage)
+  - `./utils/autoModeDenials` (recordAutoModeDenial)
+  - `./utils/classifierApprovals` (clearClassifierChecking, setClassifierApproval, setYoloClassifierApproval)
+  - `./utils/debug` (logForDebugging)
+  - `./utils/errors` (AbortError)
+  - `./utils/log` (logError)
+  - `./utils/permissions/PermissionResult` (PermissionDecision)
+  - `./utils/permissions/permissions` (hasPermissionsToUseTool)
+  - `./utils/slowOperations` (jsonStringify)
+  - `/toolPermission/handlers/coordinatorHandler`
+  - `/toolPermission/handlers/interactiveHandler`
+  - `/toolPermission/handlers/swarmWorkerHandler`
+  - `/toolPermission/PermissionContext` (createPermissionContext, createPermissionQueueOps)
+  - `/toolPermission/permissionLogging` (logPermissionDecision)
 
 ## Logic
 Returns `CanUseToolFn` function that:

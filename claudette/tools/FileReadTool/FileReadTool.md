@@ -31,3 +31,4 @@ Tool for reading files with support for text, images, PDFs, and Jupyter notebook
 - `registerFileReadListener` - registers callback for file read events
 - `MaxFileReadTokenExceededError` - error class for token limit exceeded
 - `CYBER_RISK_MITIGATION_REMINDER` - security reminder constant
+- `readImageWithTokenBudget` - reads and compresses image to fit token budget

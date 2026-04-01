@@ -5,9 +5,9 @@ Queries the terminal and awaits responses without timeouts by using DA1 (Device 
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - TerminalResponse type from parse-keypress.js
-  - csi function from termio/csi.js
-  - osc function from termio/osc.js
+  - TerminalResponse type from parsekeypress
+  - csi function fromtermio/csi
+  - osc function fromtermio/osc
 
 ## Logic
 1. **TerminalQuery Type**: Defines a generic type pairing an outbound request sequence with a matcher function that recognizes the expected inbound response.

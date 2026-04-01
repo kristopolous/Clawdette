@@ -4,9 +4,9 @@ Manages API key verification status with lazy initialization, distinguishing bet
 ## Imports
 - **External**: `react` (useCallback, useState)
 - **Internal**:
-  - `../bootstrap/state.js` (getIsNonInteractiveSession)
-  - `../services/api/claude.js` (verifyApiKey)
-  - `../utils/auth.js` (getAnthropicApiKeyWithSource, getApiKeyFromApiKeyHelper, isAnthropicAuthEnabled, isClaudeAISubscriber)
+  - `./bootstrap/state` (getIsNonInteractiveSession)
+  - `./services/api/claude` (verifyApiKey)
+  - `./utils/auth` (getAnthropicApiKeyWithSource, getApiKeyFromApiKeyHelper, isAnthropicAuthEnabled, isClaudeAISubscriber)
 
 ## Logic
 1. Initial state computed on mount:

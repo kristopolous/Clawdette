@@ -5,8 +5,8 @@ Parses terminal keyboard input into structured key events, handling escape seque
 - **Stdlib**: Buffer from 'buffer'
 - **External**: None specified
 - **Internal**: 
-  - PASTE_START, PASTE_END from ./termio/csi.js
-  - createTokenizer, Tokenizer from ./termio/tokenize.js
+  - PASTE_START, PASTE_END from /termio/csi
+  - createTokenizer, Tokenizer from /termio/tokenize
 
 ## Logic
 1. **Regular Expressions for Special Keys**:

@@ -15,7 +15,7 @@ Provides utilities for trust dialog source detection.
 4. Returns true if hooks object has any entries
 5. `getHooksSources` - gets sources that have hooks
 6. Checks projectSettings and localSettings
-7. Returns array of file paths: .claude/settings.json, .claude/settings.local.json
+7. Returns array of file paths: claude/settingson, .claude/settingslocalon
 8. `hasBashPermission` - checks if rules have bash allow rules
 9. Checks for ruleBehavior === 'allow' and toolName === BASH_TOOL_NAME or startsWith BASH_TOOL_NAME + '('
 10. `getBashPermissionSources` - gets sources with bash allow rules

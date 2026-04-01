@@ -4,14 +4,14 @@ Navigates command history with arrow keys, supporting mode filtering, batched di
 ## Imports
 - **External**: `react` (useCallback, useRef, useState)
 - **Internal**:
-  - `src/components/PromptInput/inputModes.js` (getModeFromInput)
-  - `src/context/notifications.js` (useNotifications)
-  - `../components/ConfigurableShortcutHint.js`
-  - `../components/PromptInput/Notifications.js` (FOOTER_TEMPORARY_STATUS_TIMEOUT)
-  - `../history.js` (getHistory)
-  - `../ink.js` (Text)
-  - `../types/textInputTypes.js` (PromptInputMode)
-  - `../utils/config.js` (HistoryEntry, PastedContent)
+  - src/components/PromptInput/inputModes` (getModeFromInput)
+  - src/context/notifications` (useNotifications)
+  - `./components/ConfigurableShortcutHint`
+  - `./components/PromptInput/Notifications` (FOOTER_TEMPORARY_STATUS_TIMEOUT)
+  - `./history` (getHistory)
+  - `./ink` (Text)
+  - `./types/textInputTypes` (PromptInputMode)
+  - `./utils/config` (HistoryEntry, PastedContent)
 
 ## Logic
 - **Shared batched loading**: Module-level state batches concurrent history loads into single disk read; loads in chunks (10 entries)

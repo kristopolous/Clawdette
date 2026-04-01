@@ -4,7 +4,7 @@
 Only validate Claude settings files
 
 ## Imports
-- **Stdlib**: src/Tool.js
+- **Stdlib**:src/Tool
 - **Internal**: ../permissions/filesystem, ./validation
 
 ## Items

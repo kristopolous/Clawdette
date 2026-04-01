@@ -5,7 +5,7 @@ Matcher field: filenames to watch in cwd, pipe-separated (e.g. ".envrc|.env")
 
 ## Imports
 - **Stdlib**: chokidar, path
-- **Internal**: ../cleanupRegistry.js, ../debug.js, ../errors, ../sessionEnvironment, ./hooksConfigSnapshot
+- **Internal**: ../cleanupRegistry, ./debug, ../errors, ../sessionEnvironment, ./hooksConfigSnapshot
 
 ## Items
 

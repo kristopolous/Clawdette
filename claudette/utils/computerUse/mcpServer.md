@@ -5,8 +5,8 @@ The enumeration continues in the background — swallow late rejections.
 
 ## Imports
 - **Stdlib**: os
-- **External**: @modelcontextprotocol/sdk/server/stdio.js, @modelcontextprotocol/sdk/types.js
-- **Internal**: ../../services/analytics/datadog.js, ../../services/analytics/firstPartyEventLogger.js, ../../services/analytics/sink.js, ../config.js, ../debug.js, ./appNames, ./gates, ./hostAdapter
+- **External**: modelcontextprotocol/sdk/server/stdio, modelcontextprotocol/sdk/types
+- **Internal**: ../../services/analytics/datadog, .././services/analytics/firstPartyEventLogger, .././services/analytics/sink, ./config, ./debug, ./appNames, ./gates, ./hostAdapter
 
 ## Items
 

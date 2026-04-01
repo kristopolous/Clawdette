@@ -4,7 +4,7 @@
 Maximum content size to hash (100KB)
 
 ## Imports
-- **Stdlib**: crypto, src/services/analytics/index.js, src/services/analytics/index.js
+- **Stdlib**: crypto,src/services/analytics/index,src/services/analytics/index
 
 ## Items
 

@@ -4,9 +4,9 @@ Shows a high-priority notification when the currently selected model is deprecat
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `src/context/notifications.js` (useNotifications)
-  - `src/utils/model/deprecation.js` (getModelDeprecationWarning)
-  - `../../bootstrap/state.js` (getIsRemoteMode)
+  - src/context/notifications` (useNotifications)
+  - src/utils/model/deprecation` (getModelDeprecationWarning)
+  - `.././bootstrap/state` (getIsRemoteMode)
 
 ## Logic
 - Hook parameter: `model: string`

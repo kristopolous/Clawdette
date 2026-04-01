@@ -4,13 +4,13 @@ Shows rate limit warnings (high priority) and overage notifications (immediate) 
 ## Imports
 - **External**: `react` (useEffect, useMemo, useRef, useState)
 - **Internal**:
-  - `src/context/notifications.js` (useNotifications)
-  - `src/ink.js` (Text)
-  - `src/services/claudeAiLimits.js` (getRateLimitWarning, getUsingOverageText)
-  - `src/services/claudeAiLimitsHook.js` (useClaudeAiLimits)
-  - `src/utils/auth.js` (getSubscriptionType)
-  - `src/utils/billing.js` (hasClaudeAiBillingAccess)
-  - `../../bootstrap/state.js` (getIsRemoteMode)
+  - src/context/notifications` (useNotifications)
+  - src/ink` (Text)
+  - src/services/claudeAiLimits` (getRateLimitWarning, getUsingOverageText)
+  - src/services/claudeAiLimitsHook` (useClaudeAiLimits)
+  - src/utils/auth` (getSubscriptionType)
+  - src/utils/billing` (hasClaudeAiBillingAccess)
+  - `.././bootstrap/state` (getIsRemoteMode)
 
 ## Logic
 Hook parameter: `model: string`

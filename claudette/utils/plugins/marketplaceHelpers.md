@@ -4,8 +4,8 @@
 Skip marketplaces blocked by enterprise policy
 
 ## Imports
-- **Stdlib**: lodash-es/isEqual.js
-- **Internal**: ../errors.js, ../log.js, ../settings/settings.js, ../stringUtils.js, ./gitAvailability, ./marketplaceManager, ./schemas
+- **Stdlib**: lodashes/isEqual
+- **Internal**: ../errors, ./log, ./settings/settings, ./stringUtils, ./gitAvailability, ./marketplaceManager, ./schemas
 
 ## Items
 

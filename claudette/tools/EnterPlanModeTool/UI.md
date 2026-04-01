@@ -11,7 +11,7 @@ Renders terminal UI components for the EnterPlanModeTool, which transitions the 
 - **Internal**:
   - Constants: `BLACK_CIRCLE`
   - Utilities: `getModeColor`
-  - UI Library: `Box`, `Text` from `ink.js`
+  - UI Library: `Box`, `Text` from ink`
   - Types: `ToolProgressData`, `ProgressMessage`, `ThemeName`, `Output`
   - Related Tool: `EnterPlanModeTool` (for Output type)
 

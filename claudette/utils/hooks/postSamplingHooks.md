@@ -1,10 +1,10 @@
 # postSamplingHooks
 
 ## Purpose
-Post-sampling hook - not exposed in settings.json config (yet), only used programmatically
+Post-sampling hook - not exposed insettingson config (yet), only used programmatically
 
 ## Imports
-- **Internal**: ../../constants/querySource.js, ../../Tool.js, ../../types/message.js, ../errors, ../log, ../systemPromptType
+- **Internal**: ../../constants/querySource, .././Tool, .././types/message, ../errors, ../log, ../systemPromptType
 
 ## Items
 

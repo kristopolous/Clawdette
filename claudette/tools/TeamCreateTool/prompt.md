@@ -12,7 +12,7 @@ Exports `getPrompt(): string` that returns a comprehensive guide covering:
 - Task ownership via TaskUpdate.
 - Automatic message delivery: teammates' messages auto-delivered as new turns; no manual inbox check.
 - Teammate idle state: normal after each turn; idle teammates can receive messages; don't treat idle as error.
-- Discovering team members: read team config at `~/.claude/teams/{team-name}/config.json`; use names (not UUIDs) for messaging.
+- Discovering team members: read team config at `~/.claude/teams/{team-name/configon`; use names (not UUIDs) for messaging.
 - Task list coordination: shared task list directory; rules for claiming tasks (prefer ID order), creating tasks, marking complete, coordinating.
 - Communication notes: use SendMessage to teammates; don't use terminal; don't send structured JSON status; TaskUpdate for task status; system auto-sends idle notifications to lead.
 

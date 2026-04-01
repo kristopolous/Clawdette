@@ -4,18 +4,18 @@ Initializes and manages the cron scheduler for scheduled tasks (e.g., `/schedule
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../state/AppState.js` (useAppStateStore, useSetAppState)
-  - `../Task.js` (isTerminalTaskStatus)
-  - `../tasks/InProcessTeammateTask/InProcessTeammateTask.js` (findTeammateTaskByAgentId, injectUserMessageToTeammate)
-  - `../tools/ScheduleCronTool/prompt.js` (isKairosCronEnabled)
-  - `../types/message.js` (Message)
-  - `../utils/cronJitterConfig.js` (getCronJitterConfig)
-  - `../utils/cronScheduler.js` (createCronScheduler)
-  - `../utils/cronTasks.js` (removeCronTasks)
-  - `../utils/debug.js` (logForDebugging)
-  - `../utils/messageQueueManager.js` (enqueuePendingNotification)
-  - `../utils/messages.js` (createScheduledTaskFireMessage)
-  - `../utils/workloadContext.js` (WORKLOAD_CRON)
+  - `./state/AppState` (useAppStateStore, useSetAppState)
+  - `./Task` (isTerminalTaskStatus)
+  - `./tasks/InProcessTeammateTask/InProcessTeammateTask` (findTeammateTaskByAgentId, injectUserMessageToTeammate)
+  - `./tools/ScheduleCronTool/prompt` (isKairosCronEnabled)
+  - `./types/message` (Message)
+  - `./utils/cronJitterConfig` (getCronJitterConfig)
+  - `./utils/cronScheduler` (createCronScheduler)
+  - `./utils/cronTasks` (removeCronTasks)
+  - `./utils/debug` (logForDebugging)
+  - `./utils/messageQueueManager` (enqueuePendingNotification)
+  - `./utils/messages` (createScheduledTaskFireMessage)
+  - `./utils/workloadContext` (WORKLOAD_CRON)
 
 ## Logic
 - Props: `{ isLoading: boolean, assistantMode?: boolean, setMessages: Dispatch<SetStateAction<Message[]>> }`

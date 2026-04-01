@@ -1,5 +1,5 @@
 ## Purpose
-Create a heap dump of the Node.js process for memory debugging.
+Create a heap dump of theNode process for memory debugging.
 
 ## Imports
 - **Internal**: `performHeapDump` from heapDumpService

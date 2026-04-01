@@ -4,8 +4,8 @@
 Fallback: presence suffices. Don't compare sources — the declared source
 
 ## Imports
-- **Stdlib**: lodash-es/isEqual.js, path
-- **Internal**: ../../bootstrap/state.js, ../debug.js, ../errors.js, ../file, ../git, ../log
+- **Stdlib**: lodashes/isEqual, path
+- **Internal**: ../../bootstrap/state, ./debug, ./errors, ../file, ../git, ../log
 
 ## Items
 

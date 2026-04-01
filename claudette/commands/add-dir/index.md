@@ -8,7 +8,7 @@ Registers the /add-dir command.
 ## Logic
 Defines 'add-dir' command as local-jsx with:
 - argumentHint: '<path>' (optional directory path)
-- Loads './add-dir.js' dynamically
+- Loads './adddir' dynamically
 
 Command allows adding a new working directory to permissions, either via argument or interactive prompt.
 

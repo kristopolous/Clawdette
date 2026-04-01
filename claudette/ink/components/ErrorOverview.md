@@ -10,7 +10,7 @@ Provides error overview component for displaying error details with source code 
 
 ## Logic
 1. `cleanupPath` - removes file://[cwd] prefix from stack trace paths
-2. Error's source file reported as file:///home/user/file.js
+2. Error's source file reported as file///home/user/file
 3. Removes file://${process.cwd()}/ prefix
 4. `getStackUtils` - gets or creates StackUtils instance
 5. Uses process.cwd() for cwd

@@ -3,7 +3,7 @@ Provides an interactive session selector UI for browsing, searching, filtering, 
 
 ## Imports
 - **Stdlib**: none
-- **External**: `react`, `react/compiler-runtime`, `chalk`, `figures`, `fuse.js`
+- **External**: `react`, `react/compiler-runtime`, `chalk`, `figures`, fuse`
 - **Internal**: `bootstrap/state`, `hooks/useExitOnCtrlCDWithKeybindings`, `hooks/useSearchInput`, `hooks/useTerminalSize`, `ink/colorize`, `ink`, `keybindings/useKeybinding`, `services/analytics`, `types/logs`, `utils/format`, `utils/getWorktreePaths`, `utils/git`, `utils/log`, `utils/sessionStorage`, `utils/theme`, `components/ConfigurableShortcutHint`, `components/CustomSelect/select`, `components/design-system/Byline`, `components/design-system/Divider`, `components/design-system/KeyboardShortcutHint`, `components/SearchBox`, `components/SessionPreview`, `components/Spinner`, `components/TagTabs`, `components/TextInput`, `components/ui/TreeSelect`
 
 ## Logic

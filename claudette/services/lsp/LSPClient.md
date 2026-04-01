@@ -5,7 +5,7 @@ Creates LSP client wrapper for communicating with language server processes via 
 
 ## Imports
 - **Stdlib**: `child_process`
-- **External**: `vscode-jsonrpc/node.js`, `vscode-languageserver-protocol`
+- **External**: `vscodejsonrpc/node`, `vscode-languageserver-protocol`
 - **Internal**: debug, errors, log, subprocessEnv
 
 ## Logic

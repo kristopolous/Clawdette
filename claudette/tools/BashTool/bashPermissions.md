@@ -6,7 +6,7 @@ Core permission system for the Bash tool: evaluates commands against user-define
 - **External**: `@anthropic-ai/sdk` (`APIUserAbortError`), `bun:bundle` (`feature`), `zod/v4` (`z`)
 - **Internal** (selected):
   - `services/analytics/*` - `getFeatureValue_CACHED_MAY_BE_STALE`, analytics types, `logEvent`
-  - `Tool.js` - `ToolPermissionContext`, `ToolUseContext`
+  - Tool` - `ToolPermissionContext`, `ToolUseContext`
   - `types/permissions` - `PendingClassifierCheck`
   - `utils/array` - `count`
   - `utils/bash/ast` - `checkSemantics`, `nodeTypeId`, `ParseForSecurityResult`, `parseForSecurityFromAst`, `Redirect`, `SimpleCommand`
@@ -20,10 +20,10 @@ Core permission system for the Bash tool: evaluates commands against user-define
   - `utils/permissions/bashClassifier` - classify functions, `isClassifierPermissionsEnabled`
   - `utils/permissions/PermissionResult` - `PermissionResult`
   - `utils/permissions/PermissionRule` - `PermissionRule`, `PermissionRuleValue`
-  - `utils/permissions/PermissionUpdate.js` - `extractRules`
+  - utils/permissions/PermissionUpdate` - `extractRules`
   - `utils/permissions/PermissionUpdateSchema` - `PermissionUpdate`
   - `utils/permissions/permissionRuleParser` - `parsePermissionRule`, helpers
-  - `utils/permissions/permissions.js` - `createPermissionRequestMessage`, `getRuleByContentsForTool`
+  - utils/permissions/permissions` - `createPermissionRequestMessage`, `getRuleByContentsForTool`
   - `utils/permissions/shellRuleMatching` - shared matching/suggestion helpers
   - `utils/platform` - `getPlatform`
   - `utils/sandbox/sandbox-adapter` - `SandboxManager`

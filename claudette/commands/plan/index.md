@@ -5,7 +5,7 @@ Defines the `plan` command, which enables plan mode or views the current session
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'plan'`
 - `description`: `'Enable plan mode or view the current session plan'`
 - `argumentHint`: `'[open|<description>]'`
-- `load`: Dynamic import of `./plan.js` (or `.tsx`)
+- `load`: Dynamic import of `/plan` (or `.tsx`)
 
 ## Exports
 - `plan` (Command) - The command definition (exported as default)

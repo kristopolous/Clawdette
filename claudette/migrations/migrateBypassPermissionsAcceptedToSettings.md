@@ -1,5 +1,5 @@
 ## Purpose
-Migrates `bypassPermissionsModeAccepted` from global config to settings.json as `skipDangerousModePermissionPrompt`.
+Migrates `bypassPermissionsModeAccepted` from global config tosettingson as `skipDangerousModePermissionPrompt`.
 
 ## Imports
 - **Stdlib**: none
@@ -14,4 +14,4 @@ Migrates `bypassPermissionsModeAccepted` from global config to settings.json as 
 5. Wraps operations in try/catch with error logging
 
 ## Exports
-- `migrateBypassPermissionsAcceptedToSettings` - Moves bypass permissions acceptance from global config to settings.json
+- `migrateBypassPermissionsAcceptedToSettings` - Moves bypass permissions acceptance from global config tosettingson

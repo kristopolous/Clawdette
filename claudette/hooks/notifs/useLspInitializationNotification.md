@@ -4,13 +4,13 @@ Polls LSP manager and server status; shows error notifications and accumulates e
 ## Imports
 - **External**: `react` (useState), `usehooks-ts` (useInterval)
 - **Internal**:
-  - `../../bootstrap/state.js` (getIsRemoteMode, getIsScrollDraining)
-  - `../../context/notifications.js` (useNotifications)
-  - `../../ink.js` (Text)
-  - `../../services/lsp/manager.js` (getInitializationStatus, getLspServerManager)
-  - `../../state/AppState.js` (useSetAppState)
-  - `../../utils/debug.js` (logForDebugging)
-  - `../../utils/envUtils.js` (isEnvTruthy)
+  - `.././bootstrap/state` (getIsRemoteMode, getIsScrollDraining)
+  - `.././context/notifications` (useNotifications)
+  - `.././ink` (Text)
+  - `.././services/lsp/manager` (getInitializationStatus, getLspServerManager)
+  - `.././state/AppState` (useSetAppState)
+  - `.././utils/debug` (logForDebugging)
+  - `.././utils/envUtils` (isEnvTruthy)
 
 ## Logic
 - Polling enabled only if `ENABLE_LSP_TOOL` env var is truthy (checked on mount via `isEnvTruthy`)

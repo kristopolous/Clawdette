@@ -9,12 +9,12 @@ Provides CLI argument parsing utilities for early flag parsing and -- separator 
 - **Internal**: (none)
 
 ## Logic
-1. `eagerParseCliFlag` - parses CLI flag before Commander.js processes
+1. `eagerParseCliFlag` - parses CLI flag beforeCommander processes
 2. Supports --flag value (space-separated) and --flag=value (equals-separated)
 3. Intended for flags that must be parsed before init() runs (e.g., --settings)
 4. Returns value if found, undefined otherwise
 5. `extractArgsAfterDoubleDash` - handles Unix `--` separator convention
-6. Commander.js with .passThroughOptions() passes `--` as positional argument
+6.Commander with .passThroughOptions() passes `--` as positional argument
 7. Example: `cmd --opt value name -- subcmd --flag arg`
 8. Commander parses: positional1="name", positional2="--", rest=["subcmd", "--flag", "arg"]
 9. Extracts actual command from rest array when positional is `--`

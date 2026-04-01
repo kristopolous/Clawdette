@@ -4,10 +4,10 @@ Initializes IDE integration on mount: detects IDE, manages auto-connect gating, 
 ## Imports
 - **External**: `react` (useEffect)
 - **Internal**:
-  - `../services/mcp/types.js` (ScopedMcpServerConfig)
-  - `../utils/config.js` (getGlobalConfig)
-  - `../utils/envUtils.js` (isEnvDefinedFalsy, isEnvTruthy)
-  - `../utils/ide.js` (DetectedIDEInfo, IDEExtensionInstallationStatus, IdeType, initializeIdeIntegration, isSupportedTerminal)
+  - `./services/mcp/types` (ScopedMcpServerConfig)
+  - `./utils/config` (getGlobalConfig)
+  - `./utils/envUtils` (isEnvDefinedFalsy, isEnvTruthy)
+  - `./utils/ide` (DetectedIDEInfo, IDEExtensionInstallationStatus, IdeType, initializeIdeIntegration, isSupportedTerminal)
 
 ## Logic
 Hook parameters:

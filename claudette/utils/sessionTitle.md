@@ -5,7 +5,7 @@ Reflect the actual session mode — this module is called from
 
 ## Imports
 - **Stdlib**: zod/v4
-- **Internal**: ../bootstrap/state.js, ../services/analytics/index.js, ../services/api/claude.js, ../types/message.js, ./debug.js, ./json.js, ./lazySchema, ./messages, ./systemPromptType
+- **Internal**: ../bootstrap/state, ./services/analytics/index, ./services/api/claude, ./types/message, /debug, /json, ./lazySchema, ./messages, ./systemPromptType
 
 ## Items
 

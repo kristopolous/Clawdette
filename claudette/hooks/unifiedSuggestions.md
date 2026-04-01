@@ -3,7 +3,7 @@ Generates a unified list of autocomplete suggestions from files, MCP resources, 
 
 ## Imports
 - **Stdlib**: `path` (`basename`)
-- **External**: `fuse.js` (Fuse)
+- **External**: fuse` (Fuse)
 - **Internal**:
   - `components/PromptInput/PromptInputFooterSuggestions` - `SuggestionItem` type
   - `hooks/fileSuggestions` - `generateFileSuggestions`
@@ -25,7 +25,7 @@ Generates a unified list of autocomplete suggestions from files, MCP resources, 
   - Collects all MCP resources from the `mcpResources` record into `McpResourceSuggestionSource`.
   - If query is empty: combines all sources, applies `MAX_UNIFIED_SUGGESTIONS` (15) limit, maps to items.
   - If query present:
-    - Non-file sources (MCP + agents) are scored using Fuse.js with keys `displayText`, `name`, `server`, `description`, `agentType` and weights.
+    - Non-file sources (MCP + agents) are scored usingFuse with keys `displayText`, `name`, `server`, `description`, `agentType` and weights.
     - File sources already have scores (lower is better in nucleo/Fuse). Combine all scored sources, sort ascending by score, take top 15.
 - Truncates MCP resource descriptions (`description`/`name`/`uri`) to 60 characters width.
 

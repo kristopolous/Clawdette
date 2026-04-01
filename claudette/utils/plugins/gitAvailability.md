@@ -4,7 +4,7 @@
 Provides utility functions: isCommandAvailable, markGitUnavailable, clearGitAvailabilityCache.
 
 ## Imports
-- **Stdlib**: lodash-es/memoize.js
+- **Stdlib**: lodashes/memoize
 - **Internal**: ../which
 
 ## Items

@@ -12,13 +12,13 @@ Configures the sandbox environment for command execution. Supports an interactiv
 - `react`
 
 ### Internal
-- `getCwdState` from `../../bootstrap/state.js`
-- `SandboxSettings` component from `../../components/sandbox/SandboxSettings.js`
-- `color` function from `../../ink.js`
-- `getPlatform` from `../../utils/platform.js`
-- `SandboxManager` (including `isSupportedPlatform`, `checkDependencies`, `isPlatformInEnabledList`, `areSandboxSettingsLockedByPolicy`, `isSandboxingEnabled`, `isAutoAllowBashIfSandboxedEnabled`, `areUnsandboxedCommandsAllowed`) from `../../utils/sandbox/sandbox-adapter.js`
-- `getSettings_DEPRECATED`, `getSettingsFilePathForSource` from `../../utils/settings/settings.js`
-- `ThemeName` type from `../../utils/theme.js`
+- `getCwdState` from `.././bootstrap/state`
+- `SandboxSettings` component from `.././components/sandbox/SandboxSettings`
+- `color` function from `.././ink`
+- `getPlatform` from `.././utils/platform`
+- `SandboxManager` (including `isSupportedPlatform`, `checkDependencies`, `isPlatformInEnabledList`, `areSandboxSettingsLockedByPolicy`, `isSandboxingEnabled`, `isAutoAllowBashIfSandboxedEnabled`, `areUnsandboxedCommandsAllowed`) from `../../utils/sandbox/sandboxadapter`
+- `getSettings_DEPRECATED`, `getSettingsFilePathForSource` from `.././utils/settings/settings`
+- `ThemeName` type from `.././utils/theme`
 
 ## Logic
 The `call` async function receives `onDone`, `_context`, and optional `args`:

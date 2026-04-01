@@ -8,17 +8,17 @@ Provides a configuration interface for Claude in Chrome (Beta). Allows users to 
 - `react` (including `useState`, compiler-runtime)
 
 ### Internal
-- `OptionWithDescription` type and `Select` component from `../../components/CustomSelect/select.js`
-- `Dialog` from `../../components/design-system/Dialog.js`
-- `Box`, `Text` from `../../ink.js`
-- `useAppState` from `../../state/AppState.js`
-- `CLAUDE_IN_CHROME_MCP_SERVER_NAME`, `openInChrome` from `../../utils/claudeInChrome/common.js`
-- `isChromeExtensionInstalled` from `../../utils/claudeInChrome/setup.js`
-- `getGlobalConfig`, `saveGlobalConfig` from `../../utils/config.js`
-- `env` from `../../utils/env.js`
-- `isRunningOnHomespace` from `../../utils/envUtils.js`
-- `isClaudeAISubscriber` from `../../utils/auth.js`
-- `openBrowser` from `../../utils/browser.js`
+- `OptionWithDescription` type and `Select` component from `.././components/CustomSelect/select`
+- `Dialog` from `../../components/designsystem/Dialog`
+- `Box`, `Text` from `.././ink`
+- `useAppState` from `.././state/AppState`
+- `CLAUDE_IN_CHROME_MCP_SERVER_NAME`, `openInChrome` from `.././utils/claudeInChrome/common`
+- `isChromeExtensionInstalled` from `.././utils/claudeInChrome/setup`
+- `getGlobalConfig`, `saveGlobalConfig` from `.././utils/config`
+- `env` from `.././utils/env`
+- `isRunningOnHomespace` from `.././utils/envUtils`
+- `isClaudeAISubscriber` from `.././utils/auth`
+- `openBrowser` from `.././utils/browser`
 
 ## Logic
 The `call` async function:

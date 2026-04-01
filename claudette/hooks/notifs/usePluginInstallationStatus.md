@@ -4,12 +4,12 @@ Monitors plugin and marketplace installation status; shows a medium-priority sum
 ## Imports
 - **External**: `react` (useEffect, useMemo)
 - **Internal**:
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../../context/notifications.js` (useNotifications)
-  - `../../ink.js` (Text)
-  - `../../state/AppState.js` (useAppState)
-  - `../../utils/debug.js` (logForDebugging)
-  - `../../utils/stringUtils.js` (plural)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `.././context/notifications` (useNotifications)
+  - `.././ink` (Text)
+  - `.././state/AppState` (useAppState)
+  - `.././utils/debug` (logForDebugging)
+  - `.././utils/stringUtils` (plural)
 
 ## Logic
 - Reads `installationStatus` from `appState.plugins.installationStatus`

@@ -13,11 +13,11 @@ Manages plugins as ZIP archives in a mounted directory for headless mode.
    - Plugins stored as ZIPs in cache directory
    - Extracted to session-local temp directory at startup
 2. Limitations: headless mode only, all settings sources used, only github/git/url sources, only strict:true entries, auto-update non-blocking
-3. Directory structure: /mnt/plugins-cache/known_marketplaces.json, installed_plugins.json, marketplaces/, plugins/
+3. Directory structure: /mnt/pluginscache/known_marketplaceson,installed_pluginson, marketplaces/, plugins/
 4. `isPluginZipCacheEnabled` - checks if zip cache mode enabled
 5. `getPluginZipCachePath` - gets zip cache directory path
-6. `getZipCacheKnownMarketplacesPath` - gets known_marketplaces.json path in zip cache
-7. `getZipCacheInstalledPluginsPath` - gets installed_plugins.json path in zip cache
+6. `getZipCacheKnownMarketplacesPath` - getsknown_marketplaceson path in zip cache
+7. `getZipCacheInstalledPluginsPath` - getsinstalled_pluginson path in zip cache
 8. `getZipCacheMarketplacesDir` - gets marketplaces directory in zip cache
 9. `getZipCachePluginsDir` - gets plugins directory in zip cache
 10. `getPluginZipPath` - gets plugin ZIP path in cache

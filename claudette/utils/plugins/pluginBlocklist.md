@@ -4,7 +4,7 @@
 Read-only iteration — Safe variant so a corrupted config doesn't throw
 
 ## Imports
-- **Internal**: ../../services/plugins/pluginOperations.js, ../debug.js, ../errors, ./installedPluginsManager, ./schemas
+- **Internal**: ../../services/plugins/pluginOperations, ./debug, ../errors, ./installedPluginsManager, ./schemas
 
 ## Items
 

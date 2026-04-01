@@ -1,5 +1,5 @@
 ## Purpose
-Migrates user-set auto-updates preference from global config to settings.json as an environment variable.
+Migrates user-set auto-updates preference from global config tosettingson as an environment variable.
 
 ## Imports
 - **Stdlib**: none
@@ -14,4 +14,4 @@ Migrates user-set auto-updates preference from global config to settings.json as
 5. Wraps operations in try/catch, logging errors without breaking startup
 
 ## Exports
-- `migrateAutoUpdatesToSettings` - Moves auto-updates preference from global config to settings.json env var
+- `migrateAutoUpdatesToSettings` - Moves auto-updates preference from global config tosettingson env var

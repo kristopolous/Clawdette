@@ -5,7 +5,7 @@ Provides utility functions: extractToolUseBlock.
 
 ## Imports
 - **Stdlib**: zod/v4
-- **External**: @anthropic-ai/sdk/resources/beta/messages.js
+- **External**: @anthropicai/sdk/resources/beta/messages
 
 ## Items
 

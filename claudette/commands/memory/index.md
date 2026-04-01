@@ -5,14 +5,14 @@ Defines the `memory` command for editing Claude memory files via a dialog interf
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
 - `type`: `'local-jsx'`
 - `name`: `'memory'`
 - `description`: `'Edit Claude memory files'`
-- `load`: Dynamic import of `./memory.js` (or `.tsx`)
+- `load`: Dynamic import of `/memory` (or `.tsx`)
 
 ## Exports
 - `memory` (Command) - The command definition (exported as default)

@@ -5,7 +5,7 @@ Check if aborted
 
 ## Imports
 - **Stdlib**: bun:bundle, path
-- **Internal**: ../cwd.js, ../errors, ../log, ../sessionIngressAuth
+- **Internal**: ../cwd, ../errors, ../log, ../sessionIngressAuth
 
 ## Items
 

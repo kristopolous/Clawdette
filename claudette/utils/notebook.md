@@ -4,7 +4,7 @@
 Avoid giving text cells the code language.
 
 ## Imports
-- **Internal**: ../tools/BashTool/toolName.js, ../tools/BashTool/utils.js, ./fsOperations, ./path, ./slowOperations
+- **Internal**: ../tools/BashTool/toolName, ./tools/BashTool/utils, ./fsOperations, ./path, ./slowOperations
 
 ## Items
 

@@ -5,8 +5,8 @@ Parses SGR (Select Graphic Rendition) parameters and applies them to a TextStyle
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - NamedColor, TextStyle, UnderlineStyle types from ./types.js
-  - defaultStyle from ./types.js
+  - NamedColor, TextStyle, UnderlineStyle types from /types
+  - defaultStyle from /types
 
 ## Logic
 1. **Constants**:

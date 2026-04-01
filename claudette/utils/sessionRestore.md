@@ -5,7 +5,7 @@ Restore file history state
 
 ## Imports
 - **Stdlib**: bun:bundle, crypto, path
-- **Internal**: ../constants/systemPromptSections.js, ../cost-tracker.js, ../state/AppState.js, ../tools/AgentTool/agentColorManager.js, ../tools/TodoWriteTool/constants.js, ../types/ids.js, ../types/message.js, ./asciicast, ./claudemd, ./concurrentSessions...
+- **Internal**: ../constants/systemPromptSections, ../costtracker, ./state/AppState, ./tools/AgentTool/agentColorManager, ./tools/TodoWriteTool/constants, ./types/ids, ./types/message, ./asciicast, ./claudemd, ./concurrentSessions...
 
 ## Items
 

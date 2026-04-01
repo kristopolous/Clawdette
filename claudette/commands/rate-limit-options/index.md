@@ -5,8 +5,8 @@ Defines the internal `rate-limit-options` command used to present options when a
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `isClaudeAISubscriber` from `../../utils/auth.js`
+- `Command` type from `.././commands`
+- `isClaudeAISubscriber` from `.././utils/auth`
 
 ## Logic
 Creates a command object:
@@ -15,7 +15,7 @@ Creates a command object:
 - `description`: `'Show options when rate limit is reached'`
 - `isEnabled`: Returns true only if `isClaudeAISubscriber()` is true.
 - `isHidden`: `true` (command is hidden from help listings; used internally)
-- `load`: Dynamic import of `./rate-limit-options.js` (or `.tsx`)
+- `load`: Dynamic import of `./rate-limitoptions` (or `.tsx`)
 
 ## Exports
 - `rateLimitOptions` (Command) - The command definition (exported as default)

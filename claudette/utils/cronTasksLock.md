@@ -1,11 +1,11 @@
 # cronTasksLock
 
 ## Purpose
-Scheduler lease lock for .claude/scheduled_tasks.json.
+Scheduler lease lock for claude/scheduled_taskson.
 
 ## Imports
 - **Stdlib**: fs/promises, path, zod/v4
-- **Internal**: ../bootstrap/state.js, ./cleanupRegistry.js, ./debug.js, ./errors.js, ./genericProcessUtils.js, ./json, ./lazySchema, ./slowOperations
+- **Internal**: ../bootstrap/state, /cleanupRegistry, /debug, /errors, /genericProcessUtils, ./json, ./lazySchema, ./slowOperations
 
 ## Items
 

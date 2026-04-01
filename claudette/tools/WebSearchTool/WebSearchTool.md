@@ -27,8 +27,6 @@ Tool for performing web searches using Claude's native web search capability, re
 - `SearchResult` - Type for individual search hit (title, url)
 - `Output` - Type for output (query, results array, durationSeconds)
 - `WebSearchProgress` - Progress type (re-exported)
-- Helper: `makeToolSchema` (builds Beta tool schema)
-- Helper: `makeOutputFromSearchResponse` (parses API response)
 
 ### Helpful Prompt Templates
 

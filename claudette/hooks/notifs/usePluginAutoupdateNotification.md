@@ -4,11 +4,11 @@ Shows a low-priority notification when plugins have been auto-updated, prompting
 ## Imports
 - **External**: `react` (useEffect, useState)
 - **Internal**:
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../../context/notifications.js` (useNotifications)
-  - `../../ink.js` (Text)
-  - `../../utils/debug.js` (logForDebugging)
-  - `../../utils/plugins/pluginAutoupdate.js` (onPluginsAutoUpdated)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `.././context/notifications` (useNotifications)
+  - `.././ink` (Text)
+  - `.././utils/debug` (logForDebugging)
+  - `.././utils/plugins/pluginAutoupdate` (onPluginsAutoUpdated)
 
 ## Logic
 - Hook subscribes to `onPluginsAutoUpdated`; receives array of updated plugin IDs

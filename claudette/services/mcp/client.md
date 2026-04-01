@@ -40,7 +40,7 @@ The core function that establishes connections to MCP servers with support for m
 ### Auth Cache
 - 15-minute TTL cache for servers that returned 401 (`MCP_AUTH_CACHE_TTL_MS`)
 - Prevents repeated connection attempts to servers that need authentication
-- Path: `~/.ai-assistant/mcp-needs-auth-cache.json`
+- Path: `~/.ai-assistant/mcp-needs-authcacheon`
 
 ## Tool Fetching
 

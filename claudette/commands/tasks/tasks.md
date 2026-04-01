@@ -8,9 +8,9 @@ Opens a dialog to list and manage background tasks, including running subprocess
 - `react`
 
 ### Internal
-- `LocalJSXCommandContext` type from `../../commands.js`
-- `BackgroundTasksDialog` component from `../../components/tasks/BackgroundTasksDialog.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
+- `LocalJSXCommandContext` type from `.././commands`
+- `BackgroundTasksDialog` component from `.././components/tasks/BackgroundTasksDialog`
+- `LocalJSXCommandOnDone` type from `.././types/command`
 
 ## Logic
 The `call` async function receives `onDone` and `context`. It renders the `<BackgroundTasksDialog>` component, passing:

@@ -9,26 +9,26 @@ Compacts the conversation history into a summary, reducing token usage while pre
 
 ### Internal
 - `feature` from `bun:bundle` (feature flagging)
-- `markPostCompaction` from `src/bootstrap/state.js`
-- `getSystemPrompt` from `../../constants/prompts.js`
-- `getSystemContext`, `getUserContext` from `../../context.js`
-- `getShortcutDisplay` from `../../keybindings/shortcutFormat.js`
-- `notifyCompaction` from `../../services/api/promptCacheBreakDetection.js`
-- Types and functions: `CompactionResult`, `compactConversation`, `ERROR_MESSAGE_INCOMPLETE_RESPONSE`, `ERROR_MESSAGE_NOT_ENOUGH_MESSAGES`, `ERROR_MESSAGE_USER_ABORT`, `mergeHookInstructions` from `../../services/compact/compact.js`
-- `suppressCompactWarning` from `../../services/compact/compactWarningState.js`
-- `microcompactMessages` from `../../services/compact/microCompact.js`
-- `runPostCompactCleanup` from `../../services/compact/postCompactCleanup.js`
-- `trySessionMemoryCompaction` from `../../services/compact/sessionMemoryCompact.js`
-- `setLastSummarizedMessageId` from `../../services/SessionMemory/sessionMemoryUtils.js`
-- `ToolUseContext` type from `../../Tool.js`
-- `LocalCommandCall` type from `../../types/command.js`
-- `Message` type from `../../types/message.js`
-- `hasExactErrorMessage` from `../../utils/errors.js`
-- `executePreCompactHooks` from `../../utils/hooks.js`
-- `logError` from `../../utils/log.js`
-- `getMessagesAfterCompactBoundary` from `../../utils/messages.js`
-- `getUpgradeMessage` from `../../utils/model/contextWindowUpgradeCheck.js`
-- `buildEffectiveSystemPrompt`, `SystemPrompt` type from `../../utils/systemPrompt.js`
+- `markPostCompaction` from src/bootstrap/state`
+- `getSystemPrompt` from `.././constants/prompts`
+- `getSystemContext`, `getUserContext` from `.././context`
+- `getShortcutDisplay` from `.././keybindings/shortcutFormat`
+- `notifyCompaction` from `.././services/api/promptCacheBreakDetection`
+- Types and functions: `CompactionResult`, `compactConversation`, `ERROR_MESSAGE_INCOMPLETE_RESPONSE`, `ERROR_MESSAGE_NOT_ENOUGH_MESSAGES`, `ERROR_MESSAGE_USER_ABORT`, `mergeHookInstructions` from `.././services/compact/compact`
+- `suppressCompactWarning` from `.././services/compact/compactWarningState`
+- `microcompactMessages` from `.././services/compact/microCompact`
+- `runPostCompactCleanup` from `.././services/compact/postCompactCleanup`
+- `trySessionMemoryCompaction` from `.././services/compact/sessionMemoryCompact`
+- `setLastSummarizedMessageId` from `.././services/SessionMemory/sessionMemoryUtils`
+- `ToolUseContext` type from `.././Tool`
+- `LocalCommandCall` type from `.././types/command`
+- `Message` type from `.././types/message`
+- `hasExactErrorMessage` from `.././utils/errors`
+- `executePreCompactHooks` from `.././utils/hooks`
+- `logError` from `.././utils/log`
+- `getMessagesAfterCompactBoundary` from `.././utils/messages`
+- `getUpgradeMessage` from `.././utils/model/contextWindowUpgradeCheck`
+- `buildEffectiveSystemPrompt`, `SystemPrompt` type from `.././utils/systemPrompt`
 
 ## Logic
 The `call` function (command handler):

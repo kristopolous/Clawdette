@@ -1,5 +1,5 @@
 ## Purpose
-Generates a well-documented template keybindings.json file that users can customize.
+Generates a well-documented templatekeybindingson file that users can customize.
 
 ## Imports
 - **Stdlib**: none

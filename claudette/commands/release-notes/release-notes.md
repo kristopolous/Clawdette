@@ -5,8 +5,8 @@ Fetches and displays release notes (changelog) for Claudette. Attempts a quick n
 
 ## Imports
 ### Internal
-- `LocalCommandResult` type from `../../types/command.js`
-- `CHANGELOG_URL`, `fetchAndStoreChangelog`, `getAllReleaseNotes`, `getStoredChangelog` from `../../utils/releaseNotes.js`
+- `LocalCommandResult` type from `.././types/command`
+- `CHANGELOG_URL`, `fetchAndStoreChangelog`, `getAllReleaseNotes`, `getStoredChangelog` from `.././utils/releaseNotes`
 
 ## Logic
 The `call` async function performs:

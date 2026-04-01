@@ -4,7 +4,7 @@
 @see https://platform.claude.com/docs/en/about-claude/pricing
 
 ## Imports
-- **Stdlib**: src/services/analytics/index.js, src/services/analytics/index.js
+- **Stdlib**:src/services/analytics/index,src/services/analytics/index
 - **External**: @anthropic-ai/sdk/resources/beta/messages/messages.mjs
 - **Internal**: ../bootstrap/state, ./fastMode
 

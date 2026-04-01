@@ -4,9 +4,9 @@
 Small cache size for ask operations which typically access few files
 
 ## Imports
-- **Stdlib**: lodash-es/last.js, src/entrypoints/agentSdkTypes.js
+- **Stdlib**: lodashes/last,src/entrypoints/agentSdkTypes
 - **External**: @anthropic-ai/sdk/resources/index.mjs
-- **Internal**: ../hooks/useCanUseTool.js, ../services/tools/toolOrchestration.js, ../Tool.js, ../tools/BashTool/toolName.js, ../tools/FileEditTool/constants.js, ../tools/FileReadTool/FileReadTool.js, ../tools/FileWriteTool/prompt.js, ../types/message, ../types/textInputTypes, ./debug...
+- **Internal**: ../hooks/useCanUseTool, ./services/tools/toolOrchestration, ./Tool, ./tools/BashTool/toolName, ./tools/FileEditTool/constants, ./tools/FileReadTool/FileReadTool, ./tools/FileWriteTool/prompt, ../types/message, ../types/textInputTypes, ./debug...
 
 ## Items
 

@@ -16,7 +16,7 @@ Provides model string resolution for different providers.
 5. `getBedrockModelStrings` - gets Bedrock model strings via inference profiles
 6. Falls back to builtin if profile fetch fails
 7. Uses findFirstMatch for profile matching
-8. `applyModelOverrides` - applies user model overrides from settings.json
+8. `applyModelOverrides` - applies user model overrides fromsettingson
 9. Overrides keyed by canonical first-party model ID
 10. Maps to arbitrary provider-specific strings (Bedrock ARNs)
 11. `getModelStrings` - gets resolved model strings

@@ -3,11 +3,11 @@ Provides text wrapping and truncation utilities for terminal output, handling AN
 
 ## Imports
 - **Stdlib**: None specified
-- **External**: sliceAnsi from ../utils/sliceAnsi.js
+- **External**: sliceAnsi from ./utils/sliceAnsi
 - **Internal**: 
-  - stringWidth from ./stringWidth.js
-  - Styles type from ./styles.js
-  - wrapAnsi from ./wrapAnsi.js
+  - stringWidth from /stringWidth
+  - Styles type from /styles
+  - wrapAnsi from /wrapAnsi
 
 ## Logic
 1. **Helper Functions**:

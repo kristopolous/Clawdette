@@ -5,16 +5,16 @@ Provides CLI syntax highlighting via cli-highlight with lazy loading.
 
 ## Imports
 - **Stdlib**: `path`
-- **External**: `cli-highlight`, `highlight.js`
+- **External**: `cli-highlight`, highlight`
 - **Internal**: (none)
 
 ## Logic
 1. `CliHighlight` type with highlight and supportsLanguage functions
-2. DOM reference for type defs (highlight.js pulls lib.dom in)
+2. DOM reference for type defs highlight pulls lib.dom in)
 3. `cliHighlightPromise` - shared promise for lazy loading
-4. `loadedGetLanguage` - cached highlight.js getLanguage function
-5. `loadCliHighlight` - loads cli-highlight and highlight.js
-6. Caches highlight.js via cli-highlight import (cache hit)
+4. `loadedGetLanguage` - cachedhighlight getLanguage function
+5. `loadCliHighlight` - loads cli-highlight andhighlight
+6. Cacheshighlight via cli-highlight import (cache hit)
 7. Returns null on load failure
 8. `getCliHighlightPromise` - gets or creates load promise
 9. `getLanguageName` - gets language name from file extension

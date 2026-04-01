@@ -4,12 +4,12 @@ Lazy-loads remote assistant session history on scroll-up for viewer-only session
 ## Imports
 - **External**: `react` (randomUUID, useCallback, useEffect, useLayoutEffect, useRef)
 - **Internal**:
-  - `../assistant/sessionHistory.js` (createHistoryAuthCtx, fetchLatestEvents, fetchOlderEvents, HistoryAuthCtx, HistoryPage)
-  - `../ink/components/ScrollBox.js` (ScrollBoxHandle type)
-  - `../remote/RemoteSessionManager.js` (RemoteSessionConfig)
-  - `../remote/sdkMessageAdapter.js` (convertSDKMessage)
-  - `../types/message.js` (Message, SystemInformationalMessage)
-  - `../utils/debug.js` (logForDebugging)
+  - `./assistant/sessionHistory` (createHistoryAuthCtx, fetchLatestEvents, fetchOlderEvents, HistoryAuthCtx, HistoryPage)
+  - `./ink/components/ScrollBox` (ScrollBoxHandle type)
+  - `./remote/RemoteSessionManager` (RemoteSessionConfig)
+  - `./remote/sdkMessageAdapter` (convertSDKMessage)
+  - `./types/message` (Message, SystemInformationalMessage)
+  - `./utils/debug` (logForDebugging)
 
 ## Logic
 - **Enabled only** when `config.viewerOnly === true` (assistant viewer mode)

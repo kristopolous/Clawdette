@@ -28,8 +28,8 @@ Provides terminal capability detection and writes optimized diff patches to term
 17. `setXtversionName` - records XTVERSION response from terminal
 18. Called once from App.tsx when reply arrives on stdin
 19. No-op if already set (defend against re-probe)
-20. `isXtermJs` - checks if running in xterm.js-based terminal
-21. Checks TERM_PROGRAM === 'vscode' or xtversionName?.startsWith('xterm.js')
+20. `isXtermJs` - checks if running inxterm-based terminal
+21. Checks TERM_PROGRAM === 'vscode' or xtversionName?.startsWith(xterm')
 22. TERM_PROGRAM not forwarded over SSH, XTVERSION survives SSH
 23. `supportsExtendedKeys` - checks if terminal handles extended key reporting
 24. Kitty keyboard protocol (CSI >1u) and/or xterm modifyOtherKeys (CSI >4;2m)
@@ -60,7 +60,7 @@ Provides terminal capability detection and writes optimized diff patches to term
 - `isProgressReportingAvailable` - checks progress reporting support
 - `isSynchronizedOutputSupported` - checks synchronized output support
 - `setXtversionName` - records XTVERSION response
-- `isXtermJs` - checks xterm.js terminal
+- `isXtermJs` - checksxterm terminal
 - `supportsExtendedKeys` - checks extended keys support
 - `hasCursorUpViewportYankBug` - checks cursor-up viewport yank bug
 - `SYNC_OUTPUT_SUPPORTED` - synchronized output supported flag

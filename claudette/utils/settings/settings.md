@@ -9,12 +9,12 @@ Provides settings loading and management utilities.
 - **Internal**: bootstrap state, remoteManagedSettings syncCacheState, array, debug, diagLogs, envUtils, errors, file, fileRead, fsOperations, git gitignore, json, log, platform, JSON utils, startupProfiler, settings constants/internalWrites/managedPath/mdm/settings/settingsCache/types/validation
 
 ## Logic
-1. `getManagedSettingsFilePath` - gets managed settings file path (~/.claude/managed-settings.json)
+1. `getManagedSettingsFilePath` - gets managed settings file path (~/.claude/managedsettingson)
 2. `loadManagedFileSettings` - loads file-based managed settings
-3. managed-settings.json merged first (lowest precedence/base)
+3. managedsettingson merged first (lowest precedence/base)
 4. Drop-in files sorted alphabetically and merged on top (higher precedence, later files win)
 5. Matches systemd/sudoers drop-in convention
-6. Separate teams can ship independent policy fragments (10-otel.json, 20-security.json) without coordinating edits
+6. Separate teams can ship independent policy fragments (10otelon, 20securityon) without coordinating edits
 7. `getSettingsForSource` - gets settings for specific source
 8. `getSettings_DEPRECATED` - gets settings (deprecated, use getSettingsForSource)
 9. `getInitialSettings` - gets initial settings

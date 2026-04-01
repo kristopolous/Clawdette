@@ -11,7 +11,7 @@ Provides plain text storage implementation (fallback for non-macOS platforms).
 ## Logic
 1. `getStoragePath` - gets storage directory and path
 2. Storage dir: getClaudeConfigHomeDir()
-3. Storage file: .credentials.json
+3. Storage file: credentialson
 4. `plainTextStorage` - storage implementation
 5. name: 'plaintext'
 6. `read()` - sync read from file

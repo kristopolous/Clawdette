@@ -13,7 +13,7 @@ Runs on application startup to ensure the official Anthropic marketplace plugin 
 ## Logic
 This hook delegates to `useStartupNotification`, passing an async initializer function that calls `checkAndInstallOfficialMarketplace()`. The initializer builds an array of notifications based on the result:
 
-- If `configSaveFailed`: warns about permissions (`~/.claude.json`) with a 10s error.
+- If `configSaveFailed`: warns about permissions (`~/claudeon`) with a 10s error.
 - If `installed`: success tick with 7s timeout prompting `/plugin`.
 - If `skipped` with `reason === "unknown"`: warning that installation will retry on next startup (8s).
 

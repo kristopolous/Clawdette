@@ -5,7 +5,7 @@ Build the complete message list to send to the API
 
 ## Imports
 - **Stdlib**: crypto
-- **Internal**: ../../constants/querySource.js, ../../services/api/claude.js, ../../types/message.js, ../../utils/abortController.js, ../../utils/log.js, ../errors.js, ../messages, ../systemPromptType, ./postSamplingHooks
+- **Internal**: ../../constants/querySource, .././services/api/claude, .././types/message, .././utils/abortController, .././utils/log, ./errors, ../messages, ../systemPromptType, ./postSamplingHooks
 
 ## Exports
 - ApiQueryHookContext

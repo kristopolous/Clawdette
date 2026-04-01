@@ -4,7 +4,7 @@
 @[MODEL LAUNCH]: Update tengu_ant_model_override with new ant-only models
 
 ## Imports
-- **Stdlib**: src/services/analytics/growthbook.js
+- **Stdlib**:src/services/analytics/growthbook
 - **Internal**: ../effort
 
 ## Items

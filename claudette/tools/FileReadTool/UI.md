@@ -12,7 +12,7 @@ Renders terminal UI for FileReadTool, which reads files and produces various out
   - Utils: `extractTag`, `FILE_NOT_FOUND_CWD_NOTE`, `getDisplayPath`, `formatFileSize`
   - Paths: `getPlansDirectory`, `getTaskOutputDir`
   - Components: `FallbackToolUseErrorMessage`, `FilePathLink`, `MessageResponse`
-  - UI: `Text` from `ink.js`
+  - UI: `Text` from ink`
   - Types: `Input`, `Output` from FileReadTool
 
 ## Logic

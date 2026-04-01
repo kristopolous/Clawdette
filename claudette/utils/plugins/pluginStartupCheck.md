@@ -5,7 +5,7 @@ Start with --add-dir plugins (lowest priority)
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../cwd.js, ../debug.js, ../log.js, ../settings/constants.js, ./addDirPluginSettings, ./marketplaceManager, ./schemas
+- **Internal**: ../cwd, ./debug, ./log, ./settings/constants, ./addDirPluginSettings, ./marketplaceManager, ./schemas
 
 ## Items
 

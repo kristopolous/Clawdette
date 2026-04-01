@@ -11,8 +11,8 @@ Provides Claude Desktop integration config path detection for macOS and WSL.
 ## Logic
 1. `getClaudeDesktopConfigPath` - gets Claude Desktop config path
 2. Throws error on unsupported platforms (only macOS and WSL supported)
-3. macOS path: ~/Library/Application Support/Claude/claude_desktop_config.json
-4. WSL path: /mnt/c/Users/{user}/AppData/Roaming/Claude/claude_desktop_config.json
+3. macOS path: ~/Library/ApplicationSupport/Claude/claude_desktop_configon
+4. WSL path: /mnt/c/Users/{user/AppData/Roaming/Claude/claude_desktop_configon
 5. Uses USERPROFILE env var for Windows home detection
 6. Converts Windows backslashes to forward slashes
 7. Removes drive letter and converts to WSL path format

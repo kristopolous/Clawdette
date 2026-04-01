@@ -3,16 +3,16 @@ Toggles voice mode on/off with pre-flight checks for microphone, dependencies, a
 
 ## Imports
 - **Internal**:
-  - `../../hooks/useVoice.js` (normalizeLanguageForSTT)
-  - `../../keybindings/shortcutFormat.js` (getShortcutDisplay)
-  - `../../services/analytics/index.js` (logEvent)
-  - `../../types/command.js` (LocalCommandCall)
-  - `../../utils/auth.js` (isAnthropicAuthEnabled)
-  - `../../utils/config.js` (getGlobalConfig, saveGlobalConfig)
-  - `../../utils/settings/changeDetector.js` (settingsChangeDetector)
-  - `../../utils/settings/settings.js` (getInitialSettings, updateSettingsForSource)
-  - `../../voice/voiceModeEnabled.js` (isVoiceModeEnabled)
-  - Dynamic: `../../services/voiceStreamSTT.js`, `../../services/voice.js`
+  - `.././hooks/useVoice` (normalizeLanguageForSTT)
+  - `.././keybindings/shortcutFormat` (getShortcutDisplay)
+  - `.././services/analytics/index` (logEvent)
+  - `.././types/command` (LocalCommandCall)
+  - `.././utils/auth` (isAnthropicAuthEnabled)
+  - `.././utils/config` (getGlobalConfig, saveGlobalConfig)
+  - `.././utils/settings/changeDetector` (settingsChangeDetector)
+  - `.././utils/settings/settings` (getInitialSettings, updateSettingsForSource)
+  - `.././voice/voiceModeEnabled` (isVoiceModeEnabled)
+  - Dynamic: `.././services/voiceStreamSTT`, `.././services/voice`
 
 ## Logic
 1. If global voice mode is disabled:

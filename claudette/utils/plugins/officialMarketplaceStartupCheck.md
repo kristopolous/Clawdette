@@ -5,7 +5,7 @@ If never attempted, should try
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../../services/analytics/growthbook.js, ../../services/analytics/index.js, ../config.js, ../debug.js, ../envUtils.js, ../errors.js, ../log.js, ./gitAvailability, ./marketplaceHelpers, ./officialMarketplaceGcs
+- **Internal**: ../../services/analytics/growthbook, .././services/analytics/index, ./config, ./debug, ./envUtils, ./errors, ./log, ./gitAvailability, ./marketplaceHelpers, ./officialMarketplaceGcs
 
 ## Items
 

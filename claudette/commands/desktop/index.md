@@ -5,7 +5,7 @@ Defines the `desktop` command (alias: `app`), which continues the current sessio
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Platform support check (`isSupportedPlatform`):
@@ -21,7 +21,7 @@ Command object:
 - `availability`: `['claude-ai']`
 - `isEnabled`: `isSupportedPlatform`
 - `isHidden`: Getter that returns `!isSupportedPlatform()` (hides command on unsupported platforms)
-- `load`: Dynamic import of `./desktop.js` (or `.tsx`)
+- `load`: Dynamic import of `/desktop` (or `.tsx`)
 
 ## Exports
 - `desktop` (Command) - The command definition (exported as default)

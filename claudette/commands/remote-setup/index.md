@@ -11,7 +11,7 @@ Defines 'web-setup' command with:
 - availability: ['claude-ai'] (only on claude.ai)
 - isEnabled: when 'tengu_cobalt_lantern' feature flag true AND 'allow_remote_sessions' policy allowed
 - isHidden: when policy disallows remote sessions
-- load: imports './remote-setup.js' lazily
+- load: imports './remotesetup' lazily
 
 Used for onboarding users to claude.ai/code by connecting their GitHub account.
 

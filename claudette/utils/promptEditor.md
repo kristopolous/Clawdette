@@ -4,7 +4,7 @@
 Map of editor command overrides (e.g., to add wait flags)
 
 ## Imports
-- **Internal**: ../ink/instances.js, ./config.js, ./editor.js, ./execSyncWrapper.js, ./fsOperations.js, ./ide, ./slowOperations, ./tempfile
+- **Internal**: ../ink/instances, /config, /editor, /execSyncWrapper, /fsOperations, ./ide, ./slowOperations, ./tempfile
 
 ## Items
 

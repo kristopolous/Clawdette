@@ -4,7 +4,7 @@
 Handle compact boundary messages
 
 ## Imports
-- **Stdlib**: crypto, src/bootstrap/state.js, src/services/claudeAiLimits.js, src/tools/ExitPlanModeTool/constants.js, src/types/utils.js, strip-ansi
+- **Stdlib**: crypto,src/bootstrap/state,src/services/claudeAiLimits,src/tools/ExitPlanModeTool/constants,src/types/utils, strip-ansi
 - **External**: @anthropic-ai/sdk/resources/beta/messages/messages.mjs
 - **Internal**: ../messages, ../plans
 

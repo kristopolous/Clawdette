@@ -1,5 +1,5 @@
 ## Purpose
-Monitors Node.js process heap memory usage and reports when it exceeds high or critical thresholds, enabling UI to warn users about resource consumption.
+MonitorsNode process heap memory usage and reports when it exceeds high or critical thresholds, enabling UI to warn users about resource consumption.
 
 ## Imports
 - **Stdlib**: None
@@ -18,3 +18,11 @@ When status is `high` or `critical`, it returns an object with `heapUsed` (bytes
 - `useMemoryUsage` - hook returning `{ heapUsed, status } | null`
 - `MemoryUsageStatus` - union type `'normal' | 'high' | 'critical'`
 - `MemoryUsageInfo` - object type `{ heapUsed: number; status: MemoryUsageStatus }`
+
+### Helpful Prompt Templates
+
+_No prompt templates found in this file. It is a React hook for memory monitoring._
+
+### Helpful Prompt Templates
+
+_No prompt templates found in this file. It is a React hook for memory monitoring._

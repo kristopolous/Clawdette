@@ -10,10 +10,10 @@ Renders terminal UI for LSPTool (Language Server Protocol operations). Displays 
 - **External**: `ToolResultBlockParam` type from `@anthropic-ai/sdk`
 - **Internal**:
   - Components: `CtrlOToExpand`, `FallbackToolUseErrorMessage`, `MessageResponse`
-  - UI: `Box`, `Text` from `ink.js`
+  - UI: `Box`, `Text` from ink`
   - Utils: `getDisplayPath`, `extractTag`
   - Type: `Input`, `Output` from LSPTool
-  - Helper: `getSymbolAtPosition` from `symbolContext.js`
+  - Helper: `getSymbolAtPosition` from symbolContext`
 
 ## Logic
 

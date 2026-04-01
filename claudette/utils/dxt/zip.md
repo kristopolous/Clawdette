@@ -5,7 +5,7 @@ Normalize the path to resolve any '.' segments
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../debug.js, ../errors, ../fsOperations, ../path
+- **Internal**: ../debug, ../errors, ../fsOperations, ../path
 
 ## Items
 

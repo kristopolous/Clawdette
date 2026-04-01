@@ -4,8 +4,8 @@
 Remove the hook with matching ID from all matchers
 
 ## Imports
-- **Stdlib**: src/entrypoints/agentSdkTypes.js, src/state/AppState.js, src/types/message.js
-- **Internal**: ../debug.js, ../hooks, ../settings/types, ./hooksSettings
+- **Stdlib**:src/entrypoints/agentSdkTypes,src/state/AppState,src/types/message
+- **Internal**: ../debug, ../hooks, ../settings/types, ./hooksSettings
 
 ## Items
 

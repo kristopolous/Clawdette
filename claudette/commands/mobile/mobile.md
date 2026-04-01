@@ -11,11 +11,11 @@ Displays a QR code to download the Claude mobile app. Supports switching between
 - `react` (including `useState`, `useEffect`, `useCallback`)
 
 ### Internal
-- `Pane` from `../../components/design-system/Pane.js`
-- `KeyboardEvent` type from `../../ink/events/keyboard-event.js`
-- `Box`, `Text` from `../../ink.js`
-- `useKeybinding` from `../../keybindings/useKeybinding.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
+- `Pane` from `../../components/designsystem/Pane`
+- `KeyboardEvent` type from `../../ink/events/keyboardevent`
+- `Box`, `Text` from `.././ink`
+- `useKeybinding` from `.././keybindings/useKeybinding`
+- `LocalJSXCommandOnDone` type from `.././types/command`
 
 ## Logic
 The `call` async function renders the `MobileQRCode` component.

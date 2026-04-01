@@ -11,7 +11,7 @@ Renders terminal UI for WebFetchTool, which fetches content from URLs. Displays 
 - **Internal**:
   - Constants: `TOOL_SUMMARY_MAX_LENGTH`
   - Components: `MessageResponse`
-  - UI: `Box`, `Text` from `ink.js`
+  - UI: `Box`, `Text` from ink`
   - Types: `ToolProgressData`, `ProgressMessage`
   - Utils: `formatFileSize`, `truncate`
   - Related Tool: `WebFetchTool` (for Output type)

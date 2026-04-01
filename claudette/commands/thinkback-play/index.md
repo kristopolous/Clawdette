@@ -5,8 +5,8 @@ Defines the hidden `thinkback-play` command, which plays the thinkback animation
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `checkStatsigFeatureGate_CACHED_MAY_BE_STALE` from `../../services/analytics/growthbook.js`
+- `Command` type from `.././commands`
+- `checkStatsigFeatureGate_CACHED_MAY_BE_STALE` from `.././services/analytics/growthbook`
 
 ## Logic
 Creates a command object:
@@ -16,7 +16,7 @@ Creates a command object:
 - `isEnabled`: Feature-gated via `checkStatsigFeatureGate_CACHED_MAY_BE_STALE('tengu_thinkback')`.
 - `isHidden`: `true` (not shown in help)
 - `supportsNonInteractive`: `false`
-- `load`: Dynamic import of `./thinkback-play.js` (or `.ts`)
+- `load`: Dynamic import of `./thinkbackplay` (or `.ts`)
 
 ## Exports
 - `thinkbackPlay` (Command) - The command definition (exported as default)

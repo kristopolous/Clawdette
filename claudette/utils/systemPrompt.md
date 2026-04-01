@@ -22,7 +22,7 @@ Provides system prompt building utilities based on priority rules.
    - 3. Custom system prompt (if specified via --system-prompt)
    - 4. Default system prompt (standard Claudette prompt)
 6. appendSystemPrompt always added at end (except when override set)
-7. Coordinator mode: uses getCoordinatorSystemPrompt from coordinatorMode.js
+7. Coordinator mode: uses getCoordinatorSystemPrompt fromcoordinatorMode
 8. Lazy require to avoid circular dependency at module load time
 9. Built-in agents use getSystemPrompt method
 10. Custom agents use systemPrompt property

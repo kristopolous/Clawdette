@@ -11,7 +11,7 @@ Discovers, loads, and validates Claudette plugins from marketplaces and git repo
 ## Logic
 1. Plugin discovery sources: marketplace-based plugins, session-only plugins (--plugin-dir CLI flag)
 2. NPM packages supported but must be referenced through marketplaces
-3. Plugin structure: plugin.json (manifest), commands/, agents/, hooks/
+3. Plugin structure:pluginon (manifest), commands/, agents/, hooks/
 4. Handles manifest validation, hooks configuration, duplicate detection, enable/disable state
 5. `loadAllPluginsCacheOnly` - loads all plugins from cache
 6. `loadAllPlugins` - loads all plugins with full validation

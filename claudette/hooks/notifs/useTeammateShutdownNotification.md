@@ -4,10 +4,10 @@ Shows low-priority batched notifications when in-process teammates (swarm agents
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../../context/notifications.js` (Notification type, useNotifications)
-  - `../../state/AppState.js` (useAppState)
-  - `../../tasks/InProcessTeammateTask/types.js` (isInProcessTeammateTask)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `.././context/notifications` (Notification type, useNotifications)
+  - `.././state/AppState` (useAppState)
+  - `.././tasks/InProcessTeammateTask/types` (isInProcessTeammateTask)
 
 ## Logic
 - Hooks into `useAppState` to watch `tasks`

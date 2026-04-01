@@ -19,7 +19,7 @@ Provides utilities for local installation management.
 8. Returns true if created, false if already exists
 9. `ensureLocalPackageEnvironment` - ensures local package environment
 10. Creates installation directory (recursive, idempotent)
-11. Creates package.json if missing
+11. Createspackageon if missing
 12. Creates wrapper script if missing (#!/bin/sh exec claude "$@")
 13. Sets wrapper permissions to 0o755
 14. `installLocalPackage` - installs package locally

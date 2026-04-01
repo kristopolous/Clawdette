@@ -3,8 +3,8 @@ Convenience wrapper that wires `useExitOnCtrlCD` with the standard `useKeybindin
 
 ## Imports
 - **Internal**:
-  - `../keybindings/useKeybinding.js` (useKeybindings)
-  - `./useExitOnCtrlCD.js` (useExitOnCtrlCD, ExitState)
+  - `./keybindings/useKeybinding` (useKeybindings)
+  - `/useExitOnCtrlCD` (useExitOnCtrlCD, ExitState)
 
 ## Logic
 - Exports `ExitState` type for consumers

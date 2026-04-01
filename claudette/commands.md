@@ -29,7 +29,7 @@ Entry point that parses CLI arguments, initializes the application, and launches
 - **Internal**: `init`, `launchRepl`, `getCommands`, `getTools`
 
 ## Logic
-1. Parse CLI flags via Commander.js
+1. Parse CLI flags viaCommander
 2. Pre-fetch keychain and MDM settings in parallel
 3. Initialize telemetry and config
 4. Check for updates, auth, and managed settings

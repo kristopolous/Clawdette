@@ -4,10 +4,10 @@ Command to display and manage privacy settings, specifically the "Help improve C
 ## Imports
 - **External**: `react`
 - **Internal**: 
-  - `../../components/grove/Grove.js` (GroveDecision, GroveDialog, PrivacySettingsDialog)
-  - `../../services/analytics/index.js` (logEvent, AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS)
-  - `../../services/api/grove.js` (getGroveSettings, getGroveNoticeConfig, isQualifiedForGrove)
-  - `../../types/command.js` (LocalJSXCommandOnDone)
+  - `.././components/grove/Grove` (GroveDecision, GroveDialog, PrivacySettingsDialog)
+  - `.././services/analytics/index` (logEvent, AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS)
+  - `.././services/api/grove` (getGroveSettings, getGroveNoticeConfig, isQualifiedForGrove)
+  - `.././types/command` (LocalJSXCommandOnDone)
 
 ## Logic
 1. Check if user is qualified for Grove feature

@@ -4,8 +4,8 @@
 Get everything before the first glob character
 
 ## Imports
-- **Stdlib**: lodash-es/memoize.js, os, path
-- **Internal**: ../../Tool.js, ../../utils/platform.js, ../path.js, ../sandbox/sandbox-adapter, ../shell/readOnlyCommandValidation, ./PermissionResult
+- **Stdlib**: lodashes/memoize, os, path
+- **Internal**: ../../Tool, .././utils/platform, ./path, ../sandbox/sandbox-adapter, ../shell/readOnlyCommandValidation, ./PermissionResult
 
 ## Items
 

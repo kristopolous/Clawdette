@@ -2,7 +2,7 @@
 CLI subcommand: `claude mcp xaa` - manages XAA (SEP-990) IdP connection.
 
 ## Imports
-- **External**: Commander.js
+- **External**:Commander
 - **Internal**: xaaIdpLogin service, settings management, keychain utilities
 
 ## Logic

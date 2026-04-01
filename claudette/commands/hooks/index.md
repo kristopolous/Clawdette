@@ -5,7 +5,7 @@ Registers the hooks command metadata and lazy-loads the implementation.
 - **Internal**: `Command` type
 
 ## Logic
-Defines a 'local-jsx' command named 'hooks' with description "View hook configurations for tool events". The command has `immediate: true` and loads its implementation from './hooks.js' on demand.
+Defines a 'local-jsx' command named 'hooks' with description "View hook configurations for tool events". The command has `immediate: true` and loads its implementation from '/hooks' on demand.
 
 ## Exports
 - `default` - The hooks command object

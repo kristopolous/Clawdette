@@ -4,8 +4,8 @@
 Generate deterministic agent ID
 
 ## Imports
-- **Stdlib**: lodash-es/sample.js
-- **Internal**: ../../bootstrap/state.js, ../../constants/spinnerVerbs.js, ../../constants/turnCompletionVerbs.js, ../../state/AppState.js, ../../Task.js, ../abortController.js, ../agentId.js, ../cleanupRegistry, ../debug, ../sdkEventQueue...
+- **Stdlib**: lodashes/sample
+- **Internal**: ../../bootstrap/state, .././constants/spinnerVerbs, .././constants/turnCompletionVerbs, .././state/AppState, .././Task, ./abortController, ./agentId, ../cleanupRegistry, ../debug, ../sdkEventQueue...
 
 ## Items
 

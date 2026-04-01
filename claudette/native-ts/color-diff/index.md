@@ -3,11 +3,11 @@ Pure TypeScript port of a Rust color-diff module that renders syntax-highlighted
 
 ## Imports
 - **Stdlib**: `path`
-- **External**: `diff`, `highlight.js`
+- **External**: `diff`, highlight`
 - **Internal**: `../../ink/stringWidth`, `../../utils/log`
 
 ## Logic
-Builds color themes (Monokai for dark, GitHub for light, ANSI fallback) mapping highlight.js scopes to RGB colors measured from the original Rust syntect output. Detects language via filename, extension, and shebang. Renders diffs by parsing hunk markers, computing word-level diff ranges using diffArrays, applying syntax highlighting per line, then running a transform pipeline that removes newlines, applies word-diff backgrounds, wraps text to width, adds line numbers and markers, and converts to ANSI escape sequences with truecolor or 256-color fallback.
+Builds color themes (Monokai for dark, GitHub for light, ANSI fallback) mappinghighlight scopes to RGB colors measured from the original Rust syntect output. Detects language via filename, extension, and shebang. Renders diffs by parsing hunk markers, computing word-level diff ranges using diffArrays, applying syntax highlighting per line, then running a transform pipeline that removes newlines, applies word-diff backgrounds, wraps text to width, adds line numbers and markers, and converts to ANSI escape sequences with truecolor or 256-color fallback.
 
 ## Exports
 - `Hunk` - type representing a diff hunk with old/new start lines, line counts, and line content

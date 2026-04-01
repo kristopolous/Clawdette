@@ -3,8 +3,8 @@ Command registration for the `voice` command, which toggles voice mode with feat
 
 ## Imports
 - **Internal**:
-  - `../../commands.js` (Command type)
-  - `../../voice/voiceModeEnabled.js` (isVoiceGrowthBookEnabled, isVoiceModeEnabled)
+  - `.././commands` (Command type)
+  - `.././voice/voiceModeEnabled` (isVoiceGrowthBookEnabled, isVoiceModeEnabled)
 
 ## Logic
 Defines a command object:
@@ -15,7 +15,7 @@ Defines a command object:
 - `isEnabled`: Only enabled when feature flag `isVoiceGrowthBookEnabled` is true
 - `isHidden`: Hidden when global voice mode `isVoiceModeEnabled` is false
 - `supportsNonInteractive`: false (requires interactive session)
-- `load`: Lazy-loads the command implementation from './voice.js'
+- `load`: Lazy-loads the command implementation from '/voice'
 
 ## Exports
 - `default` - The command object satisfying the Command interface

@@ -4,7 +4,7 @@
 For once: true hooks, use onHookSuccess callback to remove after execution
 
 ## Imports
-- **Stdlib**: src/entrypoints/agentSdkTypes.js, src/state/AppState.js
+- **Stdlib**:src/entrypoints/agentSdkTypes,src/state/AppState
 - **Internal**: ../debug, ../settings/types, ./sessionHooks
 
 ## Items

@@ -7,18 +7,18 @@ Factory for creating the permission context object used during tool use authoriz
 - **Internal** (selected):
   - `services/analytics/*` - `logEvent`, `sanitizeToolNameForAnalytics`
   - `components/permissions/PermissionRequest` - `ToolUseConfirm` type
-  - `Tool.js` - `ToolPermissionContext`, `Tool`, `ToolUseContext`
+  - Tool` - `ToolPermissionContext`, `Tool`, `ToolUseContext`
   - `tools/BashTool/bashPermissions` - `awaitClassifierAutoApproval`
-  - `tools/BashTool/toolName.js` - `BASH_TOOL_NAME`
+  - tools/BashTool/toolName` - `BASH_TOOL_NAME`
   - `types/message` - `AssistantMessage`
   - `types/permissions` - decision and reason types
   - `utils/classifierApprovals` - `setClassifierApproval`
   - `utils/debug` - `logForDebugging`
-  - `utils/hooks.js` - `executePermissionRequestHooks`
-  - `utils/messages.js` - reject message constants, `withMemoryCorrectionHint`
+  - utils/hooks` - `executePermissionRequestHooks`
+  - utils/messages` - reject message constants, `withMemoryCorrectionHint`
   - `utils/permissions/PermissionResult` - `PermissionDecision` type
   - `utils/permissions/PermissionUpdate*` - update/persist helpers
-  - `hooks/toolPermission/permissionLogging.js` - `logPermissionDecision`
+  - hooks/toolPermission/permissionLogging` - `logPermissionDecision`
 
 ## Logic
 - `createResolveOnce<T>`: Returns a wrapper with `resolve`, `isResolved`, and `claim` to guarantee a single resolution across async callers.

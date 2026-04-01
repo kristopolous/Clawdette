@@ -3,7 +3,7 @@ Adapts the Yoga layout engine to the local LayoutNode interface, providing a bri
 
 ## Imports
 - **Stdlib**: None specified
-- **External**: Yoga library types and functions from 'src/native-ts/yoga-layout/index.js'
+- **External**: Yoga library types and functions from 'src/native-ts/yogalayout/index'
 - **Internal**: Layout types from local node module
 
 ## Logic

@@ -3,8 +3,8 @@ Command definition and registration for `privacy-settings`. Provides metadata an
 
 ## Imports
 - **Internal**:
-  - `../../commands.js` (Command type)
-  - `../../utils/auth.js` (isConsumerSubscriber)
+  - `.././commands` (Command type)
+  - `.././utils/auth` (isConsumerSubscriber)
 
 ## Logic
 Defines a command object with:
@@ -12,7 +12,7 @@ Defines a command object with:
 - `name`: 'privacy-settings'
 - `description`: 'View and update your privacy settings'
 - `isEnabled`: Only enables for consumer subscribers (paid users)
-- `load`: Dynamic import that loads the React component from './privacy-settings.js' when executed
+- `load`: Dynamic import that loads the React component from './privacysettings' when executed
 
 ## Exports
 - `default` - The command object conforming to Command interface

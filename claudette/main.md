@@ -14,7 +14,7 @@ Entry point that parses CLI arguments, initializes the application, and launches
    - `startMdmRawRead` - fire MDM subprocesses in parallel
    - `startKeychainPrefetch` - prefetch keychain for OAuth/API key
 
-2. **CLI parsing**: Use Commander.js to parse `--version`, `--add`, commands, etc.
+2. **CLI parsing**: UseCommander to parse `--version`, `--add`, commands, etc.
 
 3. **Initialization** (`init()`):
    - Enable config system
@@ -41,3 +41,7 @@ Entry point that parses CLI arguments, initializes the application, and launches
 - **Feature flags via `feature()`**: Dead code elimination - modules like `COORDINATOR_MODE` are conditionally imported and eliminated from builds
 - **Lazy telemetry**: OpenTelemetry is lazy-loaded only when telemetry is actually initialized (~400KB savings at startup)
 - **Circular dependency avoidance**: Some imports use `require()` in functions (e.g., `getTeammateUtils()`) to avoid circular deps
+
+### Helpful Prompt Templates
+
+_No embedded prompt templates found in main.tsx. This file is the CLI entry point handling argument parsing, initialization, and mode dispatching._

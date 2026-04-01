@@ -8,11 +8,11 @@ Displays the Passes (referral program) interface, allowing users to share a free
 - `react`
 
 ### Internal
-- `Passes` component from `../../components/Passes/Passes.js`
-- `logEvent` from `../../services/analytics/index.js`
-- `getCachedRemainingPasses` from `../../services/api/referral.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- `getGlobalConfig`, `saveGlobalConfig` from `../../utils/config.js`
+- `Passes` component from `.././components/Passes/Passes`
+- `logEvent` from `.././services/analytics/index`
+- `getCachedRemainingPasses` from `.././services/api/referral`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- `getGlobalConfig`, `saveGlobalConfig` from `.././utils/config`
 
 ## Logic
 The `call` async function:

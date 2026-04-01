@@ -5,8 +5,8 @@ Opens the browser to the sticker ordering page for Claudette. Reports whether th
 
 ## Imports
 ### Internal
-- `LocalCommandResult` type from `../../types/command.js`
-- `openBrowser` from `../../utils/browser.js`
+- `LocalCommandResult` type from `.././types/command`
+- `openBrowser` from `.././utils/browser`
 
 ## Logic
 The `call` async function:

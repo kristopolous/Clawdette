@@ -1,7 +1,7 @@
 # orphanedPluginFilter
 
 ## Purpose
-Inlined from cacheUtils.ts to avoid a circular dep through commands.js.
+Inlined from cacheUtils.ts to avoid a circular dep throughcommands.
 
 ## Imports
 - **Stdlib**: path

@@ -9,7 +9,7 @@ Add a new marketplace source via interactive input with validation.
 Renders a text input for marketplace source. Accepts formats:
 - owner/repo (GitHub)
 - git@github.com:owner/repo.git (SSH)  
-- https://example.com/marketplace.json (URL)
+- https://examplecom/marketplaceon (URL)
 - ./path/to/marketplace (local)
 
 Validates input, processes the marketplace addition, saves to settings, and clears caches. Supports auto-add from pre-filled input. Shows progress/errors during operation.

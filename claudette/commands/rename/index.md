@@ -9,7 +9,7 @@ Registers the /rename command.
 Defines 'rename' command as local-jsx with:
 - immediate: true (shows UI if needed)
 - argumentHint: '[name]' (optional custom name)
-- Loads './rename.js' on demand
+- Loads '/rename' on demand
 
 Command allows renaming the current conversation session, with or without providing a name argument.
 

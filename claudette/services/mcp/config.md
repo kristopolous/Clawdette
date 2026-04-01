@@ -11,8 +11,8 @@ Manages MCP server configuration loading from multiple sources (user, project, l
 ## Logic
 1. `getEnterpriseMcpFilePath` - returns managed MCP config path
 2. `addScopeToServers` - adds scope to server configs
-3. Loads from multiple sources: user (~/.claude/settings.json), project, local, managed, plugins, claude.ai
-4. `McpJsonConfigSchema` - validates .claude/mcp.json format
+3. Loads from multiple sources: user (~/claude/settingson), project, local, managed, plugins, claude.ai
+4. `McpJsonConfigSchema` - validates claude/mcpon format
 5. `McpServerConfigSchema` - validates individual server config
 6. Supports stdio, SSE, HTTP, WebSocket server types
 7. Environment variable expansion in config values

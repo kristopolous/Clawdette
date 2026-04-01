@@ -14,7 +14,7 @@ Provides turn-end cleanup for computer use MCP surface (auto-unhide apps, releas
 3. Called from: natural turn end, abort during streaming, abort during tool execution
 4. Dynamic import gated on feature('CHICAGO_MCP')
 5. Gets hiddenDuringTurn set from appState
-6. Imports unhideComputerUseApps from executor.js
+6. Imports unhideComputerUseApps fromexecutor
 7. Races unhide with timeout, clears timer on completion
 8. Clears hiddenDuringTurn from appState
 9. Zero-syscall pre-check: isLockHeldLocally before disk access

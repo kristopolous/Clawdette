@@ -4,12 +4,12 @@ Shows a one-shot notification when the user wraps past auto mode in the permissi
 ## Imports
 - **External**: `bun:bundle` (feature), `react` (useEffect, useRef)
 - **Internal**:
-  - `src/context/notifications.js` (useNotifications)
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../../state/AppState.js` (useAppState)
-  - `../../utils/permissions/PermissionMode.js` (PermissionMode type)
-  - `../../utils/permissions/permissionSetup.js` (getAutoModeUnavailableNotification, getAutoModeUnavailableReason)
-  - `../../utils/settings/settings.js` (hasAutoModeOptIn)
+  - src/context/notifications` (useNotifications)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `.././state/AppState` (useAppState)
+  - `.././utils/permissions/PermissionMode` (PermissionMode type)
+  - `.././utils/permissions/permissionSetup` (getAutoModeUnavailableNotification, getAutoModeUnavailableReason)
+  - `.././utils/settings/settings` (hasAutoModeOptIn)
 
 ## Logic
 - Requires `feature('TRANSCRIPT_CLASSIFIER')` and not remote mode

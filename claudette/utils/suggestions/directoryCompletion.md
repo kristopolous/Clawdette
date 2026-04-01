@@ -4,7 +4,7 @@
 Types
 
 ## Imports
-- **Stdlib**: lru-cache, path, src/components/PromptInput/PromptInputFooterSuggestions.js, src/utils/cwd.js, src/utils/fsOperations.js, src/utils/log.js, src/utils/path.js
+- **Stdlib**: lru-cache, path,src/components/PromptInput/PromptInputFooterSuggestions,src/utils/cwd,src/utils/fsOperations,src/utils/log,src/utils/path
 
 ## Items
 

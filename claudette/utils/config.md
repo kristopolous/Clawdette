@@ -16,7 +16,7 @@ Manages global and project configuration with file watching and migration suppor
 5. `ReleaseChannel` - stable, latest
 6. `ProjectConfig` - allowedTools, mcpContextUris, mcpServers, lastAPIDuration
 7. `getGlobalClaudeFile` - gets global config file path
-8. Legacy fallback to .config.json
+8. Legacy fallback to configon
 9. Uses fileSuffixForOauthConfig for oauth config suffix
 10. `getGlobalConfig` - gets global config with memoization
 11. `saveGlobalConfig` - saves global config with file watching

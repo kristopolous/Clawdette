@@ -10,7 +10,7 @@ Provides auto-dream enabled state check with minimal imports for UI components.
 
 ## Logic
 1. `isAutoDreamEnabled` - checks if background memory consolidation should run
-2. User setting (autoDreamEnabled in settings.json) overrides GrowthBook default when explicitly set
+2. User setting (autoDreamEnabled insettingson) overrides GrowthBook default when explicitly set
 3. Falls through to tengu_onyx_plover GrowthBook feature if setting undefined
 4. Returns gb?.enabled === true from GrowthBook
 5. Leaf config module - intentionally minimal imports

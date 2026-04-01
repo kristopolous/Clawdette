@@ -10,7 +10,7 @@ Provides plugin identifier parsing and building utilities.
 
 ## Logic
 1. `ExtendedPluginScope` - PluginScope | 'flag' (session-only)
-2. `PersistablePluginScope` - excludes 'flag' (persisted to installed_plugins.json)
+2. `PersistablePluginScope` - excludes 'flag' (persisted toinstalled_pluginson)
 3. `SETTING_SOURCE_TO_SCOPE` - maps SettingSource to ExtendedPluginScope
 4. policySettings → 'managed', userSettings → 'user', projectSettings → 'project'
 5. localSettings → 'local', flagSettings → 'flag'

@@ -4,8 +4,8 @@
 Retry configuration for teleport API requests
 
 ## Imports
-- **Stdlib**: axios, crypto, src/constants/oauth.js, src/services/oauth/client.js, zod/v4
-- **Internal**: ../auth.js, ../debug.js, ../detectRepository.js, ../errors.js, ../lazySchema.js, ../log, ../sleep, ../slowOperations
+- **Stdlib**: axios, crypto,src/constants/oauth,src/services/oauth/client, zod/v4
+- **Internal**: ../auth, ./debug, ./detectRepository, ./errors, ./lazySchema, ../log, ../sleep, ../slowOperations
 
 ## Items
 

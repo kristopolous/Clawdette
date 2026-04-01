@@ -5,7 +5,7 @@ Defines the `usage` command to show plan usage limits. Available only in claude-
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'usage'`
 - `description`: `'Show plan usage limits'`
 - `availability`: `['claude-ai']`
-- `load`: Dynamic import of `./usage.js` (or `.tsx`)
+- `load`: Dynamic import of `/usage` (or `.tsx`)
 
 ## Exports
 - Default command object (satisfies `Command`)

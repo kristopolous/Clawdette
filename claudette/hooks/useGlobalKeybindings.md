@@ -4,13 +4,13 @@ Registers global and transcript-mode keybinding handlers for UI toggles (todos, 
 ## Imports
 - **External**: `react` (useCallback), `bun:bundle` (feature)
 - **Internal**:
-  - `../keybindings/useKeybinding.js` (useKeybinding)
-  - `../screens/REPL.js` (Screen type)
-  - `../services/analytics/growthbook.js` (getFeatureValue_CACHED_MAY_BE_STALE)
-  - `../services/analytics/index.js` (logEvent, AnalyticsMetadata type)
-  - `../state/AppState.js` (useAppState, useSetAppState)
-  - `../utils/array.js` (count)
-  - `../utils/terminalPanel.js` (getTerminalPanel)
+  - `./keybindings/useKeybinding` (useKeybinding)
+  - `./screens/REPL` (Screen type)
+  - `./services/analytics/growthbook` (getFeatureValue_CACHED_MAY_BE_STALE)
+  - `./services/analytics/index` (logEvent, AnalyticsMetadata type)
+  - `./state/AppState` (useAppState, useSetAppState)
+  - `./utils/array` (count)
+  - `./utils/terminalPanel` (getTerminalPanel)
 
 ## Logic
 Component takes `Props` (screen state, setters, messageCount, optional callbacks, virtualScrollActive, searchBarOpen). Registers handlers via `useKeybinding`:

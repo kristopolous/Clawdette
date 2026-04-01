@@ -10,7 +10,7 @@ Provides environment detection and configuration utilities.
 
 ## Logic
 1. `getGlobalClaudeFile` - gets global Claude config file path
-2. Legacy fallback to .config.json if exists
+2. Legacy fallback to configon if exists
 3. Uses fileSuffixForOauthConfig for oauth config suffix
 4. Respects CLAUDE_CONFIG_DIR env var
 5. `hasInternetAccess` - checks internet connectivity via 1.1.1.1

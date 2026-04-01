@@ -1,7 +1,7 @@
 # utils/plugins/installedPluginsManager
 
 ## Purpose
-Manages plugin installation metadata stored in installed_plugins.json.
+Manages plugin installation metadata stored ininstalled_pluginson.
 
 ## Imports
 - **Stdlib**: `path`
@@ -10,13 +10,13 @@ Manages plugin installation metadata stored in installed_plugins.json.
 
 ## Logic
 1. Separates plugin installation state (global) from enabled/disabled state (per-repository)
-2. installed_plugins.json tracks: installed plugins globally, installation metadata (version, timestamps, paths)
-3. Enabled/disabled state remains in .claude/settings.json for per-repo control
+2.installed_pluginson tracks: installed plugins globally, installation metadata (version, timestamps, paths)
+3. Enabled/disabled state remains in claude/settingson for per-repo control
 4. `PersistableScope` - excludes 'flag' (session-only)
 5. `migrationCompleted` - prevents running migration multiple times per session
 6. `installedPluginsCacheV2` - memoized cache of installed plugins (V2 format)
 7. `inMemoryInstalledPlugins` - session-level snapshot at startup
-8. `getInstalledPluginsFilePath` - gets installed_plugins.json path
+8. `getInstalledPluginsFilePath` - getsinstalled_pluginson path
 9. `loadInstalledPluginsFromDisk` - loads installed plugins from disk
 10. `saveInstalledPluginsToDisk` - saves installed plugins to disk
 11. `addInstalledPlugin` - adds plugin to installed list

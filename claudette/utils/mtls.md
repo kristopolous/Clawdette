@@ -1,10 +1,10 @@
 # mtls
 
 ## Purpose
-Note: NODE_EXTRA_CA_CERTS is automatically handled by Node.js at runtime
+Note: NODE_EXTRA_CA_CERTS is automatically handled byNode at runtime
 
 ## Imports
-- **Stdlib**: https, https, lodash-es/memoize.js, tls, undici
+- **Stdlib**: https, https, lodashes/memoize, tls, undici
 - **Internal**: ./caCerts, ./debug, ./fsOperations
 
 ## Items

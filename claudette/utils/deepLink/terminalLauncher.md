@@ -5,7 +5,7 @@ macOS terminals in preference order.
 
 ## Imports
 - **Stdlib**: child_process, path
-- **Internal**: ../config.js, ../debug, ../execFileNoThrow, ../which
+- **Internal**: ../config, ../debug, ../execFileNoThrow, ../which
 
 ## Items
 

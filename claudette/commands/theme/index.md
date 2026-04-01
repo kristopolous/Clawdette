@@ -5,14 +5,14 @@ Defines the `theme` command for changing the UI theme.
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
 - `type`: `'local-jsx'`
 - `name`: `'theme'`
 - `description`: `'Change the theme'`
-- `load`: Dynamic import of `./theme.js` (or `.tsx`)
+- `load`: Dynamic import of `/theme` (or `.tsx`)
 
 ## Exports
 - `theme` (Command) - The command definition (exported as default)

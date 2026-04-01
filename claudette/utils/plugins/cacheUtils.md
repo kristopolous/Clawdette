@@ -21,7 +21,7 @@ Provides plugin cache clearing and orphaned version cleanup utilities.
 10. Writes .orphaned_at file with timestamp
 11. `cleanupOrphanedPluginVersionsInBackground` - cleans orphaned versions
 12. Pass 1: removes .orphaned_at from installed versions
-13. Pass 2: for cached versions not in installed_plugins.json:
+13. Pass 2: for cached versions not ininstalled_pluginson:
     - If no .orphaned_at: creates it (handles old CC versions)
     - If .orphaned_at > 7 days old: deletes version
 14. Skips cleanup in zip cache mode (plugins stored as .zip files)

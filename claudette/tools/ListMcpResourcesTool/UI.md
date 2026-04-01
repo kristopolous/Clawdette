@@ -10,7 +10,7 @@ Renders terminal UI for the ListMcpResourcesTool, which queries MCP (Model Conte
 - **External**: None
 - **Internal**:
   - Components: `MessageResponse`, `OutputLine`
-  - UI: `Text` from `ink.js`
+  - UI: `Text` from ink`
   - Types: `ToolProgressData`, `ProgressMessage`
   - Utils: `jsonStringify` (from slow operations)
   - Related Tool: `ListMcpResourcesTool` (for Output type)

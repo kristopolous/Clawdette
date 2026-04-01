@@ -4,14 +4,14 @@ Manages multiple IDE-related notifications: hint to enable `/ide`, disconnected 
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `src/context/notifications.js` (useNotifications)
-  - `src/ink.js` (Text)
-  - `src/services/mcp/types.js` (MCPServerConnection)
-  - `src/utils/config.js` (getGlobalConfig, saveGlobalConfig)
-  - `src/utils/ide.js` (detectIDEs, IDEExtensionInstallationStatus, isJetBrainsIde, isSupportedTerminal)
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../useIdeConnectionStatus.js` (useIdeConnectionStatus)
-  - `../useIdeSelection.js` (IDESelection)
+  - src/context/notifications` (useNotifications)
+  - src/ink` (Text)
+  - src/services/mcp/types` (MCPServerConnection)
+  - src/utils/config` (getGlobalConfig, saveGlobalConfig)
+  - src/utils/ide` (detectIDEs, IDEExtensionInstallationStatus, isJetBrainsIde, isSupportedTerminal)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `./useIdeConnectionStatus` (useIdeConnectionStatus)
+  - `./useIdeSelection` (IDESelection)
 
 ## Logic
 Hook takes `Props`: `ideInstallationStatus`, `ideSelection`, `mcpClients`

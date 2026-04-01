@@ -5,10 +5,10 @@ Provides an interactive Button component that handles keyboard, mouse, and focus
 - **Stdlib**: None specified
 - **External**: React, useCallback, useEffect, useRef, useState from 'react'; Except from 'type-fest'; React compiler runtime
 - **Internal**: 
-  - DOMElement from ../dom.js
+  - DOMElement from ./dom
   - ClickEvent, FocusEvent, KeyboardEvent from respective event modules
-  - Styles from ../styles.js
-  - Box component from ./Box.js
+  - Styles from ./styles
+  - Box component from /Box
 
 ## Logic
 1. **ButtonState Type**: Tracks interactive state with three boolean properties:

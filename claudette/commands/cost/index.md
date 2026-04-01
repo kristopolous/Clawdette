@@ -9,7 +9,7 @@ Provides lazy-loaded command metadata for the `cost` command to reduce startup t
 ## Logic
 1. Defines command metadata with type 'local'
 2. Configures `isHidden` to hide from regular subscribers but show for Ant users
-3. Uses lazy loading via `load: () => import('./cost.js')` to defer implementation loading
+3. Uses lazy loading via `load: () => import('/cost')` to defer implementation loading
 4. Command shows session cost and duration when invoked
 
 ## Exports

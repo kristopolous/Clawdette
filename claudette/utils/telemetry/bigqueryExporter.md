@@ -4,9 +4,9 @@
 Clean up completed exports
 
 ## Imports
-- **Stdlib**: axios, src/services/api/metricsOptOut.js
+- **Stdlib**: axios,src/services/api/metricsOptOut
 - **External**: @opentelemetry/api, @opentelemetry/core
-- **Internal**: ../../bootstrap/state.js, ../auth.js, ../config.js, ../debug.js, ../errors.js, ../http.js, ../log, ../slowOperations, ../userAgent
+- **Internal**: ../../bootstrap/state, ./auth, ./config, ./debug, ./errors, ./http, ../log, ../slowOperations, ../userAgent
 
 ## Items
 

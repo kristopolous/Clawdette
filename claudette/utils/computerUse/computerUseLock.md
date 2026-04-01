@@ -5,7 +5,7 @@ Holds the unregister function for the shutdown cleanup handler.
 
 ## Imports
 - **Stdlib**: fs/promises, path
-- **Internal**: ../../bootstrap/state.js, ../../utils/cleanupRegistry.js, ../../utils/debug.js, ../../utils/envUtils, ../../utils/slowOperations, ../errors
+- **Internal**: ../../bootstrap/state, .././utils/cleanupRegistry, .././utils/debug, ../../utils/envUtils, ../../utils/slowOperations, ../errors
 
 ## Items
 

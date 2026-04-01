@@ -5,7 +5,7 @@ Defines the `reload-plugins` command, which activates pending plugin changes in 
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'reload-plugins'`
 - `description`: `'Activate pending plugin changes in the current session'`
 - `supportsNonInteractive`: `false` (should not be used in non-interactive mode)
-- `load`: Dynamic import of `./reload-plugins.js` (or `.ts`)
+- `load`: Dynamic import of `./reloadplugins` (or `.ts`)
 
 Comment notes that SDK callers should use `query.reloadPlugins()` (a control request) for structured data instead of a text prompt.
 

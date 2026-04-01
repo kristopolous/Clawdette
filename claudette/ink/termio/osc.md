@@ -5,10 +5,10 @@ Provides types, constants, and utility functions for working with ANSI Operating
 - **Stdlib**: Buffer from 'buffer'
 - **External**: None specified
 - **Internal**: 
-  - env from '../../utils/env.js'
-  - execFileNoThrow from '../../utils/execFileNoThrow.js'
-  - BEL, ESC, ESC_TYPE, SEP from './ansi.js'
-  - Action, Color, TabStatusAction types from './types.js'
+  - env from '.././utils/env'
+  - execFileNoThrow from '.././utils/execFileNoThrow'
+  - BEL, ESC, ESC_TYPE, SEP from '/ansi'
+  - Action, Color, TabStatusAction types from '/types'
 
 ## Logic
 1. **OSC Infrastructure**:

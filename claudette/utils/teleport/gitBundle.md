@@ -5,7 +5,7 @@ Tunable via tengu_ccr_bundle_max_bytes.
 
 ## Imports
 - **Stdlib**: fs/promises
-- **Internal**: ../../services/analytics/growthbook.js, ../../services/api/filesApi.js, ../cwd.js, ../debug.js, ../execFileNoThrow, ../git, ../tempfile
+- **Internal**: ../../services/analytics/growthbook, .././services/api/filesApi, ./cwd, ./debug, ../execFileNoThrow, ../git, ../tempfile
 
 ## Items
 

@@ -9,21 +9,16 @@ Manages agent memory snapshot persistence and synchronization.
 - **Internal**: cwd, debug, lazySchema, JSON utils, agentMemory
 
 ## Logic
-1. `SNAPSHOT_BASE` - agent-memory-snapshots directory
-2. `SNAPSHOT_JSON` - snapshot.json metadata file
-3. `SYNCED_JSON` - .snapshot-synced.json sync tracking file
-4. `snapshotMetaSchema` - { updatedAt: string }
-5. `syncedMetaSchema` - { syncedFrom: string }
-6. `getSnapshotDirForAgent` - gets snapshot directory for agent
-7. `readJsonFile` - reads and validates JSON file with schema
-8. `copySnapshotToLocal` - copies snapshot files to local agent memory
-9. Skips SNAPSHOT_JSON, copies all other files
-10. `saveSyncedMeta` - saves sync metadata
-11. `loadSyncedMeta` - loads sync metadata
-12. `shouldSyncSnapshot` - checks if sync needed
-13. `syncSnapshotIfNeeded` - syncs if snapshot newer than synced
-14. `saveAgentMemorySnapshot` - saves current memory to snapshot
-15. `loadAgentMemoryFromSnapshot` - loads memory from snapshot
+1. Defines constants: SNAPSHOT_BASE, SNAPSHOT_JSON, SYNCED_JSON
+2. Creates Zod schemas: snapshotMetaSchema, syncedMetaSchema
+3. `getSnapshotDirForAgent` - returns snapshot directory path for agent
+4. `readJsonFile` - reads and validates JSON with schema (internal helper)
+5. `copySnapshotToLocal` - copies snapshot files to local memory, skips SNAPSHOT_JSON
+6. `saveSyncedMeta` - saves sync tracking metadata (internal helper)
+7. `checkAgentMemorySnapshot` - checks if snapshot exists and is newer than local
+8. `initializeFromSnapshot` - initializes local memory from snapshot (first-time)
+9. `replaceFromSnapshot` - replaces local memory with snapshot (force update)
+10. `markSnapshotSynced` - updates sync metadata without changing files
 
 ## Exports
 - `getSnapshotDirForAgent` - gets snapshot directory for agent

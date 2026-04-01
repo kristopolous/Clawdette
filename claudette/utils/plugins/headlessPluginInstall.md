@@ -4,7 +4,7 @@
 Register seed marketplaces (CLAUDE_CODE_PLUGIN_SEED_DIR) before diffing.
 
 ## Imports
-- **Internal**: ../../services/analytics/index.js, ../cleanupRegistry.js, ../debug.js, ../diagLogs.js, ../fsOperations.js, ../log.js, ./pluginBlocklist.js, ./pluginLoader, ./reconciler, ./zipCacheAdapters
+- **Internal**: ../../services/analytics/index, ./cleanupRegistry, ./debug, ./diagLogs, ./fsOperations, ./log, /pluginBlocklist, ./pluginLoader, ./reconciler, ./zipCacheAdapters
 
 ## Items
 

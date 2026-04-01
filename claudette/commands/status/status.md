@@ -8,9 +8,9 @@ Opens the Settings UI with the "Status" tab active, displaying Claudette status 
 - `react`
 
 ### Internal
-- `LocalJSXCommandContext` type from `../../commands.js`
-- `Settings` component from `../../components/Settings/Settings.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
+- `LocalJSXCommandContext` type from `.././commands`
+- `Settings` component from `.././components/Settings/Settings`
+- `LocalJSXCommandOnDone` type from `.././types/command`
 
 ## Logic
 The `call` async function receives `onDone` and `context`. It renders the `<Settings>` component with:

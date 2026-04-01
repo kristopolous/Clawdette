@@ -4,11 +4,11 @@ Monitors configuration file for validation errors; shows a high-priority warning
 ## Imports
 - **External**: `react` (useCallback, useEffect, useState)
 - **Internal**:
-  - `src/context/notifications.js` (useNotifications, addNotification, removeNotification)
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../../utils/settings/allErrors.js` (getSettingsWithAllErrors)
-  - `../../utils/settings/validation.js` (ValidationError type)
-  - `../useSettingsChange.js` (useSettingsChange)
+  - src/context/notifications` (useNotifications, addNotification, removeNotification)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `.././utils/settings/allErrors` (getSettingsWithAllErrors)
+  - `.././utils/settings/validation` (ValidationError type)
+  - `./useSettingsChange` (useSettingsChange)
 
 ## Logic
 - Hook returns `ValidationError[]` (array of settings issues)

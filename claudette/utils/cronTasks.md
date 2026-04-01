@@ -1,11 +1,11 @@
 # cronTasks
 
 ## Purpose
-Scheduled prompts, stored in <project>/.claude/scheduled_tasks.json.
+Scheduled prompts, stored in <project>/claude/scheduled_taskson.
 
 ## Imports
 - **Stdlib**: crypto, fs, fs/promises, path
-- **Internal**: ./cron.js, ./debug.js, ./errors.js, ./fsOperations.js, ./json, ./log, ./slowOperations
+- **Internal**: ./cron, /debug, /errors, /fsOperations, ./json, ./log, ./slowOperations
 
 ## Items
 

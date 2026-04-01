@@ -8,9 +8,9 @@ Displays a menu listing all available skills (plugin-provided commands). Allows 
 - `react`
 
 ### Internal
-- `LocalJSXCommandContext` type from `../../commands.js`
-- `SkillsMenu` component from `../../components/skills/SkillsMenu.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
+- `LocalJSXCommandContext` type from `.././commands`
+- `SkillsMenu` component from `.././components/skills/SkillsMenu`
+- `LocalJSXCommandOnDone` type from `.././types/command`
 
 ## Logic
 The `call` async function receives `onDone` and `context`. It renders the `SkillsMenu` component, passing:

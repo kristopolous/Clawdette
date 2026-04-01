@@ -5,8 +5,8 @@ Defines the `effort` command, which configures the model's effort level. The com
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `shouldInferenceConfigCommandBeImmediate` from `../../utils/immediateCommand.js`
+- `Command` type from `.././commands`
+- `shouldInferenceConfigCommandBeImmediate` from `.././utils/immediateCommand`
 
 ## Logic
 Creates a command object:
@@ -15,7 +15,7 @@ Creates a command object:
 - `description`: `'Set effort level for model usage'`
 - `argumentHint`: `'[low|medium|high|max|auto]'`
 - `immediate`: Getter that returns the result of `shouldInferenceConfigCommandBeImmediate()` (determines if command executes immediately when typed)
-- `load`: Dynamic import of `./effort.js` (or `.tsx`)
+- `load`: Dynamic import of `/effort` (or `.tsx`)
 
 ## Exports
 - Default command object (satisfies `Command`)

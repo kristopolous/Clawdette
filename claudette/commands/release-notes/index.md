@@ -5,7 +5,7 @@ Defines the `release-notes` command for viewing the changelog. Supports non-inte
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -13,7 +13,7 @@ Creates a command object:
 - `name`: `'release-notes'`
 - `description`: `'View release notes'`
 - `supportsNonInteractive`: `true` (can be used in scripts)
-- `load`: Dynamic import of `./release-notes.js` (or `.ts`)
+- `load`: Dynamic import of `./releasenotes` (or `.ts`)
 
 ## Exports
 - `releaseNotes` (Command) - The command definition (exported as default)

@@ -4,7 +4,7 @@
 Track color assignments for teammates (persisted per session)
 
 ## Imports
-- **Internal**: ../../tools/AgentTool/agentColorManager.js, ../../tools/AgentTool/agentColorManager, ./backends/registry, ./backends/types
+- **Internal**: ../../tools/AgentTool/agentColorManager, ../../tools/AgentTool/agentColorManager, ./backends/registry, ./backends/types
 
 ## Items
 

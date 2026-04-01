@@ -5,7 +5,7 @@ Test overrides for timing constants
 
 ## Imports
 - **Stdlib**: chokidar, path
-- **Internal**: ../../bootstrap/state.js, ../attachments.js, ../cleanupRegistry.js, ../debug.js, ../fsOperations, ../hooks, ../signal
+- **Internal**: ../../bootstrap/state, ./attachments, ./cleanupRegistry, ./debug, ../fsOperations, ../hooks, ../signal
 
 ## Items
 

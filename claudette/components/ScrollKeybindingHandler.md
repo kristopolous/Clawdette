@@ -7,7 +7,7 @@ Handles keyboard and mouse scroll navigation for the fullscreen layout message s
 - **Internal**: `../context/notifications`, `../hooks/useCopyOnSelect`, `../ink/components/ScrollBox`, `../ink/hooks/use-selection`, `../ink/selection`, `../ink/terminal`, `../ink/termio/osc`, `../ink`, `../keybindings/useKeybinding`, `../utils/debug`
 
 ## Logic
-Implements complex scroll handling including keyboard page/line navigation, mouse wheel acceleration with bounce detection for distinguishing mouse from trackpad, drag-to-scroll autoscroll with anchor tracking, selection management during scroll operations, and modal pager key support. Uses exponential decay curves for wheel acceleration tuned to different terminal types (native vs xterm.js). Handles selection translation during page jumps to keep highlights on correct content.
+Implements complex scroll handling including keyboard page/line navigation, mouse wheel acceleration with bounce detection for distinguishing mouse from trackpad, drag-to-scroll autoscroll with anchor tracking, selection management during scroll operations, and modal pager key support. Uses exponential decay curves for wheel acceleration tuned to different terminal types (native vsxterm). Handles selection translation during page jumps to keep highlights on correct content.
 
 ## Exports
 - `ScrollKeybindingHandler` - component that manages all scroll-related keyboard and mouse interactions

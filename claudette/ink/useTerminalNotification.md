@@ -5,9 +5,9 @@ Provides React hooks for sending notifications and progress reports to compatibl
 - **Stdlib**: None specified
 - **External**: React hooks (createContext, useCallback, useContext, useMemo)
 - **Internal**: 
-  - isProgressReportingAvailable, Progress type from terminal.js
-  - BEL constant from termio/ansi.js
-  - ITERM2, OSC, osc, PROGRESS, wrapForMultiplexer from termio/osc.js
+  - isProgressReportingAvailable, Progress type fromterminal
+  - BEL constant fromtermio/ansi
+  - ITERM2, OSC, osc, PROGRESS, wrapForMultiplexer fromtermio/osc
 
 ## Logic
 1. Creates a TerminalWriteContext using React's createContext to provide a writeRaw function to consumers

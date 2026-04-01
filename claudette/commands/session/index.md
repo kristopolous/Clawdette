@@ -5,8 +5,8 @@ Defines the `session` command (alias: `remote`) to show the remote session URL a
 
 ## Imports
 ### Internal
-- `getIsRemoteMode` from `../../bootstrap/state.js`
-- `Command` type from `../../commands.js`
+- `getIsRemoteMode` from `.././bootstrap/state`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -16,7 +16,7 @@ Creates a command object:
 - `description`: `'Show remote session URL and QR code'`
 - `isEnabled`: Returns `getIsRemoteMode()` (only enabled in remote mode).
 - `isHidden`: Getter returns `!getIsRemoteMode()` (hides command when not in remote mode).
-- `load`: Dynamic import of `./session.js` (or `.tsx`)
+- `load`: Dynamic import of `/session` (or `.tsx`)
 
 ## Exports
 - `session` (Command) - The command definition (exported as default)

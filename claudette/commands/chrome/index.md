@@ -5,8 +5,8 @@ Registers the `chrome` command, which opens the Claude in Chrome settings dialog
 
 ## Imports
 ### Internal
-- `getIsNonInteractiveSession` from `../../bootstrap/state.js`
-- `Command` type from `../../commands.js`
+- `getIsNonInteractiveSession` from `.././bootstrap/state`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -15,7 +15,7 @@ Creates a command object:
 - `availability`: `['claude-ai']` (restricts to claude-ai mode)
 - `isEnabled`: Returns false if in a non-interactive session, true otherwise
 - `type`: `'local-jsx'` (renders a React component)
-- `load`: Dynamic import of `./chrome.js` (or `.tsx`)
+- `load`: Dynamic import of `/chrome` (or `.tsx`)
 
 ## Exports
 - `command` (Command) - The command definition (exported as default)

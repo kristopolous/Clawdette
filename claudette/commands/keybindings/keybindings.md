@@ -7,7 +7,7 @@ Open or create your keybindings configuration file for customizing shortcuts.
 ## Logic
 1. First checks if keybinding customization is enabled (feature flag/preview)
    - If disabled, returns message that feature is not enabled
-2. Determines keybindings file path (typically at ~/.claude/keybindings.json)
+2. Determines keybindings file path (typically at ~/claude/keybindingson)
 3. Creates parent directory if needed
 4. Writes template file with `wx` flag (exclusive create):
    - If file already exists, catches EEXIST and opens existing file

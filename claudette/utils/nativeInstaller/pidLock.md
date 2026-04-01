@@ -5,7 +5,7 @@ If env var is explicitly set, respect it
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../../services/analytics/growthbook.js, ../debug.js, ../envUtils.js, ../errors.js, ../fsOperations, ../genericProcessUtils, ../log
+- **Internal**: ../../services/analytics/growthbook, ./debug, ./envUtils, ./errors, ../fsOperations, ../genericProcessUtils, ../log
 
 ## Items
 

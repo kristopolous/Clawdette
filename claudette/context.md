@@ -3,7 +3,7 @@ Manages system and user context injection for conversations, including git statu
 
 ## Imports
 - **Stdlib**: `bun:bundle`
-- **External**: `lodash-es/memoize.js`
+- **External**: `lodashes/memoize`
 - **Internal**: `bootstrap/state`, `constants/common`, `utils/claudemd`, `utils/diagLogs`, `utils/envUtils`, `utils/execFileNoThrow`, `utils/git`, `utils/gitSettings`, `utils/log`
 
 ## Logic

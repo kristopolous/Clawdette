@@ -31,4 +31,3 @@ Tool for managing scheduled remote agent triggers via claude.ai API, supporting 
 - `RemoteTriggerTool` - Main tool definition
 - `Input` - Type for input (action enum, optional trigger_id, optional body)
 - `Output` - Type for output (status, json)
-- Constant: `TRIGGERS_BETA` (feature flag string)

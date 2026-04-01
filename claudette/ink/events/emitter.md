@@ -1,5 +1,5 @@
 ## Purpose
-Provides an EventEmitter class that extends Node.js's built-in EventEmitter with awareness of Ink's custom Event class, ensuring that stopImmediatePropagation() is respected during event emission.
+Provides an EventEmitter class that extendsNode's built-in EventEmitter with awareness of Ink's custom Event class, ensuring that stopImmediatePropagation() is respected during event emission.
 
 ## Imports
 - **Stdlib**: None specified
@@ -7,7 +7,7 @@ Provides an EventEmitter class that extends Node.js's built-in EventEmitter with
 - **Internal**: Event base class from ./event
 
 ## Logic
-1. **Inheritance**: Extends Node.js's built-in EventEmitter class
+1. **Inheritance**: ExtendsNode's built-in EventEmitter class
 2. **Constructor**: 
    - Calls super() to initialize the parent EventEmitter
    - Disables the default maxListeners warning by setting it to 0 (unlimited listeners)
@@ -23,4 +23,4 @@ Provides an EventEmitter class that extends Node.js's built-in EventEmitter with
      * Returns true to indicate the event was emitted (regardless of whether listeners existed)
 
 ## Exports
-- `EventEmitter` - Class extending Node.js EventEmitter with Ink Event awareness
+- `EventEmitter` - Class extendingNode EventEmitter with Ink Event awareness

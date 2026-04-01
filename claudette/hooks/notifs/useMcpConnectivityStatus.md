@@ -4,11 +4,11 @@ Shows medium-priority notifications for MCP server connectivity issues: failed s
 ## Imports
 - **External**: `react` (useEffect)
 - **Internal**:
-  - `src/context/notifications.js` (useNotifications)
-  - `../../bootstrap/state.js` (getIsRemoteMode)
-  - `../../ink.js` (Text)
-  - `../../services/mcp/claudeai.js` (hasClaudeAiMcpEverConnected)
-  - `../../services/mcp/types.js` (MCPServerConnection)
+  - src/context/notifications` (useNotifications)
+  - `.././bootstrap/state` (getIsRemoteMode)
+  - `.././ink` (Text)
+  - `.././services/mcp/claudeai` (hasClaudeAiMcpEverConnected)
+  - `.././services/mcp/types` (MCPServerConnection)
 
 ## Logic
 - Props: `mcpClients?: MCPServerConnection[]` (default empty)

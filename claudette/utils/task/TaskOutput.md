@@ -5,7 +5,7 @@
 
 ## Imports
 - **Stdlib**: fs/promises
-- **Internal**: ../CircularBuffer.js, ../debug.js, ../fsOperations.js, ../shell/outputLimits, ../stringUtils, ./diskOutput
+- **Internal**: ../CircularBuffer, ./debug, ./fsOperations, ../shell/outputLimits, ../stringUtils, ./diskOutput
 
 ## Exports
 - TaskOutput

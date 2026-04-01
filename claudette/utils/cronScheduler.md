@@ -1,7 +1,7 @@
 # cronScheduler
 
 ## Purpose
-Non-React scheduler core for .claude/scheduled_tasks.json.
+Non-React scheduler core for claude/scheduled_taskson.
 
 ## Imports
 - **Stdlib**: chokidar

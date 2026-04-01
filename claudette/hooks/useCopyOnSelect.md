@@ -4,10 +4,10 @@ Provides two hooks: auto-copy selection to clipboard on drag/multi-click finish,
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../components/design-system/ThemeProvider.js` (useTheme)
-  - `../ink/hooks/use-selection.js` (useSelection type)
-  - `../utils/config.js` (getGlobalConfig)
-  - `../utils/theme.js` (getTheme)
+  - `../components/designsystem/ThemeProvider` (useTheme)
+  - `../ink/hooks/useselection` (useSelection type)
+  - `./utils/config` (getGlobalConfig)
+  - `./utils/theme` (getTheme)
 
 ## Logic
 **useCopyOnSelect(selection, isActive, onCopied?)**

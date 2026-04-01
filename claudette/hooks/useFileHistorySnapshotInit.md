@@ -4,7 +4,7 @@ Restores file history from a previous session snapshot on first mount; ensures r
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../utils/fileHistory.js` (FileHistorySnapshot type, FileHistoryState type, fileHistoryEnabled, fileHistoryRestoreStateFromLog)
+  - `./utils/fileHistory` (FileHistorySnapshot type, FileHistoryState type, fileHistoryEnabled, fileHistoryRestoreStateFromLog)
 
 ## Logic
 - Parameters: `initialFileHistorySnapshots` (from session log), `fileHistoryState` (current state), `onUpdateState` (state setter)

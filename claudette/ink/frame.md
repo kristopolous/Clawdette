@@ -5,10 +5,10 @@ Defines the Frame type and related utilities for managing the ink rendering syst
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - Cursor type from cursor.js
-  - Size type from layout/geometry.js
-  - ScrollHint type from render-node-to-output.js
-  - CharPool, createScreen, HyperlinkPool, Screen, StylePool types from screen.js
+  - Cursor type fromcursor
+  - Size type fromlayout/geometry
+  - ScrollHint type from render-node-tooutput
+  - CharPool, createScreen, HyperlinkPool, Screen, StylePool types fromscreen
 
 ## Logic
 1. **Frame Type**: Represents a single frame of ink output containing:

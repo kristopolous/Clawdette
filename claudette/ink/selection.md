@@ -5,9 +5,9 @@ Manages text selection state and operations for fullscreen terminal applications
 - **Stdlib**: None specified
 - **External**: None specified
 - **Internal**: 
-  - clamp function from layout/geometry.js
-  - Screen, StylePool types from screen.js
-  - CellWidth, cellAt, cellAtIndex, setCellStyleId from screen.js
+  - clamp function fromlayout/geometry
+  - Screen, StylePool types fromscreen
+  - CellWidth, cellAt, cellAtIndex, setCellStyleId fromscreen
 
 ## Logic
 1. **Selection State**: Tracks text selection using anchor (start point) and focus (current point) model, with support for:

@@ -5,7 +5,7 @@ Only run every TURN_BATCH_SIZE user messages
 
 ## Imports
 - **Stdlib**: bun:bundle
-- **Internal**: ../../bootstrap/state.js, ../../services/analytics/growthbook.js, ../../services/api/claude.js, ../../Tool.js, ../../types/message.js, ../abortController.js, ../array.js, ../cwd, ../errors, ../log...
+- **Internal**: ../../bootstrap/state, .././services/analytics/growthbook, .././services/api/claude, .././Tool, .././types/message, ./abortController, ./array, ../cwd, ../errors, ../log...
 
 ## Items
 

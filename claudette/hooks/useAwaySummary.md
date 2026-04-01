@@ -4,11 +4,11 @@ Generates "while you were away" summary messages after the terminal has been blu
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../ink/terminal-focus-state.js` (getTerminalFocusState, subscribeTerminalFocus)
-  - `../services/analytics/growthbook.js` (getFeatureValue_CACHED_MAY_BE_STALE)
-  - `../services/awaySummary.js` (generateAwaySummary)
-  - `../types/message.js` (Message type)
-  - `../utils/messages.js` (createAwaySummaryMessage)
+  - `../ink/terminal-focusstate` (getTerminalFocusState, subscribeTerminalFocus)
+  - `./services/analytics/growthbook` (getFeatureValue_CACHED_MAY_BE_STALE)
+  - `./services/awaySummary` (generateAwaySummary)
+  - `./types/message` (Message type)
+  - `./utils/messages` (createAwaySummaryMessage)
 
 ## Logic
 1. Feature-gated by 'AWAY_SUMMARY' and 'tengu_sedge_lantern' GrowthBook flags

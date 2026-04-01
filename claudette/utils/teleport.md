@@ -4,8 +4,8 @@
 Extract text from the response
 
 ## Imports
-- **Stdlib**: axios, chalk, crypto, react, src/bootstrap/state.js, src/services/analytics/growthbook.js, src/services/analytics/index.js, src/services/policyLimits/index.js, zod/v4
-- **Internal**: ../components/TeleportError.js, ../constants/oauth.js, ../entrypoints/agentSdkTypes.js, ../ink.js, ../keybindings/KeybindingProviderSetup.js, ../services/api/claude.js, ../services/api/sessionIngress.js, ../services/oauth/client, ../state/AppState, ../types/message...
+- **Stdlib**: axios, chalk, crypto, react,src/bootstrap/state,src/services/analytics/growthbook,src/services/analytics/index,src/services/policyLimits/index, zod/v4
+- **Internal**: ../components/TeleportError, ./constants/oauth, ./entrypoints/agentSdkTypes, ./ink, ./keybindings/KeybindingProviderSetup, ./services/api/claude, ./services/api/sessionIngress, ../services/oauth/client, ../state/AppState, ../types/message...
 
 ## Items
 

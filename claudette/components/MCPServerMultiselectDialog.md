@@ -1,5 +1,5 @@
 ## Purpose
-Displays a multi-select dialog for approving or rejecting multiple MCP servers found in .mcp.json.
+Displays a multi-select dialog for approving or rejecting multiple MCP servers found in mcpon.
 
 ## Imports
 - **Stdlib**: None
@@ -15,4 +15,4 @@ Displays a multi-select dialog for approving or rejecting multiple MCP servers f
 6. Displays keyboard shortcut hints for selection, confirmation, and rejection
 
 ## Exports
-- `MCPServerMultiselectDialog` - renders a multi-select approval dialog for batch-enabling MCP servers from .mcp.json
+- `MCPServerMultiselectDialog` - renders a multi-select approval dialog for batch-enabling MCP servers from mcpon

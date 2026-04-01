@@ -4,8 +4,8 @@
 Use provided toolUseID or generate a new one
 
 ## Imports
-- **Stdlib**: crypto, src/entrypoints/agentSdkTypes.js
-- **Internal**: ../../services/api/claude.js, ../../Tool.js, ../../types/message.js, ../attachments.js, ../combinedAbortSignal.js, ../debug.js, ../errors.js, ../hooks, ../json, ../messages...
+- **Stdlib**: crypto,src/entrypoints/agentSdkTypes
+- **Internal**: ../../services/api/claude, .././Tool, .././types/message, ./attachments, ./combinedAbortSignal, ./debug, ./errors, ../hooks, ../json, ../messages...
 
 ## Items
 

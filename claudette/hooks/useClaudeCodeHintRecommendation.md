@@ -4,13 +4,13 @@ Surfaces plugin installation prompts from `<claude-code-hint />` tags; handles u
 ## Imports
 - **External**: `react` (useSyncExternalStore, useEffect, useCallback)
 - **Internal**:
-  - `../context/notifications.js` (useNotifications)
-  - `../services/analytics/index.js` (logEvent, AnalyticsMetadata types)
-  - `../utils/claudeCodeHints.js` (clearPendingHint, getPendingHintSnapshot, markShownThisSession, subscribeToPendingHint)
-  - `../utils/debug.js` (logForDebugging)
-  - `../utils/plugins/hintRecommendation.js` (disableHintRecommendations, markHintPluginShown, PluginHintRecommendation, resolvePluginHint)
-  - `../utils/plugins/pluginInstallationHelpers.js` (installPluginFromMarketplace)
-  - `./usePluginRecommendationBase.js` (installPluginAndNotify, usePluginRecommendationBase)
+  - `./context/notifications` (useNotifications)
+  - `./services/analytics/index` (logEvent, AnalyticsMetadata types)
+  - `./utils/claudeCodeHints` (clearPendingHint, getPendingHintSnapshot, markShownThisSession, subscribeToPendingHint)
+  - `./utils/debug` (logForDebugging)
+  - `./utils/plugins/hintRecommendation` (disableHintRecommendations, markHintPluginShown, PluginHintRecommendation, resolvePluginHint)
+  - `./utils/plugins/pluginInstallationHelpers` (installPluginFromMarketplace)
+  - `/usePluginRecommendationBase` (installPluginAndNotify, usePluginRecommendationBase)
 
 ## Logic
 1. `usePluginRecommendationBase()` provides { recommendation, clearRecommendation, tryResolve }

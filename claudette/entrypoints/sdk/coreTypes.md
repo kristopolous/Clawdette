@@ -10,7 +10,7 @@ Re-exports generated SDK types and constants for SDK consumers and builders.
 
 ## Logic
 1. Re-exports sandbox types (SandboxFilesystemConfig, SandboxNetworkConfig, etc.)
-2. Re-exports all generated types from coreTypes.generated.js
+2. Re-exports all generated types from coreTypesgenerated
 3. Re-exports NonNullableUsage utility type
 4. `HOOK_EVENTS` - const array of all hook event names (PreToolUse, PostToolUse, etc.)
 5. `EXIT_REASONS` - const array of exit reason strings (clear, resume, logout, etc.)

@@ -5,7 +5,7 @@ Check if file is empty
 
 ## Imports
 - **Stdlib**: crypto, fs/promises, path
-- **Internal**: ./errors.js, ./execFileNoThrow.js, ./format, ./fsOperations, ./toolResultStorage
+- **Internal**: ./errors, /execFileNoThrow, ./format, ./fsOperations, ./toolResultStorage
 
 ## Items
 

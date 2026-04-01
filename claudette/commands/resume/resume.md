@@ -13,23 +13,23 @@ Resumes a previous conversation either by session ID, custom title, or search te
 - `crypto` (`UUID` type)
 
 ### Internal
-- `getOriginalCwd`, `getSessionId` from `../../bootstrap/state.js`
-- `CommandResultDisplay`, `ResumeEntrypoint` types from `../../commands.js`
-- `LogSelector` component from `../../components/LogSelector.js`
-- `MessageResponse` from `../../components/MessageResponse.js`
-- `Spinner` from `../../components/Spinner.js`
-- `useIsInsideModal` from `../../context/modalContext.js`
-- `useTerminalSize` from `../../hooks/useTerminalSize.js`
-- `setClipboard` from `../../ink/termio/osc.js`
-- `Box`, `Text` from `../../ink.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
-- `LogOption` type from `../../types/logs.js`
-- `agenticSessionSearch` from `../../utils/agenticSessionSearch.js`
-- `checkCrossProjectResume` from `../../utils/crossProjectResume.js`
-- `getWorktreePaths` from `../../utils/getWorktreePaths.js`
-- `logError` from `../../utils/log.js`
-- `getLastSessionLog`, `getSessionIdFromLog`, `isCustomTitleEnabled`, `isLiteLog`, `loadAllProjectsMessageLogs`, `loadFullLog`, `loadSameRepoMessageLogs`, `searchSessionsByCustomTitle` from `../../utils/sessionStorage.js`
-- `validateUuid` from `../../utils/uuid.js`
+- `getOriginalCwd`, `getSessionId` from `.././bootstrap/state`
+- `CommandResultDisplay`, `ResumeEntrypoint` types from `.././commands`
+- `LogSelector` component from `.././components/LogSelector`
+- `MessageResponse` from `.././components/MessageResponse`
+- `Spinner` from `.././components/Spinner`
+- `useIsInsideModal` from `.././context/modalContext`
+- `useTerminalSize` from `.././hooks/useTerminalSize`
+- `setClipboard` from `.././ink/termio/osc`
+- `Box`, `Text` from `.././ink`
+- `LocalJSXCommandCall` type from `.././types/command`
+- `LogOption` type from `.././types/logs`
+- `agenticSessionSearch` from `.././utils/agenticSessionSearch`
+- `checkCrossProjectResume` from `.././utils/crossProjectResume`
+- `getWorktreePaths` from `.././utils/getWorktreePaths`
+- `logError` from `.././utils/log`
+- `getLastSessionLog`, `getSessionIdFromLog`, `isCustomTitleEnabled`, `isLiteLog`, `loadAllProjectsMessageLogs`, `loadFullLog`, `loadSameRepoMessageLogs`, `searchSessionsByCustomTitle` from `.././utils/sessionStorage`
+- `validateUuid` from `.././utils/uuid`
 
 ## Logic
 The `call` async function receives `onDone`, `context`, and optional `args`:

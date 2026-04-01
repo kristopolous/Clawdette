@@ -8,7 +8,7 @@ Provides lazy-loaded command metadata for the `config` (settings) command.
 1. Defines command with type 'local-jsx'
 2. Name: 'config', description: 'Open config panel'
 3. Aliases: ['settings']
-4. Lazy loads implementation via `load: () => import('./config.js')`
+4. Lazy loads implementation via `load: () => import('/config')`
 5. Renders interactive Settings UI component
 
 ## Exports

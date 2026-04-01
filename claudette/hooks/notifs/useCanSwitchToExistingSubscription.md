@@ -4,12 +4,12 @@ Shows a low-priority startup notification encouraging users with an existing Cla
 ## Imports
 - **External**: `react`
 - **Internal**:
-  - `src/services/oauth/getOauthProfile.js` (getOauthProfileFromApiKey)
-  - `src/utils/auth.js` (isClaudeAISubscriber)
-  - `../../ink.js` (Text)
-  - `../../services/analytics/index.js` (logEvent)
-  - `../../utils/config.js` (getGlobalConfig, saveGlobalConfig)
-  - `./useStartupNotification.js` (useStartupNotification)
+  - src/services/oauth/getOauthProfile` (getOauthProfileFromApiKey)
+  - src/utils/auth` (isClaudeAISubscriber)
+  - `.././ink` (Text)
+  - `.././services/analytics/index` (logEvent)
+  - `.././utils/config` (getGlobalConfig, saveGlobalConfig)
+  - `/useStartupNotification` (useStartupNotification)
 
 ## Logic
 - Hook uses `useStartupNotification` with async `_temp2` builder

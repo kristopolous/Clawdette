@@ -5,7 +5,7 @@ Provides event dispatcher for terminal events with DOM-style propagation.
 
 ## Imports
 - **Stdlib**: (none)
-- **External**: `react-reconciler/constants.js`
+- **External**: `reactreconciler/constants`
 - **Internal**: utils log, events event-handlers/terminal-event
 
 ## Logic

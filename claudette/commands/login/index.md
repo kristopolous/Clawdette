@@ -12,7 +12,7 @@ Provides lazy-loaded command metadata for the `login` command with dynamic descr
    - If hasAnthropicApiKeyAuth(): "Switch Anthropic accounts"
    - Else: "Sign in with your Anthropic account"
 5. `isEnabled` returns true unless DISABLE_LOGIN_COMMAND env is truthy
-6. Lazy loads via `load: () => import('./login.js')`
+6. Lazy loads via `load: () => import('/login')`
 7. Handles OAuth flow and post-login refreshes
 
 ## Exports

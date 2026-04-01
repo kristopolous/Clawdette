@@ -5,7 +5,7 @@ Provides utility functions: addArgumentsToPrompt, createStructuredOutputTool, re
 
 ## Imports
 - **Stdlib**: zod/v4
-- **Internal**: ../../Tool.js, ../argumentSubstitution.js, ../lazySchema.js, ../messageQueueManager, ../messages, ./sessionHooks
+- **Internal**: ../../Tool, ./argumentSubstitution, ./lazySchema, ../messageQueueManager, ../messages, ./sessionHooks
 
 ## Items
 

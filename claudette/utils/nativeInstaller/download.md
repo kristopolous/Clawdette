@@ -4,8 +4,8 @@
 Direct version - match internal format too (e.g. 1.0.30-dev.shaf4937ce)
 
 ## Imports
-- **Stdlib**: bun:bundle, axios, crypto, fs/promises, path, src/services/analytics/index.js
-- **Internal**: ../config.js, ../debug.js, ../errors.js, ../execFileNoThrow.js, ../fsOperations.js, ../log.js, ../sleep, ../slowOperations, ./installer
+- **Stdlib**: bun:bundle, axios, crypto, fs/promises, path, src/services/analytics/index
+- **Internal**: ../config, ../debug, ../errors, ../execFileNoThrow, ../fsOperations, ../log, ../sleep, ../slowOperations, ./installer
 
 ## Items
 
@@ -48,4 +48,4 @@ Direct version - match internal format too (e.g. 1.0.30-dev.shaf4937ce)
 - _downloadAndVerifyBinaryForTesting
 
 ## Source
-`download.ts`
+`download`

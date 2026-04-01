@@ -8,13 +8,13 @@ Reloads plugins in the current session, activating pending changes. In remote/CC
 - `bun:bundle` (`feature` for feature flags)
 
 ### Internal
-- `getIsRemoteMode` from `../../bootstrap/state.js`
-- `redownloadUserSettings` from `../../services/settingsSync/index.js`
-- `LocalCommandCall` type from `../../types/command.js`
-- `isEnvTruthy` from `../../utils/envUtils.js`
-- `refreshActivePlugins` from `../../utils/plugins/refresh.js`
-- `settingsChangeDetector` from `../../utils/settings/changeDetector.js`
-- `plural` from `../../utils/stringUtils.js`
+- `getIsRemoteMode` from `.././bootstrap/state`
+- `redownloadUserSettings` from `.././services/settingsSync/index`
+- `LocalCommandCall` type from `.././types/command`
+- `isEnvTruthy` from `.././utils/envUtils`
+- `refreshActivePlugins` from `.././utils/plugins/refresh`
+- `settingsChangeDetector` from `.././utils/settings/changeDetector`
+- `plural` from `.././utils/stringUtils`
 
 ## Logic
 The `call` async function receives `_args` and `context`:

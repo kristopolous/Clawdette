@@ -5,7 +5,7 @@ Check filename patterns
 
 ## Imports
 - **Stdlib**: fs, fs/promises, path, zod/v4
-- **Internal**: ../errors.js, ../frontmatterParser, ../slowOperations, ../yaml
+- **Internal**: ../errors, ../frontmatterParser, ../slowOperations, ../yaml
 
 ## Items
 

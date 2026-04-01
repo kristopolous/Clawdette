@@ -5,7 +5,7 @@ Configures terminal keybindings for convenient multi-line input:
 - **Terminal.app (macOS)**: Enables Option+Enter as newline and disables audio bell.
 - **VSCode, Cursor, Windsurf**: Installs Shift+Enter keybinding to send `ESC+Enter`.
 - **Alacritty**: Adds Shift+Return binding to config.
-- **Zed**: Adds terminal Shift-Enter binding to keymap.json.
+- **Zed**: Adds terminal Shift-Enter binding tokeymapon.
 Also optionally installs shell completions (internal) and marks onboarding complete. Skips setup on terminals that natively support the keyboard protocol (Ghostty, Kitty, iTerm2, WezTerm, Warp).
 
 ## Imports
@@ -18,21 +18,21 @@ Also optionally installs shell completions (internal) and marks onboarding compl
 - `url` (`pathToFileURL`)
 
 ### Internal
-- `supportsHyperlinks` from `../../ink/supports-hyperlinks.js`
-- `color` from `../../ink.js`
-- `maybeMarkProjectOnboardingComplete` from `../../projectOnboardingState.js`
-- `ToolUseContext` and `LocalJSXCommandContext` types from `../../commands.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- `backupTerminalPreferences`, `checkAndRestoreTerminalBackup`, `getTerminalPlistPath`, `markTerminalSetupComplete` from `../../utils/appleTerminalBackup.js`
-- `setupShellCompletion` from `../../utils/completionCache.js`
-- `getGlobalConfig`, `saveGlobalConfig` from `../../utils/config.js`
-- `env` from `../../utils/env.js`
-- `isFsInaccessible` from `../../utils/errors.js`
-- `execFileNoThrow` from `../../utils/execFileNoThrow.js`
-- `addItemToJSONCArray`, `safeParseJSONC` from `../../utils/json.js`
-- `logError` from `../../utils/log.js`
-- `getPlatform` from `../../utils/platform.js`
-- `jsonParse`, `jsonStringify` from `../../utils/slowOperations.js`
+- `supportsHyperlinks` from `../../ink/supportshyperlinks`
+- `color` from `.././ink`
+- `maybeMarkProjectOnboardingComplete` from `.././projectOnboardingState`
+- `ToolUseContext` and `LocalJSXCommandContext` types from `.././commands`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- `backupTerminalPreferences`, `checkAndRestoreTerminalBackup`, `getTerminalPlistPath`, `markTerminalSetupComplete` from `.././utils/appleTerminalBackup`
+- `setupShellCompletion` from `.././utils/completionCache`
+- `getGlobalConfig`, `saveGlobalConfig` from `.././utils/config`
+- `env` from `.././utils/env`
+- `isFsInaccessible` from `.././utils/errors`
+- `execFileNoThrow` from `.././utils/execFileNoThrow`
+- `addItemToJSONCArray`, `safeParseJSONC` from `.././utils/json`
+- `logError` from `.././utils/log`
+- `getPlatform` from `.././utils/platform`
+- `jsonParse`, `jsonStringify` from `.././utils/slowOperations`
 
 ## Logic
 The `call` async function receives `onDone`, `context`, and `_args`:
@@ -45,13 +45,13 @@ The `call` async function receives `onDone`, `context`, and `_args`:
      - `'Apple_Terminal'`: calls `enableOptionAsMetaForTerminal()` which modifies Terminal.app preferences via PlistBuddy and `defaults`, creates backup, disables bell, flushes cfprefsd, marks setup complete. Returns success message or throws with restore attempts on failure.
      - `'vscode' | 'cursor' | 'windsurf'`: calls `installBindingsForVSCodeTerminal()`, which:
        - Detects VSCode Remote SSH and provides manual instructions if needed.
-       - Finds keybindings.json in the appropriate user profile directory.
+       - Findskeybindingson in the appropriate user profile directory.
        - Backs up existing keybindings.
        - Checks for existing Shift+Enter binding; warns if found.
        - Adds a new binding for `workbench.action.terminal.sendSequence` with `text: "\u001b\r"`.
        - Writes updated JSONC and returns success with path.
      - `'alacritty'`: calls `installBindingsForAlacritty()`, which finds `alacritty.toml`, backs up, appends a `[[keyboard.bindings]]` section for Shift+Return, writes file, returns message.
-     - `'zed'`: calls `installBindingsForZed()`, which creates/updates `~/.config/zed/keymap.json` with a terminal context binding for `shift-enter`.
+     - `'zed'`: calls `installBindingsForZed()`, which creates/updates `~/config/zed/keymapon` with a terminal context binding for `shift-enter`.
    - After setup, saves a flag in global config (`shiftEnterKeyBindingInstalled` or `optionAsMetaKeyInstalled`) to remember installation.
    - Calls `maybeMarkProjectOnboardingComplete()`.
    - If `"external" === 'ant'` (internal check), installs shell completions via `setupShellCompletion()` and appends result.

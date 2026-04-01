@@ -9,3 +9,7 @@ Multi-step command that: 1) Shows usage if no argument provided, 2) Switches to 
 
 ## Exports
 - `default` - The commit command object (type: 'prompt')
+
+### Helpful Prompt Templates
+
+- **(Create a git commit)** - "## Context: Current git status, diff, branch, recent commits. ## Git Safety Protocol: NEVER update git config, NEVER skip hooks, CRITICAL: ALWAYS create NEW commits (NEVER --amend), Do not commit files with secrets, No empty commits, Never use -i flag. ## Your task: 1. Analyze staged changes and draft commit message following repo style. 2. Stage relevant files and create commit using HEREDOC syntax."

@@ -8,12 +8,12 @@ Sets the effort level (low, medium, high, max, auto) for the model's reasoning a
 - `react` (including `useState`, `useEffect`)
 
 ### Internal
-- `useMainLoopModel` from `../../hooks/useMainLoopModel.js`
-- `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS` type and `logEvent` from `../../services/analytics/index.js`
-- `useAppState`, `useSetAppState` from `../../state/AppState.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
-- Types and functions: `EffortValue`, `getDisplayedEffortLevel`, `getEffortEnvOverride`, `getEffortValueDescription`, `isEffortLevel`, `toPersistableEffort` from `../../utils/effort.js`
-- `updateSettingsForSource` from `../../utils/settings/settings.js`
+- `useMainLoopModel` from `.././hooks/useMainLoopModel`
+- `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS` type and `logEvent` from `.././services/analytics/index`
+- `useAppState`, `useSetAppState` from `.././state/AppState`
+- `LocalJSXCommandOnDone` type from `.././types/command`
+- Types and functions: `EffortValue`, `getDisplayedEffortLevel`, `getEffortEnvOverride`, `getEffortValueDescription`, `isEffortLevel`, `toPersistableEffort` from `.././utils/effort`
+- `updateSettingsForSource` from `.././utils/settings/settings`
 
 ## Logic
 The `call` async function:

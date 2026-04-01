@@ -5,14 +5,14 @@ Defines the `stats` command for showing Claudette usage statistics and activity.
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
 - `type`: `'local-jsx'`
 - `name`: `'stats'`
 - `description`: `'Show your Claudette usage statistics and activity'`
-- `load`: Dynamic import of `./stats.js` (or `.tsx`)
+- `load`: Dynamic import of `/stats` (or `.tsx`)
 
 ## Exports
 - `stats` (Command) - The command definition (exported as default)

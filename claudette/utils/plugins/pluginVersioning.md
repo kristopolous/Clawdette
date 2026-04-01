@@ -1,7 +1,7 @@
 # pluginVersioning
 
 ## Purpose
-1. Use explicit version from plugin.json if available
+1. Use explicit version frompluginon if available
 
 ## Imports
 - **Stdlib**: crypto

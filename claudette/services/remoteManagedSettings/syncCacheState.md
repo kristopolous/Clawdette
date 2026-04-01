@@ -9,7 +9,7 @@ Leaf state module for remote-managed-settings sync cache, isolated to break circ
 - **Internal**: envUtils, fileRead, jsonRead, settingsCache, settings types, JSON utils
 
 ## Logic
-1. `SETTINGS_FILENAME` - remote-settings.json
+1. `SETTINGS_FILENAME` - remotesettingson
 2. `sessionCache` - in-memory session cache
 3. `eligible` - tri-state: undefined (not determined), false (ineligible), true (proceed)
 4. `setSessionCache` - sets session cache value

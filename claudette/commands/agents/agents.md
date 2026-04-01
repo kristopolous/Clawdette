@@ -8,10 +8,10 @@ Renders the AgentsMenu component to manage agent configurations. Allows users to
 - `react` (as namespace)
 
 ### Internal
-- `AgentsMenu` from `../../components/agents/AgentsMenu.js`
-- `ToolUseContext` type from `../../Tool.js`
-- `getTools` from `../../tools.js`
-- `LocalJSXCommandOnDone` type from `../../types/command.js`
+- `AgentsMenu` from `.././components/agents/AgentsMenu`
+- `ToolUseContext` type from `.././Tool`
+- `getTools` from `.././tools`
+- `LocalJSXCommandOnDone` type from `.././types/command`
 
 ## Logic
 The `call` function is the entry point for this command. It:

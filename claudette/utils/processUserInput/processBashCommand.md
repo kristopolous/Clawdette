@@ -4,9 +4,9 @@
 Shell routing (docs/design/ps-shell-selection.md §5.2): consult
 
 ## Imports
-- **Stdlib**: crypto, react, src/components/BashModeProgress.js, src/Tool.js, src/tools/BashTool/BashTool.js, src/types/message.js, src/types/tools.js
+- **Stdlib**: crypto, react,src/components/BashModeProgress,src/Tool,src/tools/BashTool/BashTool,src/types/message,src/types/tools
 - **External**: @anthropic-ai/sdk/resources
-- **Internal**: ../../services/analytics/index.js, ../errors.js, ../messages.js, ../shell/resolveDefaultShell.js, ../shell/shellToolUtils.js, ../toolResultStorage, ../xml, ./processUserInput
+- **Internal**: ../../services/analytics/index, ./errors, ./messages, ./shell/resolveDefaultShell, ./shell/shellToolUtils, ../toolResultStorage, ../xml, ./processUserInput
 
 ## Items
 

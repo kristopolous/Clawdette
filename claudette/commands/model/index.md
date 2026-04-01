@@ -5,9 +5,9 @@ Defines the `model` command, which sets or displays the AI model used by Claudet
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `shouldInferenceConfigCommandBeImmediate` from `../../utils/immediateCommand.js`
-- `getMainLoopModel`, `renderModelName` from `../../utils/model/model.js`
+- `Command` type from `.././commands`
+- `shouldInferenceConfigCommandBeImmediate` from `.././utils/immediateCommand`
+- `getMainLoopModel`, `renderModelName` from `.././utils/model/model`
 
 ## Logic
 Creates a command object:
@@ -16,7 +16,7 @@ Creates a command object:
 - `description`: Getter that returns a string including the currently configured model (e.g., "Set the AI model for Claudette (currently Claude Sonnet 4.5)")
 - `argumentHint`: `'[model]'`
 - `immediate`: Getter that returns result of `shouldInferenceConfigCommandBeImmediate()`
-- `load`: Dynamic import of `./model.js` (or `.tsx`)
+- `load`: Dynamic import of `/model` (or `.tsx`)
 
 ## Exports
 - Default command object (satisfies `Command`)

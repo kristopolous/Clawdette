@@ -4,7 +4,7 @@
 If no valid filters remain, return null
 
 ## Imports
-- **Stdlib**: lodash-es/memoize.js
+- **Stdlib**: lodashes/memoize
 
 ## Items
 

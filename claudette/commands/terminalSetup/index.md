@@ -5,8 +5,8 @@ Defines the `terminal-setup` command, which configures keybindings for multi-lin
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `env` from `../../utils/env.js`
+- `Command` type from `.././commands`
+- `env` from `.././utils/env`
 
 ### Constants
 - `NATIVE_CSIU_TERMINALS`: Maps terminal identifiers (ghostty, kitty, iTerm.app, WezTerm, WarpTerminal) to display names.
@@ -19,7 +19,7 @@ Creates a command object:
   - For Apple_Terminal: `'Enable Option+Enter key binding for newlines and visual bell'`
   - For others: `'Install Shift+Enter key binding for newlines'`
 - `isHidden`: Getter returns `true` if `env.terminal` is in `NATIVE_CSIU_TERMINALS` (native support), otherwise `false`.
-- `load`: Dynamic import of `./terminalSetup.js` (or `.tsx`)
+- `load`: Dynamic import of `/terminalSetup` (or `.tsx`)
 
 ## Exports
 - `terminalSetup` (Command) - The command definition (exported as default)

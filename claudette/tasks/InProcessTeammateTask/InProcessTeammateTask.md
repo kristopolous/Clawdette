@@ -10,7 +10,7 @@ Manages in-process teammate lifecycle for team-based agent execution.
 
 ## Logic
 1. InProcessTeammateTask implements Task interface
-2. Runs in same Node.js process using AsyncLocalStorage for isolation
+2. Runs in sameNode process using AsyncLocalStorage for isolation
 3. Team-aware identity (agentName@teamName)
 4. Supports plan mode approval flow
 5. Can be idle (waiting) or active (processing)

@@ -4,7 +4,7 @@
 TODO: avoid this cast
 
 ## Imports
-- **Stdlib**: src/constants/querySource.js
+- **Stdlib**:src/constants/querySource
 - **Internal**: ./settings/settings
 
 ## Items

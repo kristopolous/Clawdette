@@ -4,8 +4,8 @@ Virtualizes large lists inside a ScrollBox by mounting only visible items plus o
 ## Imports
 - **External**: `react` (useCallback, useDeferredValue, useLayoutEffect, useMemo, useRef, useSyncExternalStore)
 - **Internal**:
-  - `../ink/components/ScrollBox.js` (ScrollBoxHandle)
-  - `../ink/dom.js` (DOMElement)
+  - `./ink/components/ScrollBox` (ScrollBoxHandle)
+  - `./ink/dom` (DOMElement)
 
 ## Logic
 - **Height cache**: Map of itemKey → measured Yoga height; updated in useLayoutEffect from mounted DOM nodes

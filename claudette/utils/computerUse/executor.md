@@ -5,7 +5,7 @@
 
 ## Imports
 - **External**: @ant/computer-use-mcp
-- **Internal**: ../debug.js, ../errors.js, ../execFileNoThrow.js, ../sleep.js, ./drainRunLoop.js, ./escHotkey, ./inputLoader, ./swiftLoader
+- **Internal**: ../debug, ./errors, ./execFileNoThrow, ./sleep, /drainRunLoop, ./escHotkey, ./inputLoader, ./swiftLoader
 
 ## Items
 

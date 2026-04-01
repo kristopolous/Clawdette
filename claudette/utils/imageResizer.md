@@ -13,7 +13,7 @@ Provides image resizing utilities for API compliance.
 2. Error type constants: MODULE_LOAD, PROCESSING, UNKNOWN, PIXEL_LIMIT, MEMORY, TIMEOUT, VIPS, PERMISSION
 3. `ImageResizeError` - error class for resize failures
 4. `classifyImageError` - classifies errors for analytics
-5. Checks Node.js error codes (MODULE_NOT_FOUND, EACCES, ENOMEM)
+5. ChecksNode error codes (MODULE_NOT_FOUND, EACCES, ENOMEM)
 6. Falls back to message matching for sharp/vips errors
 7. `IMAGE_MAX_HEIGHT`, `IMAGE_MAX_WIDTH` - max dimensions
 8. `IMAGE_TARGET_RAW_SIZE` - target size for resizing

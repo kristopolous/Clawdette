@@ -7,27 +7,27 @@ Main initialization module that bootstraps Claudette, configuring telemetry, net
 - **Stdlib**: `fs`, `path`, `child_process`, `util`
 - **External**: `lodash-es/memoize`, `@opentelemetry/api`
 - **Internal**: 
-  - `../bootstrap/state.js` - session state and counters
-  - `../services/lsp/manager.js` - LSP server management
-  - `../services/oauth/client.js` - OAuth account info
-  - `../services/policyLimits/index.js` - policy limits
-  - `../services/remoteManagedSettings/index.js` - remote managed settings
-  - `../utils/apiPreconnect.js` - Anthropic API preconnection
-  - `../utils/caCertsConfig.js` - CA certificates
-  - `../utils/cleanupRegistry.js` - cleanup handlers
-  - `../utils/config.js` - configuration system
-  - `../utils/debug.js` - debug logging
-  - `../utils/detectRepository.js` - GitHub repository detection
-  - `../utils/gracefulShutdown.js` - graceful shutdown
-  - `../utils/managedEnv.js` - environment variables
-  - `../utils/mtls.js` - mTLS configuration
-  - `../utils/proxy.js` - HTTP proxy
+  - `./bootstrap/state` - session state and counters
+  - `./services/lsp/manager` - LSP server management
+  - `./services/oauth/client` - OAuth account info
+  - `./services/policyLimits/index` - policy limits
+  - `./services/remoteManagedSettings/index` - remote managed settings
+  - `./utils/apiPreconnect` - Anthropic API preconnection
+  - `./utils/caCertsConfig` - CA certificates
+  - `./utils/cleanupRegistry` - cleanup handlers
+  - `./utils/config` - configuration system
+  - `./utils/debug` - debug logging
+  - `./utils/detectRepository` - GitHub repository detection
+  - `./utils/gracefulShutdown` - graceful shutdown
+  - `./utils/managedEnv` - environment variables
+  - `./utils/mtls` - mTLS configuration
+  - `./utils/proxy` - HTTP proxy
   - `../utils/telemetry/*` - telemetry and tracing
-  - `../utils/windowsPaths.js` - Windows shell setup
+  - `./utils/windowsPaths` - Windows shell setup
 
 ## Logic
 1. **Configuration Initialization**: Enable configs and apply safe environment variables before trust dialog
-2. **CA Certificates**: Apply NODE_EXTRA_CA_CERTS from settings.json before any TLS connections
+2. **CA Certificates**: Apply NODE_EXTRA_CA_CERTS fromsettingson before any TLS connections
 3. **Graceful Shutdown**: Set up cleanup handlers for process exit
 4. **Event Logging**: Initialize 1P event logging and GrowthBook refresh handling
 5. **OAuth**: Populate OAuth account info for VSCode extension login

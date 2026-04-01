@@ -21,3 +21,7 @@ Implements the /keybindings bundled skill that displays all available keyboard s
 - `registerKeybindingsSkill` - function that registers the /keybindings skill
 - `generateContextsTable` - builds contexts markdown table
 - `generateActionsTable` - builds actions markdown table
+
+### Helpful Prompt Templates
+
+- **(Keybindings skill)** - "Create or modify ~/claude/keybindingson to customize keyboard shortcuts. ## CRITICAL: Read Before Write - Always read existingkeybindingson first, merge changes. ## File Format: JSON with $schema, $docs, and bindings array. ## Keystroke Syntax: Modifiers (ctrl, alt, shift, meta), Special keys, Chords (space-separated). ## Unbinding: Set key to null. ## Common Patterns: Rebind keys, add chord bindings. ## Behavioral Rules: Only include changed contexts, validate actions/contexts, warn about reserved conflicts, new bindings are additive. ## Validation: /doctor command validateskeybindingson."

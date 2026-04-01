@@ -3,10 +3,10 @@ Shows a high-priority startup warning that the npm install method is deprecated 
 
 ## Imports
 - **Internal**:
-  - `src/utils/bundledMode.js` (isInBundledMode)
-  - `src/utils/doctorDiagnostic.js` (getCurrentInstallationType)
-  - `src/utils/envUtils.js` (isEnvTruthy)
-  - `./useStartupNotification.js` (useStartupNotification)
+  - src/utils/bundledMode` (isInBundledMode)
+  - src/utils/doctorDiagnostic` (getCurrentInstallationType)
+  - src/utils/envUtils` (isEnvTruthy)
+  - `/useStartupNotification` (useStartupNotification)
 
 ## Logic
 - Hook uses `useStartupNotification` with async `_temp`

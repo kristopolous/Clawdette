@@ -12,9 +12,9 @@ Provides MDM (Mobile Device Management) profile enforcement for Claudette manage
 1. Reads enterprise settings from OS-level MDM configuration
 2. macOS: `com.anthropic.claudecode` preference domain (MDM profiles at /Library/Managed Preferences/)
 3. Windows: `HKLM\SOFTWARE\Policies\ClaudeCode` (admin-only) and `HKCU\SOFTWARE\Policies\ClaudeCode` (user-writable, lowest priority)
-4. Linux: No MDM equivalent (uses /etc/claude-code/managed-settings.json instead)
+4. Linux: No MDM equivalent (uses /etc/claude-code/managedsettingson instead)
 5. Policy settings use "first source wins" - highest-priority source that exists provides all policy settings
-6. Priority (highest to lowest): remote → HKLM/plist → managed-settings.json → HKCU
+6. Priority (highest to lowest): remote → HKLM/plist → managedsettingson → HKCU
 7. Architecture: constants.ts (shared constants), rawRead.ts (subprocess I/O), settings.ts (parsing, caching, first-source-wins)
 8. `MdmResult` - { settings, errors }
 9. `EMPTY_RESULT` - frozen empty result

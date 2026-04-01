@@ -4,8 +4,8 @@
 Log failure to Statsig
 
 ## Imports
-- **Stdlib**: react/compiler-runtime, axios, react, src/services/analytics/index.js
-- **Internal**: ../components/Spinner.js, ../constants/oauth.js, ../hooks/useTimeout.js, ../ink.js, ../services/api/errorUtils, ./http, ./log
+- **Stdlib**: react/compiler-runtime, axios, react,src/services/analytics/index
+- **Internal**: ../components/Spinner, ./constants/oauth, ./hooks/useTimeout, ./ink, ../services/api/errorUtils, ./http, ./log
 
 ## Items
 

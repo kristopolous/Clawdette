@@ -15,7 +15,7 @@ Provides lazy-loaded command metadata for the `feedback` command with conditiona
    - Essential traffic only mode
    - USER_TYPE === 'ant' (internal)
    - Policy disallows product feedback
-6. Lazy loads via `load: () => import('./feedback.js')`
+6. Lazy loads via `load: () => import('/feedback')`
 7. Command provides feedback form UI
 
 ## Exports

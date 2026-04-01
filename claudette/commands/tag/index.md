@@ -5,7 +5,7 @@ Defines the `tag` command for toggling a searchable tag on the current session. 
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -14,7 +14,7 @@ Creates a command object:
 - `description`: `'Toggle a searchable tag on the current session'`
 - `isEnabled`: Returns true only if `process.env.USER_TYPE === 'ant'`.
 - `argumentHint`: `'<tag-name>'`
-- `load`: Dynamic import of `./tag.js` (or `.tsx`)
+- `load`: Dynamic import of `/tag` (or `.tsx`)
 
 ## Exports
 - `tag` (Command) - The command definition (exported as default)

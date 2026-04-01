@@ -13,7 +13,7 @@ Implements microcompact for clearing old tool results to reduce context size.
 2. `COMPACTABLE_TOOLS` - set of tools eligible for microcompact (file read/write, shell, grep, glob, web fetch/search)
 3. `TIME_BASED_MC_CLEARED_MESSAGE` - inline marker for cleared content (avoids sessionStorage cycle)
 4. Cached microcompact state (ant-only, feature-gated)
-5. `getCachedMCModule` - lazy-loads cachedMicrocompact.js for DCE
+5. `getCachedMCModule` - lazy-loadscachedMicrocompact for DCE
 6. `ensureCachedMCState` - initializes/returns cached state
 7. `pendingCacheEdits` - tracks pending edits for batch caching
 8. Clears old tool results based on time-based config

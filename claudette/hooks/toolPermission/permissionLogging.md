@@ -8,7 +8,7 @@ Centralized telemetry for tool permission decisions: logs analytics events, Open
   - `services/analytics/index` - `logEvent` and types
   - `services/analytics/metadata` - `sanitizeToolNameForAnalytics`
   - `bootstrap/state` - `getCodeEditToolDecisionCounter`
-  - `Tool.js` - `ToolType`, `ToolUseContext`
+  - Tool` - `ToolType`, `ToolUseContext`
   - `utils/cliHighlight` - `getLanguageName`
   - `utils/sandbox/sandbox-adapter` - `SandboxManager`
   - `utils/telemetry/events` - `logOTelEvent`

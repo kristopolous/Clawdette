@@ -4,7 +4,7 @@
 Bound repeat lookups on the same slug — a CLI that emits on every
 
 ## Imports
-- **Internal**: ../../services/analytics/growthbook.js, ../config.js, ../debug.js, ./installedPluginsManager, ./marketplaceManager, ./pluginPolicy
+- **Internal**: ../../services/analytics/growthbook, ./config, ./debug, ./installedPluginsManager, ./marketplaceManager, ./pluginPolicy
 
 ## Items
 

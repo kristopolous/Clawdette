@@ -15,7 +15,7 @@ Defines the Claudette Guide agent for helping users with Claudette, Agent SDK, a
 4. `getClaudeCodeGuideBasePrompt` - generates base prompt for guide agent
 5. Expertise in three domains:
    - Claudette CLI: installation, config, hooks, skills, MCP, shortcuts, IDE, settings
-   - Claude Agent SDK: Node.js/TypeScript and Python agent framework
+   - Claude Agent SDK:Node/TypeScript and Python agent framework
    - Claude API: direct model interaction, tool use, integrations
 6. Uses embedded tools (bfs/ugrep) when available, otherwise Glob/Grep
 7. Fetches Claudette docs for CLI questions

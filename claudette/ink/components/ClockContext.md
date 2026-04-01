@@ -5,8 +5,8 @@ Provides a React context for managing a synchronized clock that coordinates time
 - **Stdlib**: None specified
 - **External**: React hooks (createContext, useEffect, useState) from 'react'
 - **Internal**: 
-  - FRAME_INTERVAL_MS constant from ../constants.js
-  - useTerminalFocus hook from ../hooks/use-terminal-focus.js
+  - FRAME_INTERVAL_MS constant from ./constants
+  - useTerminalFocus hook from ../hooks/use-terminalfocus
 
 ## Logic
 1. **Clock Type**: Defines a Clock interface with:

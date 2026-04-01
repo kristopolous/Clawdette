@@ -5,8 +5,8 @@ Defines the `think-back` command, which generates and displays a "Year in Review
 
 ## Imports
 ### Internal
-- `Command` type from `../../commands.js`
-- `checkStatsigFeatureGate_CACHED_MAY_BE_STALE` from `../../services/analytics/growthbook.js`
+- `Command` type from `.././commands`
+- `checkStatsigFeatureGate_CACHED_MAY_BE_STALE` from `.././services/analytics/growthbook`
 
 ## Logic
 Creates a command object:
@@ -14,7 +14,7 @@ Creates a command object:
 - `name`: `'think-back'`
 - `description`: `'Your 2025 Claudette Year in Review'`
 - `isEnabled`: Returns true only if `checkStatsigFeatureGate_CACHED_MAY_BE_STALE('tengu_thinkback')` is true (feature flag).
-- `load`: Dynamic import of `./thinkback.js` (or `.tsx`)
+- `load`: Dynamic import of `/thinkback` (or `.tsx`)
 
 ## Exports
 - `thinkback` (Command) - The command definition (exported as default)

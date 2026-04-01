@@ -9,7 +9,7 @@ Provides filesystem permission utilities for path validation and dangerous file/
 - **Internal**: memdir paths, AgentTool agentMemory, FileEditTool constants, bootstrap state, growthbook, Tool, FileReadTool, cwd, envUtils, fsOperations, path, plans, platform, sessionStorage, settings constants/settings, shell readOnlyCommandValidation, toolResultStorage, windowsPaths, permissions PermissionResult/PermissionRule/PermissionUpdate/PermissionUpdateSchema
 
 ## Logic
-1. `DANGEROUS_FILES` - protected files (.gitconfig, .bashrc, .zshrc, .mcp.json, .claude.json, etc.)
+1. `DANGEROUS_FILES` - protected files (.gitconfig, .bashrc, .zshrc, mcpon, claudeon, etc.)
 2. `DANGEROUS_DIRECTORIES` - protected directories (.git, .vscode, .idea, .claude)
 3. `isPathInDangerousFile` - checks if path is dangerous file
 4. `isPathInDangerousDirectory` - checks if path in dangerous directory

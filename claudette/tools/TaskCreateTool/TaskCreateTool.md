@@ -4,7 +4,7 @@ Main tool implementation for TaskCreate — creates new tasks within the current
 ## Imports
 - **External**: `z` from 'zod/v4'
 - **Internal**:
-  - `buildTool`, `ToolDef` from Tool.js
+  - `buildTool`, `ToolDef` fromTool
   - `executeTaskCreatedHooks`, `getTaskCreatedHookMessage` from utils/hooks
   - `lazySchema` from utils/lazySchema
   - `createTask`, `deleteTask`, `getTaskListId`, `isTodoV2Enabled` from utils/tasks

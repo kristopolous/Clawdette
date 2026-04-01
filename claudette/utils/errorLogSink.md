@@ -5,7 +5,7 @@ Buffered writers for JSONL log files, keyed by path
 
 ## Imports
 - **Stdlib**: axios, path
-- **Internal**: ../bootstrap/state.js, ./bufferedWriter.js, ./cachePaths.js, ./cleanupRegistry.js, ./debug.js, ./fsOperations, ./log, ./slowOperations
+- **Internal**: ../bootstrap/state, /bufferedWriter, /cachePaths, /cleanupRegistry, /debug, ./fsOperations, ./log, ./slowOperations
 
 ## Items
 

@@ -4,10 +4,10 @@ Processes the unified command queue when a query is not active, there are queued
 ## Imports
 - **External**: `react` (useEffect, useSyncExternalStore)
 - **Internal**:
-  - `../types/textInputTypes.js` (QueuedCommand)
-  - `../utils/messageQueueManager.js` (getCommandQueueSnapshot, subscribeToCommandQueue)
-  - `../utils/QueryGuard.js` (QueryGuard type)
-  - `../utils/queueProcessor.js` (processQueueIfReady)
+  - `./types/textInputTypes` (QueuedCommand)
+  - `./utils/messageQueueManager` (getCommandQueueSnapshot, subscribeToCommandQueue)
+  - `./utils/QueryGuard` (QueryGuard type)
+  - `./utils/queueProcessor` (processQueueIfReady)
 
 ## Logic
 - Hook parameters:

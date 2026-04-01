@@ -4,7 +4,7 @@
 Always log full hook output to debug log for verbose mode debugging
 
 ## Imports
-- **Stdlib**: src/entrypoints/sdk/coreTypes.js
+- **Stdlib**:src/entrypoints/sdk/coreTypes
 - **Internal**: ../debug
 
 ## Items

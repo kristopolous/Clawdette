@@ -4,13 +4,13 @@ Handles Shift+Up/Down keyboard navigation for teammate (swarm) selection and bac
 ## Imports
 - **External**: `react` (useEffect, useRef)
 - **Internal**:
-  - `../ink/events/keyboard-event.js` (KeyboardEvent)
-  - `../ink.js` (useInput)
-  - `../state/AppState.js` (AppState type, useAppState, useSetAppState)
-  - `../state/teammateViewHelpers.js` (enterTeammateView, exitTeammateView)
-  - `../tasks/InProcessTeammateTask/InProcessTeammateTask.js` (getRunningTeammatesSorted, InProcessTeammateTask)
-  - `../tasks/InProcessTeammateTask/types.js` (InProcessTeammateTaskState, isInProcessTeammateTask)
-  - `../tasks/types.js` (isBackgroundTask)
+  - `../ink/events/keyboardevent` (KeyboardEvent)
+  - `./ink` (useInput)
+  - `./state/AppState` (AppState type, useAppState, useSetAppState)
+  - `./state/teammateViewHelpers` (enterTeammateView, exitTeammateView)
+  - `./tasks/InProcessTeammateTask/InProcessTeammateTask` (getRunningTeammatesSorted, InProcessTeammateTask)
+  - `./tasks/InProcessTeammateTask/types` (InProcessTeammateTaskState, isInProcessTeammateTask)
+  - `./tasks/types` (isBackgroundTask)
 
 ## Logic
 - Filters and sorts running teammates; also detects non-teammate background tasks

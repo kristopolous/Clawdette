@@ -2,7 +2,7 @@
 Provides utility functions for displaying agent source names in the UI.
 
 ## Imports
-- **External**: lodash-es/capitalize.js
+- **External**: lodashes/capitalize
 - **Internal**: src/utils/settings/constants (SettingSource type, getSettingSourceName)
 
 ## Logic

@@ -1,7 +1,7 @@
 # crypto
 
 ## Purpose
-Indirection point for the package.json "browser" field. When bun builds
+Indirection point for thepackageon "browser" field. When bun builds
 
 ## Imports
 - **Stdlib**: crypto, crypto

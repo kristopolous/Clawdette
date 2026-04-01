@@ -8,10 +8,10 @@ Hidden command that directly plays the thinkback animation. Used internally by t
 - `path` (`join`)
 
 ### Internal
-- `LocalCommandResult` type from `../../commands.js`
-- `loadInstalledPluginsV2` from `../../utils/plugins/installedPluginsManager.js`
-- `OFFICIAL_MARKETPLACE_NAME` from `../../utils/plugins/officialMarketplace.js`
-- `playAnimation` from `../thinkback/thinkback.js`
+- `LocalCommandResult` type from `.././commands`
+- `loadInstalledPluginsV2` from `.././utils/plugins/installedPluginsManager`
+- `OFFICIAL_MARKETPLACE_NAME` from `.././utils/plugins/officialMarketplace`
+- `playAnimation` from `./thinkback/thinkback`
 
 ## Logic
 The `call` async function (no arguments):

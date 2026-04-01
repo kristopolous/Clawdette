@@ -4,11 +4,11 @@ Shows notifications for Fast Mode status: org availability changes, cooldown sta
 ## Imports
 - **External**: `react` (useEffect)
 - **Internal**:
-  - `src/context/notifications.js` (useNotifications)
-  - `src/state/AppState.js` (useAppState, useSetAppState)
-  - `src/utils/fastMode.js` (isFastModeEnabled, onCooldownExpired, onCooldownTriggered, onFastModeOverageRejection, onOrgFastModeChanged, CooldownReason)
-  - `src/utils/format.js` (formatDuration)
-  - `../../bootstrap/state.js` (getIsRemoteMode)
+  - src/context/notifications` (useNotifications)
+  - src/state/AppState` (useAppState, useSetAppState)
+  - src/utils/fastMode` (isFastModeEnabled, onCooldownExpired, onCooldownTriggered, onFastModeOverageRejection, onOrgFastModeChanged, CooldownReason)
+  - src/utils/format` (formatDuration)
+  - `.././bootstrap/state` (getIsRemoteMode)
 
 ## Logic
 Hook sets up four notification channels (all gated by `!getIsRemoteMode()` and `isFastModeEnabled()`):

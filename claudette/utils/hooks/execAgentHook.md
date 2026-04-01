@@ -4,8 +4,8 @@
 Kept for signature stability with the other exec*Hook functions.
 
 ## Imports
-- **Stdlib**: crypto, src/entrypoints/agentSdkTypes.js
-- **Internal**: ../../query.js, ../../services/analytics/index.js, ../../services/analytics/metadata.js, ../../Tool.js, ../../Tool.js, ../../tools/SyntheticOutputTool/SyntheticOutputTool.js, ../../tools.js, ../../types/ids, ../../types/message, ../abortController...
+- **Stdlib**: crypto,src/entrypoints/agentSdkTypes
+- **Internal**: ../../query, .././services/analytics/index, .././services/analytics/metadata, .././Tool, .././Tool, .././tools/SyntheticOutputTool/SyntheticOutputTool, .././tools, ../../types/ids, ../../types/message, ../abortController...
 
 ## Items
 

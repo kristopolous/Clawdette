@@ -8,7 +8,7 @@ Defines the `branch` command (with conditional `fork` alias) that creates a bran
 - `bun:bundle` (`feature` for feature flagging)
 
 ### Internal
-- `Command` type from `../../commands.js`
+- `Command` type from `.././commands`
 
 ## Logic
 Creates a command object:
@@ -17,7 +17,7 @@ Creates a command object:
 - `aliases`: `['fork']` when the `FORK_SUBAGENT` feature is disabled; otherwise `[]`
 - `description`: `'Create a branch of the current conversation at this point'`
 - `argumentHint`: `'[name]'` (optional custom title)
-- `load`: Dynamic import of `./branch.js` (or `.ts`)
+- `load`: Dynamic import of `/branch` (or `.ts`)
 
 ## Exports
 - `branch` (Command) - The command definition

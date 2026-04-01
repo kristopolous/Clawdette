@@ -8,8 +8,8 @@ Displays usage statistics and activity information for the current user. Shows a
 - `react`
 
 ### Internal
-- `Stats` component from `../../components/Stats.js`
-- `LocalJSXCommandCall` type from `../../types/command.js`
+- `Stats` component from `.././components/Stats`
+- `LocalJSXCommandCall` type from `.././types/command`
 
 ## Logic
 The `call` async function receives `onDone` and renders the `<Stats>` component, passing `onClose={onDone}`.
