@@ -5,7 +5,7 @@ Log failure to Statsig
 
 ## Imports
 - **Stdlib**: react/compiler-runtime, axios, react, src/services/analytics/index.js
-- **Internal**: ../components/Spinner.js, ../constants/oauth.js, ../hooks/useTimeout.js, ../ink.js, ../services/api/errorUtils.js, ./http.js, ./log.js
+- **Internal**: ../components/Spinner.js, ../constants/oauth.js, ../hooks/useTimeout.js, ../ink.js, ../services/api/errorUtils.js, ./http.js, ./log
 
 ## Items
 

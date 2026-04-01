@@ -53,7 +53,7 @@ When a URL redirects to a different host, the tool returns a special message wit
 ## Imports
 - **Stdlib**: None directly
 - **External**: `zod/v4`
-- **Internal**: `src/Tool.js`, `src/types/permissions.js`, `src/utils/format.js`, `src/utils/lazySchema.js`, `src/utils/permissions/*`, `src/services/api/claude.js`
+- **Internal**: `src/Tool.js`, `src/types/permissions.js`, `src/utils/format.js`, `src/utils/lazySchema.js`, `src/utils/permissions/*`, `src/services/api/claude`
 
 ## Insights
 - **Caching**: 15-minute TTL cache (50MB limit) for fetched URL content

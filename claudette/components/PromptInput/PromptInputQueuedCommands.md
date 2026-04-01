@@ -2,7 +2,7 @@
 Displays queued commands (such as task notifications and bash commands) as rendered messages above the prompt input.
 
 ## Imports
-- **Stdlib**: `Set`
+- **Stdlib**: none
 - **External**: `bun:bundle`, `react`
 - **Internal**: `ink`, `state/AppState`, `constants/xml`, `context/QueuedMessageContext`, `hooks/useCommandQueue`, `types/textInputTypes`, `utils/messageQueueManager`, `utils/messages`, `utils/slowOperations`, `Message`
 

@@ -48,7 +48,7 @@ Central registry and loader for all Claudette slash commands, including built-in
 ## Imports
 - **Stdlib**: `lodash-es/memoize`
 - **External**: `bun:bundle` (feature flags)
-- **Internal**: Over 70 command modules from `./commands/*`, skill loaders (`getSkillDirCommands`, `getBundledSkills`, `getPluginSkills`), auth utilities (`isUsing3PServices`, `isAiSubscriber`), and type definitions from `./types/command.js`
+- **Internal**: Over 70 command modules from `./commands/*`, skill loaders (`getSkillDirCommands`, `getBundledSkills`, `getPluginSkills`), auth utilities (`isUsing3PServices`, `isAiSubscriber`), and type definitions from `./types/command`
 
 ## Logic
 1. **Static Command Registration**: Import and register all built-in commands at module load time

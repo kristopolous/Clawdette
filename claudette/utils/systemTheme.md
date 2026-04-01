@@ -4,7 +4,7 @@
 ITU-R BT.709 relative luminance. Midpoint split: > 0.5 is light.
 
 ## Imports
-- **Internal**: ./theme.js
+- **Internal**: ./theme
 
 ## Items
 

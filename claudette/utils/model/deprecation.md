@@ -4,7 +4,7 @@
 Provides utility functions: getDeprecatedModelInfo, getModelDeprecationWarning.
 
 ## Imports
-- **Internal**: ./providers.js
+- **Internal**: ./providers
 
 ## Items
 

@@ -4,7 +4,7 @@
 ============ Permission Delegation Helpers ============
 
 ## Imports
-- **Internal**: ../state/AppState.js, ./task/framework.js
+- **Internal**: ../state/AppState.js, ./task/framework
 
 ## Items
 

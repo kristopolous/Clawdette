@@ -5,7 +5,7 @@
 
 ## Imports
 - **Stdlib**: react
-- **Internal**: ../ink.js
+- **Internal**: ../ink
 
 ## Items
 

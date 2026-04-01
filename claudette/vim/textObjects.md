@@ -4,7 +4,7 @@
 Pre-segment into graphemes for grapheme-safe iteration
 
 ## Imports
-- **Internal**: ../utils/intl.js
+- **Internal**: ../utils/intl
 
 ## Items
 

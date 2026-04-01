@@ -4,7 +4,7 @@
 Overrides for commands whose fig specs aren't available at runtime
 
 ## Imports
-- **Internal**: ../bash/registry.js
+- **Internal**: ../bash/registry
 
 ## Items
 

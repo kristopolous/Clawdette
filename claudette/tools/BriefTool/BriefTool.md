@@ -26,4 +26,3 @@ Tool for sending messages to the user, serving as the primary visible output cha
 - `isBriefEntitled()` - Checks if user is allowed to use Brief (GB gate + build flags)
 - `isBriefEnabled()` - Unified activation gate (entitled AND opted-in)
 - `Output` - Type for output (message, attachments, sentAt)
-- `Input` - Type for input (message, attachments, status)

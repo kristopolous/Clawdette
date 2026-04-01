@@ -5,7 +5,7 @@ getHeapSpaceStatistics() is not available in Bun
 
 ## Imports
 - **Stdlib**: fs, fs/promises, path, stream/promises
-- **Internal**: ../bootstrap/state.js, ../services/analytics/index.js, ./debug.js, ./errors.js, ./file.js, ./fsOperations.js, ./log.js, ./slowOperations.js
+- **Internal**: ../bootstrap/state.js, ../services/analytics/index.js, ./debug.js, ./errors.js, ./file.js, ./fsOperations.js, ./log.js, ./slowOperations
 
 ## Items
 

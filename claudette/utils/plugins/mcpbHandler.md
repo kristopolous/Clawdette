@@ -5,7 +5,7 @@ Scrub ONLY keys we're writing in this call. Covers both directions
 
 ## Imports
 - **Stdlib**: axios, crypto, fs/promises, path
-- **Internal**: ../../services/mcp/types.js, ../debug.js, ../dxt/helpers.js, ../dxt/zip.js, ../errors.js, ../fsOperations.js, ../log.js, ../secureStorage/index.js, ../slowOperations.js, ../systemDirectories.js...
+- **Internal**: ../../services/mcp/types.js, ../debug.js, ../dxt/helpers.js, ../dxt/zip.js, ../errors.js, ../fsOperations.js, ../log.js, ../secureStorage/index.js, ../slowOperations.js, ../systemDirectories...
 
 ## Items
 

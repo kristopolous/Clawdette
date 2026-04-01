@@ -19,5 +19,3 @@ Renders the left side of the prompt input footer containing mode indicators, his
 
 ## Exports
 - `PromptInputFooterLeftSide` - component rendering the left side of the prompt footer with mode and status indicators
-- `ModeIndicator` - component showing permission mode, background tasks, teams, and related hints
-- `ProactiveCountdown` - component showing countdown timer until next proactive tick

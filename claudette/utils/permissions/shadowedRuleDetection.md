@@ -4,7 +4,7 @@
 Only check allow rules that have specific content (e.g., "Bash(ls:*)")
 
 ## Imports
-- **Internal**: ../../Tool.js, ../../tools/BashTool/toolName.js, ./PermissionRule.js
+- **Internal**: ../../Tool.js, ../../tools/BashTool/toolName.js, ./PermissionRule
 
 ## Items
 

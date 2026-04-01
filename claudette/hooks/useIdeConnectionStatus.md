@@ -3,7 +3,7 @@ Derives IDE connection status ('connected' | 'disconnected' | 'pending' | null) 
 
 ## Imports
 - **External**: `react` (useMemo)
-- **Internal**: `../services/mcp/types.js` (MCPServerConnection)
+- **Internal**: `../services/mcp/types` (MCPServerConnection)
 
 ## Logic
 - Hook parameter: optional `mcpClients` array

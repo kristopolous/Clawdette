@@ -36,4 +36,3 @@ Provides guest passes dialog component for referral program.
 
 ## Exports
 - `Passes` - guest passes dialog component
-- `PassStatus` - pass status type

@@ -4,7 +4,7 @@
 Note: This is used to check git repo status synchronously
 
 ## Imports
-- **Internal**: ../git.js
+- **Internal**: ../git
 
 ## Items
 

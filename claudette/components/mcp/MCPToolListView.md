@@ -4,7 +4,7 @@ Displays a selectable list of MCP tools for a given server within a dialog inter
 ## Imports
 - **Stdlib**: None
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `ink.js` (Text), `services/mcp/mcpStringUtils` (extractMcpToolDisplayName, getMcpDisplayName), `services/mcp/utils` (filterToolsByServer), `state/AppState` (useAppState), `Tool`, `utils/stringUtils` (plural), `ConfigurableShortcutHint`, `CustomSelect/index` (Select), `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `types` (ServerInfo)
+- **Internal**: `ink` (Text), `services/mcp/mcpStringUtils` (extractMcpToolDisplayName, getMcpDisplayName), `services/mcp/utils` (filterToolsByServer), `state/AppState` (useAppState), `Tool`, `utils/stringUtils` (plural), `ConfigurableShortcutHint`, `CustomSelect/index` (Select), `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `types` (ServerInfo)
 
 ## Logic
 1. Filters MCP tools by the provided server name using filterToolsByServer

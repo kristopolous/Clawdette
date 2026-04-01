@@ -2,7 +2,7 @@
 Provides lazy-loaded command metadata for the `diff` command.
 
 ## Imports
-- **Internal**: Command type, implementation from diff.js
+- **Internal**: Command type, implementation from diff
 
 ## Logic
 1. Default export with type 'local-jsx'

@@ -3,7 +3,7 @@ Provides utility functions for displaying agent source names in the UI.
 
 ## Imports
 - **External**: lodash-es/capitalize.js
-- **Internal**: src/utils/settings/constants.js (SettingSource type, getSettingSourceName)
+- **Internal**: src/utils/settings/constants (SettingSource type, getSettingSourceName)
 
 ## Logic
 Maps agent source identifiers to human-readable display names, handling special cases like 'all', 'built-in', and 'plugin' sources, and capitalizing standard source names.

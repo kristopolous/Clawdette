@@ -4,7 +4,7 @@
 Allowlist of public hosts we report by name. Anything else (enterprise
 
 ## Imports
-- **Internal**: ./officialMarketplace.js
+- **Internal**: ./officialMarketplace
 
 ## Items
 

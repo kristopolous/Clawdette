@@ -4,7 +4,7 @@ Adapts the Yoga layout engine to the local LayoutNode interface, providing a bri
 ## Imports
 - **Stdlib**: None specified
 - **External**: Yoga library types and functions from 'src/native-ts/yoga-layout/index.js'
-- **Internal**: Layout types from local node.js module
+- **Internal**: Layout types from local node module
 
 ## Logic
 1. Defines mapping tables to convert between local Layout types (LayoutEdge, LayoutGutter) and Yoga's internal types

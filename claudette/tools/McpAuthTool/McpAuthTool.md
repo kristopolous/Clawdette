@@ -29,4 +29,3 @@ Factory function that creates pseudo-tools for MCP servers requiring authenticat
 ## Exports
 - `createMcpAuthTool` - Factory function returning Tool<InputSchema, McpAuthOutput>
 - `McpAuthOutput` - Output type (status: 'auth_url' | 'unsupported' | 'error', message, authUrl?)
-- `InputSchema` - Empty object schema (no inputs)

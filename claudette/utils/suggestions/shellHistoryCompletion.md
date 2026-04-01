@@ -4,7 +4,7 @@
 Cache for shell history commands to avoid repeated async reads
 
 ## Imports
-- **Internal**: ../../history.js, ../debug.js
+- **Internal**: ../../history.js, ../debug
 
 ## Items
 

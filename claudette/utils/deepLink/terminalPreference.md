@@ -4,7 +4,7 @@
 Only detectMacosTerminal reads the stored value — skip the write on
 
 ## Imports
-- **Internal**: ../config.js, ../debug.js
+- **Internal**: ../config.js, ../debug
 
 ## Items
 

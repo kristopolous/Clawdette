@@ -3,7 +3,7 @@ Fetches dynamic configuration values (from GrowthBook), returning the default in
 
 ## Imports
 - **External**: `react`
-- **Internal**: `../services/analytics/growthbook.js` (getDynamicConfig_BLOCKS_ON_INIT)
+- **Internal**: `../services/analytics/growthbook` (getDynamicConfig_BLOCKS_ON_INIT)
 
 ## Logic
 - Generic hook: `useDynamicConfig<T>(configName: string, defaultValue: T): T`

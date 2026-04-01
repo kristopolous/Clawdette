@@ -24,7 +24,3 @@ Renders user message attachments of various types including files, directories, 
 
 ## Exports
 - `AttachmentMessage` - React component rendering all attachment types with type-specific UI
-- `Line` - Internal helper component for single-line attachment display with MessageResponse styling
-- `TaskStatusMessage` - Internal component dispatching to teammate or generic task status rendering
-- `GenericTaskStatus` - Internal component rendering generic task status with black circle indicator
-- `TeammateTaskStatus` - Internal component rendering in-process teammate task status with agent name and color

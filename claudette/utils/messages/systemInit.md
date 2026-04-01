@@ -5,7 +5,7 @@ TODO(next-minor): remove this translation once SDK consumers have migrated
 
 ## Imports
 - **Stdlib**: bun:bundle, crypto, src/bootstrap/state.js, src/constants/outputStyles.js
-- **Internal**: ../auth.js, ../cwd.js, ../fastMode.js, ../settings/settings.js
+- **Internal**: ../auth.js, ../cwd.js, ../fastMode.js, ../settings/settings
 
 ## Items
 

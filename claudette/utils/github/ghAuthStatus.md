@@ -5,7 +5,7 @@ Provides utility functions: getGhAuthStatus.
 
 ## Imports
 - **Stdlib**: execa
-- **Internal**: ../which.js
+- **Internal**: ../which
 
 ## Items
 

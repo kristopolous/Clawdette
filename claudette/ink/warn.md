@@ -4,7 +4,7 @@ Provides utility functions for logging warnings about invalid values, particular
 ## Imports
 - **Stdlib**: None specified
 - **External**: None specified
-- **Internal**: logForDebugging from ../utils/debug.js
+- **Internal**: logForDebugging from ../utils/debug
 
 ## Logic
 1. **ifNotInteger() Function**:

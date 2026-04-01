@@ -4,7 +4,7 @@
 Post-sampling hook - not exposed in settings.json config (yet), only used programmatically
 
 ## Imports
-- **Internal**: ../../constants/querySource.js, ../../Tool.js, ../../types/message.js, ../errors.js, ../log.js, ../systemPromptType.js
+- **Internal**: ../../constants/querySource.js, ../../Tool.js, ../../types/message.js, ../errors.js, ../log.js, ../systemPromptType
 
 ## Items
 

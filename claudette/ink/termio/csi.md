@@ -4,7 +4,7 @@ Provides types, constants, and utility functions for working with ANSI Control S
 ## Imports
 - **Stdlib**: None specified
 - **External**: None specified
-- **Internal**: ESC, ESC_TYPE, SEP from termio/ansi.js
+- **Internal**: ESC, ESC_TYPE, SEP from termio/ansi
 
 ## Logic
 1. **Constants and Types**:

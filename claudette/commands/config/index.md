@@ -2,7 +2,7 @@
 Provides lazy-loaded command metadata for the `config` (settings) command.
 
 ## Imports
-- **Internal**: Command type, implementation from config.js
+- **Internal**: Command type, implementation from config
 
 ## Logic
 1. Defines command with type 'local-jsx'

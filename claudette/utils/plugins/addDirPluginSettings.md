@@ -5,7 +5,7 @@ Provides utility functions: getAddDirEnabledPlugins, getAddDirExtraMarketplaces.
 
 ## Imports
 - **Stdlib**: path, zod/v4
-- **Internal**: ../../bootstrap/state.js, ../settings/settings.js
+- **Internal**: ../../bootstrap/state.js, ../settings/settings
 
 ## Items
 

@@ -6,7 +6,7 @@ WebSocket readyState constants (same for both native and ws)
 ## Imports
 - **Stdlib**: ws
 - **External**: @modelcontextprotocol/sdk/shared/transport.js
-- **Internal**: ./diagLogs.js, ./errors.js, ./slowOperations.js
+- **Internal**: ./diagLogs.js, ./errors.js, ./slowOperations
 
 ## Items
 

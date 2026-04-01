@@ -4,7 +4,7 @@
 Calculate logical line by counting newlines before cursor offset
 
 ## Imports
-- **Internal**: ../utils/Cursor.js, ../utils/intl.js, ../utils/stringUtils.js, ./textObjects.js
+- **Internal**: ../utils/Cursor.js, ../utils/intl.js, ../utils/stringUtils.js, ./textObjects
 
 ## Items
 

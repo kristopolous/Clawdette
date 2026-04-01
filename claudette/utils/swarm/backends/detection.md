@@ -4,7 +4,7 @@
 eslint-disable-next-line custom-rules/no-process-env-top-level
 
 ## Imports
-- **Internal**: ../../../utils/env.js, ../../../utils/execFileNoThrow.js, ../constants.js
+- **Internal**: ../../../utils/env.js, ../../../utils/execFileNoThrow.js, ../constants
 
 ## Items
 

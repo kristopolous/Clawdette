@@ -2,7 +2,7 @@
 Provides lazy-loaded command metadata for the `clear` command to reduce startup time.
 
 ## Imports
-- **Internal**: Command type, implementation from clear.js
+- **Internal**: Command type, implementation from clear
 
 ## Logic
 1. Defines command metadata with type 'local'

@@ -4,7 +4,7 @@
 If the timeout wins the race, fn()'s promise is orphaned — a late
 
 ## Imports
-- **Internal**: ../debug.js, ../withResolvers.js, ./swiftLoader.js
+- **Internal**: ../debug.js, ../withResolvers.js, ./swiftLoader
 
 ## Items
 

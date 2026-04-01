@@ -3,7 +3,7 @@ Command entry for /mcp - registers the MCP management interface.
 
 ## Imports
 - **External**: Command type
-- **Internal**: mcp.jsx (lazy-loaded UI)
+- **Internal**: mcpx (lazy-loaded UI)
 
 ## Logic
 Defines the 'mcp' command as a local-jsx type with:

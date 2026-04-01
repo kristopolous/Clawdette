@@ -4,7 +4,7 @@ Handles automatic reconnection to a specified MCP server with loading and error 
 ## Imports
 - **Stdlib**: None
 - **External**: `figures`, `react` (useEffect, useState), `react/compiler-runtime`
-- **Internal**: `commands` (CommandResultDisplay), `ink.js` (Box, color, Text, useTheme), `services/mcp/MCPConnectionManager` (useMcpReconnect), `state/AppState` (useAppStateStore), `Spinner`
+- **Internal**: `commands` (CommandResultDisplay), `ink` (Box, color, Text, useTheme), `services/mcp/MCPConnectionManager` (useMcpReconnect), `state/AppState` (useAppStateStore), `Spinner`
 
 ## Logic
 1. Attempts reconnection to the specified server on mount via useEffect

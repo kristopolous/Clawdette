@@ -5,7 +5,7 @@ Positive ternary pattern — see docs/feature-gating.md.
 
 ## Imports
 - **Stdlib**: bun:bundle
-- **Internal**: ../services/analytics/growthbook.js
+- **Internal**: ../services/analytics/growthbook
 
 ## Items
 

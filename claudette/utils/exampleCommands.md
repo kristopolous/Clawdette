@@ -5,7 +5,7 @@ Patterns that mark a file as non-core (auto-generated, dependency, or config).
 
 ## Imports
 - **Stdlib**: lodash-es/memoize.js, lodash-es/sample.js
-- **Internal**: ../utils/cwd.js, ./config.js, ./env.js, ./execFileNoThrow.js, ./git.js, ./log.js, ./user.js
+- **Internal**: ../utils/cwd.js, ./config.js, ./env.js, ./execFileNoThrow.js, ./git.js, ./log.js, ./user
 
 ## Items
 

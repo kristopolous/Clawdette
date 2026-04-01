@@ -2,7 +2,7 @@
 Renders visual indicators for voice mode states including listening, processing with shimmer animation, and warmup hint.
 
 ## Imports
-- **Stdlib**: `Math`
+- **Stdlib**: none
 - **External**: `bun:bundle`, `react`, `react/compiler-runtime`
 - **Internal**: `hooks/useSettings`, `ink`, `Spinner/utils`
 

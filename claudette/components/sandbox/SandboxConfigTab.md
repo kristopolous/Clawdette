@@ -15,4 +15,3 @@ Displays the current sandbox configuration including filesystem read/write restr
 
 ## Exports
 - `SandboxConfigTab` - Renders the sandbox configuration overview panel
-- `_temp` - Helper function for rendering warning messages

@@ -5,7 +5,7 @@ Source file: types.ts
 
 ## Imports
 - **Stdlib**: zod/v4
-- **Internal**: ../lazySchema.js
+- **Internal**: ../lazySchema
 
 ## Exports
 - TodoItemSchema

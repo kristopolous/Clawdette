@@ -4,7 +4,7 @@ Implements permission handler functions that process user decisions (accept once
 ## Imports
 - **Stdlib**: none
 - **External**: none
-- **Internal**: `logEvent`, `sanitizeToolNameForAnalytics`, `ToolPermissionContext`, `CLAUDE_FOLDER_PERMISSION_PATTERN`, `FILE_EDIT_TOOL_NAME`, `GLOBAL_CLAUDE_FOLDER_PERMISSION_PATTERN`, `env`, `generateSuggestions`, `PermissionUpdate`, `CompletionType`, `logUnaryEvent`, `ToolUseConfirm`, `FileOperationType`, `PermissionOption`
+- **Internal**: `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS`, `logEvent`, `sanitizeToolNameForAnalytics`, `ToolPermissionContext`, `CLAUDE_FOLDER_PERMISSION_PATTERN`, `FILE_EDIT_TOOL_NAME`, `GLOBAL_CLAUDE_FOLDER_PERMISSION_PATTERN`, `env`, `generateSuggestions`, `PermissionUpdate`, `CompletionType`, `logUnaryEvent`, `ToolUseConfirm`, `FileOperationType`, `PermissionOption`
 
 ## Logic
 1. Logs permission events (accept/reject) with completion type, language, message ID, and feedback metadata

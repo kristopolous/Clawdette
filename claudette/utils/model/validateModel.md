@@ -4,7 +4,7 @@
 biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 
 ## Imports
-- **Internal**: ./aliases.js, ./modelAllowlist.js, ./providers.js, ../sideQuery.js, ./modelStrings.js
+- **Internal**: ./aliases.js, ./modelAllowlist.js, ./providers.js, ../sideQuery.js, ./modelStrings
 
 ## Items
 

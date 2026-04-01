@@ -27,14 +27,20 @@ Loads agent definitions from markdown files in agent directories.
 
 ## Exports
 - `AgentMcpServerSpec` - MCP server spec type
-- `AgentMcpServerSpecSchema` - MCP server spec schema
-- `AgentJsonSchema` - agent JSON schema
-- `AgentDefinition` - agent definition type
+- `BaseAgentDefinition` - base agent definition type
 - `BuiltInAgentDefinition` - built-in agent type
-- `loadAgentsFromDir` - loads agents from directory
-- `getActiveAgentsFromList` - gets active agents
-- `getAgentDefinitionsWithOverrides` - gets agents with overrides
-- `resolveAgentOverrides` - resolves agent overrides
-- `filterAgentsByMcpRequirements` - filters by MCP requirements
-- `hasRequiredMcpServers` - checks MCP server availability
-- `isBuiltInAgent` - checks if built-in agent
+- `CustomAgentDefinition` - custom agent type
+- `PluginAgentDefinition` - plugin agent type
+- `AgentDefinition` - union agent definition type
+- `AgentDefinitionsResult` - agent definitions result type
+- `isBuiltInAgent` - checks if agent is built-in
+- `isCustomAgent` - checks if agent is custom
+- `isPluginAgent` - checks if agent is plugin
+- `getActiveAgentsFromList` - gets active agents from list
+- `hasRequiredMcpServers` - checks MCP server requirements
+- `filterAgentsByMcpRequirements` - filters agents by MCP availability
+- `getAgentDefinitionsWithOverrides` - loads agents with override resolution
+- `clearAgentDefinitionsCache` - clears the agent definitions cache
+- `parseAgentFromJson` - parses agent from JSON
+- `parseAgentsFromJson` - parses multiple agents from JSON
+- `parseAgentFromMarkdown` - parses agent from markdown

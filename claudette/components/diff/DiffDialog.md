@@ -4,7 +4,7 @@ Dialog component that displays git diffs, supporting both current uncommitted ch
 ## Imports
 - **Stdlib**: none
 - **External**: `react/compiler-runtime`, `diff` (StructuredPatchHunk type), `react`
-- **Internal**: `../../commands.js`, `../../context/overlayContext.js`, `../../hooks/useDiffData.js`, `../../hooks/useTurnDiffs.js`, `../../ink.js`, `../../keybindings/useKeybinding.js`, `../../keybindings/useShortcutDisplay.js`, `../../types/message.js`, `../../utils/stringUtils.js`, `../design-system/Byline.js`, `../design-system/Dialog.js`, `./DiffDetailView.js`, `./DiffFileList.js`
+- **Internal**: `../../commands.js`, `../../context/overlayContext.js`, `../../hooks/useDiffData.js`, `../../hooks/useTurnDiffs.js`, `../../ink.js`, `../../keybindings/useKeybinding.js`, `../../keybindings/useShortcutDisplay.js`, `../../types/message.js`, `../../utils/stringUtils.js`, `../design-system/Byline.js`, `../design-system/Dialog.js`, `./DiffDetailView.js`, `./DiffFileList`
 
 ## Logic
 1. Fetches current git diff data and per-turn diffs from messages
@@ -16,4 +16,3 @@ Dialog component that displays git diffs, supporting both current uncommitted ch
 
 ## Exports
 - `DiffDialog` - main dialog component for viewing and navigating diffs within a Dialog wrapper
-- `turnDiffToDiffData` - converts a TurnDiff object into DiffData format for unified rendering

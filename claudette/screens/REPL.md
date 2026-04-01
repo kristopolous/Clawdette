@@ -55,8 +55,8 @@ The main interactive terminal UI - renders messages, handles user input, display
 - Pass to appropriate handler (vim, shortcuts, etc.)
 
 ## Imports
-- **External**: `react`, `ink`, `chalk`, `figures`
-- **Internal**: `query` (query.ts), `handlePromptSubmit`, `createUserMessage`, `getTools`
+- **External**: react, ink, chalk, figures
+- **Internal**: query (query), handlePromptSubmit, createUserMessage, getTools
 
 ## Insights
 - **Virtual scrolling**: Essential for long conversations - only DOM renders visible items

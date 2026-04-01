@@ -4,7 +4,7 @@
 For ContentBlockParam[], check the first text block
 
 ## Imports
-- **Internal**: ../types/textInputTypes.js
+- **Internal**: ../types/textInputTypes
 
 ## Items
 

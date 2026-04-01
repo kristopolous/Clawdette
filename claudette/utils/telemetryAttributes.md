@@ -6,7 +6,7 @@ Default configuration for metrics cardinality
 ## Imports
 - **Stdlib**: src/bootstrap/state.js
 - **External**: @opentelemetry/api
-- **Internal**: ./auth.js, ./config.js, ./envDynamic.js, ./envUtils.js, ./taggedId.js
+- **Internal**: ./auth.js, ./config.js, ./envDynamic.js, ./envUtils.js, ./taggedId
 
 ## Items
 

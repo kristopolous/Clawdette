@@ -4,7 +4,7 @@
 Only plugin@marketplace boolean entries (true OR false) are
 
 ## Imports
-- **Internal**: ../settings/settings.js
+- **Internal**: ../settings/settings
 
 ## Items
 

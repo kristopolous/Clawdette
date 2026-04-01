@@ -4,7 +4,7 @@ Displays parsing errors and warnings for MCP configurations across all scopes (u
 ## Imports
 - **Stdlib**: None
 - **External**: `react` (useMemo), `react/compiler-runtime`
-- **Internal**: `services/mcp/config` (getMcpConfigsByScope), `services/mcp/types` (ConfigScope), `services/mcp/utils` (describeMcpConfigFilePath, getScopeLabel), `utils/settings/validation` (ValidationError), `ink.js` (Box, Link, Text)
+- **Internal**: `services/mcp/config` (getMcpConfigsByScope), `services/mcp/types` (ConfigScope), `services/mcp/utils` (describeMcpConfigFilePath, getScopeLabel), `utils/settings/validation` (ValidationError), `ink` (Box, Link, Text)
 
 ## Logic
 1. Collects MCP configs from all four scopes (user, project, local, enterprise)
@@ -15,4 +15,3 @@ Displays parsing errors and warnings for MCP configurations across all scopes (u
 
 ## Exports
 - `McpParsingWarnings` - renders diagnostic information for MCP configuration parsing issues
-- `McpConfigErrorSection` - internal component that renders errors and warnings for a single scope

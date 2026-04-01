@@ -5,7 +5,7 @@ Check if bypassPermissions should be disabled based on Statsig gate
 
 ## Imports
 - **Stdlib**: bun:bundle, react, src/Tool.js
-- **Internal**: ../../bootstrap/state.js
+- **Internal**: ../../bootstrap/state
 
 ## Items
 

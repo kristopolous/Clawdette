@@ -4,7 +4,7 @@
 Track whether the first pane has been used for external swarm session
 
 ## Imports
-- **Internal**: ../../../tools/AgentTool/agentColorManager.js, ../../../utils/debug.js, ../../../utils/execFileNoThrow.js, ../../../utils/log.js, ../../array.js, ../../sleep.js, ./registry.js, ./types.js
+- **Internal**: ../../../tools/AgentTool/agentColorManager.js, ../../../utils/debug.js, ../../../utils/execFileNoThrow.js, ../../../utils/log.js, ../../array.js, ../../sleep.js, ./registry.js, ./types
 
 ## Items
 

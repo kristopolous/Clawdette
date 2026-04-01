@@ -5,7 +5,7 @@ Output types for different operations
 
 ## Imports
 - **Stdlib**: fs, fs/promises, path, zod/v4
-- **Internal**: ../../bootstrap/state.js, ../debug.js, ../envUtils.js, ../errors.js, ../execFileNoThrow.js, ../git.js, ../lazySchema.js, ../permissions/PermissionMode.js, ../slowOperations.js, ../tasks.js...
+- **Internal**: ../../bootstrap/state.js, ../debug.js, ../envUtils.js, ../errors.js, ../execFileNoThrow.js, ../git.js, ../lazySchema.js, ../permissions/PermissionMode.js, ../slowOperations.js, ../tasks...
 
 ## Items
 

@@ -5,7 +5,7 @@ AssistantToolUseMessage.tsx contract: null hides the ENTIRE row, '' shows
 
 ## Imports
 - **Stdlib**: react
-- **Internal**: ../../components/MessageResponse.js, ../../ink.js, ../format.js, ../mcpValidation.js
+- **Internal**: ../../components/MessageResponse.js, ../../ink.js, ../format.js, ../mcpValidation
 
 ## Items
 

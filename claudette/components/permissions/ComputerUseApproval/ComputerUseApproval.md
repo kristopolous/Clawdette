@@ -15,5 +15,3 @@ Renders a permission approval dialog for computer use operations, handling eithe
 
 ## Exports
 - `ComputerUseApproval` - dispatcher component that shows either the TCC panel or app list panel based on the permission request state
-- `ComputerUseTccPanel` - panel for handling missing macOS accessibility and screen recording permissions
-- `ComputerUseAppListPanel` - panel for selecting which apps to allow for computer use with grant flags

@@ -4,7 +4,7 @@
 Capture state before update
 
 ## Imports
-- **Internal**: ./types.js
+- **Internal**: ./types
 
 ## Items
 

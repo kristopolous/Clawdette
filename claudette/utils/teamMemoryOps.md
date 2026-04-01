@@ -4,7 +4,7 @@
 Provides utility functions: isTeamMemorySearch, isTeamMemoryWriteOrEdit, appendTeamMemorySummaryParts.
 
 ## Imports
-- **Internal**: ../memdir/teamMemPaths.js, ../tools/FileEditTool/constants.js, ../tools/FileWriteTool/prompt.js
+- **Internal**: ../memdir/teamMemPaths.js, ../tools/FileEditTool/constants.js, ../tools/FileWriteTool/prompt
 
 ## Items
 

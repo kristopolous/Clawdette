@@ -31,6 +31,6 @@ Tool for editing Jupyter notebook (.ipynb) cells with support for replace, inser
 
 ## Exports
 - `NotebookEditTool` - Main tool definition
-- `Input` - Type for input (notebook_path, cell_id?, new_source, cell_type?, edit_mode?)
-- `Output` - Type for output (new_source, cell_id?, cell_type, language, edit_mode, error?, notebook_path, original_file, updated_file)
-- Helper: `parseCellId` (parses cell-N format to numeric index)
+- `inputSchema` - Input schema (notebook_path, cell_id?, new_source, cell_type?, edit_mode?)
+- `outputSchema` - Output schema
+- `Output` - Output type (new_source, cell_id?, cell_type, language, edit_mode, error?, notebook_path, original_file, updated_file)

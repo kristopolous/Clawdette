@@ -4,7 +4,7 @@ Provides access to the native color-diff module for syntax-highlighted diff rend
 ## Imports
 - **Stdlib**: None
 - **External**: `color-diff-napi`
-- **Internal**: `utils/envUtils.js`
+- **Internal**: `utils/envUtils`
 
 ## Logic
 Checks the `CLAUDE_CODE_SYNTAX_HIGHLIGHT` environment variable to determine if the native color-diff module should be used. Exports guarded accessor functions that return the native module or null based on availability.

@@ -3,7 +3,7 @@ Registers the /rename command.
 
 ## Imports
 - **External**: Command type
-- **Internal**: rename.tsx (lazy-loaded)
+- **Internal**: renamex (lazy-loaded)
 
 ## Logic
 Defines 'rename' command as local-jsx with:

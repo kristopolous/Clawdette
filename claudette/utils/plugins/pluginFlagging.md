@@ -5,7 +5,7 @@ Module-level cache — populated by loadFlaggedPlugins(), updated by writes.
 
 ## Imports
 - **Stdlib**: crypto, fs/promises, path
-- **Internal**: ../debug.js, ../fsOperations.js, ../log.js, ../slowOperations.js, ./pluginDirectories.js
+- **Internal**: ../debug.js, ../fsOperations.js, ../log.js, ../slowOperations.js, ./pluginDirectories
 
 ## Items
 

@@ -4,7 +4,7 @@
 Provides utility functions: getTerminalBundleId, isComputerUseMCPServer.
 
 ## Imports
-- **Internal**: ../../services/mcp/normalization.js, ../env.js
+- **Internal**: ../../services/mcp/normalization.js, ../env
 
 ## Items
 

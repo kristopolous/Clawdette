@@ -17,4 +17,3 @@ Renders a diff view for notebook cell edit operations, showing structured diffs 
 
 ## Exports
 - `NotebookEditToolDiff` - component that displays the diff for notebook cell edits, handling insert, delete, and replace modes
-- `NotebookEditToolDiffInner` - inner component that consumes the notebook data promise and renders the appropriate diff view

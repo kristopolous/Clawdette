@@ -14,5 +14,3 @@ Displays a diagnostic section showing sandbox dependency status with errors and 
 
 ## Exports
 - `SandboxDoctorSection` - Renders sandbox dependency diagnostic output or null if no issues exist
-- `_temp` - Renders individual error messages in red
-- `_temp2` - Renders individual warning messages in yellow

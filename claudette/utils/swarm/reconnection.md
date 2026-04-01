@@ -4,7 +4,7 @@
 dynamicTeamContext is set in main.tsx from CLI args
 
 ## Imports
-- **Internal**: ../../state/AppState.js, ../debug.js, ../log.js, ../teammate.js, ./teamHelpers.js
+- **Internal**: ../../state/AppState.js, ../debug.js, ../log.js, ../teammate.js, ./teamHelpers
 
 ## Items
 

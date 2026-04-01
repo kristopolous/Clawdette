@@ -19,4 +19,3 @@ Tool for stopping running background tasks by ID, with backward compatibility fo
 ## Exports
 - `TaskStopTool` - Main tool definition
 - `Output` - Type for output (message, task_id, task_type, command?)
-- Aliases: `KillShell` (deprecated)

@@ -4,7 +4,7 @@
 Get current datetime with timezone for context
 
 ## Imports
-- **Internal**: ../../services/api/claude.js, ../log.js, ../messages.js, ../systemPromptType.js
+- **Internal**: ../../services/api/claude.js, ../log.js, ../messages.js, ../systemPromptType
 
 ## Items
 

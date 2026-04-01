@@ -26,7 +26,4 @@ Tool for retrieving output/logs from background tasks (shell commands, agents, r
 
 ## Exports
 - `TaskOutputTool` - Main tool definition (deprecated)
-- `TaskOutput` - Unified output type (task_id, task_type, status, description, output, exitCode?, error?, prompt?, result?)
-- `TaskOutputToolOutput` - Wrapper type (retrieval_status, task?)
-- `Progress` - TaskOutputProgress (re-exported)
-- Aliases: `AgentOutputTool`, `BashOutputTool` (backward compatibility)
+- `Progress` - TaskOutputProgress type (re-exported)

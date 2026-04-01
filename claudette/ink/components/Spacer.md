@@ -4,7 +4,7 @@ Provides a Spacer component that creates flexible space expanding along the majo
 ## Imports
 - **Stdlib**: None specified
 - **External**: React from 'react'; React compiler runtime
-- **Internal**: Box component from ./Box.js
+- **Internal**: Box component from ./Box
 
 ## Logic
 1. **Spacer Component**: A functional component that:

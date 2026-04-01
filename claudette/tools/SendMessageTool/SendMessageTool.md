@@ -1,16 +1,33 @@
+# tools/SendMessageTool/SendMessageTool
+
 ## Purpose
-Main tool implementation for SendMessage — sending messages to other agents, handling routing, and legacy protocol responses.
+Tool for sending messages to other agents/teammates, handling routing, broadcast, cross-session messaging, and structured protocol responses (shutdown, plan approval).
 
 ## Imports
-Many internal modules from bootstrap/state, bridge/replBridgeHandle, Tool.js, tasks/InProcessTeammateTask/InProcessTeammateTask, tasks/LocalAgentTask/LocalAgentTask, tasks/LocalMainSessionTask, types/ids, utils/agentId, utils/agentSwarmsEnabled, utils/debug, utils/errors, utils/format, utils/gracefulShutdown, utils/lazySchema, utils/peerAddress, utils/semanticBoolean, utils/slowOperations, utils/swarm/backends/types, utils/swarm/constants, utils/swarm/teamHelpers, utils/swarm/teammateLayoutManager, utils/swarm/teammateModel, utils/task/framework, utils/teammateMailbox, AgentTool/resumeAgent, and local constants, prompt, UI.
+- **External**: `zod/v4`
+- **Internal**: bootstrap state, bridge/replBridgeHandle, Tool, tasks (InProcessTeammateTask, LocalAgentTask, LocalMainSessionTask), types (ids), utils (agentId, agentSwarmsEnabled, debug, errors, format, gracefulShutdown, lazySchema, peerAddress, semanticBoolean, slowOperations, swarm backends/types, swarm constants, swarm teamHelpers, swarm teammateMailbox, etc.), AgentTool/resumeAgent, local constants, prompt, UI
 
 ## Logic
-Builds the SendMessage tool via `buildTool` (partial implementation seen). Handles multiple input schema types including regular messages and structured protocol responses (shutdown_request, plan_approval_request). Manages message routing to teammates (by name or broadcast), cross-session messaging via UDS or bridge, task assignment via TaskUpdate, and integration with team task lists. Also processes legacy protocol responses ensuring request_id echo and approval flags.
-
-The tool coordinates with the agent/swarm infrastructure to deliver messages, handle shutdown approvals, and manage peer-to-peer communication.
-
-The file likely exports `SendMessageTool` (the tool definition) and possibly other helpers. (Note: full details not captured from first 50 lines; but purpose is central messaging.)
+1. Defines input schema with `to` (recipient), optional `summary`, and `message` (string or structured types: shutdown_request, shutdown_response, plan_approval_response)
+2. Defines multiple output types: MessageOutput, BroadcastOutput, RequestOutput, ResponseOutput (discriminated union SendMessageToolOutput)
+3. Handles message routing:
+   - To individual teammate: queues in their inbox (local or remote via UDS/bridge)
+   - Broadcast to all teammates: sends to each teammate's inbox
+   - Cross-session peers via UDS or Remote Control bridge
+4. Supports structured protocol:
+   - Shutdown request/response for graceful termination
+   - Plan approval requests/responses for team coordination
+5. Integrates with agent/swarm infrastructure: task assignment, team task lists, inbox management
+6. Uses resumeAgentBackground for restarting stopped agents
+7. Tracks request IDs for correlation
+8. Formats tool results and renders UI
 
 ## Exports
-- The tool object built by `buildTool` (named `SendMessageTool`)
-- Possibly additional internal types/functions
+- `SendMessageTool` - main tool definition
+- `Input` - input type (to, summary?, message)
+- `MessageRouting` - routing metadata type
+- `MessageOutput` - output type for single message
+- `BroadcastOutput` - output type for broadcast
+- `RequestOutput` - output type for request (shutdown/plan approval)
+- `ResponseOutput` - output type for response
+- `SendMessageToolOutput` - union output type

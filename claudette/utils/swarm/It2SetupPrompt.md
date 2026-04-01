@@ -5,7 +5,7 @@ eslint-disable-next-line custom-rules/prefer-use-keybindings -- enter to proceed
 
 ## Imports
 - **Stdlib**: react/compiler-runtime, react
-- **Internal**: ../../components/CustomSelect/index.js, ../../components/design-system/Pane.js, ../../components/Spinner.js, ../../hooks/useExitOnCtrlCDWithKeybindings.js, ../../ink.js, ../../keybindings/useKeybinding.js, ./backends/it2Setup.js
+- **Internal**: ../../components/CustomSelect/index.js, ../../components/design-system/Pane.js, ../../components/Spinner.js, ../../hooks/useExitOnCtrlCDWithKeybindings.js, ../../ink.js, ../../keybindings/useKeybinding.js, ./backends/it2Setup
 
 ## Items
 

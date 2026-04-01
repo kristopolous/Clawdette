@@ -4,7 +4,7 @@
 tool_result messages share type:'user' with human turns; the discriminant
 
 ## Imports
-- **Internal**: ../types/message.js
+- **Internal**: ../types/message
 
 ## Items
 

@@ -5,7 +5,7 @@ Find the first glob special character: *, ?, [, {
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../Tool.js, ./envUtils.js, ./platform.js, ./plugins/orphanedPluginFilter.js, ./ripgrep.js
+- **Internal**: ../Tool.js, ./envUtils.js, ./platform.js, ./plugins/orphanedPluginFilter.js, ./ripgrep
 
 ## Items
 

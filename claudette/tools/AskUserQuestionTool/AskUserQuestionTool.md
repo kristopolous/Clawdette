@@ -30,5 +30,5 @@ Tool for prompting users with multiple-choice questions, supporting single or mu
 - `Question` - Type for question (question, header, options[], multiSelect?)
 - `QuestionOption` - Type for option (label, description, preview?)
 - `Output` - Output type (questions, answers, annotations?)
-- `_sdkInputSchema`, `_sdkOutputSchema` - SDK-facing schemas
-- Helper: `validateHtmlPreview` (validates preview content)
+- `_sdkInputSchema` - SDK-facing input schema
+- `_sdkOutputSchema` - SDK-facing output schema

@@ -4,7 +4,7 @@
 Standard polling interval for all tasks
 
 ## Imports
-- **Internal**: ../../state/AppState.js, ../../tasks/types.js, ../messageQueueManager.js, ../sdkEventQueue.js, ./diskOutput.js
+- **Internal**: ../../state/AppState.js, ../../tasks/types.js, ../messageQueueManager.js, ../sdkEventQueue.js, ./diskOutput
 
 ## Items
 

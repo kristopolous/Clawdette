@@ -4,7 +4,7 @@
 Provides utility functions: getMaxOutputLength.
 
 ## Imports
-- **Internal**: ../envValidation.js
+- **Internal**: ../envValidation
 
 ## Items
 

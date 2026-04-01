@@ -5,7 +5,7 @@ First check if the pattern is already ignored by any gitignore file (including g
 
 ## Imports
 - **Stdlib**: fs/promises, os, path
-- **Internal**: ../cwd.js, ../errors.js, ../execFileNoThrow.js, ../git.js, ../log.js
+- **Internal**: ../cwd.js, ../errors.js, ../execFileNoThrow.js, ../git.js, ../log
 
 ## Items
 

@@ -15,4 +15,3 @@ Renders assistant text responses with special handling for API errors, rate limi
 
 ## Exports
 - `AssistantTextMessage` - React component that renders assistant text with comprehensive error message handling
-- `InvalidApiKeyMessage` - Internal component for invalid API key errors with keychain unlock hint

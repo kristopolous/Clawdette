@@ -33,4 +33,3 @@ Tool for creating a multi-agent swarm team, initializing team file, task list, a
 - `TeamCreateTool` - Main tool definition
 - `Input` - Type (team_name, description?, agent_type?)
 - `Output` - Type (team_name, team_file_path, lead_agent_id)
-- Helper: `generateUniqueTeamName` (returns provided name or new slug if exists)

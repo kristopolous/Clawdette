@@ -22,10 +22,3 @@ Renders system messages of various subtypes including turn duration, memory save
 
 ## Exports
 - `SystemTextMessage` - Main component dispatching on system message subtype
-- `StopHookSummaryMessage` - Renders stop hook summary with hook details
-- `SystemTextMessageInner` - Renders generic system text with dot and color
-- `TurnDurationMessage` - Renders turn duration with budget info
-- `MemorySavedMessage` - Renders memory saved notification with file links
-- `ThinkingMessage` - Renders thinking system message (dimmed)
-- `BridgeStatusMessage` - Renders remote bridge control status
-- `MemoryFileRow` - Renders a single saved memory file path with hover link

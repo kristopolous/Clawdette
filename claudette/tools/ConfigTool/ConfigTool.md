@@ -29,5 +29,3 @@ Tool for getting and setting Claude Code configuration settings (theme, model, p
 - `ConfigTool` - Main tool definition
 - `Input` - Type for input (setting, optional value)
 - `Output` - Type for output (success, operation, setting, value/previousValue/newValue, error)
-- Helper: `getValue` ( retrieves value from global or settings source)
-- Helper: `buildNestedObject` (builds nested object from path array)

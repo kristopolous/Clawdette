@@ -5,7 +5,7 @@ Validate basic structure
 
 ## Imports
 - **Stdlib**: axios, crypto, fs/promises, path
-- **Internal**: ../debug.js, ../errors.js, ../fsOperations.js, ../log.js, ../slowOperations.js, ./fetchTelemetry.js, ./pluginDirectories.js
+- **Internal**: ../debug.js, ../errors.js, ../fsOperations.js, ../log.js, ../slowOperations.js, ./fetchTelemetry.js, ./pluginDirectories
 
 ## Items
 

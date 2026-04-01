@@ -32,7 +32,4 @@ Defines the General Purpose agent for complex research and multi-step tasks.
 11. model omitted - uses getDefaultSubagentModel()
 
 ## Exports
-- `SHARED_PREFIX` - shared prompt prefix
-- `SHARED_GUIDELINES` - shared guidelines
-- `getGeneralPurposeSystemPrompt` - generates system prompt
 - `GENERAL_PURPOSE_AGENT` - general purpose agent definition

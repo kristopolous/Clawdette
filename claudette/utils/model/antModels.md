@@ -5,7 +5,7 @@
 
 ## Imports
 - **Stdlib**: src/services/analytics/growthbook.js
-- **Internal**: ../effort.js
+- **Internal**: ../effort
 
 ## Items
 

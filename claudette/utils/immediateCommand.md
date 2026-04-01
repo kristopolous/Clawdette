@@ -4,7 +4,7 @@
 Provides utility functions: shouldInferenceConfigCommandBeImmediate.
 
 ## Imports
-- **Internal**: ../services/analytics/growthbook.js
+- **Internal**: ../services/analytics/growthbook
 
 ## Items
 

@@ -25,5 +25,4 @@ Defines the Plan agent for read-only codebase exploration and implementation pla
 10. NEVER: mkdir, touch, rm, cp, mv, git add/commit, npm/pip install
 
 ## Exports
-- `getPlanV2SystemPrompt` - generates plan agent prompt
 - `PLAN_AGENT` - plan agent definition

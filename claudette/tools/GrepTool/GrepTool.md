@@ -25,9 +25,3 @@ Powerful search tool built on ripgrep for searching file contents using regular 
 
 ## Exports
 - `GrepTool` - Main tool definition
-- `Input` - Input type with numerous options (pattern, path, glob, output_mode, -B/-A/-C/context, -n, -i, type, head_limit, offset, multiline)
-- `Output` - Output type (mode?, numFiles, filenames, content?, numLines?, numMatches?, appliedLimit?, appliedOffset?)
-- Constant: `VCS_DIRECTORIES_TO_EXCLUDE` (list of VCS dirs)
-- Constant: `DEFAULT_HEAD_LIMIT` (250)
-- Helper: `applyHeadLimit` (applies limit/offset pagination)
-- Helper: `formatLimitInfo` (formats limit/offset for display)

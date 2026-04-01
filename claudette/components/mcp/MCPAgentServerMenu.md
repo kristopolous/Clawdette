@@ -4,7 +4,7 @@ Provides a menu interface for agent-specific MCP servers that are defined in age
 ## Imports
 - **Stdlib**: None
 - **External**: `figures`, `react` (useCallback, useEffect, useRef, useState)
-- **Internal**: `commands` (CommandResultDisplay), `ink.js` (Box, color, Link, Text, useTheme), `keybindings/useKeybinding`, `services/mcp/auth` (AuthenticationCancelledError, performMCPOAuthFlow), `utils/stringUtils` (capitalize), `ConfigurableShortcutHint`, `CustomSelect/index` (Select), `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `Spinner`, `types` (AgentMcpServerInfo)
+- **Internal**: `commands` (CommandResultDisplay), `ink` (Box, color, Link, Text, useTheme), `keybindings/useKeybinding`, `services/mcp/auth` (AuthenticationCancelledError, performMCPOAuthFlow), `utils/stringUtils` (capitalize), `ConfigurableShortcutHint`, `CustomSelect/index` (Select), `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `Spinner`, `types` (AgentMcpServerInfo)
 
 ## Logic
 1. Displays agent server details including transport type, URL, command, source agents, and auth status

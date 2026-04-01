@@ -3,7 +3,7 @@ Entry point that registers the 'plugin' command and loads the plugin management 
 
 ## Imports
 - **External**: `Command` type from project types
-- **Internal**: `plugin` from ./plugin.js (lazy-loaded)
+- **Internal**: `plugin` from ./plugin (lazy-loaded)
 
 ## Logic
 Defines the plugin command with:

@@ -2,7 +2,7 @@
 Provides small utilities for tagging and tracing tool use in message flows.
 
 ## Imports
-- **Internal**: types from `src/types/message.js` (AssistantMessage, AttachmentMessage, SystemMessage, UserMessage)
+- **Internal**: types from `src/types/message` (AssistantMessage, AttachmentMessage, SystemMessage, UserMessage)
 
 ## Logic
 Exports two functions:

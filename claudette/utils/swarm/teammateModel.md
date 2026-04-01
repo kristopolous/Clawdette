@@ -4,7 +4,7 @@
 @[MODEL LAUNCH]: Update the fallback model below.
 
 ## Imports
-- **Internal**: ../model/configs.js, ../model/providers.js
+- **Internal**: ../model/configs.js, ../model/providers
 
 ## Items
 

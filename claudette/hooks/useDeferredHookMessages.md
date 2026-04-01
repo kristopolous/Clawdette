@@ -3,7 +3,7 @@ Defers SessionStart hook messages to avoid blocking REPL initial render; provide
 
 ## Imports
 - **External**: `react` (useCallback, useEffect, useRef)
-- **Internal**: `../types/message.js` (HookResultMessage, Message)
+- **Internal**: `../types/message` (HookResultMessage, Message)
 
 ## Logic
 - `pendingRef` holds the incoming `pendingHookMessages` promise; `resolvedRef` tracks completion

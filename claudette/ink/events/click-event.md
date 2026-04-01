@@ -4,7 +4,7 @@ Represents a mouse click event fired on left-button release without drag, only w
 ## Imports
 - **Stdlib**: None specified
 - **External**: None specified
-- **Internal**: Event base class from ./event.js
+- **Internal**: Event base class from ./event
 
 ## Logic
 1. **ClickEvent Class**: Extends the base Event class with click-specific properties:

@@ -5,7 +5,7 @@ Use plugin.repository directly - it's already in "plugin@marketplace" format
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../../services/mcp/envExpansion.js, ../../types/plugin.js, ../debug.js, ../errors.js, ../fsOperations.js, ../slowOperations.js, ./pluginDirectories.js
+- **Internal**: ../../services/mcp/envExpansion.js, ../../types/plugin.js, ../debug.js, ../errors.js, ../fsOperations.js, ../slowOperations.js, ./pluginDirectories
 
 ## Items
 

@@ -4,7 +4,7 @@
 Pattern to detect "/btw" at start of input (case-insensitive, word boundary)
 
 ## Imports
-- **Internal**: ../services/api/errorUtils.js, ../services/api/logging.js, ../types/message.js, ./forkedAgent.js, ./messages.js
+- **Internal**: ../services/api/errorUtils.js, ../services/api/logging.js, ../types/message.js, ./forkedAgent.js, ./messages
 
 ## Items
 

@@ -3,7 +3,7 @@ Registers the /add-dir command.
 
 ## Imports
 - **External**: Command type
-- **Internal**: add-dir.jsx (lazy-loaded UI)
+- **Internal**: add-dirx (lazy-loaded UI)
 
 ## Logic
 Defines 'add-dir' command as local-jsx with:

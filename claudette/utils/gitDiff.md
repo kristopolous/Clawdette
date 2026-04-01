@@ -5,7 +5,7 @@ Skip diff calculation during transient git states since the
 
 ## Imports
 - **Stdlib**: diff, fs/promises, path
-- **Internal**: ./cwd.js, ./detectRepository.js, ./execFileNoThrow.js, ./file.js
+- **Internal**: ./cwd.js, ./detectRepository.js, ./execFileNoThrow.js, ./file
 
 ## Items
 

@@ -5,7 +5,7 @@ Direct version - match internal format too (e.g. 1.0.30-dev.shaf4937ce)
 
 ## Imports
 - **Stdlib**: bun:bundle, axios, crypto, fs/promises, path, src/services/analytics/index.js
-- **Internal**: ../config.js, ../debug.js, ../errors.js, ../execFileNoThrow.js, ../fsOperations.js, ../log.js, ../sleep.js, ../slowOperations.js, ./installer.js
+- **Internal**: ../config.js, ../debug.js, ../errors.js, ../execFileNoThrow.js, ../fsOperations.js, ../log.js, ../sleep.js, ../slowOperations.js, ./installer
 
 ## Items
 

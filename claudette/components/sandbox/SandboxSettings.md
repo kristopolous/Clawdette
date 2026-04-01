@@ -15,4 +15,3 @@ Provides a tabbed settings interface for configuring sandbox mode, overrides, de
 
 ## Exports
 - `SandboxSettings` - Renders the main sandbox settings UI with tabbed configuration panels
-- `SandboxModeTab` - Renders the mode selection dropdown with auto-allow, regular, and disabled options

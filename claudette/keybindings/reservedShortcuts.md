@@ -4,7 +4,7 @@ Defines shortcuts that are intercepted by the OS, terminal, or shell and cannot 
 ## Imports
 - **Stdlib**: none
 - **External**: none
-- **Internal**: `utils/platform.js` (getPlatform)
+- **Internal**: `utils/platform` (getPlatform)
 
 ## Logic
 Categorizes reserved shortcuts into non-rebindable (hardcoded in the application), terminal-reserved (intercepted by the terminal), and macOS-specific OS shortcuts. Assembles the appropriate set based on the current platform. Provides a normalization function that lowercases key strings and sorts modifiers for consistent comparison, handling chord sequences correctly by normalizing each step independently.

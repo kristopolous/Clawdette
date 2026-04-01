@@ -5,7 +5,7 @@ Constants for tmux socket management
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ./cleanupRegistry.js, ./debug.js, ./errors.js, ./execFileNoThrow.js, ./log.js, ./platform.js
+- **Internal**: ./cleanupRegistry.js, ./debug.js, ./errors.js, ./execFileNoThrow.js, ./log.js, ./platform
 
 ## Items
 

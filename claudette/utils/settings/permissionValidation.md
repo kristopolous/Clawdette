@@ -5,7 +5,7 @@ Check if the opening paren is unescaped
 
 ## Imports
 - **Stdlib**: zod/v4
-- **Internal**: ../../services/mcp/mcpStringUtils.js, ../lazySchema.js, ../permissions/permissionRuleParser.js, ../stringUtils.js
+- **Internal**: ../../services/mcp/mcpStringUtils.js, ../lazySchema.js, ../permissions/permissionRuleParser.js, ../stringUtils
 
 ## Items
 

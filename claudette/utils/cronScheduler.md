@@ -5,7 +5,7 @@ Non-React scheduler core for .claude/scheduled_tasks.json.
 
 ## Imports
 - **Stdlib**: chokidar
-- **Internal**: ./cron.js, ./debug.js
+- **Internal**: ./cron.js, ./debug
 
 ## Items
 

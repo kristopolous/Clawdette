@@ -31,5 +31,4 @@ Defines the Verification agent for adversarial testing and breaking implementati
 10. Before FAIL: check if already handled, intentional, or not actionable
 
 ## Exports
-- `VERIFICATION_SYSTEM_PROMPT` - verification agent prompt
 - `VERIFICATION_AGENT` - verification agent definition

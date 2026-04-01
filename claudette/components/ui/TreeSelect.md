@@ -4,7 +4,7 @@ Provides a generic component for selecting items from a hierarchical tree struct
 ## Imports
 - **Stdlib**: none
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `KeyboardEvent` from `ink/events/keyboard-event.js`, `Box` from `ink.js`, `OptionWithDescription`, `Select` from `CustomSelect/select.js`
+- **Internal**: `KeyboardEvent` from `ink/events/keyboard-event.js`, `Box` from `ink.js`, `OptionWithDescription`, `Select` from `CustomSelect/select`
 
 ## Logic
 Flattens tree nodes into a linear list based on expand/collapse state via a recursive traverse function, builds display labels with tree prefixes (▼/▶ for parents, ▸ for children at each depth), manages expanded node IDs through internal state or external callbacks, handles keyboard navigation (right arrow expands, left arrow collapses or navigates to parent), and delegates rendering to the Select component wrapped in a focusable Box with keydown handling.

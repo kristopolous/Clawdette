@@ -6,7 +6,7 @@ OTLP/Prometheus exporters are dynamically imported inside the protocol
 ## Imports
 - **Stdlib**: https-proxy-agent, src/utils/platform.js
 - **External**: @opentelemetry/api, @opentelemetry/api-logs
-- **Internal**: ../caCerts.js, ../cleanupRegistry.js, ../debug.js, ../envUtils.js, ../errors.js, ../mtls.js, ../proxy.js, ../settings/settings.js, ../slowOperations.js, ../startupProfiler.js...
+- **Internal**: ../caCerts.js, ../cleanupRegistry.js, ../debug.js, ../envUtils.js, ../errors.js, ../mtls.js, ../proxy.js, ../settings/settings.js, ../slowOperations.js, ../startupProfiler...
 
 ## Items
 

@@ -4,7 +4,7 @@ Displays a scrollable list of all MCP servers grouped by configuration scope wit
 ## Imports
 - **Stdlib**: None
 - **External**: `figures`, `react` (useCallback, useState), `react/compiler-runtime`
-- **Internal**: `commands` (CommandResultDisplay), `ink.js` (Box, color, Link, Text, useTheme), `keybindings/useKeybinding` (useKeybindings), `services/mcp/types` (ConfigScope), `services/mcp/utils` (describeMcpConfigFilePath), `utils/debug` (isDebugMode), `utils/stringUtils` (plural), `ConfigurableShortcutHint`, `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `McpParsingWarnings`, `types` (AgentMcpServerInfo, ServerInfo)
+- **Internal**: `commands` (CommandResultDisplay), `ink` (Box, color, Link, Text, useTheme), `keybindings/useKeybinding` (useKeybindings), `services/mcp/types` (ConfigScope), `services/mcp/utils` (describeMcpConfigFilePath), `utils/debug` (isDebugMode), `utils/stringUtils` (plural), `ConfigurableShortcutHint`, `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `McpParsingWarnings`, `types` (AgentMcpServerInfo, ServerInfo)
 
 ## Logic
 1. Groups servers by scope (project, local, user, enterprise) using groupServersByScope

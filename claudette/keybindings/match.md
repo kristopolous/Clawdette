@@ -4,7 +4,7 @@ Matches incoming Ink key events against parsed keybinding chords to determine if
 ## Imports
 - **Stdlib**: none
 - **External**: none
-- **Internal**: `ink.js` (Key type), `types.js` (ParsedBinding, ParsedKeystroke)
+- **Internal**: `ink.js` (Key type), `types` (ParsedBinding, ParsedKeystroke)
 
 ## Logic
 Extracts modifier flags (ctrl, shift, meta/super) and normalized key names from Ink's Key object, then compares them against a target ParsedKeystroke. Handles terminal quirks such as Ink setting meta=true on escape, and treats alt/meta as equivalent since legacy terminals cannot distinguish them. Only supports single-keystroke bindings in the current phase.

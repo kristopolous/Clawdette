@@ -5,7 +5,7 @@
 
 ## Imports
 - **Stdlib**: fs, fs/promises, path
-- **Internal**: ./getWorktreePathsPortable.js, ./sessionStoragePortable.js
+- **Internal**: ./getWorktreePathsPortable.js, ./sessionStoragePortable
 
 ## Items
 

@@ -5,7 +5,7 @@ Lock options: retry with backoff so concurrent callers (multiple Claudes
 
 ## Imports
 - **Stdlib**: fs/promises, path, zod/v4
-- **Internal**: ../constants/xml.js, ../entrypoints/sdk/coreSchemas.js, ../tools/SendMessageTool/constants.js, ../types/message.js, ./agentId.js, ./array.js, ./debug.js, ./envUtils.js, ./errors.js, ./lazySchema.js...
+- **Internal**: ../constants/xml.js, ../entrypoints/sdk/coreSchemas.js, ../tools/SendMessageTool/constants.js, ../types/message.js, ./agentId.js, ./array.js, ./debug.js, ./envUtils.js, ./errors.js, ./lazySchema...
 
 ## Items
 

@@ -4,7 +4,7 @@ Renders a dimmed interruption indicator message when the user interrupts executi
 ## Imports
 - **Stdlib**: none
 - **External**: react (React)
-- **Internal**: ../ink.js (Text)
+- **Internal**: ../ink (Text)
 
 ## Logic
 Displays a static "Interrupted" message followed by a prompt asking what Claudette should do instead, rendered in dim color.

@@ -2,7 +2,7 @@
 Provides lazy-loaded command metadata for the `help` command.
 
 ## Imports
-- **Internal**: Command type, help.tsx implementation
+- **Internal**: Command type, helpx implementation
 
 ## Logic
 1. Command with type 'local-jsx'

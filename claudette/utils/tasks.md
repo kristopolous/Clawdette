@@ -5,7 +5,7 @@ Listeners for task list updates (used for immediate UI refresh in same process)
 
 ## Imports
 - **Stdlib**: fs/promises, path, zod/v4
-- **Internal**: ../bootstrap/state.js, ./array.js, ./debug.js, ./envUtils.js, ./errors.js, ./lazySchema.js, ./lockfile.js, ./log.js, ./signal.js, ./slowOperations.js...
+- **Internal**: ../bootstrap/state.js, ./array.js, ./debug.js, ./envUtils.js, ./errors.js, ./lazySchema.js, ./lockfile.js, ./log.js, ./signal.js, ./slowOperations...
 
 ## Items
 

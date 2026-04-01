@@ -26,7 +26,4 @@ Defines the Claude Code Guide agent for helping users with Claude Code, Agent SD
 
 ## Exports
 - `CLAUDE_CODE_GUIDE_AGENT_TYPE` - guide agent type constant
-- `CLAUDE_CODE_DOCS_MAP_URL` - Claude Code docs URL
-- `CDP_DOCS_MAP_URL` - Claude API docs URL
-- `getClaudeCodeGuideBasePrompt` - generates guide agent prompt
 - `CLAUDE_CODE_GUIDE_AGENT` - guide agent definition

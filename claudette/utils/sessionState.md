@@ -4,7 +4,7 @@
 CCR external_metadata keys — push in onChangeAppState, restore in
 
 ## Imports
-- **Internal**: ./envUtils.js, ./permissions/PermissionMode.js, ./sdkEventQueue.js
+- **Internal**: ./envUtils.js, ./permissions/PermissionMode.js, ./sdkEventQueue
 
 ## Items
 

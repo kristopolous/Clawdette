@@ -4,7 +4,7 @@
 Provides utility functions: emitTaskProgress.
 
 ## Imports
-- **Internal**: ../../types/tools.js, ../sdkEventQueue.js
+- **Internal**: ../../types/tools.js, ../sdkEventQueue
 
 ## Items
 

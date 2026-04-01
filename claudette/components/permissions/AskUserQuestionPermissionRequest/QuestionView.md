@@ -4,7 +4,7 @@ Renders a single question view with selectable options, text input, image paste 
 ## Imports
 - **Stdlib**: none
 - **External**: `react`, `react/compiler-runtime`, `figures`
-- **Internal**: `KeyboardEvent`, `Box`, `Text`, `useAppState`, `Question`, `QuestionOption`, `PastedContent`, `getExternalEditor`, `toIDEDisplayName`, `editPromptInEditor`, `OptionWithDescription`, `Select`, `SelectMulti`, `Divider`, `FilePathLink`, `PermissionRequestTitle`, `PreviewQuestionView`, `QuestionNavigationBar`, `QuestionState`
+- **Internal**: `KeyboardEvent`, `Box`, `Text`, `useAppState`, `Question`, `QuestionOption`, `PastedContent`, `getExternalEditor`, `toIDEDisplayName`, `ImageDimensions`, `editPromptInEditor`, `OptionWithDescription`, `Select`, `SelectMulti`, `Divider`, `FilePathLink`, `PermissionRequestTitle`, `PreviewQuestionView`, `QuestionNavigationBar`, `QuestionState`
 
 ## Logic
 1. Determines if the question has preview options to render either PreviewQuestionView or inline select components

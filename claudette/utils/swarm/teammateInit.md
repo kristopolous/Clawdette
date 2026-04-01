@@ -4,7 +4,7 @@
 Read team file to get leader ID
 
 ## Imports
-- **Internal**: ../../state/AppState.js, ../debug.js, ../hooks/sessionHooks.js, ../permissions/PermissionUpdate.js, ../slowOperations.js, ../teammate.js, ./teamHelpers.js
+- **Internal**: ../../state/AppState.js, ../debug.js, ../hooks/sessionHooks.js, ../permissions/PermissionUpdate.js, ../slowOperations.js, ../teammate.js, ./teamHelpers
 
 ## Items
 

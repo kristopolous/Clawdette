@@ -4,7 +4,7 @@ Parses keystroke and chord strings into structured representations and converts 
 ## Imports
 - **Stdlib**: none
 - **External**: none
-- **Internal**: `types.js` (Chord, KeybindingBlock, ParsedBinding, ParsedKeystroke)
+- **Internal**: `types` (Chord, KeybindingBlock, ParsedBinding, ParsedKeystroke)
 
 ## Logic
 Splits input strings on `+` to extract modifiers and keys, normalizing modifier aliases (ctrl/control, alt/opt/option/meta, cmd/command/super/win) and special key names (escape, arrows, etc.). Converts parsed structures back to canonical or platform-appropriate display strings. Flattens keybinding blocks into a list of parsed bindings.

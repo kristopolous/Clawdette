@@ -2,7 +2,7 @@
 Handles truncation of overly long pasted text input by replacing the middle portion with a reference placeholder.
 
 ## Imports
-- **Stdlib**: `Math`
+- **Stdlib**: none
 - **External**: none
 - **Internal**: `history`, `utils/config`
 

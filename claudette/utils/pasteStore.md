@@ -5,7 +5,7 @@ Content-addressable: same hash = same content, so overwriting is safe
 
 ## Imports
 - **Stdlib**: crypto, fs/promises, path
-- **Internal**: ./debug.js, ./envUtils.js, ./errors.js
+- **Internal**: ./debug.js, ./envUtils.js, ./errors
 
 ## Items
 

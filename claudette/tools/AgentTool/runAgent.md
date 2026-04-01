@@ -27,6 +27,4 @@ Implements core agent execution with query loop and tool orchestration.
 16. Supports coordinator mode with special handling
 
 ## Exports
-- `runAgent` - runs agent execution loop
-- `runAsyncAgent` - runs async agent with task registration
-- (Agent execution and lifecycle functions)
+- `filterIncompleteToolCalls` - filters incomplete tool calls from messages

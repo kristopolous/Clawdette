@@ -4,7 +4,7 @@ Defines Zod validation schemas for the keybindings.json configuration file and e
 ## Imports
 - **Stdlib**: none
 - **External**: `zod/v4`
-- **Internal**: `utils/lazySchema.js`
+- **Internal**: `utils/lazySchema`
 
 ## Logic
 Declares constant arrays of valid context names and action identifiers with human-readable descriptions, then constructs Zod schemas that validate the structure of a single keybinding block and the entire keybindings configuration file. TypeScript types are inferred from the schemas.

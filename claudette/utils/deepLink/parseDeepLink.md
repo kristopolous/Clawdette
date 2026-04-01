@@ -4,7 +4,7 @@
 Normalize: accept with or without the trailing colon in protocol
 
 ## Imports
-- **Internal**: ../sanitization.js
+- **Internal**: ../sanitization
 
 ## Items
 

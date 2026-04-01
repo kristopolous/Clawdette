@@ -5,7 +5,7 @@ Check if the resolved path starts with the base path
 
 ## Imports
 - **Stdlib**: crypto, fs/promises, path
-- **Internal**: ../cwd.js, ../errors.js, ../fsOperations.js, ../log.js, ../telemetry/pluginTelemetry.js, ./cacheUtils.js, ./managedPlugins.js, ./marketplaceManager.js, ./pluginPolicy.js, ./pluginVersioning.js
+- **Internal**: ../cwd.js, ../errors.js, ../fsOperations.js, ../log.js, ../telemetry/pluginTelemetry.js, ./cacheUtils.js, ./managedPlugins.js, ./marketplaceManager.js, ./pluginPolicy.js, ./pluginVersioning
 
 ## Items
 

@@ -5,7 +5,7 @@ Direct user input path (set when called from onSubmit, absent for queue processo
 
 ## Imports
 - **Stdlib**: crypto, src/services/analytics/index.js, src/services/analytics/metadata.js
-- **Internal**: ../commands.js, ../components/MessageSelector.js, ../components/Spinner/types.js, ../constants/querySource.js, ../history.js, ../hooks/useCanUseTool.js, ../hooks/useIdeSelection.js, ../state/AppState.js, ../Tool.js, ../types/command.js...
+- **Internal**: ../commands.js, ../components/MessageSelector.js, ../components/Spinner/types.js, ../constants/querySource.js, ../history.js, ../hooks/useCanUseTool.js, ../hooks/useIdeSelection.js, ../state/AppState.js, ../Tool.js, ../types/command...
 
 ## Items
 

@@ -4,7 +4,7 @@
 Process-lifetime debounce cache — avoids lock + read + parse on debounced
 
 ## Imports
-- **Internal**: ../config.js
+- **Internal**: ../config
 
 ## Items
 

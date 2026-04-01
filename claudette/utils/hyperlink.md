@@ -5,7 +5,7 @@ OSC 8 hyperlink escape sequences
 
 ## Imports
 - **Stdlib**: chalk
-- **Internal**: ../ink/supports-hyperlinks.js
+- **Internal**: ../ink/supports-hyperlinks
 
 ## Items
 

@@ -2,7 +2,7 @@
 Clear conversation history and free up context, starting fresh.
 
 ## Imports
-- **Internal**: `clearConversation` (from clear/conversation.js), LocalCommandCall type
+- **Internal**: `clearConversation` (from clear/conversation), LocalCommandCall type
 
 ## Logic
 1. Calls clearConversation with context

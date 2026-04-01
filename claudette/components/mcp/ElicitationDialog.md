@@ -4,7 +4,7 @@ Handles MCP server elicitation requests, presenting form-based or URL-based dial
 ## Imports
 - **Stdlib**: None
 - **External**: `@modelcontextprotocol/sdk/types.js` (ElicitRequestFormParams, ElicitRequestURLParams, ElicitResult, PrimitiveSchemaDefinition), `figures`, `react` (useCallback, useEffect, useMemo, useRef, useState), `react/compiler-runtime`
-- **Internal**: `context/overlayContext` (useRegisterOverlay), `hooks/useNotifyAfterTimeout`, `hooks/useTerminalSize`, `ink.js` (Box, Text, useInput), `keybindings/useKeybinding`, `services/mcp/elicitationHandler` (ElicitationRequestEvent), `utils/browser` (openBrowser), `utils/mcp/elicitationValidation` (getEnumLabel, getEnumValues, getMultiSelectLabel, getMultiSelectValues, isDateTimeSchema, isEnumSchema, isMultiSelectEnumSchema, validateElicitationInput, validateElicitationInputAsync), `utils/stringUtils` (plural), `ConfigurableShortcutHint`, `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `TextInput`
+- **Internal**: `context/overlayContext` (useRegisterOverlay), `hooks/useNotifyAfterTimeout`, `hooks/useTerminalSize`, `ink` (Box, Text, useInput), `keybindings/useKeybinding`, `services/mcp/elicitationHandler` (ElicitationRequestEvent), `utils/browser` (openBrowser), `utils/mcp/elicitationValidation` (getEnumLabel, getEnumValues, getMultiSelectLabel, getMultiSelectValues, isDateTimeSchema, isEnumSchema, isMultiSelectEnumSchema, validateElicitationInput, validateElicitationInputAsync), `utils/stringUtils` (plural), `ConfigurableShortcutHint`, `design-system/Byline` (Byline), `design-system/Dialog` (Dialog), `design-system/KeyboardShortcutHint` (KeyboardShortcutHint), `TextInput`
 
 ## Logic
 1. Routes between ElicitationFormDialog (form mode) and ElicitationURLDialog (URL mode) based on event.params.mode
@@ -19,5 +19,3 @@ Handles MCP server elicitation requests, presenting form-based or URL-based dial
 
 ## Exports
 - `ElicitationDialog` - main elicitation component that routes to form or URL dialog
-- `ElicitationFormDialog` - renders a form-based elicitation dialog with field editing and validation
-- `ElicitationURLDialog` - renders a URL-based elicitation dialog with prompt and waiting phases

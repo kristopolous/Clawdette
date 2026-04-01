@@ -4,7 +4,7 @@
 UserTextMessage.tsx:~84 replaces these with <InterruptedByUser />
 
 ## Imports
-- **Internal**: ../types/message.js
+- **Internal**: ../types/message
 
 ## Items
 

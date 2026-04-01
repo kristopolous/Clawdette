@@ -5,7 +5,7 @@ Activity overview
 
 ## Imports
 - **Stdlib**: bun:bundle, fs/promises, path, src/entrypoints/agentSdkTypes.js
-- **Internal**: ../types/logs.js, ./debug.js, ./errors.js, ./fsOperations.js, ./json.js, ./messages.js, ./sessionStorage.js, ./shell/shellToolUtils.js, ./slowOperations.js
+- **Internal**: ../types/logs.js, ./debug.js, ./errors.js, ./fsOperations.js, ./json.js, ./messages.js, ./sessionStorage.js, ./shell/shellToolUtils.js, ./slowOperations
 
 ## Items
 

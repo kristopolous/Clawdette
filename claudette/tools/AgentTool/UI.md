@@ -29,15 +29,15 @@ Provides React components for rendering agent tool messages and progress.
 18. Ctrl+O to expand shortcut hint
 
 ## Exports
-- `MAX_PROGRESS_MESSAGES_TO_SHOW` - max progress messages constant
-- `hasProgressMessage` - progress message guard
-- `getSearchOrReadInfo` - gets search/read info from progress
-- `userFacingName` - gets user-facing agent name
-- `userFacingNameBackgroundColor` - gets name background color
-- `renderToolUseMessage` - renders tool use
+- `AgentPromptDisplay` - component for agent prompt display
+- `AgentResponseDisplay` - component for agent response display
+- `renderToolResultMessage` - renders tool result message
+- `renderToolUseMessage` - renders tool use message
 - `renderToolUseTag` - renders tool use tag
+- `renderToolUseProgressMessage` - renders progress message
 - `renderToolUseRejectedMessage` - renders rejected tool use
 - `renderToolUseErrorMessage` - renders error message
-- `renderToolUseProgressMessage` - renders progress
-- `renderToolResultMessage` - renders tool result
 - `renderGroupedAgentToolUse` - renders grouped tool uses
+- `userFacingName` - gets user-facing agent name
+- `userFacingNameBackgroundColor` - gets background color for name
+- `extractLastToolInfo` - extracts last tool info from progress

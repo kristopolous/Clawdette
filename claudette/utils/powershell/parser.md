@@ -5,7 +5,7 @@
 
 ## Imports
 - **Stdlib**: execa
-- **Internal**: ../debug.js, ../memoize.js, ../shell/powershellDetection.js, ../slowOperations.js
+- **Internal**: ../debug.js, ../memoize.js, ../shell/powershellDetection.js, ../slowOperations
 
 ## Items
 

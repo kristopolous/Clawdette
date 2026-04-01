@@ -4,7 +4,7 @@ Provides an EventEmitter class that extends Node.js's built-in EventEmitter with
 ## Imports
 - **Stdlib**: None specified
 - **External**: EventEmitter as NodeEventEmitter from 'events'
-- **Internal**: Event base class from ./event.js
+- **Internal**: Event base class from ./event
 
 ## Logic
 1. **Inheritance**: Extends Node.js's built-in EventEmitter class

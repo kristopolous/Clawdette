@@ -4,7 +4,7 @@ Handles parsing of simple escape sequences (ESC + one or two characters) into se
 ## Imports
 - **Stdlib**: None specified
 - **External**: None specified
-- **Internal**: Action type from ./types.js
+- **Internal**: Action type from ./types
 
 ## Logic
 1. **parseEsc() Function**:

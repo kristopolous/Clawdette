@@ -4,7 +4,7 @@ Provides a React hook that manages the state and interaction logic for file perm
 ## Imports
 - **Stdlib**: none
 - **External**: `react` (useCallback, useMemo, useState)
-- **Internal**: `useAppState`, `useKeybindings`, `logEvent`, `sanitizeToolNameForAnalytics`, `PermissionUpdate`, `CompletionType`, `ToolUseConfirm`, `FileOperationType`, `getFilePermissionOptions`, `PermissionOption`, `PermissionOptionWithLabel`, `PERMISSION_HANDLERS`, `PermissionHandlerParams`
+- **Internal**: `useAppState`, `useKeybindings`, `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS`, `logEvent`, `sanitizeToolNameForAnalytics`, `PermissionUpdate`, `CompletionType`, `ToolUseConfirm`, `FileOperationType`, `getFilePermissionOptions`, `PermissionOption`, `PermissionOptionWithLabel`, `PERMISSION_HANDLERS`, `PermissionHandlerParams`
 
 ## Logic
 1. Generates permission options dynamically based on file path, operation type, and tool permission context

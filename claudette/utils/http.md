@@ -5,7 +5,7 @@ WARNING: We rely on `claude-cli` in the user agent for log filtering.
 
 ## Imports
 - **Stdlib**: axios
-- **Internal**: ../constants/oauth.js, ./userAgent.js, ./workloadContext.js
+- **Internal**: ../constants/oauth.js, ./userAgent.js, ./workloadContext
 
 ## Items
 

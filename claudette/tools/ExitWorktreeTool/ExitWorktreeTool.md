@@ -34,5 +34,3 @@ Tool for exiting a worktree session created by EnterWorktree, with options to ei
 ## Exports
 - `ExitWorktreeTool` - Main tool definition
 - `Output` - Type (action, originalCwd, worktreePath, worktreeBranch?, tmuxSessionName?, discardedFiles?, discardedCommits?, message)
-- Helper: `countWorktreeChanges` (returns changedFiles and commits or null)
-- Helper: `restoreSessionToOriginalCwd`

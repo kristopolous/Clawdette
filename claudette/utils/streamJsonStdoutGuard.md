@@ -4,7 +4,7 @@
 Empty lines are tolerated in NDJSON streams — treat them as valid so a
 
 ## Imports
-- **Internal**: ./cleanupRegistry.js, ./debug.js
+- **Internal**: ./cleanupRegistry.js, ./debug
 
 ## Items
 

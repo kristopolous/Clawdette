@@ -4,7 +4,7 @@
 Null-byte sentinel placeholders for wildcard pattern escaping — module-level
 
 ## Imports
-- **Internal**: ./PermissionUpdateSchema.js
+- **Internal**: ./PermissionUpdateSchema
 
 ## Items
 

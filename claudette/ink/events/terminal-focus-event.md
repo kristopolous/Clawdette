@@ -4,7 +4,7 @@ Represents an event fired when the terminal window gains or loses focus, using D
 ## Imports
 - **Stdlib**: None specified
 - **External**: None specified
-- **Internal**: Event base class from ./event.js
+- **Internal**: Event base class from ./event
 
 ## Logic
 1. **TerminalFocusEventType**: Defines the event type as a union of 'terminalfocus' (gain focus) and 'terminalblur' (lose focus)

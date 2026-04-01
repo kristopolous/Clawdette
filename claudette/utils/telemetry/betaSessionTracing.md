@@ -6,7 +6,7 @@ Message type for API calls (UserMessage or AssistantMessage)
 ## Imports
 - **Stdlib**: crypto
 - **External**: @opentelemetry/api
-- **Internal**: ../../bootstrap/state.js, ../../services/analytics/growthbook.js, ../../services/analytics/metadata.js, ../../types/message.js, ../envUtils.js, ../slowOperations.js, ./events.js
+- **Internal**: ../../bootstrap/state.js, ../../services/analytics/growthbook.js, ../../services/analytics/metadata.js, ../../types/message.js, ../envUtils.js, ../slowOperations.js, ./events
 
 ## Items
 

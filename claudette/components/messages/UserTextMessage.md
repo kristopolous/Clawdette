@@ -4,7 +4,7 @@ Dispatches user text messages to appropriate specialized components based on con
 ## Imports
 - **Stdlib**: None
 - **External**: react, @anthropic-ai/sdk, bun:bundle
-- **Internal**: ink (Box, Text), MessageResponse, InterruptedByUser, UserBashInputMessage, UserBashOutputMessage, UserCommandMessage, UserLocalCommandOutputMessage, UserMemoryInputMessage, UserPlanMessage, UserPromptMessage, UserResourceUpdateMessage, UserTeammateMessage, UserAgentNotificationMessage, xml constants, messages constants, messages utils, agentSwarmsEnabled utils
+- **Internal**: MessageResponse, InterruptedByUser, UserBashInputMessage, UserBashOutputMessage, UserCommandMessage, UserLocalCommandOutputMessage, UserMemoryInputMessage, UserPlanMessage, UserPromptMessage, UserResourceUpdateMessage, UserTeammateMessage, UserAgentNotificationMessage, xml constants, messages constants, messages utils, agentSwarmsEnabled utils
 
 ## Logic
 1. Checks for empty content and delegates to UserPlanMessage if planContent is provided

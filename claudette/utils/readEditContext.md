@@ -5,7 +5,7 @@ Model sends LF; files may be CRLF. Count newlines to size the overlap for
 
 ## Imports
 - **Stdlib**: fs/promises
-- **Internal**: ./errors.js
+- **Internal**: ./errors
 
 ## Items
 

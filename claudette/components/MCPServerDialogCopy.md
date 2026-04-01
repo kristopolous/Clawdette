@@ -4,7 +4,7 @@ Renders informational text about MCP server permissions for use in dialog compon
 ## Imports
 - **Stdlib**: none
 - **External**: react, react/compiler-runtime
-- **Internal**: ../ink.js (Link, Text)
+- **Internal**: ../ink (Link, Text)
 
 ## Logic
 Displays a static message informing users that MCP servers may execute code or access system resources, and that all tool calls require approval. Includes a link to the MCP documentation page.

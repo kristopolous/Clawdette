@@ -5,7 +5,7 @@ Local builds from build directories are dev mode even with NODE_ENV=production
 
 ## Imports
 - **Stdlib**: fs/promises, path, semver
-- **Internal**: ../bootstrap/state.js, ./cwd.js, ./debug.js, ./execFileNoThrow.js, ./file.js, ./semver.js
+- **Internal**: ../bootstrap/state.js, ./cwd.js, ./debug.js, ./execFileNoThrow.js, ./file.js, ./semver
 
 ## Items
 

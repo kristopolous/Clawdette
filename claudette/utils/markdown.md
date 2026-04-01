@@ -5,7 +5,7 @@ Use \n unconditionally — os.EOL is \r\n on Windows, and the extra \r
 
 ## Imports
 - **Stdlib**: chalk, marked, strip-ansi
-- **Internal**: ../components/design-system/color.js, ../constants/figures.js, ../ink/stringWidth.js, ../ink/supports-hyperlinks.js, ./cliHighlight.js, ./debug.js, ./hyperlink.js, ./messages.js, ./theme.js
+- **Internal**: ../components/design-system/color.js, ../constants/figures.js, ../ink/stringWidth.js, ../ink/supports-hyperlinks.js, ./cliHighlight.js, ./debug.js, ./hyperlink.js, ./messages.js, ./theme
 
 ## Items
 

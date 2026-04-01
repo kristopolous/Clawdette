@@ -5,7 +5,7 @@ Lazy-load performance API only when profiling is enabled.
 
 ## Imports
 - **Stdlib**: perf_hooks
-- **Internal**: ./format.js
+- **Internal**: ./format
 
 ## Items
 

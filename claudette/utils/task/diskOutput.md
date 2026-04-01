@@ -5,7 +5,7 @@ SECURITY: O_NOFOLLOW prevents following symlinks when opening task output files.
 
 ## Imports
 - **Stdlib**: fs, path
-- **Internal**: ../../bootstrap/state.js, ../errors.js, ../fsOperations.js, ../log.js, ../permissions/filesystem.js
+- **Internal**: ../../bootstrap/state.js, ../errors.js, ../fsOperations.js, ../log.js, ../permissions/filesystem
 
 ## Items
 

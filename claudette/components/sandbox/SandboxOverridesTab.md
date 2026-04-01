@@ -15,4 +15,3 @@ Provides a tab for configuring sandbox override behavior, allowing users to choo
 
 ## Exports
 - `SandboxOverridesTab` - Renders the overrides configuration UI or early-returns status messages when sandbox is disabled/locked
-- `OverridesSelect` - Renders the select dropdown for choosing between open and closed override modes

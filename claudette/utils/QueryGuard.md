@@ -4,7 +4,7 @@
 --
 
 ## Imports
-- **Internal**: ./signal.js
+- **Internal**: ./signal
 
 ## Exports
 - QueryGuard

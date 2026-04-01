@@ -4,7 +4,7 @@ Displays the capabilities (tools, resources, prompts) available on an MCP server
 ## Imports
 - **Stdlib**: None
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `ink.js` (Box, Text), `design-system/Byline` (Byline)
+- **Internal**: `ink` (Box, Text), `design-system/Byline` (Byline)
 
 ## Logic
 1. Builds a capabilities array based on which counts are greater than zero (tools, resources, prompts)

@@ -4,7 +4,7 @@ Provides a Text component for rendering styled text with support for color, form
 ## Imports
 - **Stdlib**: None specified
 - **External**: React from 'react'; React compiler runtime
-- **Internal**: Color, Styles, TextStyles from ../styles.js
+- **Internal**: Color, Styles, TextStyles from ../styles
 
 ## Logic
 1. **BaseProps Type**: Defines optional properties for text styling:

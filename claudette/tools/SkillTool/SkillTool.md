@@ -30,11 +30,7 @@ Tool for executing skills (slash commands) either inline or in a forked sub-agen
 
 ## Exports
 - `SkillTool` - Main tool definition with progress support
-- `Input` - Type for input (skill, optional args)
-- `Output` - Union type for inline or forked output
+- `inputSchema` - Input schema
+- `outputSchema` - Output schema
+- `Output` - Output type (union of inline or forked output)
 - `Progress` - Type alias for SkillToolProgress (re-exported)
-- Helper: `getAllCommands` (combines local and MCP skills)
-- Helper: `skillHasOnlySafeProperties` (determines auto-allow)
-- Helper: `isOfficialMarketplaceSkill`
-- Helper: `extractUrlScheme`
-- Helper: `executeRemoteSkill`

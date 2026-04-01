@@ -27,5 +27,4 @@ Defines the Statusline Setup agent for creating/updating Claude Code status line
    - version, output_style, context_window, token usage
 
 ## Exports
-- `STATUSLINE_SYSTEM_PROMPT` - statusline setup prompt
 - `STATUSLINE_SETUP_AGENT` - statusline setup agent definition

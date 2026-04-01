@@ -5,7 +5,7 @@ Only OAuth users can have extra_usage_disabled; console users don't have this co
 
 ## Imports
 - **Stdlib**: axios, src/constants/oauth.js, src/services/analytics/growthbook.js
-- **Internal**: ./bundledMode.js, ./config.js, ./debug.js, ./envUtils.js, ./model/providers.js, ./privacyLevel.js, ./signal.js
+- **Internal**: ./bundledMode.js, ./config.js, ./debug.js, ./envUtils.js, ./model/providers.js, ./privacyLevel.js, ./signal
 
 ## Items
 

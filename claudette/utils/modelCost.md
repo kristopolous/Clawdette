@@ -6,7 +6,7 @@
 ## Imports
 - **Stdlib**: src/services/analytics/index.js, src/services/analytics/index.js
 - **External**: @anthropic-ai/sdk/resources/beta/messages/messages.mjs
-- **Internal**: ../bootstrap/state.js, ./fastMode.js
+- **Internal**: ../bootstrap/state.js, ./fastMode
 
 ## Items
 

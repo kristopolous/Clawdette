@@ -5,7 +5,7 @@ No second argument - use defaults
 
 ## Imports
 - **Stdlib**: execa
-- **Internal**: ../utils/cwd.js, ./slowOperations.js
+- **Internal**: ../utils/cwd.js, ./slowOperations
 
 ## Items
 

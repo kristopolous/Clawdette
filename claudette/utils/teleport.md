@@ -5,7 +5,7 @@ Extract text from the response
 
 ## Imports
 - **Stdlib**: axios, chalk, crypto, react, src/bootstrap/state.js, src/services/analytics/growthbook.js, src/services/analytics/index.js, src/services/policyLimits/index.js, zod/v4
-- **Internal**: ../components/TeleportError.js, ../constants/oauth.js, ../entrypoints/agentSdkTypes.js, ../ink.js, ../keybindings/KeybindingProviderSetup.js, ../services/api/claude.js, ../services/api/sessionIngress.js, ../services/oauth/client.js, ../state/AppState.js, ../types/message.js...
+- **Internal**: ../components/TeleportError.js, ../constants/oauth.js, ../entrypoints/agentSdkTypes.js, ../ink.js, ../keybindings/KeybindingProviderSetup.js, ../services/api/claude.js, ../services/api/sessionIngress.js, ../services/oauth/client.js, ../state/AppState.js, ../types/message...
 
 ## Items
 

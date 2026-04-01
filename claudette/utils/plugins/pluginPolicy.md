@@ -4,7 +4,7 @@
 Provides utility functions: isPluginBlockedByPolicy.
 
 ## Imports
-- **Internal**: ../settings/settings.js
+- **Internal**: ../settings/settings
 
 ## Items
 

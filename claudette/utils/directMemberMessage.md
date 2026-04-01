@@ -4,7 +4,7 @@
 Find team member by name
 
 ## Imports
-- **Internal**: ../state/AppState.js
+- **Internal**: ../state/AppState
 
 ## Items
 

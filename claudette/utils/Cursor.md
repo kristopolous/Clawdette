@@ -4,7 +4,7 @@
 Track yank state for yank-pop (alt-y)
 
 ## Imports
-- **Internal**: ../ink/stringWidth.js, ../ink/wrapAnsi.js
+- **Internal**: ../ink/stringWidth.js, ../ink/wrapAnsi
 
 ## Items
 

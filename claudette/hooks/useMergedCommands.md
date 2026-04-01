@@ -3,7 +3,7 @@ Merges initial commands with MCP-provided commands, deduplicating by name, to pr
 
 ## Imports
 - **External**: `lodash-es/uniqBy.js` (uniqBy)
-- **Internal**: `../commands.js` (Command type)
+- **Internal**: `../commands` (Command type)
 - **External**: `react` (useMemo)
 
 ## Logic

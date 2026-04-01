@@ -5,7 +5,7 @@ Cache the set of tool names that support grouped rendering, keyed by the
 
 ## Imports
 - **External**: @anthropic-ai/sdk/resources/beta/messages/messages.mjs, @anthropic-ai/sdk/resources/messages/messages.mjs
-- **Internal**: ../Tool.js
+- **Internal**: ../Tool
 
 ## Items
 

@@ -4,7 +4,7 @@
 =============================================================================
 
 ## Imports
-- **Internal**: ../../../tools/AgentTool/agentColorManager.js
+- **Internal**: ../../../tools/AgentTool/agentColorManager
 
 ## Items
 

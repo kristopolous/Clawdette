@@ -21,4 +21,3 @@ Tool for finding files by name pattern or wildcard (glob), with results limited 
 ## Exports
 - `GlobTool` - Main tool definition
 - `Output` - Type (durationMs, numFiles, filenames[], truncated)
-- Constant: `GLOB_TOOL_NAME`

@@ -4,7 +4,7 @@
 Provides utility functions: resolveMotion, applySingleMotion, isInclusiveMotion, isLinewiseMotion.
 
 ## Imports
-- **Internal**: ../utils/Cursor.js
+- **Internal**: ../utils/Cursor
 
 ## Items
 

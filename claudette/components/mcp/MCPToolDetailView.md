@@ -4,7 +4,7 @@ Displays detailed information about a specific MCP tool including its name, desc
 ## Imports
 - **Stdlib**: None
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `ink.js` (Box, Text), `services/mcp/mcpStringUtils` (extractMcpToolDisplayName, getMcpDisplayName), `Tool`, `ConfigurableShortcutHint`, `design-system/Dialog` (Dialog), `types` (ServerInfo)
+- **Internal**: `ink` (Box, Text), `services/mcp/mcpStringUtils` (extractMcpToolDisplayName, getMcpDisplayName), `Tool`, `ConfigurableShortcutHint`, `design-system/Dialog` (Dialog), `types` (ServerInfo)
 
 ## Logic
 1. Extracts display names using getMcpDisplayName and extractMcpToolDisplayName

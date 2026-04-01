@@ -15,4 +15,3 @@ Displays a detailed view of sandbox dependency status, checking for required too
 
 ## Exports
 - `SandboxDependenciesTab` - Renders the dependency status panel with per-dependency checks and install instructions
-- `_temp` through `_temp5` - Helper functions for filtering and rendering dependency status messages

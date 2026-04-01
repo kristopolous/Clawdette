@@ -29,4 +29,3 @@ Tool for performing Language Server Protocol (LSP) operations including go-to-de
 - `LSPTool` - Main tool definition
 - `Input` - Type for input (operation, filePath, line, character)
 - `Output` - Type for output (operation, result, filePath, resultCount, fileCount)
-- Helper functions: `getMethodAndParams`, `countSymbols`, `countUniqueFiles`, `uriToFilePath`, `filterGitIgnoredLocations`, `isLocationLink`, `toLocation`, `formatResult`, `countUniqueFilesFromCallItems`, `countUniqueFilesFromIncomingCalls`, `countUniqueFilesFromOutgoingCalls`

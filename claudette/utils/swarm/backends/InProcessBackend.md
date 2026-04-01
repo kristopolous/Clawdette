@@ -4,7 +4,7 @@
 If spawn succeeded, start the agent execution loop
 
 ## Imports
-- **Internal**: ../../../Tool.js, ../../../utils/agentId.js, ../../../utils/debug.js, ../../../utils/slowOperations.js, ../inProcessRunner.js
+- **Internal**: ../../../Tool.js, ../../../utils/agentId.js, ../../../utils/debug.js, ../../../utils/slowOperations.js, ../inProcessRunner
 
 ## Items
 

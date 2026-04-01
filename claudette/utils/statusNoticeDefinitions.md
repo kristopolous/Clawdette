@@ -5,7 +5,7 @@ biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not
 
 ## Imports
 - **Stdlib**: react, figures, path
-- **Internal**: ../ink.js, ./claudemd.js, ./cwd.js, ./format.js, ./config.js, ./auth.js, ../tools/AgentTool/loadAgentsDir.js, ./statusNoticeHelpers.js, ./ide.js, ./jetbrains.js
+- **Internal**: ../ink.js, ./claudemd.js, ./cwd.js, ./format.js, ./config.js, ./auth.js, ../tools/AgentTool/loadAgentsDir.js, ./statusNoticeHelpers.js, ./ide.js, ./jetbrains
 
 ## Items
 

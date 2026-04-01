@@ -4,7 +4,7 @@ Provides constants and utility functions for DEC (Digital Equipment Corporation)
 ## Imports
 - **Stdlib**: None specified
 - **External**: None specified
-- **Internal**: csi function from ./csi.js
+- **Internal**: csi function from ./csi
 
 ## Logic
 1. **DEC Constants**: Defines an object with constants for common DEC private mode numbers:

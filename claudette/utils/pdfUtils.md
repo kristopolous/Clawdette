@@ -4,7 +4,7 @@
 Document extensions that are handled specially
 
 ## Imports
-- **Internal**: ./model/model.js
+- **Internal**: ./model/model
 
 ## Items
 

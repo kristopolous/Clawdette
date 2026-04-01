@@ -5,7 +5,7 @@ Hook event metadata configuration.
 
 ## Imports
 - **Stdlib**: lodash-es/memoize.js, src/entrypoints/agentSdkTypes.js
-- **Internal**: ../../bootstrap/state.js, ../../state/AppState.js
+- **Internal**: ../../bootstrap/state.js, ../../state/AppState
 
 ## Items
 

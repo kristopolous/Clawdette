@@ -2,7 +2,7 @@
 Provides lazy-loaded command metadata for the `btw` (side question) command.
 
 ## Imports
-- **Internal**: Command type, implementation from btw.js
+- **Internal**: Command type, implementation from btw
 
 ## Logic
 1. Defines command with type 'local-jsx' (renders React component)

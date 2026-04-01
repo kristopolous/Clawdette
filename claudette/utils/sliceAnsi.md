@@ -4,7 +4,7 @@
 A code is an "end code" if its code equals its endCode (e.g., hyperlink close)
 
 ## Imports
-- **Internal**: ../ink/stringWidth.js
+- **Internal**: ../ink/stringWidth
 
 ## Items
 

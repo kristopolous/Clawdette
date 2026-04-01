@@ -5,7 +5,7 @@ Summary instead of a full server list — 20+ servers wrapped onto many
 
 ## Imports
 - **Stdlib**: chalk, figures, react
-- **Internal**: ../ink.js, ../services/mcp/types.js, ./auth.js, ./claudemd.js, ./doctorDiagnostic.js, ./envUtils.js, ./file.js, ./format.js, ./ide.js, ./model/model.js...
+- **Internal**: ../ink.js, ../services/mcp/types.js, ./auth.js, ./claudemd.js, ./doctorDiagnostic.js, ./envUtils.js, ./file.js, ./format.js, ./ide.js, ./model/model...
 
 ## Items
 

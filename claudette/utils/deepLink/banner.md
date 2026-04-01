@@ -5,7 +5,7 @@ Provides utility functions: buildDeepLinkBanner, readLastFetchTime, mtimeOrUndef
 
 ## Imports
 - **Stdlib**: fs/promises, os, path
-- **Internal**: ../format.js, ../git/gitFilesystem.js, ../git.js
+- **Internal**: ../format.js, ../git/gitFilesystem.js, ../git
 
 ## Items
 

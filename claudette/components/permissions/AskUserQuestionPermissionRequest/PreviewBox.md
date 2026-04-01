@@ -4,7 +4,7 @@ Renders a bordered monospace box for displaying markdown preview content with sy
 ## Imports
 - **Stdlib**: none
 - **External**: `react`, `react/compiler-runtime`
-- **Internal**: `useSettings`, `useTerminalSize`, `stringWidth`, `Ansi`, `Box`, `Text`, `useTheme`, `getCliHighlightPromise`, `applyMarkdown`, `sliceAnsi`
+- **Internal**: `useSettings`, `useTerminalSize`, `stringWidth`, `Ansi`, `Box`, `Text`, `useTheme`, `CliHighlight`, `getCliHighlightPromise`, `applyMarkdown`, `sliceAnsi`
 
 ## Logic
 1. Renders markdown content using applyMarkdown with theme and highlight support

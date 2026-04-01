@@ -4,7 +4,7 @@
 Skip on the default branch — `gh pr view` returns the most recently
 
 ## Imports
-- **Internal**: ./execFileNoThrow.js, ./git.js, ./slowOperations.js
+- **Internal**: ./execFileNoThrow.js, ./git.js, ./slowOperations
 
 ## Items
 

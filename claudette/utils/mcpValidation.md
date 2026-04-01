@@ -4,7 +4,7 @@
 Estimate for image tokens
 
 ## Imports
-- **Internal**: ../services/analytics/growthbook.js, ./imageResizer.js, ./log.js
+- **Internal**: ../services/analytics/growthbook.js, ./imageResizer.js, ./log
 
 ## Items
 

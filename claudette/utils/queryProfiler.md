@@ -4,7 +4,7 @@
 Module-level state - initialized once when the module loads
 
 ## Imports
-- **Internal**: ./debug.js, ./envUtils.js, ./profilerBase.js
+- **Internal**: ./debug.js, ./envUtils.js, ./profilerBase
 
 ## Items
 

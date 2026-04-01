@@ -5,7 +5,7 @@ Fallback for Nix and other environments where X_OK check might fail
 
 ## Imports
 - **Stdlib**: child_process, fs, fs/promises, lodash-es/memoize.js, path, path/posix, src/services/analytics/index.js, fs
-- **Internal**: ../Task.js, ./cwd.js, ./debug.js, ./errors.js, ./fsOperations.js, ./log.js, ./task/diskOutput.js, ./task/TaskOutput.js, ./which.js, ./hooks/fileChangedWatcher.js...
+- **Internal**: ../Task.js, ./cwd.js, ./debug.js, ./errors.js, ./fsOperations.js, ./log.js, ./task/diskOutput.js, ./task/TaskOutput.js, ./which.js, ./hooks/fileChangedWatcher...
 
 ## Items
 

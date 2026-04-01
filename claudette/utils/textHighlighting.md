@@ -4,7 +4,7 @@
 Two position systems: "visible" (what the user sees, excluding ANSI codes)
 
 ## Imports
-- **Internal**: ./theme.js
+- **Internal**: ./theme
 
 ## Items
 

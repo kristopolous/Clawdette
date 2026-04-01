@@ -5,7 +5,7 @@ Background tasks write stdout/stderr directly to a file fd (no JS involvement),
 
 ## Imports
 - **Stdlib**: child_process, fs/promises, stream, tree-kill
-- **Internal**: ../Task.js, ./format.js, ./task/TaskOutput.js
+- **Internal**: ../Task.js, ./format.js, ./task/TaskOutput
 
 ## Items
 

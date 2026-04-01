@@ -2,7 +2,7 @@
 Renders text input with syntax highlighting and shimmer animation support for special keywords like ultrathink and ultraplan.
 
 ## Imports
-- **Stdlib**: `Math`, `Infinity`
+- **Stdlib**: none
 - **External**: `react`, `react/compiler-runtime`
 - **Internal**: `ink`, `utils/textHighlighting`, `Spinner/ShimmerChar`
 

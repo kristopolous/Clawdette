@@ -4,7 +4,7 @@
 Provides utility functions: getAgentDescriptionsTotalTokens.
 
 ## Imports
-- **Internal**: ../services/tokenEstimation.js, ../tools/AgentTool/loadAgentsDir.js
+- **Internal**: ../services/tokenEstimation.js, ../tools/AgentTool/loadAgentsDir
 
 ## Items
 

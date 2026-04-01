@@ -4,7 +4,7 @@
 Source file: mailbox.ts
 
 ## Imports
-- **Internal**: ./signal.js
+- **Internal**: ./signal
 
 ## Exports
 - MessageSource

@@ -15,4 +15,3 @@ Renders a permission request dialog for sed edit commands executed via bash, sho
 
 ## Exports
 - `SedEditPermissionRequest` - component that handles sed edit permission requests by reading the target file, applying the substitution, and showing a diff preview
-- `SedEditPermissionRequestInner` - inner component that consumes the file content promise and renders the diff dialog

@@ -4,7 +4,7 @@
 Buffer for early input characters
 
 ## Imports
-- **Internal**: ./intl.js
+- **Internal**: ./intl
 
 ## Items
 

@@ -4,7 +4,7 @@
 Anthropic auth — claude re-reads these per-request, subprocesses don't need them
 
 ## Imports
-- **Internal**: ./envUtils.js
+- **Internal**: ./envUtils
 
 ## Items
 

@@ -4,7 +4,7 @@
 Provides utility functions: validateBoundedIntEnvVar.
 
 ## Imports
-- **Internal**: ./debug.js
+- **Internal**: ./debug
 
 ## Items
 

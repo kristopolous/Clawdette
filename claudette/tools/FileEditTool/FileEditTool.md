@@ -35,7 +35,3 @@ Tool for modifying file contents through exact string replacement operations wit
 
 ## Exports
 - `FileEditTool` - Main tool definition
-- `FileEditInput` - Input type (file_path, old_string, new_string, replace_all?)
-- `FileEditOutput` - Output type (filePath, oldString, newString, originalFile, structuredPatch, userModified, replaceAll, gitDiff?)
-- `MAX_EDIT_FILE_SIZE` - Constant (1 GiB)
-- Helper: `readFileForEdit` (sync read with metadata)

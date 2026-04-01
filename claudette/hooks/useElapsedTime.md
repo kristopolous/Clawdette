@@ -3,7 +3,7 @@ Returns formatted elapsed time for a timer; updates at regular intervals while r
 
 ## Imports
 - **External**: `react` (useCallback, useSyncExternalStore)
-- **Internal**: `../utils/format.js` (formatDuration)
+- **Internal**: `../utils/format` (formatDuration)
 
 ## Logic
 - Parameters: `startTime: number`, `isRunning: boolean`, `ms: number = 1000`, `pausedMs: number = 0`, `endTime?: number`

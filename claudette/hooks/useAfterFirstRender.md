@@ -3,7 +3,7 @@ Exits the process after the first render to measure startup time in specific env
 
 ## Imports
 - **External**: `react` (useEffect)
-- **Internal**: `../utils/envUtils.js` (isEnvTruthy)
+- **Internal**: `../utils/envUtils` (isEnvTruthy)
 
 ## Logic
 - Effect runs once after first render (empty dependency array)

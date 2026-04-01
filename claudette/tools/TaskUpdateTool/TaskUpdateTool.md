@@ -27,6 +27,4 @@ Tool for updating individual tasks in the task list (Todo V2). Supports field up
 
 ## Exports
 - `TaskUpdateTool` - Main tool definition
-- `Input` - Type (taskId, subject?, description?, activeForm?, status?, addBlocks?, addBlockedBy?, owner?, metadata?)
 - `Output` - Type (success, taskId, updatedFields[], error?, statusChange? {from,to}, verificationNudgeNeeded?)
-- TaskUpdateStatusSchema: TaskStatus or 'deleted'

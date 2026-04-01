@@ -4,7 +4,7 @@
 CCR session polling for /ultraplan. Waits for an approved ExitPlanMode
 
 ## Imports
-- **Internal**: ../../entrypoints/agentSdkTypes.js, ../../tools/ExitPlanModeTool/constants.js, ../debug.js, ../sleep.js, ../teleport/api.js
+- **Internal**: ../../entrypoints/agentSdkTypes.js, ../../tools/ExitPlanModeTool/constants.js, ../debug.js, ../sleep.js, ../teleport/api
 
 ## Items
 

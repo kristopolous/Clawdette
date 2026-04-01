@@ -4,7 +4,7 @@
 Ensure backends are registered before detection
 
 ## Imports
-- **Internal**: ../../../bootstrap/state.js, ../../../utils/debug.js, ../../../utils/platform.js, ./InProcessBackend.js, ./it2Setup.js, ./PaneBackendExecutor.js, ./teammateModeSnapshot.js
+- **Internal**: ../../../bootstrap/state.js, ../../../utils/debug.js, ../../../utils/platform.js, ./InProcessBackend.js, ./it2Setup.js, ./PaneBackendExecutor.js, ./teammateModeSnapshot
 
 ## Items
 

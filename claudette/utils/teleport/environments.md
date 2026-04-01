@@ -5,7 +5,7 @@ Provides utility functions: fetchEnvironments, createDefaultCloudEnvironment.
 
 ## Imports
 - **Stdlib**: axios, src/constants/oauth.js, src/services/oauth/client.js
-- **Internal**: ../auth.js, ../errors.js, ../log.js, ./api.js
+- **Internal**: ../auth.js, ../errors.js, ../log.js, ./api
 
 ## Items
 

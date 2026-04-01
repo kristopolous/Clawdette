@@ -5,7 +5,7 @@ Maximum number of times user can ignore recommendations before we stop showing
 
 ## Imports
 - **Stdlib**: path
-- **Internal**: ../binaryCheck.js, ../config.js, ../debug.js, ./installedPluginsManager.js
+- **Internal**: ../binaryCheck.js, ../config.js, ../debug.js, ./installedPluginsManager
 
 ## Items
 

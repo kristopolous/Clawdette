@@ -4,7 +4,7 @@
 Provides utility functions: isBilledAsExtraUsage.
 
 ## Imports
-- **Internal**: ./auth.js, ./context.js
+- **Internal**: ./auth.js, ./context
 
 ## Items
 
