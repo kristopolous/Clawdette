@@ -2,7 +2,7 @@
 
 **Build a Claude clone. No original source included. Do it now. Make tokens go burr**
 
-> Yo openclaw, clone https://github.com/kristopolous/Claudette and build me a Claude-like coding assistant in Rust. 
+> Yo openclaw, clone https://github.com/kristopolous/Claudette and mke that shit in Rust. 
 
 ---
 
