@@ -788,9 +788,9 @@ class MainWindow:
         self.message_frame.columnconfigure(0, weight=1)
         self.message_frame.rowconfigure(0, weight=1)
 
-        self.chat_canvas = tk.Canvas(self.message_frame, bg="#f5f5f5", highlightthickness=0)
+        self.chat_canvas = tk.Canvas(self.message_frame, bg="#f5f5f5", highlightthickness=0, bd=0)
         self.chat_scrollbar = ttk.Scrollbar(self.message_frame, orient=tk.VERTICAL, command=self.chat_canvas.yview)
-        self.chat_inner = ttk.Frame(self.chat_canvas)
+        self.chat_inner = tk.Frame(self.chat_canvas, bg="#f5f5f5", highlightthickness=0, bd=0)
 
         self.chat_inner.bind(
             "<Configure>",

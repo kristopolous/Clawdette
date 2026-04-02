@@ -299,10 +299,12 @@ class APIClient:
                     event = self._parse_stream_event(line)
                     if event:
                         yield event
-            except (GeneratorExit, asyncio.CancelledError):
-                pass
-            except BaseException:
-                pass
+            finally:
+                await lines.aclose()
+        except (GeneratorExit, asyncio.CancelledError):
+            pass
+        except BaseException:
+            pass
         finally:
             try:
                 await response.aclose()

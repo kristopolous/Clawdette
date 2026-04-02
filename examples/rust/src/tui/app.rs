@@ -29,6 +29,9 @@ pub struct App {
     pub should_quit: bool,
     pub cursor_position: usize,
     pub should_submit: bool,
+    pub history: Vec<String>,
+    pub history_index: Option<usize>,
+    pub kill_buffer: String,
 }
 
 impl App {
@@ -43,6 +46,9 @@ impl App {
             should_quit: false,
             cursor_position: 0,
             should_submit: false,
+            history: Vec::new(),
+            history_index: None,
+            kill_buffer: String::new(),
         }
     }
 
@@ -53,7 +59,58 @@ impl App {
                     self.should_quit = true;
                     return;
                 }
-                // Insert character at cursor position
+                // Ctrl+A: beginning of line
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'a' {
+                    self.cursor_position = 0;
+                    return;
+                }
+                // Ctrl+E: end of line
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'e' {
+                    self.cursor_position = self.input_buffer.len();
+                    return;
+                }
+                // Ctrl+B: backward char
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'b' {
+                    if self.cursor_position > 0 {
+                        self.cursor_position -= 1;
+                    }
+                    return;
+                }
+                // Ctrl+F: forward char
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'f' {
+                    if self.cursor_position < self.input_buffer.len() {
+                        self.cursor_position += 1;
+                    }
+                    return;
+                }
+                // Ctrl+K: kill to end
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'k' {
+                    if self.cursor_position < self.input_buffer.len() {
+                        self.kill_buffer = self.input_buffer.split_off(self.cursor_position);
+                    } else {
+                        self.kill_buffer.clear();
+                    }
+                    return;
+                }
+                // Ctrl+Y: yank
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'y' {
+                    if !self.kill_buffer.is_empty() {
+                        self.input_buffer.insert_str(self.cursor_position, &self.kill_buffer);
+                        self.cursor_position += self.kill_buffer.len();
+                    }
+                    return;
+                }
+                // Ctrl+P: previous history
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'p' {
+                    self.history_prev();
+                    return;
+                }
+                // Ctrl+N: next history
+                if key.modifiers.contains(KeyModifiers::CONTROL) && c == 'n' {
+                    self.history_next();
+                    return;
+                }
+                // Normal character insertion
                 self.input_buffer.insert(self.cursor_position, c);
                 self.cursor_position += 1;
             }
@@ -83,6 +140,7 @@ impl App {
                 self.cursor_position = self.input_buffer.len();
             }
             KeyCode::Up => {
+                // Up arrow for message scroll
                 if self.scroll_offset < self.messages.len().saturating_sub(1) {
                     self.scroll_offset += 1;
                 }
@@ -106,6 +164,11 @@ impl App {
             if input.is_empty() {
                 return None;
             }
+            // Add to history if not duplicate of last entry
+            if self.history.last() != Some(&input) {
+                self.history.push(input.clone());
+            }
+            self.history_index = None;
             self.input_buffer.clear();
             self.cursor_position = 0;
             Some(input)
@@ -114,8 +177,54 @@ impl App {
         }
     }
 
+    fn history_prev(&mut self) {
+        if self.history.is_empty() {
+            return;
+        }
+        match self.history_index {
+            None => {
+                // Start browsing from the newest entry (last in history)
+                self.history_index = Some(self.history.len() - 1);
+                if let Some(idx) = self.history_index {
+                    self.input_buffer = self.history[idx].clone();
+                    self.cursor_position = self.input_buffer.len();
+                }
+            }
+            Some(i) => {
+                if i > 0 {
+                    self.history_index = Some(i - 1);
+                    self.input_buffer = self.history[self.history_index.unwrap()].clone();
+                    self.cursor_position = self.input_buffer.len();
+                }
+            }
+        }
+    }
+
+    fn history_next(&mut self) {
+        match self.history_index {
+            None => {
+                // Not browsing; nothing to do
+            }
+            Some(i) => {
+                if i + 1 < self.history.len() {
+                    self.history_index = Some(i + 1);
+                    self.input_buffer = self.history[self.history_index.unwrap()].clone();
+                    self.cursor_position = self.input_buffer.len();
+                } else {
+                    // Past the newest: exit browsing mode
+                    self.history_index = None;
+                    self.input_buffer.clear();
+                    self.cursor_position = 0;
+                }
+            }
+        }
+    }
+
     pub fn handle_stream_event(&mut self, event: &StreamEvent) {
         match event {
+            StreamEvent::StreamStart => {
+                self.is_loading = true;
+            }
             StreamEvent::TextDelta { delta } => {
                 self.current_response.push_str(delta);
             }

@@ -93,7 +93,7 @@ struct Cli {
 
     /// Show version and exit
     #[arg(long)]
-    version: bool,
+    show_version: bool,
 
     /// Demo mode — no API key needed, simulated responses
     #[arg(long)]
@@ -111,7 +111,7 @@ enum Provider {
 async fn main() -> Result<()> {
     let cli = Cli::parse();
 
-    if cli.version {
+    if cli.show_version {
         println!("claudette-rs {}", env!("CARGO_PKG_VERSION"));
         return Ok(());
     }

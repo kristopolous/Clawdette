@@ -6,6 +6,7 @@ use anyhow::Result;
 use futures::StreamExt;
 use reqwest_eventsource::Event;
 use serde_json;
+use std::collections::HashMap;
 use tokio_util::sync::CancellationToken;
 use tracing::{debug, info};
 
@@ -62,6 +63,7 @@ impl QueryEngine {
         F: Fn(AppStreamEvent) + Send + Sync,
     {
         self.messages.push(user_message);
+        on_event(AppStreamEvent::StreamStart);
 
         for turn in 0..self.max_turns {
             debug!("Turn {turn} of {}", self.max_turns);
@@ -76,129 +78,229 @@ impl QueryEngine {
             let mut assistant_content = Vec::new();
             let mut tool_uses = Vec::new();
 
-            if *self.client.provider() == ApiProvider::Anthropic {
-                // Streaming implementation for Anthropic
-                let stream = self.client.create_stream(messages, system, tools);
-                let mut event_stream = stream;
+            match *self.client.provider() {
+                ApiProvider::Anthropic => {
+                    // Streaming implementation for Anthropic
+                    let stream = self.client.create_stream(messages, system, tools);
+                    let mut event_stream = stream;
 
-                let mut current_text = String::new();
-                let mut stream_usage: Option<Usage> = None;
+                    let mut current_text = String::new();
+                    let mut stream_usage: Option<Usage> = None;
 
-                while let Some(event_result) = event_stream.next().await {
-                    // Handle the Event enum: Open or Message
-                    let msg = match event_result {
-                        Ok(Event::Message(msg)) => msg,
-                        Ok(Event::Open) => continue,
-                        Err(e) => {
-                            on_event(AppStreamEvent::Error {
-                                message: format!("Stream error: {e}"),
-                                retryable: true,
-                            });
-                            return Err(anyhow::anyhow!("Stream error: {e}"));
+                    while let Some(event_result) = event_stream.next().await {
+                        let msg = match event_result {
+                            Ok(Event::Message(msg)) => msg,
+                            Ok(Event::Open) => continue,
+                            Err(e) => {
+                                on_event(AppStreamEvent::Error {
+                                    message: format!("Stream error: {e}"),
+                                    retryable: true,
+                                });
+                                return Err(anyhow::anyhow!("Stream error: {e}"));
+                            }
+                        };
+
+                        let data: serde_json::Value = match serde_json::from_str(&msg.data) {
+                            Ok(v) => v,
+                            Err(e) => {
+                                on_event(AppStreamEvent::Error {
+                                    message: format!("JSON parse error: {e}"),
+                                    retryable: false,
+                                });
+                                continue;
+                            }
+                        };
+
+                        match msg.event.as_str() {
+                            "content_block_delta" => {
+                                if let Some(delta) = data.get("delta") {
+                                    if let Some(text) = delta.get("text").and_then(|t: &serde_json::Value| t.as_str()) {
+                                        current_text.push_str(text);
+                                        on_event(AppStreamEvent::TextDelta { delta: text.to_string() });
+                                    }
+                                }
+                            }
+                            "content_block_start" => {
+                                if !current_text.is_empty() {
+                                    assistant_content.push(ContentBlock::Text { text: current_text.clone() });
+                                    current_text.clear();
+                                }
+                                if let Some(content_block) = data.get("content_block") {
+                                    if content_block.get("type").and_then(|t: &serde_json::Value| t.as_str()) == Some("tool_use") {
+                                        let id = content_block.get("id").and_then(|i| i.as_str()).unwrap_or("").to_string();
+                                        let name = content_block.get("name").and_then(|n| n.as_str()).unwrap_or("").to_string();
+                                        let input = content_block.get("input").cloned().unwrap_or(serde_json::json!({}));
+                                        assistant_content.push(ContentBlock::ToolUse {
+                                            id: id.clone(),
+                                            name: name.clone(),
+                                            input: input.clone(),
+                                        });
+                                        tool_uses.push((id, name, input));
+                                    }
+                                }
+                            }
+                            "message_stop" => {
+                                if !current_text.is_empty() {
+                                    assistant_content.push(ContentBlock::Text { text: current_text.clone() });
+                                    current_text.clear();
+                                }
+                                let usage = data.get("usage").and_then(|u| {
+                                    Some(Usage {
+                                        input_tokens: u.get("input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                        output_tokens: u.get("output_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                        cache_creation_input_tokens: u.get("cache_creation_input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                        cache_read_input_tokens: u.get("cache_read_input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                    })
+                                }).unwrap_or_default();
+                                stream_usage = Some(usage);
+                                break;
+                            }
+                            _ => {}
                         }
-                    };
+                    }
 
-                    // Parse the JSON data payload
-                    let data: serde_json::Value = match serde_json::from_str(&msg.data) {
-                        Ok(v) => v,
-                        Err(e) => {
-                            on_event(AppStreamEvent::Error {
-                                message: format!("JSON parse error: {e}"),
-                                retryable: false,
-                            });
-                            continue;
-                        }
-                    };
+                    if let Some(usage) = stream_usage {
+                        self.total_usage.accumulate(&usage);
+                    } else {
+                        return Err(anyhow::anyhow!("Stream ended without message_stop event"));
+                    }
 
-                    match msg.event.as_str() {
-                        "content_block_delta" => {
-                            if let Some(delta) = data.get("delta") {
-                                if let Some(text) = delta.get("text").and_then(|t: &serde_json::Value| t.as_str()) {
-                                    current_text.push_str(text);
-                                    on_event(AppStreamEvent::TextDelta { delta: text.to_string() });
+                    self.messages.push(Message::Assistant {
+                        content: assistant_content,
+                    });
+                }
+                ApiProvider::OpenAI => {
+                    // Streaming implementation for OpenAI
+                    let stream = self.client.create_stream(messages, system, tools);
+                    let mut event_stream = stream;
+
+                    let mut current_text = String::new();
+                    let mut stream_usage: Option<Usage> = None;
+                    // Track tool calls: index -> (id, name, accumulated_args)
+                    let mut tool_calls: std::collections::HashMap<usize, (String, String, String)> = std::collections::HashMap::new();
+                    let mut tool_call_indices_seen = std::collections::HashSet::new();
+
+                    while let Some(event_result) = event_stream.next().await {
+                        let msg = match event_result {
+                            Ok(Event::Message(msg)) => msg,
+                            Ok(Event::Open) => continue,
+                            Err(e) => {
+                                on_event(AppStreamEvent::Error {
+                                    message: format!("Stream error: {e}"),
+                                    retryable: true,
+                                });
+                                return Err(anyhow::anyhow!("Stream error: {e}"));
+                            }
+                        };
+
+                        let data: serde_json::Value = match serde_json::from_str(&msg.data) {
+                            Ok(v) => v,
+                            Err(e) => {
+                                on_event(AppStreamEvent::Error {
+                                    message: format!("JSON parse error: {e}"),
+                                    retryable: false,
+                                });
+                                continue;
+                            }
+                        };
+
+                        // OpenAI sends data in structure: choices[0].delta
+                        if let Some(choices) = data.get("choices").and_then(|c| c.as_array()) {
+                            if let Some(first) = choices.first() {
+                                let delta = first.get("delta");
+                                if let Some(delta_obj) = delta {
+                                    // Text delta
+                                    if let Some(text) = delta_obj.get("content").and_then(|t| t.as_str()) {
+                                        if !text.is_empty() {
+                                            current_text.push_str(text);
+                                            on_event(AppStreamEvent::TextDelta { delta: text.to_string() });
+                                        }
+                                    }
+                                    // Tool calls delta
+                                    if let Some(tool_calls_delta) = delta_obj.get("tool_calls").and_then(|t| t.as_array()) {
+                                        for tc in tool_calls_delta {
+                                            let index = tc.get("index").and_then(|i| i.as_u64()).unwrap_or(0) as usize;
+                                            let entry = tool_calls.entry(index).or_insert_with(|| (String::new(), String::new(), String::new()));
+                                            // Update id if present
+                                            if let Some(id) = tc.get("id").and_then(|i| i.as_str()) {
+                                                entry.0 = id.to_string();
+                                            }
+                                            // Update function name
+                                            if let Some(function) = tc.get("function") {
+                                                if let Some(name) = function.get("name").and_then(|n| n.as_str()) {
+                                                    entry.1 = name.to_string();
+                                                }
+                                                // Append arguments
+                                                if let Some(arguments) = function.get("arguments").and_then(|a| a.as_str()) {
+                                                    entry.2.push_str(arguments);
+                                                }
+                                            }
+                                            tool_call_indices_seen.insert(index);
+                                        }
+                                    }
                                 }
                             }
                         }
-                        "content_block_start" => {
-                            // Flush any pending text from previous block
-                            if !current_text.is_empty() {
-                                assistant_content.push(ContentBlock::Text { text: current_text.clone() });
-                                current_text.clear();
-                            }
-                            if let Some(content_block) = data.get("content_block") {
-                                if content_block.get("type").and_then(|t: &serde_json::Value| t.as_str()) == Some("tool_use") {
-                                    let id = content_block.get("id").and_then(|i| i.as_str()).unwrap_or("").to_string();
-                                    let name = content_block.get("name").and_then(|n| n.as_str()).unwrap_or("").to_string();
-                                    let input = content_block.get("input").cloned().unwrap_or(serde_json::json!({}));
-                                    assistant_content.push(ContentBlock::ToolUse {
-                                        id: id.clone(),
-                                        name: name.clone(),
-                                        input: input.clone(),
-                                    });
-                                    tool_uses.push((id, name, input));
-                                }
-                            }
-                        }
-                        "message_stop" => {
-                            // Flush remaining text
-                            if !current_text.is_empty() {
-                                assistant_content.push(ContentBlock::Text { text: current_text.clone() });
-                                current_text.clear();
-                            }
-                            // Extract usage
-                            let usage = data.get("usage").and_then(|u| {
-                                Some(Usage {
-                                    input_tokens: u.get("input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
-                                    output_tokens: u.get("output_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
-                                    cache_creation_input_tokens: u.get("cache_creation_input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
-                                    cache_read_input_tokens: u.get("cache_read_input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
-                                })
-                            }).unwrap_or_default();
+
+                        // Usage and final event
+                        if let Some(usage_data) = data.get("usage") {
+                            let usage = Usage {
+                                input_tokens: usage_data.get("prompt_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                output_tokens: usage_data.get("completion_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                cache_creation_input_tokens: 0,
+                                cache_read_input_tokens: 0,
+                            };
                             stream_usage = Some(usage);
                             break;
                         }
-                        _ => {}
+
+                        // Check for finish reason
+                        if let Some(choices) = data.get("choices").and_then(|c| c.as_array()) {
+                            if let Some(first) = choices.first() {
+                                if first.get("finish_reason").is_some() {
+                                    // Could break early if needed
+                                }
+                            }
+                        }
                     }
-                }
 
-                if let Some(usage) = stream_usage {
-                    self.total_usage.accumulate(&usage);
-                } else {
-                    return Err(anyhow::anyhow!("Stream ended without message_stop event"));
-                }
-
-                self.messages.push(Message::Assistant {
-                    content: assistant_content,
-                });
-            } else {
-                // Non-streaming for other providers (OpenAI)
-                let (content_blocks, usage) = self
-                    .client
-                    .send_message(messages, system, tools, CancellationToken::new())
-                    .await?;
-
-                self.total_usage.accumulate(&usage);
-
-                for block in content_blocks {
-                    if let Some(text) = block.get("text").and_then(|v| v.as_str()) {
-                        assistant_content.push(ContentBlock::Text { text: text.to_string() });
-                        on_event(AppStreamEvent::TextDelta { delta: text.to_string() });
-                    } else if block.get("type").and_then(|v: &serde_json::Value| v.as_str()) == Some("tool_use") {
-                        let id = block["id"].as_str().unwrap_or("").to_string();
-                        let name = block["name"].as_str().unwrap_or("").to_string();
-                        let input = block["input"].clone();
-                        assistant_content.push(ContentBlock::ToolUse {
-                            id: id.clone(),
-                            name: name.clone(),
-                            input: input.clone(),
-                        });
-                        tool_uses.push((id, name, input));
+                    // Flush any remaining text
+                    if !current_text.is_empty() {
+                        assistant_content.push(ContentBlock::Text { text: current_text.clone() });
+                        current_text.clear();
                     }
-                }
 
-                self.messages.push(Message::Assistant {
-                    content: assistant_content,
-                });
+                    // Convert accumulated tool calls into tool_use blocks
+                    // Sort by index to maintain order
+                    let mut sorted_indices: Vec<_> = tool_call_indices_seen.iter().collect();
+                    sorted_indices.sort();
+                    for idx in sorted_indices {
+                        if let Some((id, name, arguments_str)) = tool_calls.remove(idx) {
+                            // Parse accumulated arguments JSON
+                            let input: serde_json::Value = if arguments_str.is_empty() {
+                                serde_json::json!({})
+                            } else {
+                                serde_json::from_str(&arguments_str).unwrap_or_else(|_| serde_json::json!({"raw": arguments_str}))
+                            };
+                            assistant_content.push(ContentBlock::ToolUse {
+                                id: id.clone(),
+                                name: name.clone(),
+                                input: input.clone(),
+                            });
+                            tool_uses.push((id, name, input));
+                        }
+                    }
+
+                    if let Some(usage) = stream_usage {
+                        self.total_usage.accumulate(&usage);
+                    } else {
+                        return Err(anyhow::anyhow!("Stream ended without usage info"));
+                    }
+
+                    self.messages.push(Message::Assistant {
+                        content: assistant_content,
+                    });
+                }
             }
 
             if tool_uses.is_empty() {
