@@ -363,15 +363,83 @@ pub async fn build_system_prompt(
     prompt
 }
 
-/// Return OS version string equivalent to `uname -sr`
-fn uname_sr() -> String {
-    let os = std::env::consts::OS;
-    match os {
-        "linux" => {
-            if let Ok(output) = std::process::Command::new("uname").arg("-sr").output() {
-                if let Ok(s) = String::from_utf8(output.stdout) {
-                    return s.trim().to_string();
-                }
+fn build_bash_prompt() -> String {
+    let mut prompt = String::new();
+
+    prompt.push_str(
+        "- Do NOT use the BashTool to run commands when a relevant dedicated tool is \
+        provided. This is CRITICAL:\n\
+          • To read files use Read instead of cat, head, tail, or sed\n\
+          • To edit files use Edit instead of sed or awk\n\
+          • To create files use Write instead of cat with heredoc or echo redirection\n\
+          • To search for files use Glob instead of find or ls\n\
+          • To search the content of files, use Grep instead of grep or rg\n\
+          • Reserve BashTool exclusively for system commands and terminal operations: \
+          installing dependencies, running tests, starting servers, checking system state\n\
+        - You can run multiple commands in a single BashTool call by separating them with \
+        '&&' or ';'. Use '&&' to chain dependent commands (stop on failure) or ';' for \
+        independent commands.\n\
+        - Git operations: Prefer using git CLI directly via BashTool rather than external \
+        tools. For normal operations (status, diff, log, commit, push, pull, checkout, \
+        branch, merge, rebase), use bash. For code review and PR operations, consider using \
+        the Git interface tools if available.\n\
+        - AVOID destructive operations (rm -rf, dd, etc.) unless absolutely necessary and \
+        user-approved.\n\
+        - AVOID interactive commands (vim, nano, less, top) that require user input. Use \
+        appropriate tools instead.\n\
+        - NEVER use commands like 'sleep' to wait between automated actions. Use the SleepTool \
+        if you need to wait.\n\
+        - If a BashTool command fails because you don't have sufficient permissions but you \
+        believe the operation is safe and necessary, you may try using 'sudo' if the user \
+        has configured passwordless sudo for your session. Otherwise, ask the user to adjust \
+        permissions.\n\
+        - Timeouts: Commands that run longer than 15 minutes will be automatically killed. \
+        For long-running operations, either use an appropriate tool (like BackgroundProcess) \
+        or inform the user about how to keep it running (e.g., using 'nohup' or 'tmux').\n\
+        - Never run background processes with '&' — they will be orphaned when your turn ends. \
+        Use proper tools for background work.\n\
+        - For network operations, be mindful of API rate limits. If you get rate-limited, \
+        implement exponential backoff.\n"
+    );
+
+    prompt
+}
+
+/// Build the WebSearch tool prompt with CRITICAL sources requirement
+fn build_websearch_prompt() -> String {
+    let current_month_year = Local::now().format("%B %Y").to_string();
+    let mut prompt = String::new();
+
+    prompt.push_str(
+        &format!("- Allows Claude to search the web and use the results to inform responses\n\
+        - Provides up-to-date information for current events and recent data\n\
+        - Returns search result information formatted as search result blocks, including \
+        links as markdown hyperlinks\n\
+        - Use this tool for accessing information beyond the assistant's knowledge cutoff\n\
+        - Searches are performed automatically within a single API call\n\n\
+        CRITICAL REQUIREMENT — This is MANDATORY:\n\
+          - After answering the user's question, you MUST include a \"Sources:\" section at \
+          the end of your response\n\
+          - In the Sources section, list all relevant URLs from the search results as \
+          markdown hyperlinks: [Title](URL)\n\
+          - Never skip including sources in your response\n\
+          - Example format:\n\n\
+            [Your answer here]\n\n\
+            Sources:\n\
+            - [Source Title 1](https://example.com/1)\n\
+            - [Source Title 2](https://example.com/2)\n\n\
+        Usage notes:\n\
+          - Domain filtering is supported to include or block specific websites\n\
+          - Web search is only available in the US\n\n\
+        IMPORTANT — Use the correct year in search queries:\n\
+          - The current month is {}. You MUST use this year when searching for recent \
+          information, documentation, or current events.\n\
+          - Example: If the user asks for \"latest React docs\", search for \"React \
+          documentation\" with the current year, NOT last year.\n", current_month_year)
+    );
+
+    prompt
+}
             }
             "Linux".to_string()
         }
