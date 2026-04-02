@@ -1,9 +1,11 @@
 """Tkinter UI for tk-claudette."""
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 import asyncio
 import threading
+import json
+from pathlib import Path
 from typing import Optional
 from tk.models import CostTracker
 from tk.api import detect_provider
@@ -46,6 +48,14 @@ MODEL_PRESETS = {
         "codellama",
     ],
 }
+
+ICON_NEW = "\U0001f4c4"
+ICON_OPEN = "\U0001f4c2"
+ICON_SAVE = "\U0001f4be"
+ICON_TOOLS = "\U0001f527"
+ICON_MCP = "\U0001f50c"
+ICON_SETTINGS = "\u2699"
+ICON_COST = "\U0001f4b0"
 
 
 class PermissionDialog:
@@ -110,6 +120,384 @@ class CostDialog:
         ttk.Button(self.dialog, text="Close", command=self.dialog.destroy).pack(pady=15)
 
         self.dialog.wait_window()
+
+
+class ToolsDialog:
+    def __init__(self, parent, tool_registry):
+        self.registry = tool_registry
+        self.result = False
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("Tools")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        self.dialog.geometry("450x400")
+
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"+{x}+{y}")
+
+        self._build_ui()
+
+        self.dialog.wait_window()
+
+    def _build_ui(self):
+        self.dialog.columnconfigure(0, weight=1)
+        self.dialog.rowconfigure(0, weight=1)
+
+        frame = ttk.Frame(self.dialog, padding=15)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(0, weight=1)
+        frame.rowconfigure(0, weight=1)
+
+        ttk.Label(frame, text="Built-in Tools", font=("TkDefaultFont", 11, "bold")).grid(row=0, column=0, sticky=tk.W, pady=(0, 10))
+
+        list_frame = ttk.Frame(frame)
+        list_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 15))
+        list_frame.columnconfigure(0, weight=1)
+        list_frame.rowconfigure(0, weight=1)
+
+        columns = ("name", "status")
+        self.tree = ttk.Treeview(list_frame, columns=columns, show="headings", height=10)
+        self.tree.heading("name", text="Tool")
+        self.tree.heading("status", text="Status")
+        self.tree.column("name", width=200)
+        self.tree.column("status", width=100)
+
+        scrollbar = ttk.Scrollbar(list_frame, orient=tk.VERTICAL, command=self.tree.yview)
+        self.tree.configure(yscrollcommand=scrollbar.set)
+        self.tree.grid(row=0, column=0, sticky="nsew")
+        scrollbar.grid(row=0, column=1, sticky="ns")
+
+        self._populate_tools()
+
+        btn_frame = ttk.Frame(frame)
+        btn_frame.grid(row=2, column=0)
+        ttk.Button(btn_frame, text="Enable All", command=self._enable_all).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Disable All", command=self._disable_all).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Close", command=self.dialog.destroy).pack(side=tk.LEFT, padx=5)
+
+    def _populate_tools(self):
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        for tool_name, enabled in self.registry.get_tool_states().items():
+            status = "Enabled" if enabled else "Disabled"
+            self.tree.insert("", tk.END, values=(tool_name, status))
+
+    def _enable_all(self):
+        self.registry.enable_all()
+        self._populate_tools()
+
+    def _disable_all(self):
+        self.registry.disable_all()
+        self._populate_tools()
+
+
+class McpServersDialog:
+    def __init__(self, parent, mcp_manager):
+        self.manager = mcp_manager
+        self.result = False
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("MCP Servers")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        self.dialog.geometry("600x450")
+
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"+{x}+{y}")
+
+        self._build_ui()
+
+        self.dialog.wait_window()
+
+    def _build_ui(self):
+        self.dialog.columnconfigure(0, weight=1)
+        self.dialog.rowconfigure(0, weight=1)
+
+        frame = ttk.Frame(self.dialog, padding=15)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(0, weight=1)
+        frame.rowconfigure(1, weight=1)
+
+        header = ttk.Frame(frame)
+        header.grid(row=0, column=0, sticky="ew", pady=(0, 10))
+
+        ttk.Label(header, text="MCP Servers", font=("TkDefaultFont", 11, "bold")).pack(side=tk.LEFT)
+        ttk.Button(header, text="Add Server", command=self._add_server).pack(side=tk.RIGHT)
+
+        list_frame = ttk.Frame(frame)
+        list_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 15))
+        list_frame.columnconfigure(0, weight=1)
+        list_frame.rowconfigure(0, weight=1)
+
+        columns = ("name", "transport", "status", "tools")
+        self.tree = ttk.Treeview(list_frame, columns=columns, show="headings", height=12)
+        self.tree.heading("name", text="Server")
+        self.tree.heading("transport", text="Transport")
+        self.tree.heading("status", text="Status")
+        self.tree.heading("tools", text="Tools")
+        self.tree.column("name", width=150)
+        self.tree.column("transport", width=80)
+        self.tree.column("status", width=80)
+        self.tree.column("tools", width=60)
+
+        scrollbar = ttk.Scrollbar(list_frame, orient=tk.VERTICAL, command=self.tree.yview)
+        self.tree.configure(yscrollcommand=scrollbar.set)
+        self.tree.grid(row=0, column=0, sticky="nsew")
+        scrollbar.grid(row=0, column=1, sticky="ns")
+
+        self.tree.bind("<Double-1>", self._edit_server)
+
+        btn_frame = ttk.Frame(frame)
+        btn_frame.grid(row=2, column=0)
+        ttk.Button(btn_frame, text="Edit", command=self._edit_server).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Remove", command=self._remove_server).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Refresh", command=self._refresh).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Close", command=self.dialog.destroy).pack(side=tk.LEFT, padx=5)
+
+        self._populate_servers()
+
+    def _populate_servers(self):
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        for server in self.manager.get_servers():
+            self.tree.insert("", tk.END, values=(
+                server.get("name", ""),
+                server.get("transport", "stdio"),
+                server.get("status", "disconnected"),
+                str(server.get("tool_count", 0)),
+            ))
+
+    def _add_server(self):
+        dlg = AddMcpServerDialog(self.dialog)
+        if dlg.result:
+            self.manager.add_server(dlg.result)
+            self._populate_servers()
+
+    def _edit_server(self, event=None):
+        sel = self.tree.selection()
+        if not sel:
+            return
+        item = self.tree.item(sel[0])
+        name = item["values"][0]
+        server = self.manager.get_server(name)
+        if not server:
+            return
+        dlg = EditMcpServerDialog(self.dialog, server)
+        if dlg.result:
+            self.manager.update_server(name, dlg.result)
+            self._populate_servers()
+
+    def _remove_server(self):
+        sel = self.tree.selection()
+        if not sel:
+            return
+        item = self.tree.item(sel[0])
+        name = item["values"][0]
+        if messagebox.askyesno("Remove Server", f"Remove MCP server '{name}'?"):
+            self.manager.remove_server(name)
+            self._populate_servers()
+
+    def _refresh(self):
+        self._populate_servers()
+
+
+class AddMcpServerDialog:
+    def __init__(self, parent):
+        self.result = None
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("Add MCP Server")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        self.dialog.geometry("450x350")
+        self.dialog.resizable(False, False)
+
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"+{x}+{y}")
+
+        self._build_ui()
+        self.dialog.wait_window()
+
+    def _build_ui(self):
+        frame = ttk.Frame(self.dialog, padding=20)
+        frame.pack(fill=tk.BOTH, expand=True)
+        frame.columnconfigure(1, weight=1)
+
+        row = 0
+
+        ttk.Label(frame, text="Name:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.name_var = tk.StringVar()
+        ttk.Entry(frame, textvariable=self.name_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="Transport:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.transport_var = tk.StringVar(value="stdio")
+        transport_combo = ttk.Combobox(frame, textvariable=self.transport_var, values=["stdio", "sse", "http", "ws"], state="readonly", width=15)
+        transport_combo.grid(row=row, column=1, sticky=tk.W, pady=6, padx=(10, 0))
+        transport_combo.bind("<<ComboboxSelected>>", self._on_transport_change)
+
+        row += 1
+
+        ttk.Label(frame, text="Command:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.command_var = tk.StringVar()
+        ttk.Entry(frame, textvariable=self.command_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="Args:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.args_var = tk.StringVar()
+        ttk.Entry(frame, textvariable=self.args_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+        ttk.Label(frame, text="(space-separated)", font=("TkDefaultFont", 8), foreground="gray").grid(row=row, column=2, sticky=tk.W, padx=(5, 0))
+
+        row += 1
+
+        self.url_label = ttk.Label(frame, text="URL:")
+        self.url_label.grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.url_var = tk.StringVar()
+        self.url_entry = ttk.Entry(frame, textvariable=self.url_var)
+        self.url_entry.grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+        self.url_label.grid_remove()
+        self.url_entry.grid_remove()
+
+        row += 1
+
+        btn_frame = ttk.Frame(frame)
+        btn_frame.grid(row=row, column=0, columnspan=2, pady=(15, 0))
+        ttk.Button(btn_frame, text="Add", command=self._ok, width=10).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Cancel", command=self.dialog.destroy, width=10).pack(side=tk.LEFT, padx=5)
+
+        self._on_transport_change()
+
+    def _on_transport_change(self, event=None):
+        is_local = self.transport_var.get() in ("stdio",)
+        self.command_var.set("" if is_local else self.command_var.get())
+        for w in frame_children(self.dialog):
+            pass
+        if is_local:
+            self.url_label.grid_remove()
+            self.url_entry.grid_remove()
+        else:
+            self.url_label.grid()
+            self.url_entry.grid()
+
+    def _ok(self):
+        name = self.name_var.get().strip()
+        if not name:
+            messagebox.showwarning("Warning", "Name is required")
+            return
+
+        transport = self.transport_var.get()
+        server = {"name": name, "transport": transport, "enabled": True}
+
+        if transport == "stdio":
+            cmd = self.command_var.get().strip()
+            if not cmd:
+                messagebox.showwarning("Warning", "Command is required for stdio transport")
+                return
+            server["command"] = cmd
+            args = self.args_var.get().strip()
+            if args:
+                server["args"] = args.split()
+        else:
+            url = self.url_var.get().strip()
+            if not url:
+                messagebox.showwarning("Warning", "URL is required")
+                return
+            server["url"] = url
+
+        self.result = server
+        self.dialog.destroy()
+
+
+class EditMcpServerDialog:
+    def __init__(self, parent, server: dict):
+        self.server = server
+        self.result = None
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("Edit MCP Server")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        self.dialog.geometry("450x350")
+        self.dialog.resizable(False, False)
+
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"+{x}+{y}")
+
+        self._build_ui()
+        self.dialog.wait_window()
+
+    def _build_ui(self):
+        frame = ttk.Frame(self.dialog, padding=20)
+        frame.pack(fill=tk.BOTH, expand=True)
+        frame.columnconfigure(1, weight=1)
+
+        row = 0
+
+        ttk.Label(frame, text="Name:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.name_var = tk.StringVar(value=self.server.get("name", ""))
+        ttk.Entry(frame, textvariable=self.name_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="Transport:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.transport_var = tk.StringVar(value=self.server.get("transport", "stdio"))
+        transport_combo = ttk.Combobox(frame, textvariable=self.transport_var, values=["stdio", "sse", "http", "ws"], state="readonly", width=15)
+        transport_combo.grid(row=row, column=1, sticky=tk.W, pady=6, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="Command:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.command_var = tk.StringVar(value=self.server.get("command", ""))
+        ttk.Entry(frame, textvariable=self.command_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="Args:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        args = self.server.get("args", [])
+        self.args_var = tk.StringVar(value=" ".join(args) if isinstance(args, list) else str(args))
+        ttk.Entry(frame, textvariable=self.args_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="URL:").grid(row=row, column=0, sticky=tk.W, pady=6)
+        self.url_var = tk.StringVar(value=self.server.get("url", ""))
+        ttk.Entry(frame, textvariable=self.url_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+
+        row += 1
+
+        self.enabled_var = tk.BooleanVar(value=self.server.get("enabled", True))
+        ttk.Checkbutton(frame, text="Enabled", variable=self.enabled_var).grid(row=row, column=0, columnspan=2, sticky=tk.W, pady=6)
+
+        row += 1
+
+        btn_frame = ttk.Frame(frame)
+        btn_frame.grid(row=row, column=0, columnspan=2, pady=(15, 0))
+        ttk.Button(btn_frame, text="Save", command=self._ok, width=10).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Cancel", command=self.dialog.destroy, width=10).pack(side=tk.LEFT, padx=5)
+
+    def _ok(self):
+        name = self.name_var.get().strip()
+        if not name:
+            messagebox.showwarning("Warning", "Name is required")
+            return
+
+        server = {
+            "name": name,
+            "transport": self.transport_var.get(),
+            "command": self.command_var.get().strip(),
+            "args": self.args_var.get().strip().split() if self.args_var.get().strip() else [],
+            "url": self.url_var.get().strip(),
+            "enabled": self.enabled_var.get(),
+        }
+        self.result = server
+        self.dialog.destroy()
+
+
+def frame_children(widget):
+    return widget.winfo_children()
 
 
 class ConnectionDialog:
@@ -291,7 +679,6 @@ class ConnectionDialog:
             except Exception as e:
                 self.dialog.after(0, lambda: self._on_models_fetch_failed(str(e)))
 
-        import threading
         threading.Thread(target=do_fetch, daemon=True).start()
 
     def _on_models_fetched(self, models):
@@ -305,9 +692,11 @@ class ConnectionDialog:
 
 
 class MainWindow:
-    def __init__(self, config, query_engine):
+    def __init__(self, config, query_engine, tool_registry=None, mcp_manager=None):
         self.config = config
         self.query_engine = query_engine
+        self.tool_registry = tool_registry
+        self.mcp_manager = mcp_manager
         self.root = tk.Tk()
         self.root.title("tk-claudette")
         self.root.geometry("900x700")
@@ -316,6 +705,7 @@ class MainWindow:
         self._command_history = []
         self._history_index = -1
         self._is_processing = False
+        self._cwd = None
 
         self._build_ui()
         self._bind_events()
@@ -323,13 +713,16 @@ class MainWindow:
 
     def _build_ui(self):
         self.root.columnconfigure(0, weight=1)
-        self.root.rowconfigure(1, weight=1)
+        self.root.rowconfigure(2, weight=1)
 
         menubar = tk.Menu(self.root)
         self.root.config(menu=menubar)
 
         file_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="File", menu=file_menu)
+        file_menu.add_command(label="New", command=self._on_new, accelerator="Ctrl+N")
+        file_menu.add_command(label="Open Folder...", command=self._on_open_folder, accelerator="Ctrl+O")
+        file_menu.add_separator()
         file_menu.add_command(label="Clear", command=self._on_clear, accelerator="Ctrl+L")
         file_menu.add_separator()
         file_menu.add_command(label="Exit", command=self._on_exit, accelerator="Alt+F4")
@@ -337,6 +730,8 @@ class MainWindow:
         edit_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Edit", menu=edit_menu)
         edit_menu.add_command(label="Connection...", command=self._show_connection)
+        edit_menu.add_command(label="Tools...", command=self._show_tools)
+        edit_menu.add_command(label="MCP Servers...", command=self._show_mcp)
         edit_menu.add_separator()
         edit_menu.add_command(label="Copy", command=self._on_copy, accelerator="Ctrl+C")
         edit_menu.add_command(label="Select All", command=self._on_select_all, accelerator="Ctrl+A")
@@ -350,18 +745,46 @@ class MainWindow:
         help_menu.add_command(label="Help", command=self._show_help, accelerator="F1")
         help_menu.add_command(label="About", command=self._show_about)
 
+        toolbar = ttk.Frame(self.root)
+        toolbar.grid(row=0, column=0, sticky="ew", padx=5, pady=2)
+
+        self._new_btn = ttk.Button(toolbar, text=f"{ICON_NEW} New", width=8, command=self._on_new)
+        self._new_btn.pack(side=tk.LEFT, padx=1)
+
+        self._open_btn = ttk.Button(toolbar, text=f"{ICON_OPEN} Open", width=8, command=self._on_open_folder)
+        self._open_btn.pack(side=tk.LEFT, padx=1)
+
+        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, fill=tk.Y, padx=4)
+
+        self._tools_btn = ttk.Button(toolbar, text=f"{ICON_TOOLS} Tools", width=8, command=self._show_tools)
+        self._tools_btn.pack(side=tk.LEFT, padx=1)
+
+        self._mcp_btn = ttk.Button(toolbar, text=f"{ICON_MCP} MCP", width=8, command=self._show_mcp)
+        self._mcp_btn.pack(side=tk.LEFT, padx=1)
+
+        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, fill=tk.Y, padx=4)
+
+        self._conn_btn = ttk.Button(toolbar, text=f"{ICON_SETTINGS} Connection", width=12, command=self._show_connection)
+        self._conn_btn.pack(side=tk.LEFT, padx=1)
+
+        self._cost_btn = ttk.Button(toolbar, text=f"{ICON_COST} Cost", width=8, command=self._show_cost)
+        self._cost_btn.pack(side=tk.LEFT, padx=1)
+
         status_frame = ttk.Frame(self.root)
-        status_frame.grid(row=0, column=0, sticky="ew", padx=5, pady=3)
+        status_frame.grid(row=1, column=0, sticky="ew", padx=5, pady=2)
         status_frame.columnconfigure(0, weight=1)
 
         self.connection_label = ttk.Label(status_frame, text="", font=("TkDefaultFont", 9))
         self.connection_label.grid(row=0, column=0, sticky=tk.W)
 
+        self.cwd_label = ttk.Label(status_frame, text="", font=("TkDefaultFont", 8), foreground="gray")
+        self.cwd_label.grid(row=1, column=0, sticky=tk.W)
+
         self.status_label = ttk.Label(status_frame, text="Ready", foreground="gray", font=("TkDefaultFont", 8))
         self.status_label.grid(row=0, column=1, sticky=tk.E)
 
         self.message_frame = ttk.Frame(self.root)
-        self.message_frame.grid(row=1, column=0, sticky="nsew", padx=5, pady=3)
+        self.message_frame.grid(row=2, column=0, sticky="nsew", padx=5, pady=3)
         self.message_frame.columnconfigure(0, weight=1)
         self.message_frame.rowconfigure(0, weight=1)
 
@@ -385,7 +808,7 @@ class MainWindow:
         self.message_text.tag_configure("system", foreground="gray", font=("TkFixedFont", 9, "italic"))
 
         input_frame = ttk.Frame(self.root)
-        input_frame.grid(row=2, column=0, sticky="ew", padx=5, pady=3)
+        input_frame.grid(row=3, column=0, sticky="ew", padx=5, pady=3)
         input_frame.columnconfigure(0, weight=1)
 
         self.input_text = tk.Text(input_frame, height=4, wrap=tk.WORD, font=("TkFixedFont", 10))
@@ -395,18 +818,18 @@ class MainWindow:
         input_scrollbar.grid(row=0, column=1, sticky="ns")
 
         btn_frame = ttk.Frame(self.root)
-        btn_frame.grid(row=3, column=0, sticky="ew", padx=5, pady=(0, 5))
-
-        self.send_btn = ttk.Button(btn_frame, text="Send (Enter)", command=self._on_send)
-        self.send_btn.pack(side=tk.LEFT, padx=2)
-
-        self.stop_btn = ttk.Button(btn_frame, text="Stop", command=self._on_stop, state=tk.DISABLED)
-        self.stop_btn.pack(side=tk.LEFT, padx=2)
+        btn_frame.grid(row=4, column=0, sticky="ew", padx=5, pady=(0, 5))
 
         ttk.Button(btn_frame, text="Clear", command=self._on_clear).pack(side=tk.LEFT, padx=2)
 
+        self.stop_btn = ttk.Button(btn_frame, text="Stop", command=self._on_stop, state=tk.DISABLED)
+        self.stop_btn.pack(side=tk.RIGHT, padx=2)
+
+        self.send_btn = ttk.Button(btn_frame, text="Send (Enter)", command=self._on_send)
+        self.send_btn.pack(side=tk.RIGHT, padx=2)
+
         self.status_bar = ttk.Frame(self.root)
-        self.status_bar.grid(row=4, column=0, sticky="ew", padx=5, pady=2)
+        self.status_bar.grid(row=5, column=0, sticky="ew", padx=5, pady=2)
 
         self.cost_label = ttk.Label(self.status_bar, text="Cost: $0.0000", foreground="gray", font=("TkDefaultFont", 8))
         self.cost_label.pack(side=tk.LEFT)
@@ -414,19 +837,41 @@ class MainWindow:
         self.token_label = ttk.Label(self.status_bar, text="Tokens: 0", foreground="gray", font=("TkDefaultFont", 8))
         self.token_label.pack(side=tk.LEFT, padx=10)
 
-        self.status_label = ttk.Label(self.status_bar, text="Ready", foreground="gray", font=("TkDefaultFont", 8))
-        self.status_label.pack(side=tk.RIGHT)
-
     def _sync_settings_to_ui(self):
         provider = self.query_engine.api_client.provider
         model = self.config.model
         base = self.config.api_base
-        self.connection_label.configure(text=f"[{provider}] {model}  —  {base}")
+        self.connection_label.configure(text=f"[{provider}] {model}  \u2014  {base}")
+        cwd = self.query_engine.cwd
+        self.cwd_label.configure(text=f"CWD: {cwd}")
+
+    def _on_new(self):
+        self._on_clear()
+        self._cwd = None
+        self.cwd_label.configure(text="")
+
+    def _on_open_folder(self):
+        folder = filedialog.askdirectory(title="Select Working Directory")
+        if folder:
+            self._cwd = folder
+            self.query_engine.cwd = folder
+            self.cwd_label.configure(text=f"CWD: {folder}")
+            self._append_message("system", f"Working directory set to: {folder}")
 
     def _show_connection(self):
         dlg = ConnectionDialog(self.root, self.config, self.query_engine)
         if dlg.result:
             self._sync_settings_to_ui()
+
+    def _show_tools(self):
+        if self.tool_registry:
+            ToolsDialog(self.root, self.tool_registry)
+
+    def _show_mcp(self):
+        if self.mcp_manager:
+            McpServersDialog(self.root, self.mcp_manager)
+        else:
+            self._append_message("system", "MCP server management not yet configured.")
 
     def _bind_events(self):
         self.input_text.bind("<Return>", self._on_return)
@@ -435,6 +880,8 @@ class MainWindow:
         self.input_text.bind("<Down>", self._on_history_down)
         self.root.bind("<Control-c>", lambda e: self._on_stop())
         self.root.bind("<Control-l>", lambda e: self._on_clear())
+        self.root.bind("<Control-n>", lambda e: self._on_new())
+        self.root.bind("<Control-o>", lambda e: self._on_open_folder())
         self.root.bind("<F1>", lambda e: self._show_help())
         self.root.protocol("WM_DELETE_WINDOW", self._on_exit)
 
@@ -534,9 +981,12 @@ class MainWindow:
                     async for event in self.query_engine.submit(user_input):
                         pass
                 loop.run_until_complete(main())
+            except Exception as e:
+                error_msg = str(e)
+                self.root.after(0, lambda: self._on_error(error_msg))
             finally:
                 loop.close()
-            self.root.after(0, self._on_done)
+                self.root.after(0, self._on_done)
 
         threading.Thread(target=run_async, daemon=True).start()
 
@@ -600,16 +1050,6 @@ class MainWindow:
     def _show_cost(self):
         CostDialog(self.root, self.query_engine.cost_tracker)
 
-    def _show_config(self):
-        config_text = f"""Configuration:
-Model:       {self.config.model}
-API Base:    {self.config.api_base}
-Max Tokens:  {self.config.max_tokens}
-Max Turns:   {self.config.max_turns}
-Temperature: {self.config.temperature}
-CWD:         {self.query_engine.cwd}"""
-        self._append_message("system", config_text)
-
     def _show_help(self):
         help_text = """Available commands:
 /help          - Show this help
@@ -624,6 +1064,8 @@ Keyboard shortcuts:
 Enter          - Send message
 Shift+Enter    - New line
 Up/Down        - Command history
+Ctrl+N         - New conversation
+Ctrl+O         - Open folder
 Ctrl+C         - Stop current request
 Ctrl+L         - Clear conversation
 F1             - Show this help"""

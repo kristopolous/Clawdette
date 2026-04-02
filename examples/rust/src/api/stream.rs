@@ -1,8 +1,11 @@
-use crate::api::LlmClient;
+use crate::api::{LlmClient, ApiProvider};
 use crate::types::message::ContentBlock;
 use crate::types::{Message, StreamEvent as AppStreamEvent, ToolRegistry, ToolResult, Usage};
 use crate::types::permission::{PermissionContext, PermissionDecision};
 use anyhow::Result;
+use futures::StreamExt;
+use reqwest_eventsource::{Event, EventSource};
+use serde_json;
 use tokio_util::sync::CancellationToken;
 use tracing::{debug, info};
 
@@ -70,37 +73,119 @@ impl QueryEngine {
             let messages = self.messages.clone();
             let system = Some(self.system_prompt.clone());
 
-            // Use non-streaming for now
-            let (content_blocks, usage) = self
-                .client
-                .send_message(messages, system, tools, CancellationToken::new())
-                .await?;
-
-            self.total_usage.accumulate(&usage);
-
             let mut assistant_content = Vec::new();
             let mut tool_uses = Vec::new();
 
-            for block in content_blocks {
-                if let Some(text) = block.get("text").and_then(|v| v.as_str()) {
-                    assistant_content.push(ContentBlock::Text { text: text.to_string() });
-                    on_event(AppStreamEvent::TextDelta { delta: text.to_string() });
-                } else if block.get("type").and_then(|v| v.as_str()) == Some("tool_use") {
-                    let id = block["id"].as_str().unwrap_or("").to_string();
-                    let name = block["name"].as_str().unwrap_or("").to_string();
-                    let input = block["input"].clone();
-                    assistant_content.push(ContentBlock::ToolUse {
-                        id: id.clone(),
-                        name: name.clone(),
-                        input: input.clone(),
-                    });
-                    tool_uses.push((id, name, input));
-                }
-            }
+            if *self.client.provider() == ApiProvider::Anthropic {
+                // Streaming implementation for Anthropic
+                let stream = self.client.create_stream(messages, system, tools);
+                let mut event_stream = stream;
 
-            self.messages.push(Message::Assistant {
-                content: assistant_content,
-            });
+                let mut current_text = String::new();
+                let mut stream_usage: Option<Usage> = None;
+
+                while let Some(event_result) = event_stream.next().await {
+                    let event = match event_result {
+                        Ok(e) => e,
+                        Err(e) => {
+                            on_event(AppStreamEvent::Error {
+                                message: format!("Stream error: {e}"),
+                                retryable: true,
+                            });
+                            return Err(anyhow::anyhow!("Stream error: {e}"));
+                        }
+                    };
+
+                    match event.event.as_str() {
+                        "content_block_delta" => {
+                            if let Some(delta) = event.data.get("delta") {
+                                if let Some(text) = delta.get("text").and_then(|t: &serde_json::Value| t.as_str()) {
+                                    current_text.push_str(text);
+                                    on_event(AppStreamEvent::TextDelta { delta: text.to_string() });
+                                }
+                            }
+                        }
+                        "content_block_start" => {
+                            // Flush any pending text from previous block
+                            if !current_text.is_empty() {
+                                assistant_content.push(ContentBlock::Text { text: current_text.clone() });
+                                current_text.clear();
+                            }
+                            if let Some(content_block) = event.data.get("content_block") {
+                                if content_block.get("type").and_then(|t: &serde_json::Value| t.as_str()) == Some("tool_use") {
+                                    let id = content_block.get("id").and_then(|i| i.as_str()).unwrap_or("").to_string();
+                                    let name = content_block.get("name").and_then(|n| n.as_str()).unwrap_or("").to_string();
+                                    let input = content_block.get("input").clone().unwrap_or(serde_json::json!({}));
+                                    assistant_content.push(ContentBlock::ToolUse {
+                                        id: id.clone(),
+                                        name: name.clone(),
+                                        input: input.clone(),
+                                    });
+                                    tool_uses.push((id, name, input));
+                                }
+                            }
+                        }
+                        "message_stop" => {
+                            // Flush remaining text
+                            if !current_text.is_empty() {
+                                assistant_content.push(ContentBlock::Text { text: current_text.clone() });
+                                current_text.clear();
+                            }
+                            // Extract usage
+                            let usage = event.data.get("usage").and_then(|u| {
+                                Some(Usage {
+                                    input_tokens: u.get("input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                    output_tokens: u.get("output_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                    cache_creation_input_tokens: u.get("cache_creation_input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                    cache_read_input_tokens: u.get("cache_read_input_tokens").and_then(|t| t.as_u64()).unwrap_or(0),
+                                })
+                            }).unwrap_or_default();
+                            stream_usage = Some(usage);
+                            break;
+                        }
+                        _ => {}
+                    }
+                }
+
+                if let Some(usage) = stream_usage {
+                    self.total_usage.accumulate(&usage);
+                } else {
+                    return Err(anyhow::anyhow!("Stream ended without message_stop event"));
+                }
+
+                self.messages.push(Message::Assistant {
+                    content: assistant_content,
+                });
+            } else {
+                // Non-streaming for other providers (OpenAI)
+                let (content_blocks, usage) = self
+                    .client
+                    .send_message(messages, system, tools, CancellationToken::new())
+                    .await?;
+
+                self.total_usage.accumulate(&usage);
+
+                for block in content_blocks {
+                    if let Some(text) = block.get("text").and_then(|v| v.as_str()) {
+                        assistant_content.push(ContentBlock::Text { text: text.to_string() });
+                        on_event(AppStreamEvent::TextDelta { delta: text.to_string() });
+                    } else if block.get("type").and_then(|v: &serde_json::Value| v.as_str()) == Some("tool_use") {
+                        let id = block["id"].as_str().unwrap_or("").to_string();
+                        let name = block["name"].as_str().unwrap_or("").to_string();
+                        let input = block["input"].clone();
+                        assistant_content.push(ContentBlock::ToolUse {
+                            id: id.clone(),
+                            name: name.clone(),
+                            input: input.clone(),
+                        });
+                        tool_uses.push((id, name, input));
+                    }
+                }
+
+                self.messages.push(Message::Assistant {
+                    content: assistant_content,
+                });
+            }
 
             if tool_uses.is_empty() {
                 break;
@@ -113,7 +198,6 @@ impl QueryEngine {
                     name: tool_name.clone(),
                 });
 
-                // Clone tool_input before moving into execute_tool to avoid borrow issues
                 let input_for_exec = tool_input.clone();
                 let result = self.execute_tool(&tool_name, input_for_exec).await;
 

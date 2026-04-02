@@ -14,17 +14,21 @@ from tk.models import ToolDefinition, ToolResult
 class ToolRegistry:
     def __init__(self):
         self._tools: dict[str, "BaseTool"] = {}
+        self._enabled: dict[str, bool] = {}
 
     def register(self, tool: "BaseTool"):
         self._tools[tool.name] = tool
+        self._enabled[tool.name] = True
 
     def get(self, name: str) -> Optional["BaseTool"]:
         return self._tools.get(name)
 
     def get_definitions(self) -> list[ToolDefinition]:
-        return [t.definition for t in self._tools.values()]
+        return [t.definition for t in self._tools.values() if self._enabled.get(t.name, True)]
 
     async def execute(self, name: str, arguments: dict, cwd: str | None = None) -> ToolResult:
+        if not self._enabled.get(name, False):
+            return ToolResult(tool_call_id="", content=f"Tool '{name}' is disabled", is_error=True)
         tool = self._tools.get(name)
         if not tool:
             return ToolResult(tool_call_id="", content=f"Unknown tool: {name}", is_error=True)
@@ -33,6 +37,17 @@ class ToolRegistry:
             return result
         except Exception as e:
             return ToolResult(tool_call_id=arguments.get("tool_call_id", ""), content=str(e), is_error=True)
+
+    def get_tool_states(self) -> dict[str, bool]:
+        return dict(self._enabled)
+
+    def enable_all(self):
+        for name in self._enabled:
+            self._enabled[name] = True
+
+    def disable_all(self):
+        for name in self._enabled:
+            self._enabled[name] = False
 
 
 class BaseTool:

@@ -110,7 +110,7 @@ Examples:
         cwd=args.cwd,
     )
 
-    app = MainWindow(config=config, query_engine=query_engine)
+    app = MainWindow(config=config, query_engine=query_engine, tool_registry=tool_registry)
     app.run()
 
 

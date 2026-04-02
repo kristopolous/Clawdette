@@ -66,96 +66,107 @@ class QueryEngine:
                 current_tool_name = None
                 current_tool_json = ""
 
-                async for event in self.api_client.stream_chat(
+                stream = self.api_client.stream_chat(
                     messages=self.messages,
                     tools=self.tool_registry.get_definitions(),
                     max_tokens=self.config.max_tokens,
                     temperature=self.config.temperature,
-                ):
-                    if self._stop_requested:
-                        yield StreamEvent(type="done")
-                        return
+                )
 
-                    if event.type == "text":
-                        text = event.data.get("text", "")
-                        accumulated_text += text
-                        self.on_text(text)
-                        yield event
-
-                    elif event.type == "tool_use_start":
-                        current_tool_id = event.data.get("id", "")
-                        current_tool_name = event.data.get("name", "")
-                        current_tool_json = ""
-                        yield event
-
-                    elif event.type == "tool_use_delta":
-                        partial = event.data.get("partial_json", "")
-                        if partial:
-                            current_tool_json += partial
-                        name = event.data.get("name")
-                        if name:
-                            current_tool_name = name
-                        tc_id = event.data.get("id")
-                        if tc_id:
-                            current_tool_id = tc_id
-                        yield event
-
-                    elif event.type == "usage":
-                        input_tokens = event.data.get("input_tokens", 0)
-                        output_tokens = event.data.get("output_tokens", 0)
-                        self.cost_tracker.add_usage(input_tokens, output_tokens)
-                        self.on_cost_update(self.cost_tracker)
-                        yield event
-
-                    elif event.type == "done":
-                        if current_tool_name and current_tool_id and current_tool_json:
-                            try:
-                                args = json.loads(current_tool_json) if current_tool_json.strip() else {}
-                            except json.JSONDecodeError:
-                                args = {}
-                            pending_tool_calls.append({
-                                "id": current_tool_id,
-                                "name": current_tool_name,
-                                "arguments": args,
-                            })
-
-                        if accumulated_text:
-                            self.messages.append(Message(role="assistant", content=accumulated_text))
-
-                        if pending_tool_calls:
-                            tool_calls = [
-                                ToolCall(id=tc["id"], name=tc["name"], arguments=tc["arguments"])
-                                for tc in pending_tool_calls
-                            ]
-                            self.messages.append(Message(
-                                role="assistant",
-                                content="",
-                                tool_calls=tool_calls,
-                            ))
-
-                            for tc in pending_tool_calls:
-                                self.on_tool_start(tc["name"], tc["arguments"])
-                                result = await self.tool_registry.execute(
-                                    tc["name"], tc["arguments"], cwd=self.cwd
-                                )
-                                self.on_tool_result(tc["name"], result.content)
-                                self.messages.append(Message(
-                                    role="tool",
-                                    content=result.content,
-                                    tool_call_id=tc["id"],
-                                    name=tc["name"],
-                                ))
-                                yield StreamEvent(type="tool_result", data={
-                                    "tool_name": tc["name"],
-                                    "result": result.content,
-                                    "is_error": result.is_error,
-                                })
-
-                            continue
-                        else:
-                            self.on_done()
+                try:
+                    async for event in stream:
+                        if self._stop_requested:
                             yield StreamEvent(type="done")
                             return
+
+                        if event.type == "text":
+                            text = event.data.get("text", "")
+                            accumulated_text += text
+                            self.on_text(text)
+                            yield event
+
+                        elif event.type == "tool_use_start":
+                            current_tool_id = event.data.get("id", "")
+                            current_tool_name = event.data.get("name", "")
+                            current_tool_json = ""
+                            yield event
+
+                        elif event.type == "tool_use_delta":
+                            partial = event.data.get("partial_json", "")
+                            if partial:
+                                current_tool_json += partial
+                            name = event.data.get("name")
+                            if name:
+                                current_tool_name = name
+                            tc_id = event.data.get("id")
+                            if tc_id:
+                                current_tool_id = tc_id
+                            yield event
+
+                        elif event.type == "usage":
+                            input_tokens = event.data.get("input_tokens", 0)
+                            output_tokens = event.data.get("output_tokens", 0)
+                            self.cost_tracker.add_usage(input_tokens, output_tokens)
+                            self.on_cost_update(self.cost_tracker)
+                            yield event
+
+                        elif event.type == "error":
+                            error_msg = event.data.get("error", "Unknown API error")
+                            self.on_error(error_msg)
+                            yield event
+                            return
+
+                        elif event.type == "done":
+                            if current_tool_name and current_tool_id and current_tool_json:
+                                try:
+                                    args = json.loads(current_tool_json) if current_tool_json.strip() else {}
+                                except json.JSONDecodeError:
+                                    args = {}
+                                pending_tool_calls.append({
+                                    "id": current_tool_id,
+                                    "name": current_tool_name,
+                                    "arguments": args,
+                                })
+
+                            if accumulated_text:
+                                self.messages.append(Message(role="assistant", content=accumulated_text))
+
+                            if pending_tool_calls:
+                                tool_calls = [
+                                    ToolCall(id=tc["id"], name=tc["name"], arguments=tc["arguments"])
+                                    for tc in pending_tool_calls
+                                ]
+                                self.messages.append(Message(
+                                    role="assistant",
+                                    content="",
+                                    tool_calls=tool_calls,
+                                ))
+
+                                for tc in pending_tool_calls:
+                                    self.on_tool_start(tc["name"], tc["arguments"])
+                                    result = await self.tool_registry.execute(
+                                        tc["name"], tc["arguments"], cwd=self.cwd
+                                    )
+                                    self.on_tool_result(tc["name"], result.content)
+                                    self.messages.append(Message(
+                                        role="tool",
+                                        content=result.content,
+                                        tool_call_id=tc["id"],
+                                        name=tc["name"],
+                                    ))
+                                    yield StreamEvent(type="tool_result", data={
+                                        "tool_name": tc["name"],
+                                        "result": result.content,
+                                        "is_error": result.is_error,
+                                    })
+
+                                break
+                            else:
+                                self.on_done()
+                                yield StreamEvent(type="done")
+                                return
+                finally:
+                    await stream.aclose()
 
                 if not pending_tool_calls:
                     self.on_done()
