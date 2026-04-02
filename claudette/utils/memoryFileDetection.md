@@ -1,36 +1,34 @@
 # utils/memoryFileDetection
 
 ## Purpose
-Provides memory file detection utilities for session-related files.
+Detects whether file paths, globs, or shell commands target Claude-managed memory files (auto-memory, agent memory, session memory/transcripts, team memory) vs user-managed files (CLAUDE.md, rules). Used for collapse/badge logic and telemetry scoping.
 
 ## Imports
-- **Stdlib**: `path`
-- **External**: `bun:bundle`
-- **Internal**: memdir paths, AgentTool agentMemory, envUtils, windowsPaths
+- **Stdlib**: `path` (normalize, posix, win32)
+- **External**: `bun:bundle` (feature flag)
+- **Internal**: `../memdir/paths.js`, `../tools/AgentTool/agentMemory.js`, `./envUtils.js`, `./windowsPaths.js`, `../memdir/teamMemPaths.js` (conditional require)
 
 ## Logic
-1. `IS_WINDOWS` - checks if running on Windows
-2. `toPosix` - normalizes path separators to posix (/)
-3. `toComparable` - converts to stable string-comparable form
-4. On Windows: lowercases for case-insensitive comparison
-5. `detectSessionFileType` - detects session file type from path
-6. Returns 'session_memory' for ~/.claude/session-memory/*.md files
-7. Returns 'session_transcript' for ~/.claude/projects/*.jsonl files
-8. Returns null if not a session file
-9. `detectSessionPatternType` - detects session pattern from glob
-10. Used for Grep/Glob tools checking patterns, not actual paths
-11. `isSessionFileAccess` - checks if file access targets session files
-12. `isShellCommandTargetingMemory` - checks if shell command targets memory
-13. `isAutoManagedMemoryFile` - checks if file is auto-managed memory
-14. `isAutoManagedMemoryPattern` - checks if pattern targets auto-managed memory
-15. `isMemoryDirectory` - checks if path is memory directory
-16. TEAMMEM feature-gated team memory support
+1. `IS_WINDOWS` platform check drives case-insensitive path comparison
+2. `toPosix()` normalizes path separators to forward slashes
+3. `toComparable()` produces a stable string-comparable form (lowercased on Windows)
+4. `detectSessionFileType()` checks if a path is under `~/.claude` and matches session-memory/*.md or projects/*.jsonl patterns
+5. `detectSessionPatternType()` checks if a glob/pattern string indicates session file access (for Grep/Glob tools)
+6. `isAutoMemFile()` checks if auto-memory is enabled and the path is within the memdir
+7. `memoryScopeForPath()` determines if a path belongs to 'personal' or 'team' memory scope (team checked first since it's a subdirectory of memdir)
+8. `isAgentMemFile()` (private) checks if path is within agent memory directory
+9. `isAutoManagedMemoryFile()` returns true for auto-memory, team memory, session files, and agent memory — excludes user-managed files like CLAUDE.md
+10. `isMemoryDirectory()` checks if a directory path is memory-related, handling path traversal security, agent memory, team memory, session memory, and config dir checks
+11. `isShellCommandTargetingMemory()` extracts absolute path tokens from shell commands (Bash/PowerShell) and checks each against memory detection functions; handles MinGW /c/... paths on Windows
+12. `isAutoManagedMemoryPattern()` checks if a glob pattern targets auto-managed memory files (excludes user-managed)
 
 ## Exports
-- `detectSessionFileType` - detects session file type
-- `detectSessionPatternType` - detects session pattern type
-- `isSessionFileAccess` - checks session file access
-- `isShellCommandTargetingMemory` - checks shell targeting memory
-- `isAutoManagedMemoryFile` - checks auto-managed memory file
-- `isAutoManagedMemoryPattern` - checks auto-managed pattern
-- `isMemoryDirectory` - checks memory directory
+- `detectSessionFileType(filePath)` - Returns `'session_memory' | 'session_transcript' | null`
+- `detectSessionPatternType(pattern)` - Returns `'session_memory' | 'session_transcript' | null` for glob patterns
+- `isAutoMemFile(filePath)` - Returns `boolean`, true if path is within memdir and auto-memory is enabled
+- `MemoryScope` - Type alias: `'personal' | 'team'`
+- `memoryScopeForPath(filePath)` - Returns `MemoryScope | null`
+- `isAutoManagedMemoryFile(filePath)` - Returns `boolean`, true for any Claude-managed memory file
+- `isMemoryDirectory(dirPath)` - Returns `boolean`, true if directory is memory-related
+- `isShellCommandTargetingMemory(command)` - Returns `boolean`, true if shell command references memory paths
+- `isAutoManagedMemoryPattern(pattern)` - Returns `boolean`, true if glob targets auto-managed memory

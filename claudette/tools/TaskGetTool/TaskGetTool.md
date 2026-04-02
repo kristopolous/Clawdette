@@ -1,14 +1,22 @@
+# tools/TaskGetTool/TaskGetTool
+
 ## Purpose
-Implements the TaskGet tool that retrieves task details by ID from the task list, including subject, description, status, and dependency information.
+Retrieves task details by ID from the task list, including subject, description, status, and dependency information.
 
 ## Imports
-- **Stdlib**: None
 - **External**: `zod/v4`
-- **Internal**: `buildTool`, `ToolDef`, `utils/lazySchema`, `utils/tasks`, `TaskGetTool/constants`, `TaskGetTool/prompt`
+- **Internal**:
+  - Tool: `buildTool`, `ToolDef`
+  - Utils: `lazySchema`, `getTask`, `getTaskListId`, `isTodoV2Enabled`, `TaskStatusSchema`
+  - Local: `TASK_GET_TOOL_NAME`, `DESCRIPTION`, `PROMPT`
 
 ## Logic
-Defines input and output schemas using zod with lazy evaluation. The tool takes a task ID and retrieves the full task object including subject, description, status, blocks, and blockedBy fields. Maps the result to a formatted text block showing task details and dependencies. Checks if TodoV2 is enabled before allowing tool use. Returns null task when not found.
+1. Validates input: taskId (string).
+2. Tool enabled only if TodoV2 feature flag is on.
+3. On call, retrieves task from the task list via `getTask`. Returns null if not found.
+4. Formats output: task details including id, subject, description, status, blocks, blockedBy.
+5. Maps result to a multi-line text summary; if task not found, returns "Task not found".
 
 ## Exports
-- `Output` - TypeScript type for the tool's output schema
-- `TaskGetTool` - the complete tool definition built via buildTool with call implementation, result mapping, and metadata
+- `TaskGetTool` - tool definition
+- `Output` - type for output (task object or null)

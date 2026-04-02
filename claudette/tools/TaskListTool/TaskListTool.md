@@ -1,14 +1,24 @@
+# tools/TaskListTool/TaskListTool
+
 ## Purpose
-Defines the TaskListTool for listing all tasks in the task list with filtering and formatting logic.
+Lists all tasks in the task list with filtering and formatting.
 
 ## Imports
-- **Stdlib**: None
 - **External**: `zod/v4`
-- **Internal**: `buildTool`, `ToolDef`, `lazySchema`, `getTaskListId`, `isTodoV2Enabled`, `listTasks`, `TaskStatusSchema`, `TASK_LIST_TOOL_NAME`, `DESCRIPTION`, `getPrompt`
+- **Internal**:
+  - Tool: `buildTool`, `ToolDef`
+  - Utils: `lazySchema`, `getTaskListId`, `isTodoV2Enabled`, `listTasks`, `TaskStatusSchema`
+  - Local: `TASK_LIST_TOOL_NAME`, `DESCRIPTION`, `getPrompt`
 
 ## Logic
-Builds a tool definition using zod schemas for input/output validation. The `call` method retrieves all tasks, filters out internal ones, and maps blockedBy to only include unresolved task IDs. The `mapToolResultToToolResultBlockParam` formats tasks into readable lines showing ID, status, subject, owner, and blockers. The tool is read-only, concurrency-safe, and only enabled when TodoV2 is active.
+1. Input schema is empty (no parameters).
+2. Tool enabled only if TodoV2 feature flag is on; read-only and concurrency-safe.
+3. On call, retrieves all tasks, filters out internal tasks (metadata._internal).
+4. Constructs resolved task ID set (tasks with status 'completed').
+5. Maps tasks to include only unresolved blockers (blockedBy filtered by resolved set).
+6. Formats output lines showing ID, status, subject, owner, and blockers.
+7. Returns as a newline-separated list or "No tasks found".
 
 ## Exports
-- `Output` - inferred type for the tool output containing an array of tasks
-- `TaskListTool` - the built tool definition with schema, call logic, and result formatting
+- `TaskListTool` - tool definition
+- `Output` - type for output (array of task objects)

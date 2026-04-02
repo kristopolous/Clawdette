@@ -489,8 +489,12 @@ impl LlmClient {
 
         debug!("Sending request to OpenAI-compatible API");
 
+        let base = self.config.base_url.trim_end_matches('/');
+        let base = base.strip_suffix("/v1").unwrap_or(base);
+        let url = format!("{}/v1/chat/completions", base);
+
         let resp = self.client
-            .post(format!("{}/v1/chat/completions", self.config.base_url))
+            .post(&url)
             .header("Authorization", format!("Bearer {}", self.config.api_key))
             .header("content-type", "application/json")
             .json(&request)
@@ -574,8 +578,12 @@ impl LlmClient {
             stream: Some(true),
         };
 
+        let base = self.config.base_url.trim_end_matches('/');
+        let base = base.strip_suffix("/v1").unwrap_or(base);
+        let url = format!("{}/v1/chat/completions", base);
+
         let builder = self.client
-            .post(format!("{}/v1/chat/completions", self.config.base_url))
+            .post(&url)
             .header("Authorization", format!("Bearer {}", self.config.api_key))
             .header("content-type", "application/json")
             .header("accept", "text/event-stream")

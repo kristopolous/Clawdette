@@ -42,38 +42,20 @@ impl App {
                     self.should_quit = true;
                     return;
                 }
-                let pos = self.cursor_position.min(self.input_buffer.len());
-                self.input_buffer.insert(pos, c);
-                self.cursor_position += 1;
-            }
-            KeyCode::Backspace => {
-                if self.cursor_position > 0 {
-                    let pos = self.cursor_position - 1;
-                    self.input_buffer.remove(pos);
-                    self.cursor_position = pos;
-                }
-            }
-            KeyCode::Delete => {
-                if self.cursor_position < self.input_buffer.len() {
-                    self.input_buffer.remove(self.cursor_position);
-                }
-            }
-            KeyCode::Left => {
-                if self.cursor_position > 0 {
-                    self.cursor_position -= 1;
-                }
-            }
-            KeyCode::Right => {
-                if self.cursor_position < self.input_buffer.len() {
-                    self.cursor_position += 1;
-                }
-            }
-            KeyCode::Home => {
-                self.cursor_position = 0;
-            }
-            KeyCode::End => {
+                self.input_buffer.push(c);
                 self.cursor_position = self.input_buffer.len();
             }
+            KeyCode::Backspace => {
+                if !self.input_buffer.is_empty() {
+                    self.input_buffer.pop();
+                    self.cursor_position = self.input_buffer.len();
+                }
+            }
+            KeyCode::Delete => {}
+            KeyCode::Left => {}
+            KeyCode::Right => {}
+            KeyCode::Home => {}
+            KeyCode::End => {}
             KeyCode::Enter => {
                 // Submit handled by caller
             }

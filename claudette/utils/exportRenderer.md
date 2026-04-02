@@ -1,29 +1,20 @@
 # exportRenderer
 
 ## Purpose
-Upper-bound how many NormalizedMessages a Message can produce.
+Renders conversation messages to ANSI or plain text for export, using the same React components as the interactive UI but in headless/static mode.
 
 ## Imports
-- **Stdlib**: react, strip-ansi
-- **Internal**: ../components/Messages, ./keybindings/KeybindingContext, ./keybindings/loadUserBindings, ./keybindings/types, ./state/AppState, ../Tool, ../types/message, ./staticRender
+- **Stdlib**: `react` (React, useRef)
+- **External**: `strip-ansi`
+- **Internal**: ../components/Messages (Messages), ../keybindings/KeybindingContext (KeybindingProvider), ../keybindings/loadUserBindings (loadKeybindingsSyncWithWarnings), ../keybindings/types (KeybindingContextName), ../state/AppState (AppStateProvider), ../Tool (Tools), ../types/message (Message), ./staticRender (renderToAnsiString)
 
-## Items
-
-### StaticKeybindingProvider
-**Type**: Function
-
-### normalizedUpperBound
-**Type**: Function
-
-### streamRenderedMessages
-**Type**: Function
-
-### renderMessagesToPlainText
-**Type**: Function
+## Logic
+1. `StaticKeybindingProvider` - minimal keybinding context for headless renders, avoids ChordInterceptor which would hang without stdin
+2. `normalizedUpperBound` - calculates max NormalizedMessages a Message can produce (array content length, or 1)
+3. `streamRenderedMessages` - renders messages in chunks (default 40) to reduce memory usage (-55% RSS vs full render). Each chunk renders with its own yoga layout tree sized to chunk height. Uses `renderRange` on Messages component. Stops when chunk produces empty output. Calls `onProgress` callback after each chunk.
+4. `renderMessagesToPlainText` - convenience wrapper that strips ANSI codes from streamed output and joins into single string
+5. Chunk ceiling calculation: chunkSize + sum of normalizedUpperBound for all messages ensures loop reaches empty slice
 
 ## Exports
-- streamRenderedMessages
-- renderMessagesToPlainText
-
-## Source
-`exportRenderer`
+- `streamRenderedMessages` - async generator-like function that renders messages in chunks, preserving ANSI codes, calls sink for each chunk
+- `renderMessagesToPlainText` - async function that renders all messages to a single plain text string

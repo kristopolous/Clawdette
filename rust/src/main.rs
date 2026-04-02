@@ -226,7 +226,20 @@ async fn main() -> Result<()> {
                     let _ = tx.send(event).await;
                 });
             }).await {
-                Ok(()) => {},
+                Ok(()) => {
+                    let usage = query_engine.get_usage();
+                    let _ = event_tx.send(StreamEvent::MessageEnd {
+                        message: claudette_rs::types::event::AssistantMessage {
+                            content: vec![],
+                            usage: claudette_rs::types::event::Usage {
+                                input_tokens: usage.input_tokens,
+                                output_tokens: usage.output_tokens,
+                                cache_creation_input_tokens: usage.cache_creation_input_tokens,
+                                cache_read_input_tokens: usage.cache_read_input_tokens,
+                            },
+                        },
+                    }).await;
+                }
                 Err(e) => {
                     let _ = event_tx.send(StreamEvent::Error {
                         message: e.to_string(),

@@ -1,30 +1,42 @@
 # utils/generatedFiles
 
 ## Purpose
-Provides generated file detection for attribution exclusion.
+Detects generated/vendored files to exclude from attribution. Based on GitHub Linguist vendored patterns.
 
 ## Imports
-- **Stdlib**: `path`
+- **Stdlib**: `path` (`basename`, `extname`, `posix`, `sep`)
 - **External**: (none)
 - **Internal**: (none)
 
-## Logic
-1. `EXCLUDED_FILENAMES` - exact filename matches (packagelockon, yarn.lock, etc.)
-2. `EXCLUDED_EXTENSIONS` - extension patterns (.lock, min, .d, etc.)
-3. `EXCLUDED_DIRECTORIES` - directory patterns (/dist/, /build/, /node_modules/, etc.)
-4. `EXCLUDED_FILENAME_PATTERNS` - regex patterns for complex matching
-5. Patterns: *.min.*, *-min.*, *.bundle.*, *.generated.*, *.gen.*, *.auto.*
-6. Protocol buffer files: *.pb.(go|js|ts|py|rb), *_pb2?.py, *.pb.h
-7. gRPC generated: *.grpc.*
-8. Swagger/OpenAPI: *.swagger.*, *.openapi.*
-9. `isGeneratedFile` - checks if file should be excluded from attribution
-10. Based on GitHub Linguist vendored patterns
-11. Checks filename, extension, directory, and pattern matches
-12. Case-insensitive matching for filenames and extensions
+## Items
+
+### EXCLUDED_FILENAMES
+**Type**: Constant (Set)
+Exact filename matches (case-insensitive): `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `bun.lockb`, `bun.lock`, `composer.lock`, `gemfile.lock`, `cargo.lock`, `poetry.lock`, `pipfile.lock`, `shrinkwrap.json`, `npm-shrinkwrap.json`.
+
+### EXCLUDED_EXTENSIONS
+**Type**: Constant (Set)
+Extension patterns (case-insensitive): `.lock`, `.min.js`, `.min.css`, `.min.html`, `.bundle.js`, `.bundle.css`, `.generated.ts`, `.generated.js`, `.d.ts`.
+
+### EXCLUDED_DIRECTORIES
+**Type**: Constant (array)
+Directory path patterns: `/dist/`, `/build/`, `/out/`, `/output/`, `/node_modules/`, `/vendor/`, `/vendored/`, `/third_party/`, `/third-party/`, `/external/`, `/.next/`, `/.nuxt/`, `/.svelte-kit/`, `/coverage/`, `/__pycache__/`, `/.tox/`, `/venv/`, `/.venv/`, `/target/release/`, `/target/debug/`.
+
+### EXCLUDED_FILENAME_PATTERNS
+**Type**: Constant (array of regex)
+Regex patterns for complex matching: `*.min.*`, `*-min.*`, `*.bundle.*`, `*.generated.*`, `*.gen.*`, `*.auto.*`, `*_generated.*`, `*_gen.*`, `*.pb.(go|js|ts|py|rb)`, `*_pb2?.py`, `*.pb.h`, `*.grpc.*`, `*.swagger.*`, `*.openapi.*`.
+
+### isGeneratedFile
+**Type**: Function
+Checks if a file should be excluded from attribution. Normalizes path separators to posix. Checks: exact filename match, extension match (including compound extensions like `.min.js`), directory patterns, filename regex patterns.
+
+### filterGeneratedFiles
+**Type**: Function
+Filters an array of file paths, removing generated files. Delegates to `isGeneratedFile`.
 
 ## Exports
-- `EXCLUDED_FILENAMES` - excluded filename set
-- `EXCLUDED_EXTENSIONS` - excluded extension set
-- `EXCLUDED_DIRECTORIES` - excluded directory patterns
-- `EXCLUDED_FILENAME_PATTERNS` - excluded filename regex patterns
-- `isGeneratedFile` - checks if file is generated
+- `isGeneratedFile` — checks if a single file is generated
+- `filterGeneratedFiles` — filters array of paths, removing generated files
+
+## Source
+`generatedFiles`
