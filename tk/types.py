@@ -72,7 +72,7 @@ class CostTracker:
 @dataclass
 class StreamEvent:
     type: str
-    data: Optional[dict] = None
+    data: dict = field(default_factory=dict)
 
 
 class StreamEventType(Enum):

@@ -7,6 +7,7 @@ use claudette_rs::mcp::{McpClient, McpToolWrapper};
 use claudette_rs::tools::{BashTool, EditTool, GlobTool, GrepTool, ReadTool, TodoWriteTool, WebFetchTool, WebSearchTool, WriteTool};
 use claudette_rs::tui::{App, run_tui};
 use claudette_rs::types::{CommandRegistry, Message, ToolRegistry, CostTracker, StreamEvent, ToolDefinition};
+use claudette_rs::types::permission::{PermissionContext, PermissionMode, ToolPermissionRule};
 use parking_lot::Mutex;
 use serde::{Deserialize, Serialize};
 use std::sync::Arc;
@@ -19,6 +20,31 @@ struct McpServerConfig {
     command: String,
     args: Vec<String>,
     instructions: String,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default, Clone)]
+struct Settings {
+    #[serde(default)]
+    permission_mode: String,
+    #[serde(default)]
+    always_allow: Vec<String>,
+    #[serde(default)]
+    always_deny: Vec<String>,
+    #[serde(default)]
+    always_ask: Vec<String>,
+    #[serde(default)]
+    read_only: bool,
+}
+
+async fn load_settings() -> Result<Settings> {
+    let config_dir = dirs::config_dir().ok_or_else(|| anyhow::anyhow!("No config directory"))?.join("claudette");
+    let settings_path = config_dir.join("settings.json");
+    if !settings_path.exists() {
+        return Ok(Settings::default());
+    }
+    let data = tokio::fs::read_to_string(&settings_path).await?;
+    let settings: Settings = serde_json::from_str(&data)?;
+    Ok(settings)
 }
 
 async fn load_mcp_config() -> Result<Vec<McpServerConfig>> {
@@ -238,11 +264,35 @@ async fn main() -> Result<()> {
     };
     let client = LlmClient::new(config);
 
+    // Load settings for permission and read-only mode
+    let settings = load_settings().await.unwrap_or_default();
+    let mode = match settings.permission_mode.as_str() {
+        "auto" => PermissionMode::Auto,
+        "bypass" => PermissionMode::Bypass,
+        _ => PermissionMode::Default,
+    };
+    let mut permission_ctx = PermissionContext::new(mode);
+    for tool in &settings.always_allow {
+        permission_ctx.add_always_allow(tool);
+    }
+    for tool in &settings.always_deny {
+        permission_ctx.add_always_deny(tool);
+    }
+    for tool in &settings.always_ask {
+        permission_ctx.always_ask.push(ToolPermissionRule {
+            tool_name: tool.clone(),
+            pattern: None,
+        });
+    }
+    let read_only = settings.read_only;
+
     let mut query_engine = QueryEngine::new(
         tool_registry,
         system_prompt.clone(),
         client,
         cli.max_turns,
+        permission_ctx,
+        read_only,
     );
 
     let (input_tx, mut input_rx) = mpsc::channel::<String>(32);

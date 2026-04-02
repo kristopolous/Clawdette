@@ -17,13 +17,13 @@ class QueryEngine:
         tool_registry: ToolRegistry,
         cost_tracker: CostTracker,
         config,
-        cwd: str = None,
-        on_text: Callable[[str], None] = None,
-        on_tool_start: Callable[[str, dict], None] = None,
-        on_tool_result: Callable[[str, str], None] = None,
-        on_done: Callable[[], None] = None,
-        on_error: Callable[[str], None] = None,
-        on_cost_update: Callable[[CostTracker], None] = None,
+        cwd: str | None = None,
+        on_text: Optional[Callable[[str], None]] = None,
+        on_tool_start: Optional[Callable[[str, dict], None]] = None,
+        on_tool_result: Optional[Callable[[str, str], None]] = None,
+        on_done: Optional[Callable[[], None]] = None,
+        on_error: Optional[Callable[[str], None]] = None,
+        on_cost_update: Optional[Callable[[CostTracker], None]] = None,
     ):
         self.api_client = api_client
         self.tool_registry = tool_registry

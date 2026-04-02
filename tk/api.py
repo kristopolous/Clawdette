@@ -95,7 +95,7 @@ class APIClient:
                     formatted.append({"role": msg.role, "content": msg.content})
             return formatted, None
 
-    def _format_tools(self, tools: list[ToolDefinition]) -> Optional[dict | list]:
+    def _format_tools(self, tools: Optional[list[ToolDefinition]]) -> Optional[dict | list]:
         if not tools:
             return None
         if self._is_anthropic:

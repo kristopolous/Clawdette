@@ -1,10 +1,11 @@
-use crate::api::LlmClient;
+use crate::api::{LlmClient, ApiProvider};
 use crate::types::message::ContentBlock;
-use crate::types::{Message, StreamEvent as AppStreamEvent, ToolDefinition, ToolRegistry, ToolResult, Usage};
-use crate::types::permission::PermissionContext;
+use crate::types::{Message, StreamEvent as AppStreamEvent, ToolDefinition, ToolRegistry, ToolResult, Usage, Tool};
+use crate::types::permission::{PermissionContext, PermissionDecision};
 use anyhow::Result;
 use futures::stream::StreamExt;
-use reqwest_eventsource::Event;
+use reqwest_eventsource::{Event, EventSource};
+use serde_json;
 use tokio_util::sync::CancellationToken;
 use tracing::{debug, info};
 
@@ -52,11 +53,14 @@ impl QueryEngine {
         &self.total_usage
     }
 
-    pub async fn submit_message(
+    pub async fn submit_message<F>(
         &mut self,
         user_message: Message,
-        on_event: impl Fn(AppStreamEvent) + Send + Sync,
-    ) -> Result<()> {
+        on_event: F,
+    ) -> Result<()>
+    where
+        F: Fn(AppStreamEvent) + Send + Sync,
+    {
         self.messages.push(user_message);
 
         for turn in 0..self.max_turns {
@@ -91,7 +95,6 @@ impl QueryEngine {
                             name: name.clone(),
                             input: input.clone(),
                         });
-                        // ToolUseStart will be emitted before execution later
                     }
                 }
                 (assistant_content, usage)
@@ -151,9 +154,8 @@ impl QueryEngine {
     fn maybe_compact(&mut self) {
         const MAX_MESSAGES: usize = 20;
         if self.messages.len() > MAX_MESSAGES {
-            // Determine how many messages to remove (in multiples of 2 to keep pairs)
             let excess = self.messages.len() - MAX_MESSAGES;
-            let remove_count = (excess / 2).saturating_mul(2).max(2); // remove at least 2
+            let remove_count = (excess / 2).saturating_mul(2).max(2);
             if remove_count > 0 {
                 let removed = self.messages.drain(0..remove_count).collect::<Vec<_>>();
                 let placeholder = Message::Assistant {
@@ -166,47 +168,32 @@ impl QueryEngine {
         }
     }
 
-    async fn execute_tool(&self, tool_name: &str, input: serde_json::Value) -> ToolResult {
-        let ctx = crate::types::ToolUseContext {
-            cwd: std::env::current_dir().unwrap_or_default(),
-            abort_signal: CancellationToken::new(),
-            tools: &self.tool_registry,
-            permission_ctx: &self.permission_ctx,
-            messages: &self.messages,
-            max_result_size: 10000,
-        };
+    async fn parse_anthropic_stream<'a, F>(
+        &self,
+        mut stream: EventSource,
+        on_event: &'a F,
+    ) -> Result<(Vec<ContentBlock>, Usage)>
+    where
+        F: Fn(AppStreamEvent) + Send + Sync + 'a,
+    {
+        let mut assistant_content = Vec::new();
+        let mut usage = Usage::default();
+        let mut current_text: Option<String> = None;
+        let mut current_tool: Option<(String, String, String)> = None;
 
-        match self.tool_registry.get(tool_name) {
-            Some(tool) => match tool.execute(input, &ctx).await {
-                Ok(result) => result,
-                Err(e) => ToolResult::error(format!("Tool execution error: {e}")),
-            },
-            None => ToolResult::error(format!("Unknown tool: {tool_name}")),
-        }
-    }
-}
-        }
-    }
-
-    async fn execute_tool(&self, tool_name: &str, input: serde_json::Value) -> ToolResult {
-        let ctx = crate::types::ToolUseContext {
-            cwd: std::env::current_dir().unwrap_or_default(),
-            abort_signal: CancellationToken::new(),
-            tools: &self.tool_registry,
-            permission_ctx: &self.permission_ctx,
-            messages: &self.messages,
-            max_result_size: 10000,
-        };
-
-        match self.tool_registry.get(tool_name) {
-            Some(tool) => match tool.execute(input, &ctx).await {
-                Ok(result) => result,
-                Err(e) => ToolResult::error(format!("Tool execution error: {e}")),
-            },
-            None => ToolResult::error(format!("Unknown tool: {tool_name}")),
-        }
-    }
-}
+        while let Some(event_result) = stream.next().await {
+            let event = event_result?;
+            match event.event.as_str() {
+                "message_start" => {
+                    let data: serde_json::Value = serde_json::from_str(&event.data)?;
+                    if let Some(usage_obj) = data
+                        .get("message")
+                        .and_then(|m| m.get("usage"))
+                        .and_then(|u| u.as_object())
+                    {
+                        if let Some(input_tokens) = usage_obj.get("input_tokens").and_then(|v| v.as_u64()) {
+                            usage.input_tokens = input_tokens;
+                        }
                         if let Some(cache_creation) = usage_obj.get("cache_creation_input_tokens").and_then(|v| v.as_u64()) {
                             usage.cache_creation_input_tokens = cache_creation;
                         }
@@ -224,7 +211,7 @@ impl QueryEngine {
                         }
                         "tool_use" => {
                             let id = data.get("id").and_then(|v| v.as_str()).unwrap_or("").to_string();
-                            let name = data.get("name").and_tone(|v| v.as_str()).unwrap_or("").to_string();
+                            let name = data.get("name").and_then(|v| v.as_str()).unwrap_or("").to_string();
                             current_tool = Some((id, name, String::new()));
                         }
                         _ => {}
@@ -232,10 +219,10 @@ impl QueryEngine {
                 }
                 "content_block_delta" => {
                     let data: serde_json::Value = serde_json::from_str(&event.data)?;
-                    let delta_type = data.get("type").and_tone(|v| v.as_str()).unwrap_or("");
+                    let delta_type = data.get("type").and_then(|v| v.as_str()).unwrap_or("");
                     match delta_type {
                         "text_delta" => {
-                            if let Some(delta) = data.get("delta").and_tone(|v| v.as_str()) {
+                            if let Some(delta) = data.get("delta").and_then(|v| v.as_str()) {
                                 if let Some(ref mut buf) = current_text {
                                     buf.push_str(delta);
                                 } else {
@@ -245,7 +232,7 @@ impl QueryEngine {
                             }
                         }
                         "input_json_delta" => {
-                            if let Some(delta) = data.get("delta").and_tone(|v| v.as_str()) {
+                            if let Some(delta) = data.get("delta").and_then(|v| v.as_str()) {
                                 if let Some((_id, _name, ref mut input)) = current_tool {
                                     input.push_str(delta);
                                 }
@@ -269,15 +256,15 @@ impl QueryEngine {
                     if let Some(usage_obj) = data
                         .get("delta")
                         .and_then(|d| d.get("usage"))
-                        .and_tone(|u| u.as_object())
+                        .and_then(|u| u.as_object())
                     {
-                        if let Some(output_tokens) = usage_obj.get("output_tokens").and_tone(|v| v.as_u64()) {
+                        if let Some(output_tokens) = usage_obj.get("output_tokens").and_then(|v| v.as_u64()) {
                             usage.output_tokens = output_tokens;
                         }
-                        if let Some(cache_creation) = usage_obj.get("cache_creation_input_tokens").and_tone(|v| v.as_u64()) {
+                        if let Some(cache_creation) = usage_obj.get("cache_creation_input_tokens").and_then(|v| v.as_u64()) {
                             usage.cache_creation_input_tokens = cache_creation;
                         }
-                        if let Some(cache_read) = usage_obj.get("cache_read_input_tokens").and_tone(|v| v.as_u64()) {
+                        if let Some(cache_read) = usage_obj.get("cache_read_input_tokens").and_then(|v| v.as_u64()) {
                             usage.cache_read_input_tokens = cache_read;
                         }
                     }
@@ -295,32 +282,36 @@ impl QueryEngine {
 
         Ok((assistant_content, usage))
     }
-        const MAX_MESSAGES: usize = 20;
-        if self.messages.len() > MAX_MESSAGES {
-            // Determine how many messages to remove (in multiples of 2 to keep pairs)
-            let excess = self.messages.len() - MAX_MESSAGES;
-            let remove_count = (excess / 2).saturating_mul(2).max(2); // remove at least 2
-            if remove_count > 0 {
-                let removed = self.messages.drain(0..remove_count).collect::<Vec<_>>();
-                let placeholder = Message::Assistant {
-                    content: vec![ContentBlock::Text {
-                        text: format!("[Compacted {} earlier messages]", removed.len()),
-                    }],
-                };
-                self.messages.insert(0, placeholder);
-            }
-        }
-    }
 
     async fn execute_tool(&self, tool_name: &str, input: serde_json::Value) -> ToolResult {
         let ctx = crate::types::ToolUseContext {
             cwd: std::env::current_dir().unwrap_or_default(),
             abort_signal: CancellationToken::new(),
             tools: &self.tool_registry,
-            permission_ctx: &crate::types::PermissionContext::empty(),
+            permission_ctx: &self.permission_ctx,
             messages: &self.messages,
             max_result_size: 10000,
         };
+
+        // Check read-only restriction
+        if self.read_only {
+            if let Some(tool) = self.tool_registry.get(tool_name) {
+                if tool.is_destructive() {
+                    return ToolResult::error(format!("Cannot execute destructive tool '{}' in read-only mode", tool_name));
+                }
+            }
+        }
+
+        // Check permission context
+        match self.permission_ctx.is_tool_allowed(tool_name) {
+            PermissionDecision::Allow => {}
+            PermissionDecision::Deny => {
+                return ToolResult::error(format!("Tool '{}' is denied by permission context", tool_name));
+            }
+            PermissionDecision::Ask => {
+                return ToolResult::error(format!("Tool '{}' requires explicit permission (ask mode not supported in non-interactive context)", tool_name));
+            }
+        }
 
         match self.tool_registry.get(tool_name) {
             Some(tool) => match tool.execute(input, &ctx).await {
