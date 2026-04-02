@@ -357,6 +357,14 @@ Prompt engineering is distributed across many files. Here are the key locations:
 | `constants/outputStyles.md` | Output style prompts |
 | `constants/system.md` | CLI sysprompt prefixes |
 
+## Implementation Guide
+
+See `IMPLEMENTATION_CHECKLIST.md` for a step-by-step build guide. It covers 19 phases in dependency order, explicitly marks what to SKIP (telemetry, proprietary features), and includes a verification checklist.
+
+## Implementation Guide
+
+See `IMPLEMENTATION_CHECKLIST.md` for a step-by-step build guide. It covers 19 phases in dependency order, explicitly marks what to SKIP (telemetry, proprietary features), and includes a verification checklist.
+
 ## Porting Guide
 
 See `START-HERE.md` for a comprehensive dependency purpose lookup table. It maps every external library to what it does and what to look for when porting to other languages/platforms.

@@ -53,6 +53,9 @@ impl QueryEngine {
         for turn in 0..self.max_turns {
             debug!("Turn {turn} of {}", self.max_turns);
 
+            // Compact context if needed
+            self.maybe_compact();
+
             let tools = self.tool_registry.definitions();
             let messages = self.messages.clone();
             let system = Some(self.system_prompt.clone());
@@ -104,7 +107,6 @@ impl QueryEngine {
                 });
 
                 let result = self.execute_tool(&tool_name, tool_input).await;
-
                 let result_msg = Message::tool_result(
                     tool_id,
                     result.content.clone(),
@@ -120,6 +122,24 @@ impl QueryEngine {
         }
 
         Ok(())
+    }
+
+    fn maybe_compact(&mut self) {
+        const MAX_MESSAGES: usize = 20;
+        if self.messages.len() > MAX_MESSAGES {
+            // Determine how many messages to remove (in multiples of 2 to keep pairs)
+            let excess = self.messages.len() - MAX_MESSAGES;
+            let remove_count = (excess / 2).saturating_mul(2).max(2); // remove at least 2
+            if remove_count > 0 {
+                let removed = self.messages.drain(0..remove_count).collect::<Vec<_>>();
+                let placeholder = Message::Assistant {
+                    content: vec![ContentBlock::Text {
+                        text: format!("[Compacted {} earlier messages]", removed.len()),
+                    }],
+                };
+                self.messages.insert(0, placeholder);
+            }
+        }
     }
 
     async fn execute_tool(&self, tool_name: &str, input: serde_json::Value) -> ToolResult {

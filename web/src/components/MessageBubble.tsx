@@ -1,6 +1,6 @@
 'use client'
 
-import { marked } from 'marked'
+import MarkdownContent from './MarkdownContent'
 import { useState, useEffect } from 'react'
 
 interface MessageBubbleProps {
@@ -28,10 +28,7 @@ export default function MessageBubble({ role, content, isStreaming }: MessageBub
 
   return (
     <div className="my-2">
-      <div
-        className="prose prose-invert prose-sm max-w-none"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <MarkdownContent content={content} />
       {isStreaming && <span className="inline-block w-2 h-4 bg-[#58a6ff] animate-pulse ml-1" />}
     </div>
   )

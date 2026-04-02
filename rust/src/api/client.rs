@@ -1,8 +1,11 @@
-use crate::types::{Message as AppMessage, ToolDefinition, Usage};
+use crate::types::{event::StreamEvent, Message as AppMessage, ToolDefinition, Usage};
 use anyhow::Result;
+use futures::stream::{BoxStream, StreamExt};
 use reqwest::Client;
 use reqwest_eventsource::EventSource;
 use serde::{Deserialize, Serialize};
+use std::pin::Pin;
+use tokio::sync::mpsc;
 use tokio_util::sync::CancellationToken;
 use tracing::{debug, info};
 

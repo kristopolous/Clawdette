@@ -145,7 +145,7 @@ impl Tool for McpToolWrapper {
         let result = client.call_tool(&self.mcp_tool.name, Some(input)).await?;
 
         let mut output = String::new();
-        let mut is_error = result.is_error.unwrap_or(false);
+        let is_error = result.is_error.unwrap_or(false);
 
         for content in &result.content {
             match content {
