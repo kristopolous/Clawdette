@@ -1,11 +1,12 @@
 """Tkinter UI for tk-claudette."""
 
 import tkinter as tk
-from tkinter import ttk, messagebox, simpledialog
+from tkinter import ttk, messagebox
 import asyncio
 import threading
 from typing import Optional
 from tk.models import CostTracker
+from tk.api import detect_provider
 
 HOST_PRESETS = {
     "Anthropic": "https://api.anthropic.com/v1",
@@ -111,6 +112,198 @@ class CostDialog:
         self.dialog.wait_window()
 
 
+class ConnectionDialog:
+    def __init__(self, parent, config, query_engine):
+        self.config = config
+        self.query_engine = query_engine
+        self.result = False
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("Connection Settings")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        self.dialog.resizable(True, True)
+        self.dialog.geometry("600x400")
+
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"+{x}+{y}")
+
+        self._build_ui()
+        self._sync_to_ui()
+
+        self.dialog.wait_window()
+
+    def _build_ui(self):
+        self.dialog.columnconfigure(1, weight=1)
+
+        frame = ttk.Frame(self.dialog, padding=20)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(1, weight=1)
+
+        row = 0
+
+        ttk.Label(frame, text="Host Preset:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        self.host_var = tk.StringVar()
+        self.host_combo = ttk.Combobox(frame, textvariable=self.host_var, values=list(HOST_PRESETS.keys()), width=40, state="readonly")
+        self.host_combo.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+        self.host_combo.bind("<<ComboboxSelected>>", self._on_host_selected)
+
+        row += 1
+
+        ttk.Label(frame, text="API Base URL:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        url_frame = ttk.Frame(frame)
+        url_frame.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+        url_frame.columnconfigure(0, weight=1)
+
+        self.base_url_var = tk.StringVar()
+        self.base_url_entry = ttk.Entry(url_frame, textvariable=self.base_url_var, width=50)
+        self.base_url_entry.grid(row=0, column=0, sticky=tk.EW, padx=(0, 5))
+
+        self.get_models_btn = ttk.Button(url_frame, text="Get Models", command=self._fetch_models, width=12)
+        self.get_models_btn.grid(row=0, column=1)
+
+        row += 1
+
+        ttk.Label(frame, text="Model:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        self.model_var = tk.StringVar()
+        self.model_combo = ttk.Combobox(frame, textvariable=self.model_var, width=40)
+        self.model_combo.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="API Key:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        key_frame = ttk.Frame(frame)
+        key_frame.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+        key_frame.columnconfigure(0, weight=1)
+
+        self.key_var = tk.StringVar()
+        self.key_entry = ttk.Entry(key_frame, textvariable=self.key_var, show="*")
+        self.key_entry.grid(row=0, column=0, sticky=tk.EW, padx=(0, 5))
+
+        self.toggle_btn = ttk.Button(key_frame, text="Show", width=6, command=self._toggle_key)
+        self.toggle_btn.grid(row=0, column=1)
+
+        row += 1
+
+        self.status_label = ttk.Label(frame, text="", foreground="gray", font=("TkDefaultFont", 9))
+        self.status_label.grid(row=row, column=0, columnspan=2, pady=(10, 0))
+
+        row += 1
+
+        btn_frame = ttk.Frame(frame)
+        btn_frame.grid(row=row, column=0, columnspan=2, pady=(20, 0))
+        ttk.Button(btn_frame, text="Apply", command=self._apply, width=12).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Cancel", command=self.dialog.destroy, width=12).pack(side=tk.LEFT, padx=5)
+
+    def _sync_to_ui(self):
+        base = self.config.api_base.rstrip("/")
+        host_name = "Custom"
+        for name, url in HOST_PRESETS.items():
+            if url and url.rstrip("/") == base:
+                host_name = name
+                break
+        self.host_var.set(host_name)
+        self.base_url_var.set(base)
+        self.model_var.set(self.config.model)
+        self.key_var.set(self.config.api_key or "")
+        self._update_model_dropdown(base)
+
+    def _update_model_dropdown(self, base_url):
+        base_url = base_url.rstrip("/")
+        models = MODEL_PRESETS.get(base_url, [])
+        self.model_combo.configure(values=models)
+
+    def _on_host_selected(self, event=None):
+        name = self.host_var.get()
+        url = HOST_PRESETS.get(name, "")
+        if name == "Custom":
+            self.base_url_entry.configure(state=tk.NORMAL)
+        else:
+            self.base_url_entry.configure(state=tk.DISABLED)
+            self.base_url_var.set(url)
+        self._update_model_dropdown(url)
+
+    def _toggle_key(self):
+        showing = self.key_entry.cget("show") == ""
+        self.key_entry.configure(show="" if showing else "*")
+        self.toggle_btn.configure(text="Hide" if showing else "Show")
+
+    def _apply(self):
+        host_url = self.base_url_var.get().strip()
+        model = self.model_var.get().strip()
+        api_key = self.key_var.get().strip()
+
+        if not host_url:
+            self.status_label.configure(text="Error: API Base URL is required", foreground="red")
+            return
+        if not model:
+            self.status_label.configure(text="Error: Model is required", foreground="red")
+            return
+        if not api_key:
+            self.status_label.configure(text="Error: API Key is required", foreground="red")
+            return
+
+        self.config.set_api_base(host_url)
+        self.config.set_model(model)
+        self.config.set_api_key(api_key)
+
+        self.query_engine.api_client.base_url = host_url.rstrip("/")
+        self.query_engine.api_client.provider = detect_provider(host_url)
+        self.query_engine.api_client.model = model
+        self.query_engine.api_client.api_key = api_key
+
+        self.status_label.configure(text="Settings applied successfully", foreground="green")
+        self.result = True
+
+    def _fetch_models(self):
+        base_url = self.base_url_var.get().strip()
+        api_key = self.key_var.get().strip()
+
+        if not base_url:
+            self.status_label.configure(text="Enter an API base URL first", foreground="red")
+            return
+
+        self.status_label.configure(text="Fetching models...", foreground="gray")
+        self.get_models_btn.configure(state=tk.DISABLED)
+
+        def do_fetch():
+            try:
+                import httpx
+                url = base_url.rstrip("/") + "/models"
+                headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
+                resp = httpx.get(url, headers=headers, timeout=15.0)
+                resp.raise_for_status()
+                data = resp.json()
+                models = []
+                if isinstance(data, dict) and "data" in data:
+                    for item in data["data"]:
+                        if isinstance(item, dict):
+                            models.append(item.get("id", ""))
+                elif isinstance(data, list):
+                    for item in data:
+                        if isinstance(item, dict):
+                            models.append(item.get("id", str(item)))
+                        else:
+                            models.append(str(item))
+                models = [m for m in models if m]
+                models.sort()
+                self.dialog.after(0, lambda: self._on_models_fetched(models))
+            except Exception as e:
+                self.dialog.after(0, lambda: self._on_models_fetch_failed(str(e)))
+
+        import threading
+        threading.Thread(target=do_fetch, daemon=True).start()
+
+    def _on_models_fetched(self, models):
+        self.model_combo.configure(values=models)
+        self.status_label.configure(text=f"Found {len(models)} models", foreground="green")
+        self.get_models_btn.configure(state=tk.NORMAL)
+
+    def _on_models_fetch_failed(self, error):
+        self.status_label.configure(text=f"Failed to fetch models: {error[:100]}", foreground="red")
+        self.get_models_btn.configure(state=tk.NORMAL)
+
+
 class MainWindow:
     def __init__(self, config, query_engine):
         self.config = config
@@ -130,7 +323,7 @@ class MainWindow:
 
     def _build_ui(self):
         self.root.columnconfigure(0, weight=1)
-        self.root.rowconfigure(2, weight=1)
+        self.root.rowconfigure(1, weight=1)
 
         menubar = tk.Menu(self.root)
         self.root.config(menu=menubar)
@@ -143,56 +336,29 @@ class MainWindow:
 
         edit_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Edit", menu=edit_menu)
+        edit_menu.add_command(label="Connection...", command=self._show_connection)
+        edit_menu.add_separator()
         edit_menu.add_command(label="Copy", command=self._on_copy, accelerator="Ctrl+C")
         edit_menu.add_command(label="Select All", command=self._on_select_all, accelerator="Ctrl+A")
 
         view_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="View", menu=view_menu)
         view_menu.add_command(label="Cost Breakdown", command=self._show_cost)
-        view_menu.add_command(label="Configuration", command=self._show_config)
 
         help_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Help", menu=help_menu)
         help_menu.add_command(label="Help", command=self._show_help, accelerator="F1")
         help_menu.add_command(label="About", command=self._show_about)
 
-        settings_frame = ttk.LabelFrame(self.root, text="Settings", padding=8)
-        settings_frame.grid(row=0, column=0, sticky="ew", padx=5, pady=3)
-        settings_frame.columnconfigure(1, weight=1)
-        settings_frame.columnconfigure(3, weight=1)
-        settings_frame.columnconfigure(5, weight=1)
+        status_frame = ttk.Frame(self.root)
+        status_frame.grid(row=0, column=0, sticky="ew", padx=5, pady=3)
+        status_frame.columnconfigure(0, weight=1)
 
-        row = 0
+        self.connection_label = ttk.Label(status_frame, text="", font=("TkDefaultFont", 9))
+        self.connection_label.grid(row=0, column=0, sticky=tk.W)
 
-        ttk.Label(settings_frame, text="Host:").grid(row=row, column=0, sticky=tk.W, padx=(0, 5))
-        self.host_var = tk.StringVar()
-        self.host_combo = ttk.Combobox(settings_frame, textvariable=self.host_var, values=list(HOST_PRESETS.keys()), width=18, state="readonly")
-        self.host_combo.grid(row=row, column=1, sticky=tk.EW, padx=(0, 10))
-        self.host_combo.bind("<<ComboboxSelected>>", self._on_host_selected)
-
-        ttk.Label(settings_frame, text="Custom URL:").grid(row=row, column=2, sticky=tk.W, padx=(0, 5))
-        self.custom_host_var = tk.StringVar()
-        self.custom_host_entry = ttk.Entry(settings_frame, textvariable=self.custom_host_var, width=30)
-        self.custom_host_entry.grid(row=row, column=3, sticky=tk.EW, padx=(0, 10))
-
-        ttk.Label(settings_frame, text="Model:").grid(row=row, column=4, sticky=tk.W, padx=(0, 5))
-        self.model_var = tk.StringVar()
-        self.model_combo = ttk.Combobox(settings_frame, textvariable=self.model_var, width=28)
-        self.model_combo.grid(row=row, column=5, sticky=tk.EW, padx=(0, 10))
-
-        ttk.Label(settings_frame, text="API Key:").grid(row=row, column=6, sticky=tk.W, padx=(0, 5))
-        self.key_var = tk.StringVar()
-        self.key_entry = ttk.Entry(settings_frame, textvariable=self.key_var, width=22, show="*")
-        self.key_entry.grid(row=row, column=7, sticky=tk.EW, padx=(0, 10))
-
-        self.apply_btn = ttk.Button(settings_frame, text="Apply", command=self._apply_settings)
-        self.apply_btn.grid(row=row, column=8, padx=(0, 5))
-
-        self.toggle_key_btn = ttk.Button(settings_frame, text="Show", width=6, command=self._toggle_key_visibility)
-        self.toggle_key_btn.grid(row=row, column=9)
-
-        self.provider_label = ttk.Label(settings_frame, text="", foreground="gray", font=("TkDefaultFont", 8))
-        self.provider_label.grid(row=row, column=10, padx=(10, 0))
+        self.status_label = ttk.Label(status_frame, text="Ready", foreground="gray", font=("TkDefaultFont", 8))
+        self.status_label.grid(row=0, column=1, sticky=tk.E)
 
         self.message_frame = ttk.Frame(self.root)
         self.message_frame.grid(row=1, column=0, sticky="nsew", padx=5, pady=3)
@@ -252,70 +418,15 @@ class MainWindow:
         self.status_label.pack(side=tk.RIGHT)
 
     def _sync_settings_to_ui(self):
-        base = self.config.api_base.rstrip("/")
-        host_name = "Custom"
-        for name, url in HOST_PRESETS.items():
-            if url and url.rstrip("/") == base:
-                host_name = name
-                break
-        self.host_var.set(host_name)
-        self.custom_host_var.set(base if host_name == "Custom" else "")
-        self.model_var.set(self.config.model)
-        self.key_var.set(self.config.api_key or "")
-        self._update_model_dropdown(base)
-        self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
+        provider = self.query_engine.api_client.provider
+        model = self.config.model
+        base = self.config.api_base
+        self.connection_label.configure(text=f"[{provider}] {model}  —  {base}")
 
-    def _update_model_dropdown(self, base_url: str):
-        base_url = base_url.rstrip("/")
-        models = MODEL_PRESETS.get(base_url, [])
-        self.model_combo.configure(values=models)
-
-    def _on_host_selected(self, event=None):
-        name = self.host_var.get()
-        url = HOST_PRESETS.get(name, "")
-        if name == "Custom":
-            self.custom_host_entry.configure(state=tk.NORMAL)
-        else:
-            self.custom_host_entry.configure(state=tk.DISABLED)
-            self.custom_host_var.set(url)
-        self._update_model_dropdown(url)
-
-    def _toggle_key_visibility(self):
-        showing = self.key_entry.cget("show") == ""
-        self.key_entry.configure(show="" if showing else "*")
-        self.toggle_key_btn.configure(text="Hide" if showing else "Show")
-
-    def _apply_settings(self):
-        host_url = self.custom_host_var.get().strip()
-        if not host_url:
-            self._append_message("error", "No API host URL set.")
-            return
-
-        model = self.model_var.get().strip()
-        if not model:
-            self._append_message("error", "No model name set.")
-            return
-
-        api_key = self.key_var.get().strip()
-        if not api_key:
-            self._append_message("error", "No API key set.")
-            return
-
-        old_base = self.config.api_base
-        old_model = self.config.model
-
-        self.config.set_api_base(host_url)
-        self.config.set_model(model)
-        self.config.set_api_key(api_key)
-
-        self.query_engine.api_client.base_url = host_url.rstrip("/")
-        self.query_engine.api_client.provider = self.query_engine.api_client.detect_provider(host_url)
-        self.query_engine.api_client.model = model
-        self.query_engine.api_client.api_key = api_key
-
-        self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
-
-        self._append_message("system", f"Settings applied: {self.query_engine.api_client.provider} / {model}")
+    def _show_connection(self):
+        dlg = ConnectionDialog(self.root, self.config, self.query_engine)
+        if dlg.result:
+            self._sync_settings_to_ui()
 
     def _bind_events(self):
         self.input_text.bind("<Return>", self._on_return)
@@ -467,6 +578,60 @@ class MainWindow:
         self.message_text.configure(state=tk.DISABLED)
         self.status_label.configure(text="Cleared")
 
+    def _on_exit(self):
+        if self._is_processing:
+            if not messagebox.askokcancel("Exit", "A request is still running. Exit anyway?"):
+                return
+        self.root.destroy()
+
+    def _on_copy(self):
+        try:
+            text = self.message_text.selection_get()
+            self.root.clipboard_clear()
+            self.root.clipboard_append(text)
+        except tk.TclError:
+            pass
+
+    def _on_select_all(self):
+        self.message_text.tag_add(tk.SEL, "1.0", tk.END)
+        self.message_text.see(tk.INSERT)
+        return "break"
+
+    def _show_cost(self):
+        CostDialog(self.root, self.query_engine.cost_tracker)
+
+    def _show_config(self):
+        config_text = f"""Configuration:
+Model:       {self.config.model}
+API Base:    {self.config.api_base}
+Max Tokens:  {self.config.max_tokens}
+Max Turns:   {self.config.max_turns}
+Temperature: {self.config.temperature}
+CWD:         {self.query_engine.cwd}"""
+        self._append_message("system", config_text)
+
+    def _show_help(self):
+        help_text = """Available commands:
+/help          - Show this help
+/clear         - Clear conversation
+/model <name>  - Change model
+/host <url>    - Change API host
+/key <key>     - Change API key
+/cost          - Show cost breakdown
+/config        - Show configuration
+
+Keyboard shortcuts:
+Enter          - Send message
+Shift+Enter    - New line
+Up/Down        - Command history
+Ctrl+C         - Stop current request
+Ctrl+L         - Clear conversation
+F1             - Show this help"""
+        self._append_message("system", help_text)
+
+    def _show_about(self):
+        messagebox.showinfo("About", "tk-claudette v0.1.0\n\nA desktop GUI AI coding agent built with Python and Tkinter.\nSupports any OpenAI-compatible endpoint.")
+
     def _handle_command(self, cmd: str):
         parts = cmd.split(maxsplit=1)
         command = parts[0].lower()
@@ -490,8 +655,8 @@ class MainWindow:
             if args.strip():
                 new_model = args.strip()
                 self.config.set_model(new_model)
-                self.model_var.set(new_model)
                 self.query_engine.api_client.model = new_model
+                self._sync_settings_to_ui()
                 self._append_message("system", f"Model changed to: {new_model}")
 
         elif command == "/host":
@@ -499,16 +664,14 @@ class MainWindow:
                 new_host = args.strip()
                 self.config.set_api_base(new_host)
                 self.query_engine.api_client.base_url = new_host.rstrip("/")
-                self.query_engine.api_client.provider = self.query_engine.api_client.detect_provider(new_host)
-                self.custom_host_var.set(new_host)
-                self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
+                self.query_engine.api_client.provider = detect_provider(new_host)
+                self._sync_settings_to_ui()
                 self._append_message("system", f"Host changed to: {new_host}")
 
         elif command == "/key":
             if args.strip():
                 new_key = args.strip()
                 self.config.set_api_key(new_key)
-                self.key_var.set(new_key)
                 self.query_engine.api_client.api_key = new_key
                 self._append_message("system", "API key updated")
 
