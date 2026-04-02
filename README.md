@@ -25,8 +25,8 @@ Includes jsh and virtual file systems.
 ### Tkinter
 A 1990s style vintage way to do toolcalling, mcp and sub-agents.
 
-<img width="500"  alt="tk-claude" src="https://github.com/user-attachments/assets/584f6c64-096a-4a8c-a5d0-6bd019749664" />
+<img width="500" lt="tk" src="https://github.com/user-attachments/assets/5491e0b9-580b-4adb-8fd7-98098a9627a4" />
 
-
+Also there's a rust version...
 
 Add yours! Reach out!
