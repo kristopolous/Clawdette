@@ -13,4 +13,6 @@ Every module, every pattern, every decision - described so you can feed it to an
 
 Python? Go? Rust? QBasic? Brainfuck? Let's do this!
 
-Example? Try the rust path
+Example? Try `rust/`
+
+What about a completely web one? already, `web/`
