@@ -5,9 +5,9 @@
 
 **1,961 skills to vibe a Claude clone derived from the source. Make tokens go burr**
 
-> Yo openclaw, clone https://github.com/kristopolous/Claudette and make it in Rust. 
+-----
 
-Some guy got 100k stars in 24 hours "re-implementing claude" and now, you can too - effortlessly.
+Someone got 100k stars in 24 hours "re-implementing claude" and now, you can too - effortlessly.
 
 Every module, every pattern, every decision - ready to feed to your agent. 
 
@@ -17,5 +17,5 @@ Want to go piecemeal? Run `claudia` and she will export a subset as a set of tas
 
 <img width="500" alt="claudia" src="https://github.com/user-attachments/assets/b71ea9e4-1cc6-4352-abbb-24a5a2aabb9e" />
 
-Examples? Try `rust/`, `web/`, or for a 90s flare, 'tk/'...
+Examples? Try `rust/`, `web/`, or for a 90s flare, `tk/`...
 
