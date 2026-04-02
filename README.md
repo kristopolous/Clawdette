@@ -11,11 +11,10 @@ Someone got 100k stars in 24 hours "re-implementing claude" and now, you can too
 
 Every module, every pattern, every decision - ready to feed to your agent. 
 
-Python? Go? Rust? QBasic? Brainfuck? Let's do this!
-
 Want to go piecemeal? Run `claudia` and she will export a subset as a set of tasks and PRD, ready for your ralph looping.
 
 <img width="500" alt="claudia" src="https://github.com/user-attachments/assets/b71ea9e4-1cc6-4352-abbb-24a5a2aabb9e" />
 
 Examples? Try `rust/`, `web/`, or for a 90s flare, `tk/`...
 
+Let's do this!
