@@ -1,5 +1,5 @@
 use crate::context::{format_claude_md_context, get_git_status};
-use crate::mcp::transport::McpClientTransport;
+use crate::mcp::transport::McpTransport;
 use crate::types::ToolDefinition;
 use chrono::Local;
 use std::path::Path;
@@ -12,7 +12,7 @@ pub async fn build_system_prompt(
     cwd: &Path,
     tools: Option<&[ToolDefinition]>,
     model_info: Option<(&str, &str)>,
-    mcp_clients: Option<&[McpClientTransport]>,
+    mcp_clients: Option<&[(&str, &str)]>,
     simple_mode: Option<bool>,
     proactive_mode: Option<bool>,
     language_preference: Option<&str>,
@@ -260,10 +260,8 @@ pub async fn build_system_prompt(
     if let Some(clients) = mcp_clients {
         if !clients.is_empty() {
             prompt.push_str("\n# MCP Server Instructions\n\nThe following MCP servers have provided instructions for how to use their tools and resources:\n\n");
-            for client in clients {
-                if let Some(instructions) = &client.instructions {
-                    prompt.push_str(&format!("## {}\n{}\n", client.name, instructions));
-                }
+            for &(name, instructions) in clients {
+                prompt.push_str(&format!("## {}\n{}\n", name, instructions));
             }
         }
     }
@@ -369,11 +367,11 @@ pub async fn build_system_prompt(
             match tool.name.as_str() {
                 "Bash" => {
                     prompt.push_str("\n# BashTool\n");
-                    prompt.push_str(build_bash_prompt());
+                    prompt.push_str(&build_bash_prompt());
                 }
                 "WebSearch" => {
                     prompt.push_str("\n# WebSearchTool\n");
-                    prompt.push_str(build_websearch_prompt());
+                    prompt.push_str(&build_websearch_prompt());
                 }
                 _ => {}
             }

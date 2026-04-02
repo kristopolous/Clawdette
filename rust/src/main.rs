@@ -3,13 +3,34 @@ use clap::Parser;
 use claudette_rs::api::{ApiConfig, ApiProvider, LlmClient, QueryEngine};
 use claudette_rs::commands::{clear_command, cost_command, help_command, model_command};
 use claudette_rs::context::{format_claude_md_context, get_git_status, format_git_context};
+use claudette_rs::mcp::{McpClient, McpToolWrapper};
 use claudette_rs::tools::{BashTool, EditTool, GlobTool, GrepTool, ReadTool, TodoWriteTool, WebFetchTool, WebSearchTool, WriteTool};
 use claudette_rs::tui::{App, run_tui};
 use claudette_rs::types::{CommandRegistry, Message, ToolRegistry, CostTracker, StreamEvent, ToolDefinition};
 use parking_lot::Mutex;
+use serde::{Deserialize, Serialize};
 use std::sync::Arc;
-use tokio::sync::mpsc;
+use tokio::sync::{mpsc, Mutex as TokioMutex};
 use claudette_rs::utils::system_prompt::build_system_prompt;
+
+#[derive(Debug, Deserialize, Serialize, Clone)]
+struct McpServerConfig {
+    name: String,
+    command: String,
+    args: Vec<String>,
+    instructions: String,
+}
+
+async fn load_mcp_config() -> Result<Vec<McpServerConfig>> {
+    let config_dir = dirs::config_dir().ok_or_else(|| anyhow::anyhow!("No config directory"))?.join("claudette");
+    let config_path = config_dir.join("mcp.json");
+    if !config_path.exists() {
+        return Ok(Vec::new());
+    }
+    let data = tokio::fs::read_to_string(&config_path).await?;
+    let configs: Vec<McpServerConfig> = serde_json::from_str(&data)?;
+    Ok(configs)
+}
 
 #[derive(Parser, Debug)]
 #[command(name = "claudette")]
@@ -115,47 +136,88 @@ async fn main() -> Result<()> {
         ApiProvider::OpenAI => "https://api.openai.com".to_string(),
     });
 
-    let model = cli.model.unwrap_or_else(|| match provider {
-        ApiProvider::Anthropic => "claude-sonnet-4-20250514".to_string(),
-        ApiProvider::OpenAI => "gpt-4o".to_string(),
-    });
+     let model = cli.model.unwrap_or_else(|| match provider {
+         ApiProvider::Anthropic => "claude-sonnet-4-20250514".to_string(),
+         ApiProvider::OpenAI => "gpt-4o".to_string(),
+     });
 
-    // Build tool registry first
-    let mut tool_registry = ToolRegistry::new();
-    tool_registry.register(Box::new(BashTool::new()));
-    tool_registry.register(Box::new(ReadTool));
-    tool_registry.register(Box::new(WriteTool));
-    tool_registry.register(Box::new(EditTool));
-    tool_registry.register(Box::new(GlobTool));
-    tool_registry.register(Box::new(GrepTool));
-    tool_registry.register(Box::new(TodoWriteTool));
-    tool_registry.register(Box::new(WebFetchTool::new()));
-    tool_registry.register(Box::new(WebSearchTool::new()));
-    let tool_definitions = tool_registry.definitions();
+     // Build tool registry first
+     let mut tool_registry = ToolRegistry::new();
+     tool_registry.register(Box::new(BashTool::new()));
+     tool_registry.register(Box::new(ReadTool));
+     tool_registry.register(Box::new(WriteTool));
+     tool_registry.register(Box::new(EditTool));
+     tool_registry.register(Box::new(GlobTool));
+     tool_registry.register(Box::new(GrepTool));
+     tool_registry.register(Box::new(TodoWriteTool));
+     tool_registry.register(Box::new(WebFetchTool::new()));
+     tool_registry.register(Box::new(WebSearchTool::new()));
 
-    // Build system prompt with comprehensive settings
+     // Load and register MCP tools if configured
+     let mcp_configs = load_mcp_config().await?;
+     let mut mcp_clients_info: Vec<(String, String)> = Vec::new();
+
+
+     for config in mcp_configs {
+         match McpClient::new(config.command.clone(), config.args.clone(), None).await {
+             Ok(client) => {
+                  let client_arc = Arc::new(TokioMutex::new(client));
+                 // Initialize
+                 {
+                     let mut client_lock = client_arc.lock().await;
+                     if let Err(e) = client_lock.initialize().await {
+                         eprintln!("Failed to initialize MCP server {}: {}", config.name, e);
+                         continue;
+                     }
+                 }
+                 // List tools and register
+                 let mut client_lock = client_arc.lock().await;
+                 match client_lock.list_tools().await {
+                     Ok(mcp_tools) => {
+                         for mcp_tool in mcp_tools {
+                             let wrapper = McpToolWrapper::new(config.name.clone(), mcp_tool, Arc::clone(&client_arc));
+                             tool_registry.register(Box::new(wrapper));
+                         }
+                         mcp_clients_info.push((config.name, config.instructions));
+                     }
+                     Err(e) => {
+                         eprintln!("Failed to list tools from MCP server: {}", e);
+                     }
+                 }
+
+             }
+             Err(e) => {
+                 eprintln!("Failed to create MCP client: {}", e);
+             }
+         }
+     }
+
+     let tool_definitions = tool_registry.definitions();
+     let mcp_info_refs: Vec<(&str, &str)> = mcp_clients_info.iter().map(|(n,i)| (n.as_str(), i.as_str())).collect();
+
+     // Build system prompt with comprehensive settings
     let model_info = match provider {
         ApiProvider::Anthropic => Some(("Claude", model.as_str())),
         ApiProvider::OpenAI => Some(("GPT", model.as_str())),
     };
-    let system_prompt = build_system_prompt(
-        &cwd,
-        Some(&tool_definitions),
-        model_info,
-        None, // mcp_clients
-        None, // simple_mode
-        None, // proactive_mode
-        None, // language_preference
-        None, // output_style
-        None, // token_budget
-        None, // enable_scratchpad
-        None, // scratchpad_dir
-        None, // enable_hooks
-        None, // fork_subagent_enabled
-        None, // verification_agent_enabled
-        None, // ant_mode
-        None, // keep_recent
-    ).await;
+     let system_prompt = build_system_prompt(
+         &cwd,
+         Some(&tool_definitions),
+         model_info,
+         Some(&mcp_info_refs), // mcp_clients
+         None, // simple_mode
+         None, // proactive_mode
+         None, // language_preference
+         None, // output_style
+         None, // token_budget
+         None, // enable_scratchpad
+         None, // scratchpad_dir
+         None, // enable_hooks
+         None, // fork_subagent_enabled
+         None, // verification_agent_enabled
+         None, // ant_mode
+         None, // keep_recent
+     ).await;
 
     let mut command_registry = CommandRegistry::new();
     let tool_names: Vec<String> = tool_registry.names().into_iter().map(|s| s.to_string()).collect();
@@ -286,40 +348,81 @@ async fn main() -> Result<()> {
 
 
 async fn run_demo(cwd: &std::path::Path) -> Result<()> {
-    eprintln!("Running in DEMO mode — no API calls will be made.\n");
+     eprintln!("Running in DEMO mode — no API calls will be made.\n");
 
-    // Build tool registry first
-    let mut tool_registry = ToolRegistry::new();
-    tool_registry.register(Box::new(BashTool::new()));
-    tool_registry.register(Box::new(ReadTool));
-    tool_registry.register(Box::new(WriteTool));
-    tool_registry.register(Box::new(EditTool));
-    tool_registry.register(Box::new(GlobTool));
-    tool_registry.register(Box::new(GrepTool));
-    tool_registry.register(Box::new(TodoWriteTool));
-    tool_registry.register(Box::new(WebFetchTool::new()));
-    tool_registry.register(Box::new(WebSearchTool::new()));
-    let tool_definitions = tool_registry.definitions();
+     // Build tool registry first
+     let mut tool_registry = ToolRegistry::new();
+     tool_registry.register(Box::new(BashTool::new()));
+     tool_registry.register(Box::new(ReadTool));
+     tool_registry.register(Box::new(WriteTool));
+     tool_registry.register(Box::new(EditTool));
+     tool_registry.register(Box::new(GlobTool));
+     tool_registry.register(Box::new(GrepTool));
+     tool_registry.register(Box::new(TodoWriteTool));
+     tool_registry.register(Box::new(WebFetchTool::new()));
+     tool_registry.register(Box::new(WebSearchTool::new()));
+
+     // Load and register MCP tools if configured
+     let mcp_configs = load_mcp_config().await?;
+     let mut mcp_clients_info: Vec<(String, String)> = Vec::new();
+
+
+     for config in mcp_configs {
+         match McpClient::new(config.command.clone(), config.args.clone(), None).await {
+             Ok(client) => {
+                  let client_arc = Arc::new(TokioMutex::new(client));
+                 // Initialize
+                 {
+                     let mut client_lock = client_arc.lock().await;
+                     if let Err(e) = client_lock.initialize().await {
+                         eprintln!("Failed to initialize MCP server {}: {}", config.name, e);
+                         continue;
+                     }
+                 }
+                 // List tools and register
+                 let mut client_lock = client_arc.lock().await;
+                 match client_lock.list_tools().await {
+                     Ok(mcp_tools) => {
+                         for mcp_tool in mcp_tools {
+                             let wrapper = McpToolWrapper::new(config.name.clone(), mcp_tool, Arc::clone(&client_arc));
+                             tool_registry.register(Box::new(wrapper));
+                         }
+                         mcp_clients_info.push((config.name, config.instructions));
+                     }
+                     Err(e) => {
+                         eprintln!("Failed to list tools from MCP server: {}", e);
+                     }
+                 }
+
+             }
+             Err(e) => {
+                 eprintln!("Failed to create MCP client: {}", e);
+             }
+         }
+     }
+
+     let tool_definitions = tool_registry.definitions();
+     let mcp_info_refs: Vec<(&str, &str)> = mcp_clients_info.iter().map(|(n,i)| (n.as_str(), i.as_str())).collect();
 
     // Build system prompt
-    let system_prompt = build_system_prompt(
-        &cwd,
-        Some(&tool_definitions),
-        Some(("Claude", "claude-sonnet-4-20250514")), // dummy model info for demo
-        None,
-        None, // simple_mode
-        None,
-        None,
-        None,
-        None,
-        None,
-        None,
-        None,
-        None,
-        None,
-        None,
-        None,
-    ).await;
+     let system_prompt = build_system_prompt(
+         &cwd,
+         Some(&tool_definitions),
+         Some(("Claude", "claude-sonnet-4-20250514")), // dummy model info for demo
+         Some(&mcp_info_refs), // mcp_clients
+         None, // simple_mode
+         None, // proactive_mode
+         None, // language_preference
+         None, // output_style
+         None, // token_budget
+         None, // enable_scratchpad
+         None, // scratchpad_dir
+         None, // enable_hooks
+         None, // fork_subagent_enabled
+         None, // verification_agent_enabled
+         None, // ant_mode
+         None, // keep_recent
+     ).await;
 
     let mut command_registry = CommandRegistry::new();
     let tool_names: Vec<String> = tool_registry.names().into_iter().map(|s| s.to_string()).collect();

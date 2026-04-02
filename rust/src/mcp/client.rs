@@ -57,7 +57,7 @@ impl McpClient {
             method: "notifications/initialized".to_string(),
             params: json!({}),
         });
-        transport.send(notification).await?;
+        transport.send(&notification).await?;
 
         self.initialized = true;
         Ok(result)
