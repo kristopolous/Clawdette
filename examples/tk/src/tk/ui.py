@@ -820,8 +820,6 @@ class MainWindow:
         btn_frame = ttk.Frame(self.root)
         btn_frame.grid(row=4, column=0, sticky="ew", padx=5, pady=(0, 5))
 
-        ttk.Button(btn_frame, text="Clear", command=self._on_clear).pack(side=tk.LEFT, padx=2)
-
         self.stop_btn = ttk.Button(btn_frame, text="Stop", command=self._on_stop, state=tk.DISABLED)
         self.stop_btn.pack(side=tk.LEFT, padx=2)
 
