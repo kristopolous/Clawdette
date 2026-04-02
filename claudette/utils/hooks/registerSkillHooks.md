@@ -16,4 +16,4 @@ For once: true hooks, use onHookSuccess callback to remove after execution
 - registerSkillHooks
 
 ## Source
-`registerSkillHooks.ts`
+`registerSkillHooks`

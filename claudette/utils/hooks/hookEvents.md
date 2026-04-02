@@ -66,4 +66,4 @@ Always log full hook output to debug log for verbose mode debugging
 - clearHookEventState
 
 ## Source
-`hookEvents.ts`
+`hookEvents`

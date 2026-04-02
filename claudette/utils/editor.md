@@ -27,4 +27,4 @@ GUI editors that open in a separate window and can be spawned detached
 - getExternalEditor
 
 ## Source
-`editor.ts`
+`editor`

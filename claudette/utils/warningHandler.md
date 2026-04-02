@@ -27,4 +27,4 @@ Track warnings to avoid spam — bounded to prevent unbounded memory growth
 - initializeWarningHandler
 
 ## Source
-`warningHandler.ts`
+`warningHandler`

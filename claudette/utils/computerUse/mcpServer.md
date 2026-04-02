@@ -24,4 +24,4 @@ The enumeration continues in the background — swallow late rejections.
 - runComputerUseMcpServer
 
 ## Source
-`mcpServer.ts`
+`mcpServer`

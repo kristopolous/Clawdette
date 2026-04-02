@@ -26,4 +26,4 @@ If the timeout wins the race, fn()'s promise is orphaned — a late
 - drainRunLoop
 
 ## Source
-`drainRunLoop.ts`
+`drainRunLoop`

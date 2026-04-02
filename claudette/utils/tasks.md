@@ -154,4 +154,4 @@ Listeners for task list updates (used for immediate UI refresh in same process)
 - DEFAULT_TASKS_MODE_TASK_LIST_ID
 
 ## Source
-`tasks.ts`
+`tasks`

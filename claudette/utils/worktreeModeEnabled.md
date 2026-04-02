@@ -15,4 +15,4 @@ Provides utility functions: isWorktreeModeEnabled.
 - isWorktreeModeEnabled
 
 ## Source
-`worktreeModeEnabled.ts`
+`worktreeModeEnabled`

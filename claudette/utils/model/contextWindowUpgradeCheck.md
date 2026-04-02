@@ -18,4 +18,4 @@
 - getUpgradeMessage
 
 ## Source
-`contextWindowUpgradeCheck.ts`
+`contextWindowUpgradeCheck`

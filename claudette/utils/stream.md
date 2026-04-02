@@ -15,4 +15,4 @@ Provides Stream class/function.
 - Stream
 
 ## Source
-`stream.ts`
+`stream`

@@ -23,4 +23,4 @@ Provides utility functions: getSwarmSocketName.
 - PLAN_MODE_REQUIRED_ENV_VAR
 
 ## Source
-`constants.ts`
+`constants`

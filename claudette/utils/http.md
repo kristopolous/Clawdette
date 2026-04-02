@@ -33,4 +33,4 @@ WARNING: We rely on `claude-cli` in the user agent for log filtering.
 - withOAuth401Retry
 
 ## Source
-`http.ts`
+`http`

@@ -28,4 +28,4 @@ File pattern tools (accept *.ts, src/**, etc.)
 - getCustomValidation
 
 ## Source
-`toolValidationConfig.ts`
+`toolValidationConfig`

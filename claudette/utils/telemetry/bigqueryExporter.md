@@ -26,4 +26,4 @@ Clean up completed exports
 - BigQueryMetricsExporter
 
 ## Source
-`bigqueryExporter.ts`
+`bigqueryExporter`

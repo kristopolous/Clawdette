@@ -28,4 +28,4 @@ Provides utility functions: validateManifest, parseAndValidateManifestFromText, 
 - generateExtensionId
 
 ## Source
-`helpers.ts`
+`helpers`

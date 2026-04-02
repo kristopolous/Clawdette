@@ -20,4 +20,4 @@ Provides utility functions: getGhAuthStatus.
 - getGhAuthStatus
 
 ## Source
-`ghAuthStatus.ts`
+`ghAuthStatus`

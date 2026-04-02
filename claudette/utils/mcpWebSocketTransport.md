@@ -23,4 +23,4 @@ WebSocket readyState constants (same for both native and ws)
 - WebSocketTransport
 
 ## Source
-`mcpWebSocketTransport.ts`
+`mcpWebSocketTransport`

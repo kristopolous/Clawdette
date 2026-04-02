@@ -22,4 +22,4 @@ ignore
 - getMacOSPlistPaths
 
 ## Source
-`constants.ts`
+`constants`

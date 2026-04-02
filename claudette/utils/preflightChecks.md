@@ -32,4 +32,4 @@ Log failure to Statsig
 - PreflightStep
 
 ## Source
-`preflightChecks.tsx`
+`preflightChecks`

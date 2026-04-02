@@ -16,4 +16,4 @@ Kept for signature stability with the other exec*Hook functions.
 - execAgentHook
 
 ## Source
-`execAgentHook.ts`
+`execAgentHook`

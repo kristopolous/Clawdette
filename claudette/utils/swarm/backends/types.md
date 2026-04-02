@@ -62,4 +62,4 @@
 - isPaneBackend
 
 ## Source
-`types.ts`
+`types`

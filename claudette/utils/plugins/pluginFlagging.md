@@ -48,4 +48,4 @@ Module-level cache — populated by loadFlaggedPlugins(), updated by writes.
 - removeFlaggedPlugin
 
 ## Source
-`pluginFlagging.ts`
+`pluginFlagging`

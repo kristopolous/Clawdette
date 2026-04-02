@@ -65,4 +65,4 @@ Pass through allow/deny decisions directly
 - startInProcessTeammate
 
 ## Source
-`inProcessRunner.ts`
+`inProcessRunner`

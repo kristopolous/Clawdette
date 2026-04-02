@@ -15,4 +15,4 @@ Provides utility functions: resolveDefaultShell.
 - resolveDefaultShell
 
 ## Source
-`resolveDefaultShell.ts`
+`resolveDefaultShell`

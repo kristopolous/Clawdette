@@ -41,4 +41,4 @@
 - validateFlags
 
 ## Source
-`readOnlyCommandValidation.ts`
+`readOnlyCommandValidation`

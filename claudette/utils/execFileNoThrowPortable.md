@@ -31,4 +31,4 @@ No second argument - use defaults
 - execSyncWithDefaults_DEPRECATED
 
 ## Source
-`execFileNoThrowPortable.ts`
+`execFileNoThrowPortable`

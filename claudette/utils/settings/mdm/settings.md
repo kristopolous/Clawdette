@@ -15,13 +15,13 @@ Provides MDM (Mobile Device Management) profile enforcement for Claudette manage
 4. Linux: No MDM equivalent (uses /etc/claude-code/managedsettingson instead)
 5. Policy settings use "first source wins" - highest-priority source that exists provides all policy settings
 6. Priority (highest to lowest): remote → HKLM/plist → managedsettingson → HKCU
-7. Architecture: constants.ts (shared constants), rawRead.ts (subprocess I/O), settings.ts (parsing, caching, first-source-wins)
+7. Architecture: constants (shared constants), rawRead (subprocess I/O), settings (parsing, caching, first-source-wins)
 8. `MdmResult` - { settings, errors }
 9. `EMPTY_RESULT` - frozen empty result
 10. `mdmCache`, `hkcuCache` - MDM and HKCU result caches
 11. `mdmLoadPromise` - MDM load promise
 12. `startMdmSettingsLoad` - kicks off async MDM/HKCU reads early in startup
-13. Uses startup raw read if cli.tsx fired it, otherwise fires fresh one
+13. Uses startup raw read if cli fired it, otherwise fires fresh one
 14. `consumeRawReadResult` - parses raw read result
 15. `getMdmSettings` - gets MDM settings from cache or loads
 16. `getHkcuSettings` - gets HKCU settings from cache or loads

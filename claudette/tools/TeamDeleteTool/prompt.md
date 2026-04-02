@@ -1,4 +1,4 @@
-# TeamDeleteTool/prompt.ts
+# TeamDeleteTool/prompt
 
 ## Purpose
 

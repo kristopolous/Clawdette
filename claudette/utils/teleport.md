@@ -105,4 +105,4 @@ Extract text from the response
 - archiveRemoteSession
 
 ## Source
-`teleport.tsx`
+`teleport`

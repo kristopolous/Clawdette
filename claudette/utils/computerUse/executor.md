@@ -47,4 +47,4 @@
 - unhideComputerUseApps
 
 ## Source
-`executor.ts`
+`executor`

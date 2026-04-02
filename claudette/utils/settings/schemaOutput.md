@@ -16,4 +16,4 @@ Provides utility functions: generateSettingsJSONSchema.
 - generateSettingsJSONSchema
 
 ## Source
-`schemaOutput.ts`
+`schemaOutput`

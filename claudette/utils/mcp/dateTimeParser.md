@@ -23,7 +23,7 @@ Get current datetime with timezone for context
 - looksLikeISO8601
 
 ## Source
-`dateTimeParser.ts`
+`dateTimeParser`
 
 ### Helpful Prompt Templates
 

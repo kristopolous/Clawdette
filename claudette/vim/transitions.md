@@ -65,4 +65,4 @@
 - transition
 
 ## Source
-`transitions.ts`
+`transitions`

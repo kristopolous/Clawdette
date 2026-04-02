@@ -10,7 +10,7 @@ Provides generated file detection for attribution exclusion.
 
 ## Logic
 1. `EXCLUDED_FILENAMES` - exact filename matches (packagelockon, yarn.lock, etc.)
-2. `EXCLUDED_EXTENSIONS` - extension patterns (.lock, min, .d.ts, etc.)
+2. `EXCLUDED_EXTENSIONS` - extension patterns (.lock, min, .d, etc.)
 3. `EXCLUDED_DIRECTORIES` - directory patterns (/dist/, /build/, /node_modules/, etc.)
 4. `EXCLUDED_FILENAME_PATTERNS` - regex patterns for complex matching
 5. Patterns: *.min.*, *-min.*, *.bundle.*, *.generated.*, *.gen.*, *.auto.*

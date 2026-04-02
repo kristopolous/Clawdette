@@ -65,7 +65,7 @@ Constants for tmux socket management
 - resetSocketState
 
 ## Source
-`tmuxSocket.ts`
+`tmuxSocket`
 
 ### Helpful Prompt Templates
 

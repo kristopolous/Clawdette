@@ -23,4 +23,4 @@ Provides utility functions: getAddDirEnabledPlugins, getAddDirExtraMarketplaces.
 - getAddDirExtraMarketplaces
 
 ## Source
-`addDirPluginSettings.ts`
+`addDirPluginSettings`

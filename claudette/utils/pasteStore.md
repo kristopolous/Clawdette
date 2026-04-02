@@ -34,4 +34,4 @@ Content-addressable: same hash = same content, so overwriting is safe
 - cleanupOldPastes
 
 ## Source
-`pasteStore.ts`
+`pasteStore`

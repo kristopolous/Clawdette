@@ -37,4 +37,4 @@ Hook event metadata configuration.
 - getMatcherMetadata
 
 ## Source
-`hooksConfigManager.ts`
+`hooksConfigManager`

@@ -30,4 +30,4 @@ Check if aborted
 - isFilePersistenceEnabled
 
 ## Source
-`filePersistence.ts`
+`filePersistence`

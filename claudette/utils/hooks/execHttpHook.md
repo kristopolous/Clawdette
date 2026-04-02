@@ -31,4 +31,4 @@ Import as namespace so spyOn works in tests (direct imports bypass spies)
 - execHttpHook
 
 ## Source
-`execHttpHook.ts`
+`execHttpHook`

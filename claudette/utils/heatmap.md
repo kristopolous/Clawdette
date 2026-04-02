@@ -32,4 +32,4 @@ Day labels take 4 characters ("Mon "), calculate weeks that fit
 - generateHeatmap
 
 ## Source
-`heatmap.ts`
+`heatmap`

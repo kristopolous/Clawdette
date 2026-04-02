@@ -1,7 +1,7 @@
 # set
 
 ## Purpose
-Source file: set.ts
+Source file: set
 
 ## Imports
 (none detected)
@@ -13,4 +13,4 @@ Source file: set.ts
 - union
 
 ## Source
-`set.ts`
+`set`

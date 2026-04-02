@@ -60,4 +60,4 @@ Summary instead of a full server list — 20+ servers wrapped onto many
 - getModelDisplayLabel
 
 ## Source
-`status.tsx`
+`status`

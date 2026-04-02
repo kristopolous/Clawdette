@@ -19,4 +19,4 @@ Check if input starts with '/'
 - parseSlashCommand
 
 ## Source
-`slashCommandParsing.ts`
+`slashCommandParsing`

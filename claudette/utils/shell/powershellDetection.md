@@ -35,4 +35,4 @@ Snap launcher hangs in subprocesses. Prefer the direct binary.
 - resetPowerShellCache
 
 ## Source
-`powershellDetection.ts`
+`powershellDetection`

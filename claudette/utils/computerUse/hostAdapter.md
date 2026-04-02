@@ -1,7 +1,7 @@
 # hostAdapter
 
 ## Purpose
-cleanup.ts always unhides at turn end — no user preference to disable it.
+cleanup always unhides at turn end — no user preference to disable it.
 
 ## Imports
 - **Stdlib**: util
@@ -19,4 +19,4 @@ cleanup.ts always unhides at turn end — no user preference to disable it.
 - getComputerUseHostAdapter
 
 ## Source
-`hostAdapter.ts`
+`hostAdapter`

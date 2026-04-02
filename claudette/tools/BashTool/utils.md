@@ -1,4 +1,4 @@
-# BashTool/utils.ts
+# BashTool/utils
 
 ## Purpose
 

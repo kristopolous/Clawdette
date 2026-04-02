@@ -1,4 +1,4 @@
-# WebFetchTool/UI.tsx
+# WebFetchTool/UI
 
 ## Purpose
 

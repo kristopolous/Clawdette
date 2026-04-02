@@ -16,4 +16,4 @@ Provides ClaudeCodeDiagLogger class/function.
 - ClaudeCodeDiagLogger
 
 ## Source
-`logger.ts`
+`logger`

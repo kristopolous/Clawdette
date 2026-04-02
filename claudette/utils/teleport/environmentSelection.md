@@ -19,4 +19,4 @@ Fetch available environments
 - getEnvironmentSelectionInfo
 
 ## Source
-`environmentSelection.ts`
+`environmentSelection`

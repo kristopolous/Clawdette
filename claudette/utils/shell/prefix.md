@@ -38,4 +38,4 @@ Evict on rejection so aborted calls don't poison future turns.
 - createSubcommandPrefixExtractor
 
 ## Source
-`prefix.ts`
+`prefix`

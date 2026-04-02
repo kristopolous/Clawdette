@@ -30,4 +30,4 @@ biome-ignore lint/nursery/noFloatingPromises: resolve() is not a floating promis
 - getMdmRawReadPromise
 
 ## Source
-`rawRead.ts`
+`rawRead`

@@ -31,4 +31,4 @@ Overrides for commands whose fig specs aren't available at runtime
 - buildPrefix
 
 ## Source
-`specPrefix.ts`
+`specPrefix`

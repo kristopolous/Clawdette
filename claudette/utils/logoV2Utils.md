@@ -63,4 +63,4 @@ Layout constants
 - getRecentReleaseNotesSync
 
 ## Source
-`logoV2Utils.ts`
+`logoV2Utils`

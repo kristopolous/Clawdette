@@ -1,4 +1,4 @@
-# BashTool/sedValidation.ts
+# BashTool/sedValidation
 
 ## Purpose
 

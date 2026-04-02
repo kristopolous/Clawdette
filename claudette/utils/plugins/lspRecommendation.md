@@ -57,4 +57,4 @@ Maximum number of times user can ignore recommendations before we stop showing
 - resetIgnoredCount
 
 ## Source
-`lspRecommendation.ts`
+`lspRecommendation`

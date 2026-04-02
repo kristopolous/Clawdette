@@ -44,4 +44,4 @@ Entry point that parses CLI arguments, initializes the application, and launches
 
 ### Helpful Prompt Templates
 
-_No embedded prompt templates found in main.tsx. This file is the CLI entry point handling argument parsing, initialization, and mode dispatching._
+_No embedded prompt templates found in main. This file is the CLI entry point handling argument parsing, initialization, and mode dispatching._

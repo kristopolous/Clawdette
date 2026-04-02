@@ -18,7 +18,7 @@ Brief description of the core logic/algorithm this module implements.
 
 ---
 
-# EXAMPLE (main.tsx)
+# EXAMPLE (main)
 
 ## Purpose
 Entry point that parses CLI arguments, initializes the application, and launches either the REPL interface or headless mode.

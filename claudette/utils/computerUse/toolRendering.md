@@ -1,7 +1,7 @@
 # toolRendering
 
 ## Purpose
-AssistantToolUseMessage.tsx contract: null hides the ENTIRE row, '' shows
+AssistantToolUseMessage contract: null hides the ENTIRE row, '' shows
 
 ## Imports
 - **Stdlib**: react
@@ -22,4 +22,4 @@ AssistantToolUseMessage.tsx contract: null hides the ENTIRE row, '' shows
 - getComputerUseMCPRenderingOverrides
 
 ## Source
-`toolRendering.tsx`
+`toolRendering`

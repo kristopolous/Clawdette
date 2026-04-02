@@ -1,4 +1,4 @@
-# cost-tracker.ts
+# cost-tracker
 
 ## Purpose
 Tracks API costs, token usage, and duration metrics for a Claudette session, with support for session persistence and multi-model tracking.

@@ -26,7 +26,7 @@ Pattern to detect "/btw" at start of input (case-insensitive, word boundary)
 - runSideQuestion
 
 ## Source
-`sideQuestion.ts`
+`sideQuestion`
 
 ### Helpful Prompt Templates
 

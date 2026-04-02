@@ -69,4 +69,4 @@ Treat these characters as word separators for command search
 - findSlashCommandPositions
 
 ## Source
-`commandSuggestions.ts`
+`commandSuggestions`

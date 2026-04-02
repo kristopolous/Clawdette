@@ -23,4 +23,4 @@ Provides utility functions: isTeamMemorySearch, isTeamMemoryWriteOrEdit, appendT
 - appendTeamMemorySummaryParts
 
 ## Source
-`teamMemoryOps.ts`
+`teamMemoryOps`

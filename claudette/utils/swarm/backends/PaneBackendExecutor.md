@@ -19,4 +19,4 @@ Assign a unique color to this teammate
 - createPaneBackendExecutor
 
 ## Source
-`PaneBackendExecutor.ts`
+`PaneBackendExecutor`

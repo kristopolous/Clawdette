@@ -39,4 +39,4 @@ Scheduler lease lock for claude/scheduled_taskson.
 - releaseSchedulerLock
 
 ## Source
-`cronTasksLock.ts`
+`cronTasksLock`

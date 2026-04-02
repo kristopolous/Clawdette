@@ -1,7 +1,7 @@
 # teammatePromptAddendum
 
 ## Purpose
-Source file: teammatePromptAddendum.ts
+Source file: teammatePromptAddendum
 
 ## Imports
 (none detected)
@@ -10,4 +10,4 @@ Source file: teammatePromptAddendum.ts
 - TEAMMATE_SYSTEM_PROMPT_ADDENDUM
 
 ## Source
-`teammatePromptAddendum.ts`
+`teammatePromptAddendum`

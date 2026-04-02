@@ -47,4 +47,4 @@ Avoid giving text cells the code language.
 - parseCellId
 
 ## Source
-`notebook.ts`
+`notebook`

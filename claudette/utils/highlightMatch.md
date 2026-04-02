@@ -16,4 +16,4 @@
 - highlightMatch
 
 ## Source
-`highlightMatch.tsx`
+`highlightMatch`

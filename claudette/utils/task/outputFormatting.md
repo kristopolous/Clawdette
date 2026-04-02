@@ -21,4 +21,4 @@ Provides utility functions: getMaxTaskOutputLength, formatTaskOutput.
 - formatTaskOutput
 
 ## Source
-`outputFormatting.ts`
+`outputFormatting`

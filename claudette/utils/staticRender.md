@@ -26,4 +26,4 @@ This is a workaround for the fact that Ink doesn't support multiple <Static>
 - renderToString
 
 ## Source
-`staticRender.tsx`
+`staticRender`

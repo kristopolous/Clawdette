@@ -22,4 +22,4 @@ Constants for timeout values
 - getMaxBashTimeoutMs
 
 ## Source
-`timeouts.ts`
+`timeouts`

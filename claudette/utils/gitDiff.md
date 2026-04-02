@@ -71,4 +71,4 @@ Skip diff calculation during transient git states since the
 - fetchSingleFileGitDiff
 
 ## Source
-`gitDiff.ts`
+`gitDiff`

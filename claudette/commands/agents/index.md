@@ -12,7 +12,7 @@ Creates a command object with:
 - `type`: `'local-jsx'` (renders a React component)
 - `name`: `'agents'`
 - `description`: `'Manage agent configurations'`
-- `load`: A function that dynamically imports `/agents` (or `./agents.tsx`) to load the command implementation.
+- `load`: A function that dynamically imports `/agents` (or `./agents`) to load the command implementation.
 
 ## Exports
 - `agents` (Command) - The command definition object that registers the agents management feature

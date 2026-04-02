@@ -1,7 +1,7 @@
 # types
 
 ## Purpose
-Source file: types.ts
+Source file: types
 
 ## Imports
 - **Stdlib**: zod/v4
@@ -14,4 +14,4 @@ Source file: types.ts
 - TodoList
 
 ## Source
-`types.ts`
+`types`

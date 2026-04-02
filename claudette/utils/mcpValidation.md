@@ -55,4 +55,4 @@ Estimate for image tokens
 - truncateMcpContentIfNeeded
 
 ## Source
-`mcpValidation.ts`
+`mcpValidation`

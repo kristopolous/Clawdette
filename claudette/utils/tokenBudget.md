@@ -26,4 +26,4 @@ Shorthand (+500k) anchored to start/end to avoid false positives in natural lang
 - getBudgetContinuationMessage
 
 ## Source
-`tokenBudget.ts`
+`tokenBudget`

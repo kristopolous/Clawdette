@@ -96,4 +96,4 @@ Skip marketplaces blocked by enterprise policy
 - detectEmptyMarketplaceReason
 
 ## Source
-`marketplaceHelpers.ts`
+`marketplaceHelpers`

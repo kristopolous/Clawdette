@@ -15,4 +15,4 @@ Provides utility functions: shouldInferenceConfigCommandBeImmediate.
 - shouldInferenceConfigCommandBeImmediate
 
 ## Source
-`immediateCommand.ts`
+`immediateCommand`

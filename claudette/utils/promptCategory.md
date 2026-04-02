@@ -20,4 +20,4 @@ TODO: avoid this cast
 - getQuerySourceForREPL
 
 ## Source
-`promptCategory.ts`
+`promptCategory`

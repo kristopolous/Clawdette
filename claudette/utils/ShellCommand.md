@@ -41,4 +41,4 @@ Background tasks write stdout/stderr directly to a file fd (no JS involvement),
 - createFailedCommand
 
 ## Source
-`ShellCommand.ts`
+`ShellCommand`

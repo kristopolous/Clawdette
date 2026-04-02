@@ -35,4 +35,4 @@ Thresholds (matching status notices and existing patterns)
 - checkContextWarnings
 
 ## Source
-`doctorContextWarnings.ts`
+`doctorContextWarnings`

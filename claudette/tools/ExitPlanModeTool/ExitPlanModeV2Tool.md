@@ -1,7 +1,11 @@
+# ExitPlanModeTool/ExitPlanModeV2Tool.ts
+
 ## Purpose
+
 Tool for exiting plan mode, presenting the plan for approval and transitioning back to normal mode with appropriate permission handling.
 
 ## Imports
+
 - **Stdlib**: `fs/promises`
 - **External**: `zod/v4`
 - **Internal**: 
@@ -13,6 +17,7 @@ Tool for exiting plan mode, presenting the plan for approval and transitioning b
   - Local: `EXIT_PLAN_MODE_V2_TOOL_NAME`, `EXIT_PLAN_MODE_V2_TOOL_PROMPT`, `renderToolResultMessage`, `renderToolUseMessage`, `renderToolUseRejectedMessage`
 
 ## Logic
+
 1. Validates the tool is called in plan mode, rejecting if not
 2. Handles permission requests - asks for user confirmation or bypasses for teammates
 3. Persists edited plan to disk and updates snapshots
@@ -23,8 +28,9 @@ Tool for exiting plan mode, presenting the plan for approval and transitioning b
 8. Returns formatted tool result with plan content and metadata
 
 ## Exports
-- `ExitPlanModeV2Tool` - The main tool definition for exiting plan mode
-- `AllowedPrompt` - Type for prompt-based permission schema
-- `_sdkInputSchema` - SDK-facing input schema with injected fields (plan, planFilePath)
-- `outputSchema` - Output schema defining returned data structure
-- `Output` - Type inference for output schema
+
+- `ExitPlanModeV2Tool: Tool<InputSchema, Output>`
+- `AllowedPrompt: z.infer<ReturnType<typeof allowedPromptSchema>>`
+- `_sdkInputSchema: z.ZodObject<...>`
+- `outputSchema: z.ZodObject<...>`
+- `Output: z.infer<OutputSchema>`

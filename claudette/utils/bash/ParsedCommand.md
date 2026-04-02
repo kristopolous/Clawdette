@@ -18,7 +18,7 @@ Interface and implementations for parsed bash commands.
 7. Only used when tree-sitter unavailable
 8. `splitCommandWithOperators` - splits at | operators for pipe segments
 9. `extractOutputRedirections` - extracts > and >> redirections
-10. Primary gate is parseForSecurity (ast.ts)
+10. Primary gate is parseForSecurity (ast)
 11. Exported for testing purposes
 12. Falls back to original command on parse errors
 

@@ -20,4 +20,4 @@ Shell routing (docs/design/ps-shell-selection.md §5.2): consult
 - processBashCommand
 
 ## Source
-`processBashCommand.tsx`
+`processBashCommand`

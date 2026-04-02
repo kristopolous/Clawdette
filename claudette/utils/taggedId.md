@@ -21,4 +21,4 @@ ceil(128 / log2(58)) = 22
 - toTaggedId
 
 ## Source
-`taggedId.ts`
+`taggedId`

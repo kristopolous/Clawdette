@@ -1,4 +1,4 @@
-# LSPTool/formatters.ts
+# LSPTool/formatters
 
 ## Purpose
 

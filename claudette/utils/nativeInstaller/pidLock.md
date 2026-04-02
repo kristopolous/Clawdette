@@ -65,4 +65,4 @@ If env var is explicitly set, respect it
 - cleanupStaleLocks
 
 ## Source
-`pidLock.ts`
+`pidLock`

@@ -52,4 +52,4 @@ Stub for external builds - classifier permissions feature is ANT-ONLY
 - generateGenericDescription
 
 ## Source
-`bashClassifier.ts`
+`bashClassifier`

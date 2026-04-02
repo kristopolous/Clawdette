@@ -14,4 +14,4 @@ Build the complete message list to send to the API
 - createApiQueryHook
 
 ## Source
-`apiQueryHookHelper.ts`
+`apiQueryHookHelper`

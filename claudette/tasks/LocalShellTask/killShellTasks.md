@@ -15,7 +15,7 @@ Provides pure kill helpers for LocalShellTask without React dependencies.
 4. Sets status to 'killed', notified=true, endTime=Date.now()
 5. Evicts task output from disk
 6. `killShellTasksForAgent` - kills all bash tasks spawned by given agent
-7. Called from runAgent.ts finally block to prevent orphaned zombies
+7. Called from runAgent finally block to prevent orphaned zombies
 8. Iterates tasks, kills running shell tasks with matching agentId
 9. Dequeues all queued notifications for dead agent
 10. Prevents 10-day fake-logs.sh zombies from outliving agents

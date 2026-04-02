@@ -7,4 +7,4 @@ Indirection point for thepackageon "browser" field. When bun builds
 - **Stdlib**: crypto, crypto
 
 ## Source
-`crypto.ts`
+`crypto`

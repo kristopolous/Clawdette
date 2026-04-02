@@ -52,4 +52,4 @@ Use switch for exhaustive type checking
 - sortMatchersByPriority
 
 ## Source
-`hooksSettings.ts`
+`hooksSettings`

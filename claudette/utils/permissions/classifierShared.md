@@ -17,4 +17,4 @@ Provides utility functions: extractToolUseBlock.
 - parseClassifierResponse
 
 ## Source
-`classifierShared.ts`
+`classifierShared`

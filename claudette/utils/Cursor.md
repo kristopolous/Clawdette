@@ -68,4 +68,4 @@ Track yank state for yank-pop (alt-y)
 - MeasuredText
 
 ## Source
-`Cursor.ts`
+`Cursor`

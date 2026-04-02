@@ -48,4 +48,4 @@ Restart timer if work is already in progress (e.g. reconnect during streaming)
 - stopSessionActivity
 
 ## Source
-`sessionActivity.ts`
+`sessionActivity`

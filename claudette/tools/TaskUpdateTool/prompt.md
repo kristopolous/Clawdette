@@ -1,4 +1,4 @@
-# TaskUpdateTool/prompt.ts
+# TaskUpdateTool/prompt
 
 ## Purpose
 

@@ -40,4 +40,4 @@ Fallback for Nix and other environments where X_OK check might fail
 - setCwd
 
 ## Source
-`Shell.ts`
+`Shell`

@@ -1,3 +1,5 @@
+# ConfigTool/ConfigTool
+
 ## Purpose
 Tool for getting and setting Claudette configuration settings (theme, model, permissions, etc.).
 

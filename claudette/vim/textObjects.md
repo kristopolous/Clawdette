@@ -28,4 +28,4 @@ Pre-segment into graphemes for grapheme-safe iteration
 - findTextObject
 
 ## Source
-`textObjects.ts`
+`textObjects`

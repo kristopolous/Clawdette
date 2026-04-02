@@ -33,4 +33,4 @@ Use recursive flag to get all entries in one call
 - findModifiedFiles
 
 ## Source
-`outputsScanner.ts`
+`outputsScanner`

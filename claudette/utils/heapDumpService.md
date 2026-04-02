@@ -31,4 +31,4 @@ getHeapSpaceStatistics() is not available in Bun
 - performHeapDump
 
 ## Source
-`heapDumpService.ts`
+`heapDumpService`

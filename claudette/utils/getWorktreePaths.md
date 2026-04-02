@@ -16,4 +16,4 @@ Parse porcelain output - lines starting with "worktree " contain paths
 - getWorktreePaths
 
 ## Source
-`getWorktreePaths.ts`
+`getWorktreePaths`

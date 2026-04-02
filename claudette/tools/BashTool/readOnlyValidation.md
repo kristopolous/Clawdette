@@ -1,4 +1,4 @@
-# BashTool/readOnlyValidation.ts
+# BashTool/readOnlyValidation
 
 ## Purpose
 

@@ -5,7 +5,7 @@ This file helps you navigate the documentation. Find the feature you need, then 
 ## Architecture at a Glance
 
 ```
-main.tsx → REPL Screen → QueryEngine → query() loop → API + Tools
+main → REPL Screen → QueryEngine → query() loop → API + Tools
                                     ↘ State Store
                                     ↘ MCP Clients
 ```

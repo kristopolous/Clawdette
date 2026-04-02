@@ -23,4 +23,4 @@ Provides utility functions: markInternalWrite, consumeInternalWrite, clearIntern
 - clearInternalWrites
 
 ## Source
-`internalWrites.ts`
+`internalWrites`

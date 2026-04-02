@@ -34,4 +34,4 @@ Skip empty lines and comment-only lines
 - parseConfigString
 
 ## Source
-`gitConfigParser.ts`
+`gitConfigParser`

@@ -10,7 +10,7 @@ Provides portable session storage utilities for CLI and VS Code extension.
 
 ## Logic
 1. PureNode - no internal dependencies on logging, experiments, or feature flags
-2. Shared between CLI (src/utils/sessionStorage.ts) and VS Code extension (packages/claude-vscode/src/common-host/sessionStorage.ts)
+2. Shared between CLI (src/utils/sessionStorage) and VS Code extension (packages/claude-vscode/src/common-host/sessionStorage)
 3. `LITE_READ_BUF_SIZE` (65536) - size of head/tail buffer for lite metadata reads
 4. `uuidRegex` - UUID validation regex
 5. `validateUuid` - validates UUID string

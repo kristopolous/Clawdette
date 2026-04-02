@@ -16,4 +16,4 @@ Use provided toolUseID or generate a new one
 - execPromptHook
 
 ## Source
-`execPromptHook.ts`
+`execPromptHook`

@@ -54,4 +54,4 @@ Native NSPasteboard reader. GrowthBook gate tengu_collage_kaleidoscope is
 - tryReadImageFromPath
 
 ## Source
-`imagePaste.ts`
+`imagePaste`

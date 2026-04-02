@@ -1,4 +1,4 @@
-# FileReadTool/imageProcessor.ts
+# FileReadTool/imageProcessor
 
 ## Purpose
 

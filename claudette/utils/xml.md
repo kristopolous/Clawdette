@@ -19,4 +19,4 @@ Provides utility functions: escapeXml, escapeXmlAttr.
 - escapeXmlAttr
 
 ## Source
-`xml.ts`
+`xml`

@@ -20,4 +20,4 @@ Default configuration for metrics cardinality
 - getTelemetryAttributes
 
 ## Source
-`telemetryAttributes.ts`
+`telemetryAttributes`

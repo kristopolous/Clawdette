@@ -23,4 +23,4 @@ CGEvent.tapCreate failed — typically missing Accessibility permission.
 - notifyExpectedEscape
 
 ## Source
-`escHotkey.ts`
+`escHotkey`

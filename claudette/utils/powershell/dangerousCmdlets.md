@@ -22,4 +22,4 @@ Native executables with callback-gated args (e.g. ipconfig /flushdns
 - NEVER_SUGGEST
 
 ## Source
-`dangerousCmdlets.ts`
+`dangerousCmdlets`

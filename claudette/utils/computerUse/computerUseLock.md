@@ -57,4 +57,4 @@ Holds the unregister function for the shutdown cleanup handler.
 - releaseComputerUseLock
 
 ## Source
-`computerUseLock.ts`
+`computerUseLock`

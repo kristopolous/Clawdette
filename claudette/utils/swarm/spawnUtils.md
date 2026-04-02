@@ -23,4 +23,4 @@ Propagate permission mode to teammates, but NOT if plan mode is required
 - buildInheritedEnvVars
 
 ## Source
-`spawnUtils.ts`
+`spawnUtils`

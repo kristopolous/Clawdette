@@ -28,4 +28,4 @@ Completely clear conversation, reset state, and start a fresh session.
 
 ## Exports
 - `clearConversation` - async function (main export)
-- Called by clear.ts command implementation
+- Called by clear command implementation

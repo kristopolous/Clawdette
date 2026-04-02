@@ -29,4 +29,4 @@ biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not
 - getActiveNotices
 
 ## Source
-`statusNoticeDefinitions.tsx`
+`statusNoticeDefinitions`

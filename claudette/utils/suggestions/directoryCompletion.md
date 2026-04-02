@@ -62,4 +62,4 @@ Types
 - clearPathCache
 
 ## Source
-`directoryCompletion.ts`
+`directoryCompletion`

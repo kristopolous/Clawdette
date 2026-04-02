@@ -1,7 +1,7 @@
 # setup
 
 ## Purpose
-command/args are never spawned — client.ts intercepts by name and
+command/args are never spawned — client intercepts by name and
 
 ## Imports
 - **Stdlib**: path, url
@@ -17,4 +17,4 @@ command/args are never spawned — client.ts intercepts by name and
 - setupComputerUseMCP
 
 ## Source
-`setup.ts`
+`setup`

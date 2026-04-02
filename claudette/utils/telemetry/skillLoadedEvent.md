@@ -15,4 +15,4 @@ _PROTO_skill_name routes to the privileged skill_name BQ column.
 - logSkillsLoaded
 
 ## Source
-`skillLoadedEvent.ts`
+`skillLoadedEvent`

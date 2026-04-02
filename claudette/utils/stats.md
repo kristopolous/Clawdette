@@ -78,4 +78,4 @@ Activity overview
 - readSessionStartDate
 
 ## Source
-`stats.ts`
+`stats`

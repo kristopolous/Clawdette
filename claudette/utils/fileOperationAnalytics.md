@@ -21,4 +21,4 @@ Maximum content size to hash (100KB)
 - logFileOperation
 
 ## Source
-`fileOperationAnalytics.ts`
+`fileOperationAnalytics`

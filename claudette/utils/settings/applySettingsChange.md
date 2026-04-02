@@ -15,4 +15,4 @@ Ant-only: re-strip overly broad Bash allow rules after settings sync
 - applySettingsChange
 
 ## Source
-`applySettingsChange.ts`
+`applySettingsChange`

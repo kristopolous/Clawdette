@@ -23,7 +23,7 @@ Provides environment variable utilities and path helpers.
 12. Skips hooks, LSP, plugin sync, skill dir-walk, attribution, background prefetches, ALL keychain/credential reads
 13. Auth strictly from ANTHROPIC_API_KEY env or apiKeyHelper
 14. Explicit CLI flags (--plugin-dir, --add-dir, --mcp-config) still honored
-15. Checks argv directly (before main.tsx sets CLAUDE_CODE_SIMPLE=1 from --bare)
+15. Checks argv directly (before main sets CLAUDE_CODE_SIMPLE=1 from --bare)
 16. `parseEnvVars` - parses KEY=VALUE array to object
 17. Throws Error for invalid format (should be KEY=value)
 18. `getAWSRegion` - gets AWS region with fallback

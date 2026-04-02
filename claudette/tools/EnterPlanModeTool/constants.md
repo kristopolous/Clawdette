@@ -1,4 +1,4 @@
-# EnterPlanModeTool/constants.ts
+# EnterPlanModeTool/constants
 
 ## Purpose
 

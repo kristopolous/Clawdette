@@ -21,4 +21,4 @@ Provides utility functions: getWorkload.
 - runWithWorkload
 
 ## Source
-`workloadContext.ts`
+`workloadContext`

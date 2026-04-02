@@ -27,4 +27,4 @@ Track session IDs for teammates
 - ITermBackend
 
 ## Source
-`ITermBackend.ts`
+`ITermBackend`

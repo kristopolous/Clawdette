@@ -14,7 +14,7 @@ Provides BOM stripping utility for JSON reading.
 3. PowerShell 5.x writes UTF-8 with BOM by default (Out-File, Set-Content)
 4. Without stripping, JSON.parse fails with "Unexpected token"
 5. Leaf module to break settings → json → log → types/logs → settings cycle
-8. Used by json.ts safeParseJSON and syncCacheState inline parsing
+8. Used by json safeParseJSON and syncCacheState inline parsing
 9. Returns content.slice(1) if starts with BOM, else original content
 
 ## Exports

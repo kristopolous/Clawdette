@@ -10,4 +10,4 @@
 - QueryGuard
 
 ## Source
-`QueryGuard.ts`
+`QueryGuard`

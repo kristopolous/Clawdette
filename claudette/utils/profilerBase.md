@@ -24,4 +24,4 @@ Lazy-load performance API only when profiling is enabled.
 - formatTimelineLine
 
 ## Source
-`profilerBase.ts`
+`profilerBase`

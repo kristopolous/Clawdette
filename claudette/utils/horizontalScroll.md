@@ -25,4 +25,4 @@ Clamp selectedIdx to valid range
 - calculateHorizontalScrollWindow
 
 ## Source
-`horizontalScroll.ts`
+`horizontalScroll`

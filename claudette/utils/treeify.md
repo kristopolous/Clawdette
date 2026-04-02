@@ -33,4 +33,4 @@ Check for circular references
 - treeify
 
 ## Source
-`treeify.ts`
+`treeify`

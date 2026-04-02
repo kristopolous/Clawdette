@@ -9,7 +9,7 @@ Implements VSCode MCP integration for bidirectional communication via notificati
 - **Internal**: debug, lazySchema, growthbook, analytics, MCP types
 
 ## Logic
-1. `AutoModeEnabledState` - type: enabled, disabled, opt-in (mirrors permissionSetup.ts)
+1. `AutoModeEnabledState` - type: enabled, disabled, opt-in (mirrors permissionSetup)
 2. `readAutoModeEnabledState` - reads from tengu_auto_mode_config GrowthBook feature
 3. `LogEventNotificationSchema` - schema for log_event notifications from VSCode
 4. `vscodeMcpClient` - stored reference to connected VSCode MCP client

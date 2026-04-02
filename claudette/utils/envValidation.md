@@ -19,4 +19,4 @@ Provides utility functions: validateBoundedIntEnvVar.
 - validateBoundedIntEnvVar
 
 ## Source
-`envValidation.ts`
+`envValidation`

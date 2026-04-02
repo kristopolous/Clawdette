@@ -32,4 +32,4 @@ Tunable via tengu_ccr_bundle_max_bytes.
 - createAndUploadGitBundle
 
 ## Source
-`gitBundle.ts`
+`gitBundle`

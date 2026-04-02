@@ -53,4 +53,4 @@
 - listSessionsImpl
 
 ## Source
-`listSessionsImpl.ts`
+`listSessionsImpl`

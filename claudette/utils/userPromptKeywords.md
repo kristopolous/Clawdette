@@ -19,4 +19,4 @@ Match "continue" only if it's the entire prompt
 - matchesKeepGoingKeyword
 
 ## Source
-`userPromptKeywords.ts`
+`userPromptKeywords`

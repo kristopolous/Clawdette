@@ -29,4 +29,4 @@ Provides utility functions: markITerm2SetupComplete, getIterm2RecoveryInfo, getI
 - checkAndRestoreITerm2Backup
 
 ## Source
-`iTermBackup.ts`
+`iTermBackup`

@@ -40,4 +40,4 @@ Strip any charset/boundary parameter
 - getBinaryBlobSavedMessage
 
 ## Source
-`mcpOutputStorage.ts`
+`mcpOutputStorage`

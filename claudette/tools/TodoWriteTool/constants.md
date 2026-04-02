@@ -1,4 +1,4 @@
-# TodoWriteTool/constants.ts
+# TodoWriteTool/constants
 
 ## Purpose
 

@@ -126,4 +126,4 @@ Output types for different operations
 - cleanupTeamDirectories
 
 ## Source
-`teamHelpers.ts`
+`teamHelpers`

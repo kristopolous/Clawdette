@@ -15,4 +15,4 @@ Only detectMacosTerminal reads the stored value — skip the write on
 - updateDeepLinkTerminalPreference
 
 ## Source
-`terminalPreference.ts`
+`terminalPreference`

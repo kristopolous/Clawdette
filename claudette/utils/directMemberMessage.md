@@ -26,4 +26,4 @@ Find team member by name
 - sendDirectMemberMessage
 
 ## Source
-`directMemberMessage.ts`
+`directMemberMessage`

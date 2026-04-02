@@ -56,4 +56,4 @@ Check uv first (preferred for isolated environments)
 - getPreferTmuxOverIterm2
 
 ## Source
-`it2Setup.ts`
+`it2Setup`

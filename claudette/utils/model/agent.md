@@ -39,4 +39,4 @@ Extract Bedrock region prefix from parent model to inherit for subagents.
 - getAgentModelOptions
 
 ## Source
-`agent.ts`
+`agent`

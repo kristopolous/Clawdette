@@ -32,4 +32,4 @@ Small cache size for ask operations which typically access few files
 - extractBashToolsFromMessages
 
 ## Source
-`queryHelpers.ts`
+`queryHelpers`

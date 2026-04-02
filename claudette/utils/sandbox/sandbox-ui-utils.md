@@ -15,4 +15,4 @@ Provides utility functions: removeSandboxViolationTags.
 - removeSandboxViolationTags
 
 ## Source
-`sandbox-ui-utils.ts`
+`sandbox-ui-utils`

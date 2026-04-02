@@ -9,9 +9,9 @@ Provides React hook for classifierApprovals store without pulling React into pri
 - **Internal**: classifierApprovals
 
 ## Logic
-1. Split from classifierApprovals.ts for pure-state importers
-2. Importers: permissions.ts, toolExecution.ts, postCompactCleanup.ts
-3. Prevents React from being pulled into print.ts module graph
+1. Split from classifierApprovals for pure-state importers
+2. Importers: permissions, toolExecution, postCompactCleanup
+3. Prevents React from being pulled into print module graph
 4. `useIsClassifierChecking` - hook using useSyncExternalStore
 5. Subscribes to classifier checking state changes
 6. Calls isClassifierChecking(toolUseID) for current state

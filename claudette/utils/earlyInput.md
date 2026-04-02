@@ -38,4 +38,4 @@ Buffer for early input characters
 - isCapturingEarlyInput
 
 ## Source
-`earlyInput.ts`
+`earlyInput`

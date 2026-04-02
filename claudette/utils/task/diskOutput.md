@@ -73,4 +73,4 @@ SECURITY: O_NOFOLLOW prevents following symlinks when opening task output files.
 - initTaskOutputAsSymlink
 
 ## Source
-`diskOutput.ts`
+`diskOutput`

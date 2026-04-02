@@ -23,4 +23,4 @@ Text rendering utilities for terminal display
 - isOutputLineTruncated
 
 ## Source
-`terminal.ts`
+`terminal`

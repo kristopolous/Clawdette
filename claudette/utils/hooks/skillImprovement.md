@@ -33,7 +33,7 @@ Only run every TURN_BATCH_SIZE user messages
 - applySkillImprovement
 
 ## Source
-`skillImprovement.ts`
+`skillImprovement`
 
 ### Helpful Prompt Templates
 

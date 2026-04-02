@@ -1,4 +1,4 @@
-# TodoWriteTool/prompt.ts
+# TodoWriteTool/prompt
 
 ## Purpose
 

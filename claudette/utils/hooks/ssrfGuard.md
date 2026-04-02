@@ -34,4 +34,4 @@ Not a valid IP literal — let the real DNS path handle it (this function
 - ssrfGuardedLookup
 
 ## Source
-`ssrfGuard.ts`
+`ssrfGuard`

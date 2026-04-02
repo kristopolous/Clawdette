@@ -128,7 +128,7 @@ Loads the unified memory prompt for inclusion in the system prompt. Dispatches b
 
 ## Memory Types
 
-The memory system uses a four-type taxonomy defined in `memoryTypes.ts`:
+The memory system uses a four-type taxonomy defined in `memoryTypes`:
 - **User** - Facts about the user, their role, preferences
 - **Feedback** - User corrections and preferences
 - **Project** - Project context not derivable from code

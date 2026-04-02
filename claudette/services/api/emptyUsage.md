@@ -15,8 +15,8 @@ Provides zero-initialized usage object for API calls without transitively pullin
 4. service_tier: 'standard'
 5. cache_creation: { ephemeral_1h_input_tokens: 0, ephemeral_5m_input_tokens: 0 }
 6. inference_geo: '', iterations: [], speed: 'standard'
-7. Extracted from logging.ts to avoid circular dependency chain
-8. bridge/replBridge.ts can import without pulling in api/errors.ts → utils/messages.ts → BashTool.tsx
+7. Extracted from logging to avoid circular dependency chain
+8. bridge/replBridge can import without pulling in api/errors → utils/messages → BashTool
 
 ## Exports
 - `EMPTY_USAGE` - zero-initialized usage object

@@ -1,7 +1,7 @@
 # semanticBoolean
 
 ## Purpose
-Source file: semanticBoolean.ts
+Source file: semanticBoolean
 
 ## Imports
 - **Stdlib**: zod/v4
@@ -10,4 +10,4 @@ Source file: semanticBoolean.ts
 - semanticBoolean
 
 ## Source
-`semanticBoolean.ts`
+`semanticBoolean`

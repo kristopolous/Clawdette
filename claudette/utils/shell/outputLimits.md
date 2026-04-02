@@ -17,4 +17,4 @@ Provides utility functions: getMaxOutputLength.
 - getMaxOutputLength
 
 ## Source
-`outputLimits.ts`
+`outputLimits`

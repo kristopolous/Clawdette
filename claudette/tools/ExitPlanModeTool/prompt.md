@@ -1,4 +1,4 @@
-# ExitPlanModeTool/prompt.ts
+# ExitPlanModeTool/prompt
 
 ## Purpose
 

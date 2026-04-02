@@ -13,9 +13,9 @@ Preconnects to Anthropic API to overlap TCP+TLS handshake with startup.
 2. Fire-and-forget fetch during init overlaps handshake with startup work
 3. Bun's fetch shares keep-alive connection pool globally
 4. Real API request reuses warmed connection
-5. Called from init.ts AFTER applyExtraCACertsFromConfig + configureGlobalAgents
+5. Called from init AFTER applyExtraCACertsFromConfig + configureGlobalAgents
 6. Ensuressettingson env vars applied and TLS cert store finalized
-7. Removed early cli.tsx call site (ran beforesettingson loaded)
+7. Removed early cli call site (ran beforesettingson loaded)
 8. Skipped when:
    - proxy/mTLS/unix socket configured (custom dispatcher won't reuse pool)
    - Bedrock/Vertex/Foundry (different endpoints/auth)

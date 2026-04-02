@@ -15,4 +15,4 @@ Try to map to a theme color if it's a known agent color
 - toInkColor
 
 ## Source
-`ink.ts`
+`ink`

@@ -15,4 +15,4 @@ Read team file to get leader ID
 - initializeTeammateHooks
 
 ## Source
-`teammateInit.ts`
+`teammateInit`

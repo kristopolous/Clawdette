@@ -1,4 +1,7 @@
+# ExitPlanModeTool/UI.tsx
+
 ## Purpose
+
 Renders terminal UI components for the ExitPlanModeTool, displaying status messages when exiting plan mode. Shows different messages for: simple exit (empty plan), team lead approval pending, and user-approved plans with the plan content.
 
 ## Imports

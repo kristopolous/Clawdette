@@ -23,4 +23,4 @@ Empty lines are tolerated in NDJSON streams — treat them as valid so a
 - _resetStreamJsonStdoutGuardForTesting
 
 ## Source
-`streamJsonStdoutGuard.ts`
+`streamJsonStdoutGuard`

@@ -28,4 +28,4 @@ Patterns that mark a file as non-core (auto-generated, dependency, or config).
 - refreshExampleCommands
 
 ## Source
-`exampleCommands.ts`
+`exampleCommands`

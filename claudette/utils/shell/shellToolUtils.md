@@ -14,7 +14,7 @@ Provides shell tool utilities including PowerShell tool enablement gate.
 3. Windows-only (permission engine uses Win32-specific path normalizations)
 4. Ant defaults on (opt-out via env=0)
 5. External defaults off (opt-in via env=1)
-6. Used by tools.ts (tool-list visibility), processBashCommand (! routing), promptShellExecution (skill frontmatter routing)
+6. Used by tools (tool-list visibility), processBashCommand (! routing), promptShellExecution (skill frontmatter routing)
 7. Gate is consistent across all paths that invoke PowerShellTool.call()
 8. Checks platform is Windows first
 9. For ant users: returns !isEnvDefinedFalsy(CLAUDE_CODE_USE_POWERSHELL_TOOL)

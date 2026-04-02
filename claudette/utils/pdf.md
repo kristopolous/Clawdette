@@ -41,4 +41,4 @@ Check if file is empty
 - extractPDFPages
 
 ## Source
-`pdf.ts`
+`pdf`

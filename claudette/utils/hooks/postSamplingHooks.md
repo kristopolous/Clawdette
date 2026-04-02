@@ -31,4 +31,4 @@ Post-sampling hook - not exposed insettingson config (yet), only used programmat
 - executePostSamplingHooks
 
 ## Source
-`postSamplingHooks.ts`
+`postSamplingHooks`

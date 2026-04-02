@@ -23,4 +23,4 @@ Exclude team-lead from the list
 - getTeammateStatuses
 
 ## Source
-`teamDiscovery.ts`
+`teamDiscovery`

@@ -31,4 +31,4 @@ Environment variable override takes precedence
 - getPewterLedgerVariant
 
 ## Source
-`planModeV2.ts`
+`planModeV2`

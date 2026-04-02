@@ -29,4 +29,4 @@ Map of editor command overrides (e.g., to add wait flags)
 - editPromptInEditor
 
 ## Source
-`promptEditor.ts`
+`promptEditor`

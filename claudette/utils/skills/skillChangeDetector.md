@@ -35,4 +35,4 @@ Test overrides for timing constants
 - skillChangeDetector
 
 ## Source
-`skillChangeDetector.ts`
+`skillChangeDetector`

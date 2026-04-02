@@ -28,4 +28,4 @@ If no valid filters remain, return null
 - shouldShowDebugMessage
 
 ## Source
-`debugFilter.ts`
+`debugFilter`

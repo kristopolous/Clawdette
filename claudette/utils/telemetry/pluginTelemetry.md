@@ -1,7 +1,7 @@
 # pluginTelemetry
 
 ## Purpose
-builtinPlugins.ts:BUILTIN_MARKETPLACE_NAME — inlined to avoid the cycle
+builtinPlugins:BUILTIN_MARKETPLACE_NAME — inlined to avoid the cycle
 
 ## Imports
 - **Stdlib**: crypto, path
@@ -67,4 +67,4 @@ builtinPlugins.ts:BUILTIN_MARKETPLACE_NAME — inlined to avoid the cycle
 - logPluginLoadErrors
 
 ## Source
-`pluginTelemetry.ts`
+`pluginTelemetry`

@@ -36,4 +36,4 @@ Check if bypassPermissions should be disabled based on Statsig gate
 - useKickOffCheckAndDisableAutoModeIfNeeded
 
 ## Source
-`bypassPermissionsKillswitch.ts`
+`bypassPermissionsKillswitch`

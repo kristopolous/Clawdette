@@ -15,4 +15,4 @@ Note: This is used to check git repo status synchronously
 - projectIsInGitRepo
 
 ## Source
-`versions.ts`
+`versions`

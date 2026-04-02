@@ -60,4 +60,4 @@ Check if the resolved path starts with the base path
 - installPluginFromMarketplace
 
 ## Source
-`pluginInstallationHelpers.ts`
+`pluginInstallationHelpers`

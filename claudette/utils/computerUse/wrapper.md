@@ -42,4 +42,4 @@ Safe: `binding` is only populated when `currentToolUseContext` is set.
 - getComputerUseMCPToolOverrides
 
 ## Source
-`wrapper.tsx`
+`wrapper`

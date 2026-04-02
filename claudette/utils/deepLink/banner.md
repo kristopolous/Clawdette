@@ -30,4 +30,4 @@ Provides utility functions: buildDeepLinkBanner, readLastFetchTime, mtimeOrUndef
 - readLastFetchTime
 
 ## Source
-`banner.ts`
+`banner`

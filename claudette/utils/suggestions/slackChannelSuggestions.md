@@ -51,4 +51,4 @@ Plain Map (not LRUCache) — findReusableCacheEntry needs to iterate all
 - clearSlackChannelCache
 
 ## Source
-`slackChannelSuggestions.ts`
+`slackChannelSuggestions`

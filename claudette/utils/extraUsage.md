@@ -15,4 +15,4 @@ Provides utility functions: isBilledAsExtraUsage.
 - isBilledAsExtraUsage
 
 ## Source
-`extraUsage.ts`
+`extraUsage`

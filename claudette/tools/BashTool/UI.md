@@ -1,4 +1,4 @@
-# BashTool/UI.tsx
+# BashTool/UI
 
 ## Purpose
 

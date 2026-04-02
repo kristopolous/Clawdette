@@ -14,7 +14,7 @@ Provides store for tracking "context left until autocompact" warning suppression
 3. Suppress immediately after compaction since token counts inaccurate until next API response
 4. `clearCompactWarningSuppression` - resets store to false at start of new compact attempt
 5. Uses createStore pattern for reactive state management
-6. React-free module (hook lives in compactWarningHook.ts)
+6. React-free module (hook lives in compactWarningHook)
 
 ## Exports
 - `compactWarningStore` - boolean store for suppression state

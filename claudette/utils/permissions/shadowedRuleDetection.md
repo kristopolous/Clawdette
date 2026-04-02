@@ -46,4 +46,4 @@ Only check allow rules that have specific content (e.g., "Bash(ls:*)")
 - detectUnreachableRules
 
 ## Source
-`shadowedRuleDetection.ts`
+`shadowedRuleDetection`

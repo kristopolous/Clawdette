@@ -26,4 +26,4 @@ Upper-bound how many NormalizedMessages a Message can produce.
 - renderMessagesToPlainText
 
 ## Source
-`exportRenderer.tsx`
+`exportRenderer`

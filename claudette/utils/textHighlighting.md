@@ -26,4 +26,4 @@ Two position systems: "visible" (what the user sees, excluding ANSI codes)
 - segmentTextByHighlights
 
 ## Source
-`textHighlighting.ts`
+`textHighlighting`

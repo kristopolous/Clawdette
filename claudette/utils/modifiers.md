@@ -23,4 +23,4 @@ Load module in background
 - isModifierPressed
 
 ## Source
-`modifiers.ts`
+`modifiers`

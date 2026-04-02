@@ -50,7 +50,7 @@ The module provides both sync (`bashCommandIsSafe_DEPRECATED`) and async (`bashC
 
 **Analytics:** Each check logs `tengu_bash_security_check_triggered` with a numeric `checkId` and optional `subId`.
 
-**Deprecation:** These functions are legacy; the primary path uses tree-sitter via `parseForSecurity` (`ast.ts`). However, they remain critical fallbacks and for components still on the sync path.
+**Deprecation:** These functions are legacy; the primary path uses tree-sitter via `parseForSecurity` (`ast`). However, they remain critical fallbacks and for components still on the sync path.
 
 ## Exports
 - `bashCommandIsSafeAsync_DEPRECATED` - async function `(command: string, onDivergence?: () => void) => Promise<PermissionResult>`

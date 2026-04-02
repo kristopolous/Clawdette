@@ -31,4 +31,4 @@ Provides utility functions: execSync_DEPRECATED, execSync_DEPRECATED, execSync_D
 - execSync_DEPRECATED
 
 ## Source
-`execSyncWrapper.ts`
+`execSyncWrapper`

@@ -1,4 +1,4 @@
-# TaskUpdateTool/constants.ts
+# TaskUpdateTool/constants
 
 ## Purpose
 

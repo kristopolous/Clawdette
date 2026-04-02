@@ -16,4 +16,4 @@ Ant-only tool names: conditional require so Bun can DCE these in external builds
 - isAutoModeAllowlistedTool
 
 ## Source
-`classifierDecision.ts`
+`classifierDecision`

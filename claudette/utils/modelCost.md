@@ -57,4 +57,4 @@
 - getModelPricingString
 
 ## Source
-`modelCost.ts`
+`modelCost`

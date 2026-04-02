@@ -113,4 +113,4 @@ Only OAuth users can have extra_usage_disabled; console users don't have this co
 - prefetchFastModeStatus
 
 ## Source
-`fastMode.ts`
+`fastMode`

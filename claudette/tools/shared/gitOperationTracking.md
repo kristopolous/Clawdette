@@ -1,4 +1,4 @@
-# shared/gitOperationTracking.ts
+# shared/gitOperationTracking
 
 ## Purpose
 

@@ -1,4 +1,4 @@
-# TeamDeleteTool/UI.tsx
+# TeamDeleteTool/UI
 
 ## Purpose
 

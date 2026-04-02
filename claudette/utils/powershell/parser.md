@@ -181,4 +181,4 @@
 - deriveSecurityFlags
 
 ## Source
-`parser.ts`
+`parser`

@@ -61,4 +61,4 @@
 - createInitialPersistentState
 
 ## Source
-`types.ts`
+`types`

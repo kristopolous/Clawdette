@@ -11,4 +11,4 @@ Interpreters
 - DANGEROUS_BASH_PATTERNS
 
 ## Source
-`dangerousPatterns.ts`
+`dangerousPatterns`

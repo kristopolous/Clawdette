@@ -21,4 +21,4 @@ A code is an "end code" if its code equals its endCode (e.g., hyperlink close)
 - sliceAnsi
 
 ## Source
-`sliceAnsi.ts`
+`sliceAnsi`

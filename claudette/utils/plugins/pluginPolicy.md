@@ -15,4 +15,4 @@ Provides utility functions: isPluginBlockedByPolicy.
 - isPluginBlockedByPolicy
 
 ## Source
-`pluginPolicy.ts`
+`pluginPolicy`

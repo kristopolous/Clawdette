@@ -1,7 +1,7 @@
 # mailbox
 
 ## Purpose
-Source file: mailbox.ts
+Source file: mailbox
 
 ## Imports
 - **Internal**: ./signal
@@ -12,4 +12,4 @@ Source file: mailbox.ts
 - Mailbox
 
 ## Source
-`mailbox.ts`
+`mailbox`

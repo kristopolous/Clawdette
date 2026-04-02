@@ -47,4 +47,4 @@ Start with --add-dir plugins (lowest priority)
 - installSelectedPlugins
 
 ## Source
-`pluginStartupCheck.ts`
+`pluginStartupCheck`

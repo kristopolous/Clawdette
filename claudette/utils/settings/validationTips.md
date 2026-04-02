@@ -29,4 +29,4 @@ v4 ZodIssueCode is a value, not a type - use typeof to get the type
 - getValidationTip
 
 ## Source
-`validationTips.ts`
+`validationTips`

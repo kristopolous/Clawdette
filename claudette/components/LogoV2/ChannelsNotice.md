@@ -9,7 +9,7 @@ Provides channels notice component for MCP channel availability notifications.
 - **Internal**: bootstrap state, ink, MCP channelAllowlist/channelNotification/config, auth, plugins installedPluginsManager, settings settings
 
 ## Logic
-1. Conditionally require()'d in LogoV2.tsx behind feature('KAIROS') || feature('KAIROS_CHANNELS')
+1. Conditionally require()'d in LogoV2 behind feature('KAIROS') || feature('KAIROS_CHANNELS')
 2. No feature() guard here - whole file tree-shakes via require pattern when both flags false
 3. Do NOT import this module statically from unguarded code
 4. `ChannelsNotice` - React component for channels notice

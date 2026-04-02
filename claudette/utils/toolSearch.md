@@ -97,4 +97,4 @@ Clamp to valid range
 - getDeferredToolsDelta
 
 ## Source
-`toolSearch.ts`
+`toolSearch`

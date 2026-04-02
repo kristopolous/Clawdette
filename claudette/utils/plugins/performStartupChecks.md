@@ -18,4 +18,4 @@ Check if the current directory has been trusted
 - performStartupChecks
 
 ## Source
-`performStartupChecks.tsx`
+`performStartupChecks`

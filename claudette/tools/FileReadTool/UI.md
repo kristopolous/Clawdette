@@ -1,4 +1,4 @@
-# FileReadTool/UI.tsx
+# FileReadTool/UI
 
 ## Purpose
 

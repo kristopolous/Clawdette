@@ -16,4 +16,4 @@ Provides utility functions: getAgentDescriptionsTotalTokens.
 - getAgentDescriptionsTotalTokens
 
 ## Source
-`statusNoticeHelpers.ts`
+`statusNoticeHelpers`

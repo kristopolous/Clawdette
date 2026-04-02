@@ -30,4 +30,4 @@ Track whether the first pane has been used for external swarm session
 - TmuxBackend
 
 ## Source
-`TmuxBackend.ts`
+`TmuxBackend`

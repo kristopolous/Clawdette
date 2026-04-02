@@ -15,4 +15,4 @@ Provides utility functions: initSinks.
 - initSinks
 
 ## Source
-`sinks.ts`
+`sinks`

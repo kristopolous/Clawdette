@@ -39,4 +39,4 @@ Direct user input path (set when called from onSubmit, absent for queue processo
 - handlePromptSubmit
 
 ## Source
-`handlePromptSubmit.ts`
+`handlePromptSubmit`

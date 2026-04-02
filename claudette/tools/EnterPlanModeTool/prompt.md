@@ -1,4 +1,4 @@
-# EnterPlanModeTool/prompt.ts
+# EnterPlanModeTool/prompt
 
 ## Purpose
 
@@ -6,7 +6,6 @@ Exports a function `getEnterPlanModeToolPrompt()` that returns the prompt/instru
 
 ## Imports
 
-- **Stdlib**: `process` (for environment variable)
 - **External**: None
 - **Internal**:
   - Utilities: `isPlanModeInterviewPhaseEnabled` (from planModeV2)

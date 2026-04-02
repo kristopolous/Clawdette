@@ -30,4 +30,4 @@ Provides utility functions: getDeprecatedModelInfo, getModelDeprecationWarning.
 - getModelDeprecationWarning
 
 ## Source
-`deprecation.ts`
+`deprecation`

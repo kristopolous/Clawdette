@@ -1,4 +1,4 @@
-# BashTool/sedEditParser.ts
+# BashTool/sedEditParser
 
 ## Purpose
 

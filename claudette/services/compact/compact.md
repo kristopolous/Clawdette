@@ -1,4 +1,4 @@
-# compact.ts
+# compact
 
 ## Purpose
 Handles conversation compaction (summarization) to manage context window size. Creates condensed versions of long conversations while preserving important context, file state, and tool information for continued interaction.

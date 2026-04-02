@@ -19,4 +19,4 @@ Ignore cleanup errors
 - copyAnsiToClipboard
 
 ## Source
-`screenshotClipboard.ts`
+`screenshotClipboard`

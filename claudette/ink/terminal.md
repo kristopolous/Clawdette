@@ -26,7 +26,7 @@ Provides terminal capability detection and writes optimized diff patches to term
 15. Checks WT_SESSION for Windows Terminal
 16. Checks VTE_VERSION >= 6800 for VTE-based terminals (GNOME Terminal, Tilix)
 17. `setXtversionName` - records XTVERSION response from terminal
-18. Called once from App.tsx when reply arrives on stdin
+18. Called once from App when reply arrives on stdin
 19. No-op if already set (defend against re-probe)
 20. `isXtermJs` - checks if running inxterm-based terminal
 21. Checks TERM_PROGRAM === 'vscode' or xtversionName?.startsWith(xterm')

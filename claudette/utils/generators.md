@@ -12,4 +12,4 @@ Run all generators concurrently up to a concurrency cap, yielding values as they
 - toArray
 
 ## Source
-`generators.ts`
+`generators`

@@ -12,4 +12,4 @@ These constants are in a separate file to avoid circular dependency issues.
 - TEAMMATE_MODES
 
 ## Source
-`configConstants.ts`
+`configConstants`

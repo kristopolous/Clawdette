@@ -38,4 +38,4 @@ Validate basic structure
 - formatInstallCount
 
 ## Source
-`installCounts.ts`
+`installCounts`

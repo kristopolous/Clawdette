@@ -26,4 +26,4 @@ Detailed profiling mode - same env var as startupProfiler
 - logHeadlessProfilerTurn
 
 ## Source
-`headlessProfiler.ts`
+`headlessProfiler`

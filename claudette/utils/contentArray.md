@@ -15,4 +15,4 @@ Find position after the last tool_result block
 - insertBlockAfterToolResults
 
 ## Source
-`contentArray.ts`
+`contentArray`

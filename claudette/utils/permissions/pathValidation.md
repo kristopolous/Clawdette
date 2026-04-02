@@ -56,4 +56,4 @@ Get everything before the first glob character
 - validatePath
 
 ## Source
-`pathValidation.ts`
+`pathValidation`

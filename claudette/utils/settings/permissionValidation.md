@@ -26,4 +26,4 @@ Check if the opening paren is unescaped
 - PermissionRuleSchema
 
 ## Source
-`permissionValidation.ts`
+`permissionValidation`

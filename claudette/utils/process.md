@@ -37,4 +37,4 @@ Prevents memory leak when pipe is broken (e.g., `claude -p | head -1`)
 - peekForStdinData
 
 ## Source
-`process.ts`
+`process`

@@ -56,4 +56,4 @@ Wait for any existing lock to be released
 - isDateBefore
 
 ## Source
-`statsCache.ts`
+`statsCache`

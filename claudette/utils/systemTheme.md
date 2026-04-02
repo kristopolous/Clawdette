@@ -43,4 +43,4 @@ ITU-R BT.709 relative luminance. Midpoint split: > 0.5 is light.
 - themeFromOscColor
 
 ## Source
-`systemTheme.ts`
+`systemTheme`

@@ -40,4 +40,4 @@ Delta batch of workflow state changes. Clients upsert by
 - emitTaskTerminatedSdk
 
 ## Source
-`sdkEventQueue.ts`
+`sdkEventQueue`

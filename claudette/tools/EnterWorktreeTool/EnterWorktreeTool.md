@@ -1,7 +1,11 @@
+# EnterWorktreeTool/EnterWorktreeTool
+
 ## Purpose
+
 Tool for creating an isolated git worktree and switching the current session into it, enabling focused work on a specific task or plan.
 
 ## Imports
+
 - **External**: `zod/v4`
 - **Internal**: 
   - State: `getSessionId`, `setOriginalCwd`
@@ -13,6 +17,7 @@ Tool for creating an isolated git worktree and switching the current session int
   - Local: `ENTER_WORKTREE_TOOL_NAME`, `getEnterWorktreeToolPrompt`, `renderToolResultMessage`, `renderToolUseMessage`
 
 ## Logic
+
 1. Validates not already in a worktree session (created by this session)
 2. Resolves to main repository root if called from within a worktree (ensures worktree is based on main repo)
 3. Changes CWD to main repo root temporarily for worktree creation
@@ -26,5 +31,6 @@ Tool for creating an isolated git worktree and switching the current session int
 11. Returns worktree path, branch, and message
 
 ## Exports
-- `EnterWorktreeTool` - Main tool definition
-- `Output` - Type (worktreePath, worktreeBranch?, message)
+
+- `EnterWorktreeTool: Tool<InputSchema, Output>`
+- `Output: z.infer<OutputSchema>`

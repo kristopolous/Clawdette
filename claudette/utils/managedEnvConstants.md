@@ -17,4 +17,4 @@ The flag itself — settings can't unset it once the host set it
 - SAFE_ENV_VARS
 
 ## Source
-`managedEnvConstants.ts`
+`managedEnvConstants`

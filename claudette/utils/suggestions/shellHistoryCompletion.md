@@ -30,4 +30,4 @@ Cache for shell history commands to avoid repeated async reads
 - getShellHistoryCompletion
 
 ## Source
-`shellHistoryCompletion.ts`
+`shellHistoryCompletion`

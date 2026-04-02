@@ -31,4 +31,4 @@ Capture CCD spawn-env keys before any settings.env is applied (once).
 - applyConfigEnvironmentVariables
 
 ## Source
-`managedEnv.ts`
+`managedEnv`

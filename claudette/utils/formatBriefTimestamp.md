@@ -21,4 +21,4 @@ Strip codeset (.UTF-8) and modifier (@euro), replace _ with -
 - formatBriefTimestamp
 
 ## Source
-`formatBriefTimestamp.ts`
+`formatBriefTimestamp`

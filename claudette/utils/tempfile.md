@@ -15,4 +15,4 @@ Provides utility functions: generateTempFilePath.
 - generateTempFilePath
 
 ## Source
-`tempfile.ts`
+`tempfile`

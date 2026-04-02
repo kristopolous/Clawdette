@@ -81,4 +81,4 @@ Ensure backends are registered before detection
 - resetBackendDetection
 
 ## Source
-`registry.ts`
+`registry`

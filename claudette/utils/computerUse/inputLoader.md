@@ -15,4 +15,4 @@ eslint-disable-next-line @typescript-eslint/no-require-imports
 - requireComputerUseInput
 
 ## Source
-`inputLoader.ts`
+`inputLoader`

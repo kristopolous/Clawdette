@@ -20,4 +20,4 @@ Use first 8 chars of session UUID for uniqueness while keeping name short
 - getTerminalPanel
 
 ## Source
-`terminalPanel.ts`
+`terminalPanel`

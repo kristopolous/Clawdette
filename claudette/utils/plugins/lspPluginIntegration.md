@@ -38,4 +38,4 @@ Resolve both paths to absolute paths
 - extractLspServersFromPlugins
 
 ## Source
-`lspPluginIntegration.ts`
+`lspPluginIntegration`

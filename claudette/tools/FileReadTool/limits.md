@@ -1,4 +1,4 @@
-# FileReadTool/limits.ts
+# FileReadTool/limits
 
 ## Purpose
 

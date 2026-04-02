@@ -19,4 +19,4 @@ UUID format: 8-4-4-4-12 hex digits
 - createAgentId
 
 ## Source
-`uuid.ts`
+`uuid`

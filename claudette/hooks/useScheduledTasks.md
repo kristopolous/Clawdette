@@ -32,7 +32,7 @@ Initializes and manages the cron scheduler for scheduled tasks (e.g., `/schedule
     - `isLoading`: () from ref (captures current session load state)
     - `assistantMode`, `getJitterConfig`, `isKilled` (re-checks feature flag)
   - `scheduler.start()`; cleanup stops scheduler
-- The scheduler core lives in `cronScheduler.ts` (shared with headless modes)
+- The scheduler core lives in `cronScheduler` (shared with headless modes)
 
 ## Exports
 - `useScheduledTasks` - Hook `(props: { isLoading: boolean, assistantMode?: boolean, setMessages: React.Dispatch<React.SetStateAction<Message[]>> }) => void`

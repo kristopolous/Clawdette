@@ -37,4 +37,4 @@ Map risk levels to numeric values for analytics
 - generatePermissionExplanation
 
 ## Source
-`permissionExplainer.ts`
+`permissionExplainer`

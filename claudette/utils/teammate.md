@@ -9,7 +9,7 @@ Provides teammate utilities for agent swarm coordination.
 - **Internal**: state AppState, envUtils, teammateContext
 
 ## Logic
-1. Re-exports in-process teammate utilities from teammateContext.ts
+1. Re-exports in-process teammate utilities from teammateContext
 2. `createTeammateContext`, `getTeammateContext`, `isInProcessTeammate`, `runWithTeammateContext`, `TeammateContext` - teammate context functions/types
 3. `getParentSessionId` - gets parent session ID for teammate
 4. For in-process teammates: team lead's session ID

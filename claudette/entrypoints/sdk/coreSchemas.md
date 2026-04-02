@@ -16,7 +16,7 @@ Zod schemas for serializable SDK data types, serving as single source of truth f
 5. `SdkBetaSchema` - literal: context-1m-2025-08-07
 6. `ThinkingAdaptiveSchema` - adaptive thinking type (Opus 4.6+)
 7. `ThinkingEnabledSchema` - explicitly enabled thinking with tokens budget
-8. Types generated via scripts/generate-sdk-types.ts
+8. Types generated via scripts/generate-sdk-types
 9. lazySchema prevents circular dependency issues
 
 ## Exports

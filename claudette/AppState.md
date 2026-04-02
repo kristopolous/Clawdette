@@ -10,7 +10,7 @@ React context provider and re-exports for application state management, providin
 
 ## AppState Type
 
-Application state is defined in `AppStateStore.ts` as a DeepImmutable type with the following sections:
+Application state is defined in `AppStateStore` as a DeepImmutable type with the following sections:
 
 ### Settings & Display
 - `settings: SettingsJson` - User settings

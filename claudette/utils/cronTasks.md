@@ -75,4 +75,4 @@ Scheduled prompts, stored in <project>/claude/scheduled_taskson.
 - findMissedTasks
 
 ## Source
-`cronTasks.ts`
+`cronTasks`

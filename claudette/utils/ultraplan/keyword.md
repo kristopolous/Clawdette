@@ -37,4 +37,4 @@ Provides utility functions: findKeywordTriggerPositions, findUltraplanTriggerPos
 - replaceUltraplanKeyword
 
 ## Source
-`keyword.ts`
+`keyword`

@@ -43,4 +43,4 @@ Handle compact boundary messages
 - toSDKRateLimitInfo
 
 ## Source
-`mappers.ts`
+`mappers`

@@ -23,4 +23,4 @@ Shows low-priority batched notifications when in-process teammates (swarm agents
 - Skips in remote mode
 
 ## Exports
-- `useTeammateLifecycleNotification` - Hook with no parameters (note: exported function name; file is src/hooks/notifs/useTeammateShutdownNotification.ts)
+- `useTeammateLifecycleNotification` - Hook with no parameters (note: exported function name; file is src/hooks/notifs/useTeammateShutdownNotification)

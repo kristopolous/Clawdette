@@ -1,4 +1,4 @@
-# BriefTool/prompt.ts
+# BriefTool/prompt
 
 ## Purpose
 

@@ -43,4 +43,4 @@ Provides utility functions: registerLeaderToolUseConfirmQueue, getLeaderToolUseC
 - unregisterLeaderSetToolPermissionContext
 
 ## Source
-`leaderPermissionBridge.ts`
+`leaderPermissionBridge`

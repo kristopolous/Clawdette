@@ -1,4 +1,4 @@
-# BashTool/shouldUseSandbox.ts
+# BashTool/shouldUseSandbox
 
 ## Purpose
 

@@ -41,4 +41,4 @@ Check if the executable is within a mise installs directory
 - getPackageManager
 
 ## Source
-`packageManagers.ts`
+`packageManagers`

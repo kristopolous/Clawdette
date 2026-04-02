@@ -24,4 +24,4 @@ Document extensions that are handled specially
 - isPDFExtension
 
 ## Source
-`pdfUtils.ts`
+`pdfUtils`

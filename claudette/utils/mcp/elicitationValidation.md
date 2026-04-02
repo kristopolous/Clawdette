@@ -64,4 +64,4 @@ No specific format validation
 - validateElicitationInputAsync
 
 ## Source
-`elicitationValidation.ts`
+`elicitationValidation`

@@ -1,4 +1,4 @@
-# TeamDeleteTool/constants.ts
+# TeamDeleteTool/constants
 
 ## Purpose
 

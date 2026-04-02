@@ -19,4 +19,4 @@ Anthropic auth — claude re-reads these per-request, subprocesses don't need th
 - subprocessEnv
 
 ## Source
-`subprocessEnv.ts`
+`subprocessEnv`

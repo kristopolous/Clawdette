@@ -1,8 +1,8 @@
-# BashTool/toolName.ts
+# BashTool/toolName
 
 ## Purpose
 
-Exports a single constant defining the canonical tool name for the BashTool. Exists in its own file to break circular dependencies, particularly from `prompt.ts`.
+Exports a single constant defining the canonical tool name for the BashTool. Exists in its own file to break circular dependencies, particularly from `prompt`.
 
 ## Imports
 

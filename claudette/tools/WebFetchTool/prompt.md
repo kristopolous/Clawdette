@@ -1,4 +1,4 @@
-# WebFetchTool/prompt.ts
+# WebFetchTool/prompt
 
 ## Purpose
 

@@ -46,4 +46,4 @@ Model sends LF; files may be CRLF. Count newlines to size the overlap for
 - readCapped
 
 ## Source
-`readEditContext.ts`
+`readEditContext`

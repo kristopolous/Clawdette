@@ -23,4 +23,4 @@ Stash sandboxTmpDir for getEnvironmentOverrides (mirrors bashProvider)
 - createPowerShellProvider
 
 ## Source
-`powershellProvider.ts`
+`powershellProvider`

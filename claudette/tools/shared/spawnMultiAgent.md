@@ -1,4 +1,4 @@
-# shared/spawnMultiAgent.ts
+# shared/spawnMultiAgent
 
 ## Purpose
 

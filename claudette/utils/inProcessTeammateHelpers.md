@@ -30,4 +30,4 @@
 - isPermissionRelatedResponse
 
 ## Source
-`inProcessTeammateHelpers.ts`
+`inProcessTeammateHelpers`

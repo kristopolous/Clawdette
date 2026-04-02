@@ -23,4 +23,4 @@ Checks both the cached isAutoModeAvailable (set at startup by
 - cyclePermissionMode
 
 ## Source
-`getNextPermissionMode.ts`
+`getNextPermissionMode`

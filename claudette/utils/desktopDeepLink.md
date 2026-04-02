@@ -39,4 +39,4 @@ Local builds from build directories are dev mode even with NODE_ENV=production
 - openCurrentSessionInDesktop
 
 ## Source
-`desktopDeepLink.ts`
+`desktopDeepLink`

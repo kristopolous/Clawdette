@@ -15,4 +15,4 @@ Provides utility functions: normalizeControlMessageKeys.
 - normalizeControlMessageKeys
 
 ## Source
-`controlMessageCompat.ts`
+`controlMessageCompat`

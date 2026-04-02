@@ -60,4 +60,4 @@ CCR external_metadata keys — push in onChangeAppState, restore in
 - notifyPermissionModeChanged
 
 ## Source
-`sessionState.ts`
+`sessionState`

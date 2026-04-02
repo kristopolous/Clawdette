@@ -15,4 +15,4 @@ If in a team (swarm), don't return standalone name
 - getStandaloneAgentName
 
 ## Source
-`standaloneAgent.ts`
+`standaloneAgent`

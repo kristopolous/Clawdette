@@ -28,4 +28,4 @@ Provides utility functions: getTeammateContext, isInProcessTeammate, createTeamm
 - createTeammateContext
 
 ## Source
-`teammateContext.ts`
+`teammateContext`

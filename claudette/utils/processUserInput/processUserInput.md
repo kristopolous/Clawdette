@@ -33,4 +33,4 @@ Output text for non-interactive mode (e.g., forked commands)
 - processUserInput
 
 ## Source
-`processUserInput.ts`
+`processUserInput`

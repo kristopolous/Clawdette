@@ -36,4 +36,4 @@
 - resolveAntModel
 
 ## Source
-`antModels.ts`
+`antModels`

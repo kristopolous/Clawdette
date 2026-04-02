@@ -1,7 +1,7 @@
 # semanticNumber
 
 ## Purpose
-Source file: semanticNumber.ts
+Source file: semanticNumber
 
 ## Imports
 - **Stdlib**: zod/v4
@@ -10,4 +10,4 @@ Source file: semanticNumber.ts
 - semanticNumber
 
 ## Source
-`semanticNumber.ts`
+`semanticNumber`

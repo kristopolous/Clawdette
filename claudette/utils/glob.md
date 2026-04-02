@@ -20,4 +20,4 @@ Find the first glob special character: *, ?, [, {
 - glob
 
 ## Source
-`glob.ts`
+`glob`

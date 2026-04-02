@@ -38,4 +38,4 @@ Import as module object so spyOn works in tests (direct imports bypass spies)
 - resetHooksConfigSnapshot
 
 ## Source
-`hooksConfigSnapshot.ts`
+`hooksConfigSnapshot`

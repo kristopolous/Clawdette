@@ -15,4 +15,4 @@
 - getHardcodedTeammateModelFallback
 
 ## Source
-`teammateModel.ts`
+`teammateModel`

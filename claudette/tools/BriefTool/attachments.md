@@ -1,4 +1,4 @@
-# BriefTool/attachments.ts
+# BriefTool/attachments
 
 ## Purpose
 

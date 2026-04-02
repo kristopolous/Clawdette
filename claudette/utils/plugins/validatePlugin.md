@@ -61,4 +61,4 @@ Check filename patterns
 - validateManifest
 
 ## Source
-`validatePlugin.ts`
+`validatePlugin`

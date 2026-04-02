@@ -12,7 +12,7 @@ Main entry point for analytics events with sink-based routing to Datadog and 1P 
 1. `AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS` - marker type for verified safe metadata
 2. `AnalyticsMetadata_I_VERIFIED_THIS_IS_PII_TAGGED` - marker type for PII-tagged values routed to proto columns
 3. `stripProtoFields` - removes _PROTO_* keys from payload for general-access storage
-4. Used by sink.ts (before Datadog fanout) and firstPartyEventLoggingExporter (defensive strip)
+4. Used by sink (before Datadog fanout) and firstPartyEventLoggingExporter (defensive strip)
 5. `AnalyticsSink` interface with logEvent and logEventAsync methods
 6. Event queue for events logged before sink is attached
 7. `attachAnalyticsSink` - attaches sink during app initialization

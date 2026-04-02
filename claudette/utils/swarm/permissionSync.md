@@ -117,4 +117,4 @@ Create a directory-level lock file for atomic writes
 - sendSandboxPermissionResponseViaMailbox
 
 ## Source
-`permissionSync.ts`
+`permissionSync`

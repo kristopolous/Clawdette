@@ -24,4 +24,4 @@ Positive ternary pattern — see docs/feature-gating.md.
 - isVoiceModeEnabled
 
 ## Source
-`voiceModeEnabled.ts`
+`voiceModeEnabled`

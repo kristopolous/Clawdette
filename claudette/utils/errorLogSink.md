@@ -56,4 +56,4 @@ Buffered writers for JSONL log files, keyed by path
 - initializeErrorLogSink
 
 ## Source
-`errorLogSink.ts`
+`errorLogSink`

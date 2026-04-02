@@ -21,4 +21,4 @@ OSC 8 hyperlink escape sequences
 - createHyperlink
 
 ## Source
-`hyperlink.ts`
+`hyperlink`

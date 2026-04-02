@@ -19,7 +19,7 @@ When CLAUDE_CODE_SHELL_PREFIX is set, the wrapper may use a different shell
 - createBashShellProvider
 
 ## Source
-`bashProvider.ts`
+`bashProvider`
 
 ### Helpful Prompt Templates
 

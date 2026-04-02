@@ -16,4 +16,4 @@ Only validate Claude settings files
 - validateInputForSettingsFileEdit
 
 ## Source
-`validateEditTool.ts`
+`validateEditTool`

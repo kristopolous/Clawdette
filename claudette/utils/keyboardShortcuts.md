@@ -16,4 +16,4 @@ Special characters that macOS Option+key produces, mapped to their
 - isMacosOptionChar
 
 ## Source
-`keyboardShortcuts.ts`
+`keyboardShortcuts`

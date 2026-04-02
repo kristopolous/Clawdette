@@ -30,4 +30,4 @@ Cache the set of tool names that support grouped rendering, keyed by the
 - applyGrouping
 
 ## Source
-`groupToolUses.ts`
+`groupToolUses`

@@ -36,4 +36,4 @@ Provides utility functions: fetchEnvironments, createDefaultCloudEnvironment.
 - createDefaultCloudEnvironment
 
 ## Source
-`environments.ts`
+`environments`

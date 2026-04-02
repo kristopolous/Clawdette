@@ -145,4 +145,4 @@ Global state for the Perfetto tracer
 - evictOldestEventsForTesting
 
 ## Source
-`perfettoTracing.ts`
+`perfettoTracing`

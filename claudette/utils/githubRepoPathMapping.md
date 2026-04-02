@@ -32,4 +32,4 @@ Use the git root as the canonical path for this repo clone.
 - removePathFromRepo
 
 ## Source
-`githubRepoPathMapping.ts`
+`githubRepoPathMapping`

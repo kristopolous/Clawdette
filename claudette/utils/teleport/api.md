@@ -95,4 +95,4 @@ Retry configuration for teleport API requests
 - updateSessionTitle
 
 ## Source
-`api.ts`
+`api`

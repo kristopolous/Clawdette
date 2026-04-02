@@ -35,4 +35,4 @@
 - syncMarketplacesToZipCache
 
 ## Source
-`zipCacheAdapters.ts`
+`zipCacheAdapters`

@@ -110,4 +110,4 @@ Monotonically-increasing counter incremented on every snapshot, even when
 - copyFileHistoryForResume
 
 ## Source
-`fileHistory.ts`
+`fileHistory`

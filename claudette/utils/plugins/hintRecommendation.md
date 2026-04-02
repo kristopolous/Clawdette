@@ -35,4 +35,4 @@ Bound repeat lookups on the same slug — a CLI that emits on every
 - disableHintRecommendations
 
 ## Source
-`hintRecommendation.ts`
+`hintRecommendation`

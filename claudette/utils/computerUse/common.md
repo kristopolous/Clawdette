@@ -22,4 +22,4 @@ Provides utility functions: getTerminalBundleId, isComputerUseMCPServer.
 - isComputerUseMCPServer
 
 ## Source
-`common.ts`
+`common`

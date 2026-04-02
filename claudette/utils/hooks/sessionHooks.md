@@ -79,4 +79,4 @@ Remove the hook with matching ID from all matchers
 - clearSessionHooks
 
 ## Source
-`sessionHooks.ts`
+`sessionHooks`

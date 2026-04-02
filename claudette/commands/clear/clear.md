@@ -21,4 +21,4 @@ Clear conversation history and free up context, starting fresh.
 
 ## Exports
 - `call` - async LocalCommandCall function
-- `clear` - Command object (via index.ts lazy loader)
+- `clear` - Command object (via index lazy loader)

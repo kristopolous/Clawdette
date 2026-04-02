@@ -11,7 +11,7 @@ Provides width-aware truncation and wrapping utilities for terminal display.
 ## Logic
 1. `truncatePathMiddle` - truncates file path in middle to preserve directory context and filename
 2. Width-aware: uses stringWidth() for correct CJK/emoji measurement
-3. Example: "src/components/deeply/nested/folder/MyComponent.tsx" → "src/components/…/MyComponent.tsx"
+3. Example: "src/components/deeply/nested/folder/MyComponent" → "src/components/…/MyComponent"
 4. Handles edge cases: very small maxLength, filename alone too long
 5. `truncateToWidth` - truncates string to fit within max display width
 6. Splits on grapheme boundaries to avoid breaking emoji or surrogate pairs

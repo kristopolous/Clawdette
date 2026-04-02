@@ -1,4 +1,4 @@
-# ListMcpResourcesTool/UI.tsx
+# ListMcpResourcesTool/UI
 
 ## Purpose
 

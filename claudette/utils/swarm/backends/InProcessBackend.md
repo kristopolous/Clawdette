@@ -19,4 +19,4 @@ If spawn succeeded, start the agent execution loop
 - createInProcessBackend
 
 ## Source
-`InProcessBackend.ts`
+`InProcessBackend`

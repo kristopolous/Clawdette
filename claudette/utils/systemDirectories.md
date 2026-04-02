@@ -26,4 +26,4 @@ Default paths used by most platforms
 - getSystemDirectories
 
 ## Source
-`systemDirectories.ts`
+`systemDirectories`

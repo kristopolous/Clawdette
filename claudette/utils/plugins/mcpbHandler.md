@@ -90,4 +90,4 @@ Scrub ONLY keys we're writing in this call. Covers both directions
 - loadMcpbFile
 
 ## Source
-`mcpbHandler.ts`
+`mcpbHandler`

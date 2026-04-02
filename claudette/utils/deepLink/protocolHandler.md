@@ -23,4 +23,4 @@ biome-ignore lint/suspicious/noConsole: intentional error output
 - handleUrlSchemeLaunch
 
 ## Source
-`protocolHandler.ts`
+`protocolHandler`

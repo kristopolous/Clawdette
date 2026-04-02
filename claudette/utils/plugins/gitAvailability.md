@@ -24,4 +24,4 @@ Provides utility functions: isCommandAvailable, markGitUnavailable, clearGitAvai
 - clearGitAvailabilityCache
 
 ## Source
-`gitAvailability.ts`
+`gitAvailability`

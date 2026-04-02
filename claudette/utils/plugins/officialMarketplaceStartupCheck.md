@@ -35,4 +35,4 @@ If never attempted, should try
 - checkAndInstallOfficialMarketplace
 
 ## Source
-`officialMarketplaceStartupCheck.ts`
+`officialMarketplaceStartupCheck`

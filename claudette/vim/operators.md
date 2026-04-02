@@ -79,4 +79,4 @@ Calculate logical line by counting newlines before cursor offset
 - executeOperatorGg
 
 ## Source
-`operators.ts`
+`operators`

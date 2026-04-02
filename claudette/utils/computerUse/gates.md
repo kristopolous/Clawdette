@@ -33,4 +33,4 @@ Spread over defaults so a partial JSON ({"enabled": true} alone) inherits the
 - getChicagoCoordinateMode
 
 ## Source
-`gates.ts`
+`gates`

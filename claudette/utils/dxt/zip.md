@@ -41,4 +41,4 @@ Normalize the path to resolve any '.' segments
 - readAndUnzipFile
 
 ## Source
-`zip.ts`
+`zip`

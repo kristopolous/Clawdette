@@ -22,4 +22,4 @@ Session-scoped cache of rendered tool schemas. Tool schemas render at server
 - clearToolSchemaCache
 
 ## Source
-`toolSchemaCache.ts`
+`toolSchemaCache`

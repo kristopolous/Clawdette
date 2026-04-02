@@ -27,4 +27,4 @@ Provides utility functions: getSessionEnvVars, setSessionEnvVar, deleteSessionEn
 - clearSessionEnvVars
 
 ## Source
-`sessionEnvVars.ts`
+`sessionEnvVars`

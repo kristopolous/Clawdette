@@ -35,4 +35,4 @@ Module-level variable to hold the captured mode at startup
 - getTeammateModeFromSnapshot
 
 ## Source
-`teammateModeSnapshot.ts`
+`teammateModeSnapshot`

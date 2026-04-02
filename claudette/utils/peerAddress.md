@@ -15,4 +15,4 @@ Legacy: old-code UDS senders emit bare socket paths in from=; route them
 - parseAddress
 
 ## Source
-`peerAddress.ts`
+`peerAddress`

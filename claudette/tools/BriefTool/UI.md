@@ -1,4 +1,4 @@
-# BriefTool/UI.tsx
+# BriefTool/UI
 
 ## Purpose
 

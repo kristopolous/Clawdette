@@ -26,4 +26,4 @@ Iteratively sanitize until no more changes occur or max iterations reached
 - recursivelySanitizeUnicode
 
 ## Source
-`sanitization.ts`
+`sanitization`

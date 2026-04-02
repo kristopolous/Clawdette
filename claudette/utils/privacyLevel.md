@@ -30,4 +30,4 @@ Provides utility functions: getPrivacyLevel, isEssentialTrafficOnly, isTelemetry
 - getEssentialTrafficOnlyReason
 
 ## Source
-`privacyLevel.ts`
+`privacyLevel`

@@ -60,4 +60,4 @@ Restore file history state
 - processResumedConversation
 
 ## Source
-`sessionRestore.ts`
+`sessionRestore`

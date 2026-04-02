@@ -1,7 +1,11 @@
+# ExitWorktreeTool/ExitWorktreeTool.ts
+
 ## Purpose
+
 Tool for exiting a worktree session created by EnterWorktree, with options to either preserve or delete the worktree and its branch.
 
 ## Imports
+
 - **External**: `zod/v4`
 - **Internal**: 
   - State: `getOriginalCwd`, `getProjectRoot`, `setOriginalCwd`, `setProjectRoot`
@@ -13,6 +17,7 @@ Tool for exiting a worktree session created by EnterWorktree, with options to ei
   - Local: `EXIT_WORKTREE_TOOL_NAME`, `getExitWorktreeToolPrompt`, `renderToolResultMessage`, `renderToolUseMessage`
 
 ## Logic
+
 1. Validates an EnterWorktree session is active (getCurrentWorktreeSession() non-null)
 2. For action='remove' without discard_changes: counts uncommitted files and commits ahead of original base; rejects if any exist
 3. countWorktreeChanges uses git status and rev-list; returns null on failure (treated as unsafe)
@@ -32,5 +37,6 @@ Tool for exiting a worktree session created by EnterWorktree, with options to ei
 7. restoreSessionToOriginalCwd handles state reset: CWD, originalCwd, projectRoot (if it was the worktree), worktree state, caches
 
 ## Exports
-- `ExitWorktreeTool` - Main tool definition
-- `Output` - Type (action, originalCwd, worktreePath, worktreeBranch?, tmuxSessionName?, discardedFiles?, discardedCommits?, message)
+
+- `ExitWorktreeTool: Tool<InputSchema, Output>`
+- `Output: z.infer<OutputSchema>`

@@ -1,4 +1,4 @@
-# EnterPlanModeTool/UI.tsx
+# EnterPlanModeTool/UI
 
 ## Purpose
 

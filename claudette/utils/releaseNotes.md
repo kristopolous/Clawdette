@@ -14,7 +14,7 @@ Provides release notes fetching and caching utilities.
 3. `RAW_CHANGELOG_URL` - raw changelog URL
 4. `getChangelogCachePath` - gets ~/.claude/cache/changelog.md path
 5. `changelogMemoryCache` - in-memory cache populated by async reads
-6. Sync callers (React render, sync helpers) read from this cache after setup.ts awaits checkForReleaseNotes()
+6. Sync callers (React render, sync helpers) read from this cache after setup awaits checkForReleaseNotes()
 7. `_resetChangelogCacheForTesting` - resets cache for testing
 8. `migrateChangelogFromConfig` - migrates from old config-based storage to file-based
 9. Called once at startup before any other config saves

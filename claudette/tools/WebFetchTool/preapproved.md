@@ -1,4 +1,4 @@
-# WebFetchTool/preapproved.ts
+# WebFetchTool/preapproved
 
 ## Purpose
 

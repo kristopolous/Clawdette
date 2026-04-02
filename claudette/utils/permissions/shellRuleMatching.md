@@ -39,4 +39,4 @@ Null-byte sentinel placeholders for wildcard pattern escaping — module-level
 - suggestionForPrefix
 
 ## Source
-`shellRuleMatching.ts`
+`shellRuleMatching`

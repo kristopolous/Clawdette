@@ -17,4 +17,4 @@ Emit user_prompt OTEL event for both string (CLI) and array (SDK/VS Code)
 - processTextPrompt
 
 ## Source
-`processTextPrompt.ts`
+`processTextPrompt`

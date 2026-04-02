@@ -48,4 +48,4 @@ On Windows, convert backslashes to forward slashes for consistent path matching
 - getDoctorDiagnostic
 
 ## Source
-`doctorDiagnostic.ts`
+`doctorDiagnostic`

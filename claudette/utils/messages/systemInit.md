@@ -27,4 +27,4 @@ TODO(next-minor): remove this translation once SDK consumers have migrated
 - buildSystemInitMessage
 
 ## Source
-`systemInit.ts`
+`systemInit`

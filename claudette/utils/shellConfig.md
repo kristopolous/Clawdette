@@ -43,4 +43,4 @@ Check if this is a claude alias
 - findValidClaudeAlias
 
 ## Source
-`shellConfig.ts`
+`shellConfig`

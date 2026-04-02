@@ -38,4 +38,4 @@ Note: NODE_EXTRA_CA_CERTS is automatically handled byNode at runtime
 - configureGlobalMTLS
 
 ## Source
-`mtls.ts`
+`mtls`

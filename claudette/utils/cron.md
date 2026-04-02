@@ -39,4 +39,4 @@ Minimal cron expression parsing and next-run calculation.
 - cronToHuman
 
 ## Source
-`cron.ts`
+`cron`

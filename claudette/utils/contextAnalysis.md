@@ -29,4 +29,4 @@ Not sure if this path is still used, but adding as a fallback
 - tokenStatsToStatsigMetrics
 
 ## Source
-`contextAnalysis.ts`
+`contextAnalysis`

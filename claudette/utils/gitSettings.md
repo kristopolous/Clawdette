@@ -15,4 +15,4 @@ Git-related behaviors that depend on user settings.
 - shouldIncludeGitInstructions
 
 ## Source
-`gitSettings.ts`
+`gitSettings`

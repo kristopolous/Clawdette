@@ -27,4 +27,4 @@ Servers with instructions to announce (either channel). A server can
 - getMcpInstructionsDelta
 
 ## Source
-`mcpInstructionsDelta.ts`
+`mcpInstructionsDelta`

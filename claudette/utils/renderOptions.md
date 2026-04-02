@@ -19,4 +19,4 @@ Cached stdin override - computed once per process
 - getBaseRenderOptions
 
 ## Source
-`renderOptions.ts`
+`renderOptions`

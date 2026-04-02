@@ -16,4 +16,4 @@ For agents, convert Stop hooks to SubagentStop since that's what fires when an a
 - registerFrontmatterHooks
 
 ## Source
-`registerFrontmatterHooks.ts`
+`registerFrontmatterHooks`

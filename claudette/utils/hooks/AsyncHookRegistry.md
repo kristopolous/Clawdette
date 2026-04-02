@@ -42,4 +42,4 @@ Global registry state
 - clearAllAsyncHooks
 
 ## Source
-`AsyncHookRegistry.ts`
+`AsyncHookRegistry`

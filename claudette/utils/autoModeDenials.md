@@ -17,8 +17,8 @@ Tracks commands recently denied by the auto mode classifier.
 6. Feature-gated with TRANSCRIPT_CLASSIFIER
 7. Trims array to MAX_DENIALS after adding
 8. `getAutoModeDenials` - returns current denials array
-9. Populated from useCanUseTool.ts
-10. Read from RecentDenialsTab.tsx in /permissions UI
+9. Populated from useCanUseTool
+10. Read from RecentDenialsTab in /permissions UI
 
 ## Exports
 - `AutoModeDenial` - denial record type

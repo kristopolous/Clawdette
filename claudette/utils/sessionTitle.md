@@ -20,4 +20,4 @@ Reflect the actual session mode — this module is called from
 - generateSessionTitle
 
 ## Source
-`sessionTitle.ts`
+`sessionTitle`

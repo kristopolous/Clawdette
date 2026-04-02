@@ -9,8 +9,8 @@ Provides shared helpers for building API cache-key prefix for query() calls.
 - **Internal**: commands, constants prompts, context, services mcp types, state AppStateStore, Tool, AgentTool loadAgentsDir, message types, abortController, fileStateCache, forkedAgent, model model, systemPromptType, thinking
 
 ## Logic
-1. Lives in separate file to avoid import cycles (imports from context.ts, constants/prompts.ts)
-2. Only entrypoint-layer files import from here (QueryEngine.ts, cli/print.ts)
+1. Lives in separate file to avoid import cycles (imports from context, constants/prompts)
+2. Only entrypoint-layer files import from here (QueryEngine, cli/print)
 3. `fetchSystemPromptParts` - fetches systemPrompt, userContext, systemContext
 4. When customSystemPrompt set, default getSystemPrompt and getSystemContext skipped
 5. Custom prompt replaces default entirely, systemContext would be appended to unused default

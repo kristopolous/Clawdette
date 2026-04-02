@@ -1,7 +1,7 @@
 # dialogLaunchers
 
 ## Purpose
-Provides thin launchers for one-off dialog JSX components, extracting dialog rendering from main.tsx.
+Provides thin launchers for one-off dialog JSX components, extracting dialog rendering from main.
 
 ## Imports
 - **Stdlib**: (none)

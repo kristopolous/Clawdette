@@ -40,4 +40,4 @@ eslint-disable-next-line custom-rules/no-process-env-top-level
 - resetDetectionCache
 
 ## Source
-`detection.ts`
+`detection`

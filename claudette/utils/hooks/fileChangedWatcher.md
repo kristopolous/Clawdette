@@ -47,4 +47,4 @@ Matcher field: filenames to watch in cwd, pipe-separated (e.g. ".envrc|.env")
 - resetFileChangedWatcherForTesting
 
 ## Source
-`fileChangedWatcher.ts`
+`fileChangedWatcher`

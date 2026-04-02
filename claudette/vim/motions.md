@@ -26,4 +26,4 @@ Provides utility functions: resolveMotion, applySingleMotion, isInclusiveMotion,
 - isLinewiseMotion
 
 ## Source
-`motions.ts`
+`motions`

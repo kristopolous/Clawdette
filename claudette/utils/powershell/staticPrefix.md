@@ -25,4 +25,4 @@ nameType === 'application' means the raw name had path chars (./x, x\y,
 - getCompoundCommandPrefixesStatic
 
 ## Source
-`staticPrefix.ts`
+`staticPrefix`

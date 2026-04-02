@@ -20,4 +20,4 @@ Check for JSONL file path before URL parsing, since Windows absolute
 - parseSessionIdentifier
 
 ## Source
-`sessionUrl.ts`
+`sessionUrl`

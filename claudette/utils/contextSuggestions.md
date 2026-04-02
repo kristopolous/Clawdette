@@ -41,4 +41,4 @@
 - generateContextSuggestions
 
 ## Source
-`contextSuggestions.ts`
+`contextSuggestions`

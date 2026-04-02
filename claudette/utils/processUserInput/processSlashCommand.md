@@ -50,4 +50,4 @@ Poll interval and deadline for MCP settle before launching a background
 - processPromptSlashCommand
 
 ## Source
-`processSlashCommand.tsx`
+`processSlashCommand`

@@ -1,7 +1,7 @@
 # orphanedPluginFilter
 
 ## Purpose
-Inlined from cacheUtils.ts to avoid a circular dep throughcommands.
+Inlined from cacheUtils to avoid a circular dep throughcommands.
 
 ## Imports
 - **Stdlib**: path
@@ -26,4 +26,4 @@ Inlined from cacheUtils.ts to avoid a circular dep throughcommands.
 - clearPluginCacheExclusions
 
 ## Source
-`orphanedPluginFilter.ts`
+`orphanedPluginFilter`

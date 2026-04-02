@@ -1,7 +1,7 @@
 # streamlinedTransform
 
 ## Purpose
-Use similar phrasing to collapseReadSearch.ts
+Use similar phrasing to collapseReadSearch
 
 ## Imports
 - **Stdlib**:src/entrypoints/agentSdkTypes,src/entrypoints/sdk/controlTypes,src/tools/FileEditTool/constants,src/tools/FileReadTool/prompt,src/tools/FileWriteTool/prompt,src/tools/GlobTool/prompt,src/tools/GrepTool/prompt,src/tools/ListMcpResourcesTool/prompt,src/tools/LSPTool/prompt,src/tools/NotebookEditTool/constants...
@@ -37,4 +37,4 @@ Use similar phrasing to collapseReadSearch.ts
 - shouldIncludeInStreamlined
 
 ## Source
-`streamlinedTransform.ts`
+`streamlinedTransform`

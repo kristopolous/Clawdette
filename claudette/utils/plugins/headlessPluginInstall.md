@@ -15,4 +15,4 @@ Register seed marketplaces (CLAUDE_CODE_PLUGIN_SEED_DIR) before diffing.
 - installPluginsForHeadless
 
 ## Source
-`headlessPluginInstall.ts`
+`headlessPluginInstall`

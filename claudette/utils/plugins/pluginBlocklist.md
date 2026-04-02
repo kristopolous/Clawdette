@@ -19,4 +19,4 @@ Read-only iteration — Safe variant so a corrupted config doesn't throw
 - detectAndUninstallDelistedPlugins
 
 ## Source
-`pluginBlocklist.ts`
+`pluginBlocklist`

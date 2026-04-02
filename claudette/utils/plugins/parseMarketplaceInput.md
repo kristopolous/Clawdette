@@ -16,4 +16,4 @@ Handle git SSH URLs with any valid username (not just 'git')
 - parseMarketplaceInput
 
 ## Source
-`parseMarketplaceInput.ts`
+`parseMarketplaceInput`

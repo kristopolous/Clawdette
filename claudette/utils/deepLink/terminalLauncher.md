@@ -63,4 +63,4 @@ macOS terminals in preference order.
 - launchInTerminal
 
 ## Source
-`terminalLauncher.ts`
+`terminalLauncher`

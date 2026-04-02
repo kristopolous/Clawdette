@@ -1,7 +1,7 @@
 # fpsTracker
 
 ## Purpose
-Source file: fpsTracker.ts
+Source file: fpsTracker
 
 ## Imports
 (none detected)
@@ -11,4 +11,4 @@ Source file: fpsTracker.ts
 - FpsTracker
 
 ## Source
-`fpsTracker.ts`
+`fpsTracker`

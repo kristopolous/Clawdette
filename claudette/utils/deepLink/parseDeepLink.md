@@ -27,4 +27,4 @@ Normalize: accept with or without the trailing colon in protocol
 - buildDeepLink
 
 ## Source
-`parseDeepLink.ts`
+`parseDeepLink`

@@ -40,4 +40,4 @@ Cache for email fetched asynchronously at startup
 - getGitEmail
 
 ## Source
-`user.ts`
+`user`

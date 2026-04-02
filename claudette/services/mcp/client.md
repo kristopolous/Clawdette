@@ -1,4 +1,4 @@
-# client.ts
+# client
 
 ## Purpose
 Manages MCP (Model Context Protocol) server connections, tool fetching, and tool execution. Handles multiple transport types (stdio, SSE, HTTP, WebSocket) and provides authentication, session management, and result processing.

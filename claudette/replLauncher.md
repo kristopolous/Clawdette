@@ -1,4 +1,4 @@
-# replLauncher.tsx
+# replLauncher
 
 ## Purpose
 Launches the REPL interface by dynamically importing App and REPL components and rendering them via the provided render function.

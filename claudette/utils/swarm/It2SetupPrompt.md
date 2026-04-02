@@ -52,4 +52,4 @@ eslint-disable-next-line custom-rules/prefer-use-keybindings -- enter to proceed
 - It2SetupPrompt
 
 ## Source
-`It2SetupPrompt.tsx`
+`It2SetupPrompt`

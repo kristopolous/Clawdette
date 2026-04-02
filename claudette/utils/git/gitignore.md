@@ -24,4 +24,4 @@ First check if the pattern is already ignored by any gitignore file (including g
 - addFileGlobRuleToGitignore
 
 ## Source
-`gitignore.ts`
+`gitignore`

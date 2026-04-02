@@ -213,4 +213,4 @@ Lock options: retry with backoff so concurrent callers (multiple Claudes
 - getLastPeerDmSummary
 
 ## Source
-`teammateMailbox.ts`
+`teammateMailbox`

@@ -25,4 +25,4 @@ Provides utility functions: addArgumentsToPrompt, createStructuredOutputTool, re
 - registerStructuredOutputEnforcement
 
 ## Source
-`hookHelpers.ts`
+`hookHelpers`

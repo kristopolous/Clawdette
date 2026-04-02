@@ -23,4 +23,4 @@ Check if this is a path from a different WSL distro
 - checkWSLDistroMatch
 
 ## Source
-`idePathConversion.ts`
+`idePathConversion`

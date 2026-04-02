@@ -42,4 +42,4 @@ Track color assignments for teammates (persisted per session)
 - sendCommandToPane
 
 ## Source
-`teammateLayoutManager.ts`
+`teammateLayoutManager`

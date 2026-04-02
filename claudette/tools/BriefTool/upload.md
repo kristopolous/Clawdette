@@ -1,4 +1,4 @@
-# BriefTool/upload.ts
+# BriefTool/upload
 
 ## Purpose
 

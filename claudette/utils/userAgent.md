@@ -15,4 +15,4 @@ Provides utility functions: getClaudeCodeUserAgent.
 - getClaudeCodeUserAgent
 
 ## Source
-`userAgent.ts`
+`userAgent`

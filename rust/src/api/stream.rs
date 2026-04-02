@@ -1,16 +1,15 @@
-use crate::api::AnthropicClient;
-use crate::types::{ContentBlock, Message, StreamEvent as AppStreamEvent, ToolRegistry, ToolResult, Usage};
+use crate::api::LlmClient;
+use crate::types::message::ContentBlock;
+use crate::types::{Message, StreamEvent as AppStreamEvent, ToolDefinition, ToolRegistry, ToolResult, Usage};
 use anyhow::Result;
-use futures::StreamExt;
-use reqwest_eventsource::Event;
-use std::collections::HashMap;
-use tracing::{debug, error, info, warn};
+use tokio_util::sync::CancellationToken;
+use tracing::{debug, info};
 
 pub struct QueryEngine {
     messages: Vec<Message>,
     tool_registry: ToolRegistry,
     system_prompt: String,
-    client: AnthropicClient,
+    client: LlmClient,
     total_usage: Usage,
     max_turns: usize,
 }
@@ -19,7 +18,7 @@ impl QueryEngine {
     pub fn new(
         tool_registry: ToolRegistry,
         system_prompt: String,
-        client: AnthropicClient,
+        client: LlmClient,
         max_turns: usize,
     ) -> Self {
         Self {
@@ -58,15 +57,13 @@ impl QueryEngine {
             let messages = self.messages.clone();
             let system = Some(self.system_prompt.clone());
 
-            // Use non-streaming for simplicity
             let (content_blocks, usage) = self
                 .client
-                .send_message(messages, system, tools, tokio_util::sync::CancellationToken::new())
+                .send_message(messages, system, tools, CancellationToken::new())
                 .await?;
 
             self.total_usage.accumulate(&usage);
 
-            // Parse content blocks into our message format
             let mut assistant_content: Vec<ContentBlock> = Vec::new();
             let mut tool_uses: Vec<(String, String, serde_json::Value)> = Vec::new();
 
@@ -90,17 +87,14 @@ impl QueryEngine {
                 }
             }
 
-            // Add assistant message
             self.messages.push(Message::Assistant {
                 content: assistant_content,
             });
 
-            // If no tool uses, we're done
             if tool_uses.is_empty() {
                 break;
             }
 
-            // Execute each tool use
             for (tool_id, tool_name, tool_input) in tool_uses {
                 info!("Executing tool: {tool_name}");
                 on_event(AppStreamEvent::ToolUseEnd {
@@ -131,7 +125,7 @@ impl QueryEngine {
     async fn execute_tool(&self, tool_name: &str, input: serde_json::Value) -> ToolResult {
         let ctx = crate::types::ToolUseContext {
             cwd: std::env::current_dir().unwrap_or_default(),
-            abort_signal: tokio_util::sync::CancellationToken::new(),
+            abort_signal: CancellationToken::new(),
             tools: &self.tool_registry,
             permission_ctx: &crate::types::PermissionContext::empty(),
             messages: &self.messages,

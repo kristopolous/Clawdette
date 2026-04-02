@@ -9,8 +9,8 @@ Combines settings validation errors with MCP configuration errors to break circu
 - **Internal**: services mcp config, settings settings, settings validation
 
 ## Logic
-1. Breaks circular dependency: settings.ts → mcp/config.ts → settings.ts
-2. This module is a leaf that imports both settings.ts and mcp/config.ts
+1. Breaks circular dependency: settings → mcp/config → settings
+2. This module is a leaf that imports both settings and mcp/config
 3. But is imported by neither, eliminating the cycle
 4. `getSettingsWithAllErrors` - gets merged settings with all validation errors
 5. Includes both settings errors and MCP config errors

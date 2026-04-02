@@ -36,4 +36,4 @@ Module-level state - initialized once when the module loads
 - logQueryProfileReport
 
 ## Source
-`queryProfiler.ts`
+`queryProfiler`

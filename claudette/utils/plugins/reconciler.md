@@ -42,4 +42,4 @@ Fallback: presence suffices. Don't compare sources — the declared source
 - reconcileMarketplaces
 
 ## Source
-`reconciler.ts`
+`reconciler`

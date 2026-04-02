@@ -54,4 +54,4 @@ YAML can return null for keys with no value (e.g., "key:" with nothing after)
 - parseShellFrontmatter
 
 ## Source
-`frontmatterParser.ts`
+`frontmatterParser`

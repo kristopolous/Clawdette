@@ -16,4 +16,4 @@ GrowthBook-backed cron jitter configuration.
 - getCronJitterConfig
 
 ## Source
-`cronJitterConfig.ts`
+`cronJitterConfig`

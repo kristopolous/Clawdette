@@ -15,4 +15,4 @@ eslint-disable-next-line @typescript-eslint/no-require-imports
 - requireComputerUseSwift
 
 ## Source
-`swiftLoader.ts`
+`swiftLoader`

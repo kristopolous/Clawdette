@@ -1,4 +1,4 @@
-# query.ts
+# query
 
 ## Purpose
 The core query loop - sends messages to LLM API, processes streaming responses, executes tools, and manages conversation turns.
@@ -49,7 +49,7 @@ async function* query(params: QueryParams): AsyncGenerator<StreamEvent | Message
 ```
 
 ### Context Management
-- **System prompt construction**: Build from parts (prompts.ts constants)
+- **System prompt construction**: Build from parts (prompts constants)
 - **Auto-compact**: When nearing token limit, summarize old messages
 - **Snip**: HISTORY_SNIP feature truncates middle of conversation
 - **Memory prefetch**: Load relevant memories async while model is thinking

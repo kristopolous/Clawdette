@@ -1,7 +1,7 @@
 # reconnection
 
 ## Purpose
-dynamicTeamContext is set in main.tsx from CLI args
+dynamicTeamContext is set in main from CLI args
 
 ## Imports
 - **Internal**: ../../state/AppState, ./debug, ../log, ../teammate, ./teamHelpers
@@ -19,4 +19,4 @@ dynamicTeamContext is set in main.tsx from CLI args
 - initializeTeammateContextFromSession
 
 ## Source
-`reconnection.ts`
+`reconnection`

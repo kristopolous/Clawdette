@@ -15,4 +15,4 @@ Provides utility functions: getWorktreePathsPortable.
 - getWorktreePathsPortable
 
 ## Source
-`getWorktreePathsPortable.ts`
+`getWorktreePathsPortable`

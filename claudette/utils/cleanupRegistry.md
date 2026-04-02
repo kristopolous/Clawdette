@@ -10,7 +10,7 @@ Global registry for cleanup functions during graceful shutdown.
 
 ## Logic
 1. `cleanupFunctions` - Set of cleanup functions
-2. Separate from gracefulShutdown.ts to avoid circular dependencies
+2. Separate from gracefulShutdown to avoid circular dependencies
 3. `registerCleanup` - registers cleanup function for shutdown
 4. Returns unregister function that removes handler from set
 5. Functions can be sync or async (wrapped in Promise)

@@ -70,4 +70,4 @@ Message type for API calls (UserMessage or AssistantMessage)
 - addBetaToolResultAttributes
 
 ## Source
-`betaSessionTracing.ts`
+`betaSessionTracing`

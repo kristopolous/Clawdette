@@ -1,4 +1,4 @@
-# LSPTool/UI.tsx
+# LSPTool/UI
 
 ## Purpose
 

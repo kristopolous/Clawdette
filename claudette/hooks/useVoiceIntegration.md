@@ -17,7 +17,7 @@ Handles hold-to-talk voice activation with configurable keybindings, flow-throug
 3. **Voice prefix/suffix anchoring**: Captures text before/after cursor for transcript insertion
 4. **Interim transcript**: Live-updates input with in-progress transcription
 5. **Focus mode**: Recording starts on terminal focus, not key hold
-6. **Backward-compat bridge**: Uses useInput for REPL.tsx until migrated to onKeyDown
+6. **Backward-compat bridge**: Uses useInput for REPL until migrated to onKeyDown
 
 ## Exports
 - `useVoiceIntegration` - Hook returning stripTrailing, resetAnchor, handleKeyEvent, interimRange

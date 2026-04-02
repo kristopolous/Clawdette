@@ -1,4 +1,4 @@
-# WebFetchTool/utils.ts
+# WebFetchTool/utils
 
 ## Purpose
 

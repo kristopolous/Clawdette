@@ -28,4 +28,4 @@ For ContentBlockParam[], check the first text block
 - hasQueuedCommands
 
 ## Source
-`queueProcessor.ts`
+`queueProcessor`

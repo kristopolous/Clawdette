@@ -15,4 +15,4 @@ tool_result messages share type:'user' with human turns; the discriminant
 - isHumanTurn
 
 ## Source
-`messagePredicates.ts`
+`messagePredicates`

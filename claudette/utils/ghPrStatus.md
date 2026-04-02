@@ -27,4 +27,4 @@ Skip on the default branch — `gh pr view` returns the most recently
 - fetchPrStatus
 
 ## Source
-`ghPrStatus.ts`
+`ghPrStatus`

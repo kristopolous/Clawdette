@@ -39,4 +39,4 @@ Auto mode state functions — lives in its own module so callers can
 - _resetForTesting
 
 ## Source
-`autoModeState.ts`
+`autoModeState`

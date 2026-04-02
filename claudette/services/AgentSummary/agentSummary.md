@@ -16,7 +16,7 @@ Provides periodic background summarization for coordinator mode sub-agents.
 5. Tools kept in request for cache key matching but denied via canUseTool
 6. `buildSummaryPrompt` - builds prompt with previous summary context
 7. Present tense (-ing) format, 3-5 words, name file/function not branch
-8. Good examples: "Reading runAgent.ts", "Fixing null check in validate.ts"
+8. Good examples: "Reading runAgent", "Fixing null check in validate"
 9. Bad examples: past tense, too vague, too long, branch names
 10. `startAgentSummarization` - starts summarization timer
 11. Drops forkContextMessages from closure to avoid pinning original fork

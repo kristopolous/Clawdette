@@ -35,4 +35,4 @@ Generate deterministic agent ID
 - killInProcessTeammate
 
 ## Source
-`spawnInProcess.ts`
+`spawnInProcess`

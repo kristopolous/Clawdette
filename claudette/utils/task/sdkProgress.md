@@ -15,4 +15,4 @@ Provides utility functions: emitTaskProgress.
 - emitTaskProgress
 
 ## Source
-`sdkProgress.ts`
+`sdkProgress`

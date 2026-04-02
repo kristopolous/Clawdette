@@ -1,7 +1,7 @@
 # transcriptSearch
 
 ## Purpose
-UserTextMessage.tsx:~84 replaces these with <InterruptedByUser />
+UserTextMessage:~84 replaces these with <InterruptedByUser />
 
 ## Imports
 - **Internal**: ../types/message
@@ -26,4 +26,4 @@ UserTextMessage.tsx:~84 replaces these with <InterruptedByUser />
 - toolResultSearchText
 
 ## Source
-`transcriptSearch.ts`
+`transcriptSearch`

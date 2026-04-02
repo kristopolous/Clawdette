@@ -67,4 +67,4 @@ Slot written by handleStopHooks after each turn so post-turn forks
 - runForkedAgent
 
 ## Source
-`forkedAgent.ts`
+`forkedAgent`

@@ -22,4 +22,4 @@ Provides utility functions: logUnaryEvent.
 - logUnaryEvent
 
 ## Source
-`unaryLogging.ts`
+`unaryLogging`

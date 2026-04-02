@@ -46,4 +46,4 @@ CCR session polling for /ultraplan. Waits for an approved ExitPlanMode
 - pollForApprovedExitPlanMode
 
 ## Source
-`ccrSession.ts`
+`ccrSession`

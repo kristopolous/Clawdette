@@ -16,7 +16,7 @@ Detects if build has bfs/ugrep embedded in bun binary (ant-native only).
    - `find` and `grep` shadowed by shell functions invoking bun with argv0='bfs'/'ugrep'
    - Dedicated Glob/Grep tools removed from tool registry
    - Prompt guidance steering away from find/grep omitted
-5. Set as build-time define in scripts/build-with-plugins.ts
+5. Set as build-time define in scripts/build-with-plugins
 6. `embeddedSearchToolsBinaryPath` - gets path to bun binary with embedded tools
 7. Returns process.execPath
 8. Only meaningful when hasEmbeddedSearchTools() is true

@@ -24,4 +24,4 @@ MCP tool name suffixes for PR activity subscription. These are lightweight
 - mergeAndFilterTools
 
 ## Source
-`toolPool.ts`
+`toolPool`

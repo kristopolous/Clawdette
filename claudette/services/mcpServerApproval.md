@@ -16,7 +16,7 @@ Shows MCP server approval dialogs for pending project servers using existing Ink
 5. Single server: renders MCPServerApprovalDialog
 6. Multiple servers: renders MCPServerMultiselectDialog
 7. Wraps with AppStateProvider and KeybindingSetup
-8. Uses provided Ink root (reuses existing instance from main.tsx)
+8. Uses provided Ink root (reuses existing instance from main)
 9. Resolves promise when user completes dialog interaction
 
 ## Exports
