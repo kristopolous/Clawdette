@@ -16,7 +16,7 @@ futures = "0.3"
 clap = { version = "4", features = ["derive"] }
 
 # TUI
-cursive = { version = "0.20", features = ["crossterm-backend"] }
+cursive = { version = "0.15", features = ["crossterm"] }
 crossterm = "0.28"
 
 # Serialization

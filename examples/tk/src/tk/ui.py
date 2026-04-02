@@ -5,7 +5,46 @@ from tkinter import ttk, messagebox, simpledialog
 import asyncio
 import threading
 from typing import Optional
-from tk.types import CostTracker
+from tk.models import CostTracker
+
+HOST_PRESETS = {
+    "Anthropic": "https://api.anthropic.com/v1",
+    "OpenAI": "https://api.openai.com/v1",
+    "OpenRouter": "https://openrouter.ai/api/v1",
+    "Ollama (local)": "http://localhost:11434/v1",
+    "LiteLLM (local)": "http://localhost:4000",
+    "Custom": "",
+}
+
+MODEL_PRESETS = {
+    "https://api.anthropic.com/v1": [
+        "claude-sonnet-4-20250514",
+        "claude-opus-4-20250514",
+        "claude-3-5-sonnet-20241022",
+        "claude-3-haiku-20240307",
+    ],
+    "https://api.openai.com/v1": [
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-4-turbo",
+        "o1",
+        "o1-mini",
+        "o3-mini",
+    ],
+    "https://openrouter.ai/api/v1": [
+        "anthropic/claude-sonnet-4",
+        "anthropic/claude-opus",
+        "openai/gpt-4o",
+        "google/gemini-2.0-flash-exp:free",
+        "meta-llama/llama-3.1-405b-instruct",
+    ],
+    "http://localhost:11434/v1": [
+        "llama3",
+        "llama3.1",
+        "mistral",
+        "codellama",
+    ],
+}
 
 
 class PermissionDialog:
@@ -40,37 +79,6 @@ class PermissionDialog:
 
     def _deny(self):
         self.result = False
-        self.dialog.destroy()
-
-
-class ModelDialog:
-    def __init__(self, parent, current_model: str, available_models: list[str]):
-        self.result = current_model
-        self.dialog = tk.Toplevel(parent)
-        self.dialog.title("Select Model")
-        self.dialog.transient(parent)
-        self.dialog.grab_set()
-        self.dialog.resizable(False, False)
-
-        x = parent.winfo_x() + 100
-        y = parent.winfo_y() + 100
-        self.dialog.geometry(f"+{x}+{y}")
-
-        ttk.Label(self.dialog, text="Choose a model:", font=("TkDefaultFont", 10, "bold")).pack(padx=20, pady=(15, 5))
-
-        self.var = tk.StringVar(value=current_model)
-        combo = ttk.Combobox(self.dialog, textvariable=self.var, values=available_models, width=40)
-        combo.pack(padx=20, pady=5)
-        combo.focus_set()
-
-        ttk.Label(self.dialog, text="Or type any model name:", font=("TkDefaultFont", 8)).pack(padx=20, pady=(0, 5))
-
-        ttk.Button(self.dialog, text="OK", command=self._ok).pack(pady=15)
-
-        self.dialog.wait_window()
-
-    def _ok(self):
-        self.result = self.var.get()
         self.dialog.destroy()
 
 
@@ -118,27 +126,49 @@ class MainWindow:
 
         self._build_ui()
         self._bind_events()
+        self._sync_settings_to_ui()
 
     def _build_ui(self):
         self.root.columnconfigure(0, weight=1)
-        self.root.rowconfigure(1, weight=1)
+        self.root.rowconfigure(2, weight=1)
 
-        header = ttk.Frame(self.root)
-        header.grid(row=0, column=0, sticky="ew", padx=5, pady=3)
-        header.columnconfigure(0, weight=1)
+        settings_frame = ttk.LabelFrame(self.root, text="Settings", padding=8)
+        settings_frame.grid(row=0, column=0, sticky="ew", padx=5, pady=3)
+        settings_frame.columnconfigure(1, weight=1)
+        settings_frame.columnconfigure(3, weight=1)
+        settings_frame.columnconfigure(5, weight=1)
 
-        ttk.Label(header, text="tk-claudette", font=("TkDefaultFont", 11, "bold")).pack(side=tk.LEFT)
-        self.provider_label = ttk.Label(header, text=f"[{self.query_engine.api_client.provider}]", foreground="gray", font=("TkDefaultFont", 8))
-        self.provider_label.pack(side=tk.LEFT, padx=5)
-        self.model_label = ttk.Label(header, text=f"Model: {self.config.model}", foreground="gray")
-        self.model_label.pack(side=tk.LEFT, padx=10)
-        self.host_label = ttk.Label(header, text=self.config.api_base, foreground="gray", font=("TkDefaultFont", 8))
-        self.host_label.pack(side=tk.LEFT, padx=5)
-        self.host_label = ttk.Label(header, text=self.config.api_base, foreground="gray", font=("TkDefaultFont", 8))
-        self.host_label.pack(side=tk.LEFT, padx=5)
+        row = 0
 
-        self.status_label = ttk.Label(header, text="Ready", foreground="gray")
-        self.status_label.pack(side=tk.RIGHT)
+        ttk.Label(settings_frame, text="Host:").grid(row=row, column=0, sticky=tk.W, padx=(0, 5))
+        self.host_var = tk.StringVar()
+        self.host_combo = ttk.Combobox(settings_frame, textvariable=self.host_var, values=list(HOST_PRESETS.keys()), width=18, state="readonly")
+        self.host_combo.grid(row=row, column=1, sticky=tk.EW, padx=(0, 10))
+        self.host_combo.bind("<<ComboboxSelected>>", self._on_host_selected)
+
+        ttk.Label(settings_frame, text="Custom URL:").grid(row=row, column=2, sticky=tk.W, padx=(0, 5))
+        self.custom_host_var = tk.StringVar()
+        self.custom_host_entry = ttk.Entry(settings_frame, textvariable=self.custom_host_var, width=30)
+        self.custom_host_entry.grid(row=row, column=3, sticky=tk.EW, padx=(0, 10))
+
+        ttk.Label(settings_frame, text="Model:").grid(row=row, column=4, sticky=tk.W, padx=(0, 5))
+        self.model_var = tk.StringVar()
+        self.model_combo = ttk.Combobox(settings_frame, textvariable=self.model_var, width=28)
+        self.model_combo.grid(row=row, column=5, sticky=tk.EW, padx=(0, 10))
+
+        ttk.Label(settings_frame, text="API Key:").grid(row=row, column=6, sticky=tk.W, padx=(0, 5))
+        self.key_var = tk.StringVar()
+        self.key_entry = ttk.Entry(settings_frame, textvariable=self.key_var, width=22, show="*")
+        self.key_entry.grid(row=row, column=7, sticky=tk.EW, padx=(0, 10))
+
+        self.apply_btn = ttk.Button(settings_frame, text="Apply", command=self._apply_settings)
+        self.apply_btn.grid(row=row, column=8, padx=(0, 5))
+
+        self.toggle_key_btn = ttk.Button(settings_frame, text="Show", width=6, command=self._toggle_key_visibility)
+        self.toggle_key_btn.grid(row=row, column=9)
+
+        self.provider_label = ttk.Label(settings_frame, text="", foreground="gray", font=("TkDefaultFont", 8))
+        self.provider_label.grid(row=row, column=10, padx=(10, 0))
 
         self.message_frame = ttk.Frame(self.root)
         self.message_frame.grid(row=1, column=0, sticky="nsew", padx=5, pady=3)
@@ -193,6 +223,75 @@ class MainWindow:
 
         self.token_label = ttk.Label(self.status_bar, text="Tokens: 0", foreground="gray", font=("TkDefaultFont", 8))
         self.token_label.pack(side=tk.LEFT, padx=10)
+
+        self.status_label = ttk.Label(self.status_bar, text="Ready", foreground="gray", font=("TkDefaultFont", 8))
+        self.status_label.pack(side=tk.RIGHT)
+
+    def _sync_settings_to_ui(self):
+        base = self.config.api_base.rstrip("/")
+        host_name = "Custom"
+        for name, url in HOST_PRESETS.items():
+            if url and url.rstrip("/") == base:
+                host_name = name
+                break
+        self.host_var.set(host_name)
+        self.custom_host_var.set(base if host_name == "Custom" else "")
+        self.model_var.set(self.config.model)
+        self.key_var.set(self.config.api_key or "")
+        self._update_model_dropdown(base)
+        self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
+
+    def _update_model_dropdown(self, base_url: str):
+        base_url = base_url.rstrip("/")
+        models = MODEL_PRESETS.get(base_url, [])
+        self.model_combo.configure(values=models)
+
+    def _on_host_selected(self, event=None):
+        name = self.host_var.get()
+        url = HOST_PRESETS.get(name, "")
+        if name == "Custom":
+            self.custom_host_entry.configure(state=tk.NORMAL)
+        else:
+            self.custom_host_entry.configure(state=tk.DISABLED)
+            self.custom_host_var.set(url)
+        self._update_model_dropdown(url)
+
+    def _toggle_key_visibility(self):
+        showing = self.key_entry.cget("show") == ""
+        self.key_entry.configure(show="" if showing else "*")
+        self.toggle_key_btn.configure(text="Hide" if showing else "Show")
+
+    def _apply_settings(self):
+        host_url = self.custom_host_var.get().strip()
+        if not host_url:
+            self._append_message("error", "No API host URL set.")
+            return
+
+        model = self.model_var.get().strip()
+        if not model:
+            self._append_message("error", "No model name set.")
+            return
+
+        api_key = self.key_var.get().strip()
+        if not api_key:
+            self._append_message("error", "No API key set.")
+            return
+
+        old_base = self.config.api_base
+        old_model = self.config.model
+
+        self.config.set_api_base(host_url)
+        self.config.set_model(model)
+        self.config.set_api_key(api_key)
+
+        self.query_engine.api_client.base_url = host_url.rstrip("/")
+        self.query_engine.api_client.provider = self.query_engine.api_client.detect_provider(host_url)
+        self.query_engine.api_client.model = model
+        self.query_engine.api_client.api_key = api_key
+
+        self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
+
+        self._append_message("system", f"Settings applied: {self.query_engine.api_client.provider} / {model}")
 
     def _bind_events(self):
         self.input_text.bind("<Return>", self._on_return)
@@ -350,12 +449,11 @@ class MainWindow:
             help_text = """Available commands:
 /help          - Show this help
 /clear         - Clear conversation
-/model <name>  - Change model (any model your endpoint supports)
-/host <url>    - Change API host (any OpenAI-compatible endpoint)
+/model <name>  - Change model
+/host <url>    - Change API host
 /key <key>     - Change API key
 /cost          - Show cost breakdown
-/config        - Show configuration
-/version       - Show version info"""
+/config        - Show configuration"""
             self._append_message("system", help_text)
 
         elif command == "/clear":
@@ -364,77 +462,28 @@ class MainWindow:
         elif command == "/model":
             if args.strip():
                 new_model = args.strip()
-            else:
-                dialog = ModelDialog(self.root, self.config.model, self.config.available_models)
-                new_model = dialog.result
-            if new_model and new_model != self.config.model:
                 self.config.set_model(new_model)
-                self.model_label.configure(text=f"Model: {self.config.model}")
-                self.query_engine.api_client.model = self.config.model
-                self._append_message("system", f"Model changed to: {self.config.model}")
+                self.model_var.set(new_model)
+                self.query_engine.api_client.model = new_model
+                self._append_message("system", f"Model changed to: {new_model}")
 
         elif command == "/host":
-            if not args.strip():
-                self._append_message("system", f"Current host: {self.config.api_base}\nUsage: /host <url>\nExamples:\n  /host https://api.openai.com/v1\n  /host https://openrouter.ai/api/v1\n  /host http://localhost:11434/v1")
-                return
-            new_host = args.strip()
-            self.config.set_api_base(new_host)
-            self.query_engine.api_client.base_url = new_host.rstrip("/")
-            self.query_engine.api_client.provider = self.query_engine.api_client.detect_provider(new_host)
-            self.host_label.configure(text=self.config.api_base)
-            self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
-            self._append_message("system", f"Host changed to: {self.config.api_base}")
+            if args.strip():
+                new_host = args.strip()
+                self.config.set_api_base(new_host)
+                self.query_engine.api_client.base_url = new_host.rstrip("/")
+                self.query_engine.api_client.provider = self.query_engine.api_client.detect_provider(new_host)
+                self.custom_host_var.set(new_host)
+                self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
+                self._append_message("system", f"Host changed to: {new_host}")
 
         elif command == "/key":
-            if not args.strip():
-                self._append_message("system", "Usage: /key <api-key>")
-                return
-            new_key = args.strip()
-            self.config.set_api_key(new_key)
-            self.query_engine.api_client.api_key = new_key
-            self._append_message("system", "API key updated")
-
-        elif command == "/host":
-            if not args.strip():
-                self._append_message("system", f"Current host: {self.config.api_base}\nUsage: /host <url>\nExamples:\n  /host https://api.openai.com/v1\n  /host https://openrouter.ai/api/v1\n  /host http://localhost:11434/v1")
-                return
-            new_host = args.strip()
-            self.config.set_api_base(new_host)
-            self.query_engine.api_client.base_url = new_host.rstrip("/")
-            self.query_engine.api_client.provider = self.query_engine.api_client.detect_provider(new_host)
-            self.host_label.configure(text=self.config.api_base)
-            self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
-            self._append_message("system", f"Host changed to: {self.config.api_base}")
-
-        elif command == "/key":
-            if not args.strip():
-                self._append_message("system", "Usage: /key <api-key>")
-                return
-            new_key = args.strip()
-            self.config.set_api_key(new_key)
-            self.query_engine.api_client.api_key = new_key
-            self._append_message("system", "API key updated")
-
-        elif command == "/host":
-            if not args.strip():
-                self._append_message("system", f"Current host: {self.config.api_base}\nUsage: /host <url>\nExamples:\n  /host https://api.openai.com/v1\n  /host https://openrouter.ai/api/v1\n  /host http://localhost:11434/v1")
-                return
-            new_host = args.strip()
-            self.config.set_api_base(new_host)
-            self.query_engine.api_client.base_url = new_host.rstrip("/")
-            self.query_engine.api_client.provider = self.query_engine.api_client.detect_provider(new_host)
-            self.host_label.configure(text=self.config.api_base)
-            self.provider_label.configure(text=f"[{self.query_engine.api_client.provider}]")
-            self._append_message("system", f"Host changed to: {self.config.api_base}")
-
-        elif command == "/key":
-            if not args.strip():
-                self._append_message("system", "Usage: /key <api-key>")
-                return
-            new_key = args.strip()
-            self.config.set_api_key(new_key)
-            self.query_engine.api_client.api_key = new_key
-            self._append_message("system", "API key updated")
+            if args.strip():
+                new_key = args.strip()
+                self.config.set_api_key(new_key)
+                self.key_var.set(new_key)
+                self.query_engine.api_client.api_key = new_key
+                self._append_message("system", "API key updated")
 
         elif command == "/cost":
             CostDialog(self.root, self.query_engine.cost_tracker)
@@ -448,10 +497,6 @@ Max Turns:   {self.config.max_turns}
 Temperature: {self.config.temperature}
 CWD:         {self.query_engine.cwd}"""
             self._append_message("system", config_text)
-
-        elif command == "/version":
-            from tk import __version__
-            self._append_message("system", f"tk-claudette v{__version__}")
 
         else:
             self._append_message("error", f"Unknown command: {command}. Type /help for available commands.")

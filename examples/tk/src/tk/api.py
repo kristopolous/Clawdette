@@ -3,7 +3,7 @@
 import json
 import httpx
 from typing import AsyncGenerator, Optional
-from tk.types import Message, ToolDefinition, StreamEvent
+from tk.models import Message, ToolDefinition, StreamEvent
 
 
 class Provider:

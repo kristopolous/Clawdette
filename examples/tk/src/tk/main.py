@@ -68,7 +68,7 @@ Examples:
     from tk.config import Config
     from tk.api import APIClient
     from tk.tools import create_tool_registry
-    from tk.types import CostTracker
+    from tk.models import CostTracker
     from tk.query import QueryEngine
     from tk.ui import MainWindow
 

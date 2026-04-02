@@ -8,7 +8,7 @@ import fnmatch
 import html
 from pathlib import Path
 from typing import Optional
-from tk.types import ToolDefinition, ToolResult
+from tk.models import ToolDefinition, ToolResult
 
 
 class ToolRegistry:

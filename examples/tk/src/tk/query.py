@@ -4,7 +4,7 @@ import asyncio
 import json
 import os
 from typing import AsyncGenerator, Callable, Optional
-from tk.types import Message, ToolCall, StreamEvent, CostTracker, ToolDefinition
+from tk.models import Message, ToolCall, StreamEvent, CostTracker, ToolDefinition
 from tk.api import APIClient
 from tk.tools import ToolRegistry
 from tk.prompts import build_system_prompt

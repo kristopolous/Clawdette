@@ -10,6 +10,9 @@ const args = process.argv.slice(2);
 
 if (args.includes('--help') || args.includes('-h')) {
   console.log(`
+
+    Make a custom claudette ... more ... custom
+
         .{{}}}}}}.
        {{{{{}}}}}}}. 
       {{{{  }}}}}}}}}     
