@@ -1,6 +1,6 @@
 <p align="center">
   <img width="256" alt="claudette" src="https://github.com/user-attachments/assets/b79d06c9-d3b3-4bd0-969f-577cc24235dc" />
-<br/><b>Claudette - Vibe your own claude</b>
+<br/><b>Claudette - Vibe your own Claude Code</b>
 </p>
 
 **1,961 skills to vibe a Claude clone derived from the source. Make tokens go burr**
