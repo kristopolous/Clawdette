@@ -6,6 +6,12 @@ import { EditTool } from './edit'
 import { GrepTool } from './grep'
 import { GlobTool } from './glob'
 import { WebFetchTool } from './webfetch'
+import { WebSearchTool } from './websearch'
+import { TodoWriteTool } from './todowrite'
+import { AgentTool } from './agent'
+import { SkillTool } from './skill'
+import { TaskOutputTool } from './taskoutput'
+import { TaskStopTool } from './taskstop'
 
 export function getTools(): Tool[] {
   return [
@@ -16,5 +22,11 @@ export function getTools(): Tool[] {
     GrepTool,
     GlobTool,
     WebFetchTool,
+    WebSearchTool,
+    TodoWriteTool,
+    AgentTool,
+    SkillTool,
+    TaskOutputTool,
+    TaskStopTool,
   ]
 }

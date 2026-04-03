@@ -1,7 +1,7 @@
 'use client'
 
 import { marked } from 'marked'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 
 interface CodeBlockProps {
   code: string
@@ -40,56 +40,97 @@ interface MarkdownContentProps {
 }
 
 export default function MarkdownContent({ content }: MarkdownContentProps) {
-  const [html, setHtml] = useState('')
+  const [tokens, setTokens] = useState<marked.Token[]>([])
 
   useEffect(() => {
-    const renderer = new marked.Renderer()
-    renderer.code = ({ text, lang }: { text: string; lang?: string }) => {
-      return `__CODEBLOCK__${JSON.stringify({ code: text, language: lang })}__CODEBLOCK__`
-    }
-    Promise.resolve(marked(content, { renderer })).then(result => {
-      setHtml(result)
-    })
+    const lexer = new marked.Lexer()
+    setTokens(lexer.lex(content))
   }, [content])
 
-  const parts = useMemo(() => {
-    const segments: Array<{ type: 'html' | 'code'; content: string; language?: string }> = []
-    const regex = /__CODEBLOCK__(.*?)__CODEBLOCK__/g
-    let lastIndex = 0
-    let match
-
-    while ((match = regex.exec(html)) !== null) {
-      if (match.index > lastIndex) {
-        segments.push({ type: 'html', content: html.slice(lastIndex, match.index) })
+  const renderToken = (token: marked.Token, index: number): React.ReactNode => {
+    switch (token.type) {
+      case 'code': {
+        const code = token as marked.Tokens.Code
+        return <CodeBlock key={index} code={code.text} language={code.lang || undefined} />
       }
-      try {
-        const parsed = JSON.parse(match[1])
-        segments.push({ type: 'code', content: parsed.code, language: parsed.language })
-      } catch {
-        segments.push({ type: 'html', content: match[0] })
+      case 'paragraph': {
+        const p = token as marked.Tokens.Paragraph
+        return <p key={index} dangerouslySetInnerHTML={{ __html: p.text }} />
       }
-      lastIndex = match.index + match[0].length
+      case 'heading': {
+        const h = token as marked.Tokens.Heading
+        const Tag = `h${h.depth}` as keyof JSX.IntrinsicElements
+        return <Tag key={index} dangerouslySetInnerHTML={{ __html: h.text }} />
+      }
+      case 'list': {
+        const list = token as marked.Tokens.List
+        const Tag = list.ordered ? 'ol' : 'ul'
+        return (
+          <Tag key={index}>
+            {list.items.map((item, i) => (
+              <li key={i} dangerouslySetInnerHTML={{ __html: item.text }} />
+            ))}
+          </Tag>
+        )
+      }
+      case 'blockquote': {
+        const bq = token as marked.Tokens.Blockquote
+        return (
+          <blockquote key={index} className="border-l-4 border-[#30363d] pl-4 text-[#8b949e]">
+            {bq.tokens.map((t, i) => renderToken(t, i))}
+          </blockquote>
+        )
+      }
+      case 'hr':
+        return <hr key={index} className="border-[#30363d] my-4" />
+      case 'text': {
+        const t = token as marked.Tokens.Text
+        return t.raw ? <span key={index} dangerouslySetInnerHTML={{ __html: t.raw }} /> : <span key={index}>{t.text}</span>
+      }
+      case 'html': {
+        const html = token as marked.Tokens.HTML
+        return <div key={index} dangerouslySetInnerHTML={{ __html: html.text }} />
+      }
+      case 'table': {
+        const table = token as marked.Tokens.Table
+        return (
+          <table key={index} className="border-collapse border border-[#30363d] text-sm">
+            {table.header && (
+              <thead>
+                <tr>
+                  {table.header.map((cell, i) => (
+                    <th key={i} className="border border-[#30363d] px-3 py-1.5 bg-[#161b22] font-medium">
+                      {cell.text}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {table.rows.map((row, ri) => (
+                <tr key={ri}>
+                  {row.map((cell, ci) => (
+                    <td key={ci} className="border border-[#30363d] px-3 py-1.5">
+                      {cell.text}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )
+      }
+      default:
+        if ('tokens' in token && Array.isArray((token as marked.Tokens.Generic).tokens)) {
+          return <div key={index}>{(token as marked.Tokens.Generic).tokens?.map((t, i) => renderToken(t, i))}</div>
+        }
+        return <div key={index}>{(token as marked.Tokens.Generic).raw || (token as marked.Tokens.Generic).text || ''}</div>
     }
-
-    if (lastIndex < html.length) {
-      segments.push({ type: 'html', content: html.slice(lastIndex) })
-    }
-
-    return segments
-  }, [html])
+  }
 
   return (
     <div className="prose prose-invert prose-sm max-w-none">
-      {parts.map((part, i) =>
-        part.type === 'code' ? (
-          <CodeBlock key={i} code={part.content} language={part.language} />
-        ) : (
-          <div
-            key={i}
-            dangerouslySetInnerHTML={{ __html: part.content }}
-          />
-        )
-      )}
+      {tokens.map((token, i) => renderToken(token, i))}
     </div>
   )
 }

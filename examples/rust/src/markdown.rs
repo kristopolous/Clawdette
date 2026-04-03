@@ -39,7 +39,6 @@ fn highlight_code(code: &str, lang: Option<&str>) -> Vec<Line<'static>> {
         }
         lines
     } else {
-        // Fallback: plain monospace gray
         vec![Line::styled(
             code.to_string(),
             Style::default().fg(Color::Gray).add_modifier(Modifier::DIM),
@@ -57,8 +56,10 @@ fn highlight_code(code: &str, lang: Option<&str>) -> Vec<Line<'static>> {
 /// - Blockquotes (gray italic, with "> " prefix)
 /// - Lists (bullet points)
 /// - Links (light blue underlined)
+/// - Tables (with borders)
 pub fn render_markdown(input: &str) -> Text<'static> {
-    let parser = Parser::new_ext(input, Options::empty());
+    let options = Options::ENABLE_TABLES;
+    let parser = Parser::new_ext(input, options);
     let mut lines: Vec<Line<'static>> = Vec::new();
     let mut current_spans: Vec<Span<'static>> = Vec::new();
     let mut indent_stack: Vec<usize> = Vec::new(); // track list depth
@@ -70,9 +71,103 @@ pub fn render_markdown(input: &str) -> Text<'static> {
         }
     };
 
+    // Table state
+    struct Table {
+        headers: Vec<Vec<Span<'static>>>,
+        rows: Vec<Vec<Vec<Span<'static>>>>,
+    }
+    let mut in_table = false;
+    let mut current_table: Option<Table> = None;
+    let mut current_row: Vec<Vec<Span<'static>>> = Vec::new();
+    let mut current_cell: Vec<Span<'static>> = Vec::new();
     let mut in_code_block = false;
     let mut code_content = String::new();
     let mut code_lang: Option<String> = None;
+
+    fn compute_column_widths(table: &Table) -> Vec<usize> {
+        let col_count = table.headers.len();
+        if col_count == 0 {
+            return Vec::new();
+        }
+        let mut widths = vec![0; col_count];
+        // Headers
+        for (col_i, cell) in table.headers.iter().enumerate() {
+            let w: usize = cell.iter().map(|s| s.content.len()).sum();
+            widths[col_i] = w.max(widths[col_i]);
+        }
+        // Rows
+        for row in &table.rows {
+            for (col_i, cell) in row.iter().enumerate() {
+                if col_i < col_count {
+                    let w: usize = cell.iter().map(|s| s.content.len()).sum();
+                    widths[col_i] = w.max(widths[col_i]);
+                }
+            }
+        }
+        widths
+    }
+
+    fn render_table(table: Table) -> Vec<Line<'static>> {
+        let widths = compute_column_widths(&table);
+        let mut out = Vec::new();
+
+        // Build a line from a vector of strings (simple, borders added separately)
+        let build_line = |parts: Vec<String>| -> Line<'static> {
+            let text = parts.join("");
+            Line::from(Span::raw(text))
+        };
+
+        let horizontal = |edges: &str, fill: &str, mids: &str, edges2: &str| {
+            let mut line = String::from(edges);
+            for (i, &w) in widths.iter().enumerate() {
+                line.push_str(&fill.repeat(w + 2));
+                if i + 1 < widths.len() {
+                    line.push_str(mids);
+                } else {
+                    line.push_str(edges2);
+                }
+            }
+            Line::from(Span::raw(line))
+        };
+
+        // Top border
+        out.push(horizontal("┌", "─", "┬", "┐"));
+
+        // Header row
+        let mut header_parts = vec!["│".to_string()];
+        for (i, cell) in table.headers.iter().enumerate() {
+            header_parts.push(" ".to_string());
+            let cell_text: String = cell.iter().map(|s| &*s.content).collect();
+            header_parts.push(cell_text);
+            header_parts.push(" ".to_string());
+            if i + 1 < widths.len() {
+                header_parts.push(" │ ".to_string());
+            } else {
+                header_parts.push("│".to_string());
+            }
+        }
+        out.push(build_line(header_parts));
+
+        // Header separator
+        out.push(horizontal("├", "─", "┼", "┤"));
+
+        // Data rows
+        for row in table.rows {
+            for cell in row {
+                let mut cell_parts = vec!["│".to_string()];
+                let cell_text: String = cell.iter().map(|s| &*s.content).collect();
+                cell_parts.push(" ".to_string());
+                cell_parts.push(cell_text);
+                cell_parts.push(" ".to_string());
+                cell_parts.push("│".to_string());
+                out.push(build_line(cell_parts));
+            }
+        }
+
+        // Bottom border
+        out.push(horizontal("└", "─", "┴", "┘"));
+        out
+    }
 
     for event in parser {
         match event {
@@ -138,6 +233,22 @@ pub fn render_markdown(input: &str) -> Text<'static> {
                 Tag::List(_) => {
                     indent_stack.push(0);
                 }
+                Tag::Table(_) => {
+                    in_table = true;
+                    current_table = Some(Table {
+                        headers: Vec::new(),
+                        rows: Vec::new(),
+                    });
+                }
+                Tag::TableHead => {}
+                Tag::TableRow => {
+                    if in_table {
+                        current_row = Vec::new();
+                    }
+                }
+                Tag::TableCell => {
+                    current_cell = Vec::new();
+                }
                 Tag::FootnoteDefinition(_) => {}
                 _ => {}
             },
@@ -153,7 +264,6 @@ pub fn render_markdown(input: &str) -> Text<'static> {
                 }
                 TagEnd::CodeBlock => {
                     in_code_block = false;
-                    // Output opening fence with language
                     let lang_str = code_lang.as_deref().unwrap_or("");
                     let fence = if lang_str.is_empty() {
                         "```".to_string()
@@ -166,10 +276,8 @@ pub fn render_markdown(input: &str) -> Text<'static> {
                             .fg(Color::DarkGray)
                             .add_modifier(Modifier::BOLD),
                     ));
-                    // Output highlighted code lines
                     let highlighted = highlight_code(&code_content, code_lang.as_deref());
                     lines.extend(highlighted);
-                    // Closing fence
                     lines.push(Line::styled(
                         "```",
                         Style::default()
@@ -186,6 +294,33 @@ pub fn render_markdown(input: &str) -> Text<'static> {
                 TagEnd::List(_) => {
                     indent_stack.pop();
                 }
+                TagEnd::Table => {
+                    if let Some(table) = current_table.take() {
+                        lines.extend(render_table(table));
+                    }
+                    in_table = false;
+                }
+                TagEnd::TableHead => {
+                    if !current_cell.is_empty() {
+                        current_row.push(current_cell.drain(..).collect());
+                    }
+                    if let Some(ref mut table) = current_table {
+                        table.headers = current_row.drain(..).collect();
+                    }
+                }
+                TagEnd::TableRow => {
+                    if !current_cell.is_empty() {
+                        current_row.push(current_cell.drain(..).collect());
+                    }
+                    if let Some(ref mut table) = current_table {
+                        table.rows.push(current_row.drain(..).collect());
+                    }
+                }
+                TagEnd::TableCell => {
+                    if !current_cell.is_empty() {
+                        current_row.push(current_cell.drain(..).collect());
+                    }
+                }
                 TagEnd::FootnoteDefinition => {}
                 _ => {}
             },
@@ -193,13 +328,14 @@ pub fn render_markdown(input: &str) -> Text<'static> {
                 if !text.is_empty() {
                     if in_code_block {
                         code_content.push_str(&text);
+                    } else if in_table {
+                        current_cell.push(Span::raw(text.to_string()));
                     } else {
                         current_spans.push(Span::raw(text.to_string()));
                     }
                 }
             }
             Event::Code(text) => {
-                // Inline code (not a code block)
                 if !in_code_block {
                     current_spans.push(Span::styled(
                         text.to_string(),
@@ -231,6 +367,13 @@ mod tests {
     #[test]
     fn test_markdown_bold() {
         let md = "This is **bold** text.";
+        let text = render_markdown(md);
+        assert!(!text.lines.is_empty());
+    }
+
+    #[test]
+    fn test_markdown_table() {
+        let md = "| A | B |\n|---|---|\n| 1 | 2 |";
         let text = render_markdown(md);
         assert!(!text.lines.is_empty());
     }

@@ -18,7 +18,7 @@ export default function WriteResult({ toolInput, content, isRunning }: WriteResu
   const previewHtml = useMemo(() => {
     const text = String(toolInput.content || '')
     if (!text) return ''
-    return marked(text)
+    return String(marked.parse(text))
   }, [toolInput.content])
 
   return (

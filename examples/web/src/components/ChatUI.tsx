@@ -351,28 +351,17 @@ export default function ChatUI({ apiKey, model, baseUrl }: { apiKey: string; mod
 
       <div className="flex flex-1 overflow-hidden">
         <div className="w-64 flex-shrink-0 hidden lg:block">
-          {vfs ? (
-            <FileExplorer
-              vfs={vfs}
-              onFileSelect={handleFileSelect}
-              selectedPath={selectedFilePath || undefined}
-            />
-          ) : (
-            <div className="h-full flex items-center justify-center text-xs text-[#8b949e]">
-              File explorer will appear after first tool use
-            </div>
-          )}
+          <FileExplorer
+            sessionId={sessionId}
+            onFileSelect={handleFileSelect}
+            selectedPath={selectedFilePath || undefined}
+            refreshKey={fileRefreshKey}
+          />
         </div>
 
         <div className="flex-1 flex flex-col min-w-0">
           <div className="flex-1 overflow-y-auto px-4 py-4">
             <div className="max-w-4xl mx-auto">
-              {messages.length === 0 && (
-                <div className="text-center text-[#8b949e] mt-16">
-                  <p className="text-lg font-medium mb-2">Welcome to Claudette Web</p>
-                  <p className="text-sm">Ask me to create files, write code, or explore the virtualized filesystem.</p>
-                </div>
-              )}
               {messages.map((msg, i) => (
                 <div key={i}>
                   {msg.type === 'user' ? (

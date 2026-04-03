@@ -2,6 +2,7 @@ use crate::markdown::render_markdown;
 use crate::types::{StreamEvent, Usage};
 use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyModifiers};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
+use dirs;
 use ratatui::{
     backend::CrosstermBackend,
     layout::{Constraint, Direction, Layout, Position},
@@ -10,15 +11,25 @@ use ratatui::{
     widgets::{Block, Borders, Paragraph, Wrap},
     Frame, Terminal,
 };
+use serde::{Deserialize, Serialize};
 use std::io::{self, Write};
 use tokio::sync::mpsc;
 use unicode_width::UnicodeWidthStr;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct PersistentHistory {
+    messages: Vec<MessageEntry>,
+    command_history: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MessageEntry {
     pub role: String,
     pub content: String,
 }
+
+const HISTORY_FILE: &str = ".claudette_history.json";
+const MAX_HISTORY_ITEMS: usize = 1000;
 
 pub struct App {
     pub messages: Vec<MessageEntry>,
@@ -34,12 +45,30 @@ pub struct App {
     pub history_index: Option<usize>,
     pub kill_buffer: String,
     pub available_commands: Vec<String>,
+    history_file: std::path::PathBuf,
 }
 
 impl App {
     pub fn new(available_commands: Option<Vec<String>>) -> Self {
+        // Determine history file path in config directory
+        let history_file = dirs::config_dir()
+            .unwrap_or_else(|| std::path::PathBuf::from("."))
+            .join("claudette")
+            .join(HISTORY_FILE);
+
+        // Try to load persisted history
+        let (messages, command_history) = if let Ok(data) = std::fs::read_to_string(&history_file) {
+            if let Ok(hist) = serde_json::from_str::<PersistentHistory>(&data) {
+                (hist.messages, hist.command_history)
+            } else {
+                (Vec::new(), Vec::new())
+            }
+        } else {
+            (Vec::new(), Vec::new())
+        };
+
         Self {
-            messages: Vec::new(),
+            messages,
             input_buffer: String::new(),
             is_loading: false,
             usage: Usage::default(),
@@ -48,10 +77,33 @@ impl App {
             should_quit: false,
             cursor_position: 0,
             should_submit: false,
-            history: Vec::new(),
+            history: command_history,
             history_index: None,
             kill_buffer: String::new(),
             available_commands: available_commands.unwrap_or_default(),
+            history_file,
+        }
+    }
+
+    fn save_history(&self) {
+        if let Some(parent) = self.history_file.parent() {
+            let _ = std::fs::create_dir_all(parent);
+        }
+        // Keep only most recent N messages to limit file size
+        let messages = if self.messages.len() > MAX_HISTORY_ITEMS {
+            self.messages
+                .split_at(self.messages.len() - MAX_HISTORY_ITEMS)
+                .1
+                .to_vec()
+        } else {
+            self.messages.clone()
+        };
+        let hist = PersistentHistory {
+            messages,
+            command_history: self.history.clone(),
+        };
+        if let Ok(data) = serde_json::to_string_pretty(&hist) {
+            let _ = std::fs::write(&self.history_file, data);
         }
     }
 
@@ -142,12 +194,6 @@ impl App {
                     self.cursor_position += 1;
                 }
             }
-            KeyCode::Home => {
-                self.cursor_position = 0;
-            }
-            KeyCode::End => {
-                self.cursor_position = self.input_buffer.len();
-            }
             KeyCode::Up => {
                 if self.scroll_offset > 0 {
                     self.scroll_offset -= 1;
@@ -155,6 +201,29 @@ impl App {
             }
             KeyCode::Down => {
                 self.scroll_offset += 1;
+            }
+            KeyCode::PageUp => {
+                // Approximate lines per page: terminal height minus input/status/borders
+                if let Ok((_, height)) = crossterm::terminal::size() {
+                    let lines_per_page = height.saturating_sub(5) as usize; // account for borders, input, status
+                    self.scroll_offset = self.scroll_offset.saturating_sub(lines_per_page);
+                } else {
+                    self.scroll_offset = self.scroll_offset.saturating_sub(20);
+                }
+            }
+            KeyCode::PageDown => {
+                if let Ok((_, height)) = crossterm::terminal::size() {
+                    let lines_per_page = height.saturating_sub(5) as usize;
+                    self.scroll_offset += lines_per_page;
+                } else {
+                    self.scroll_offset += 20;
+                }
+            }
+            KeyCode::Home => {
+                self.scroll_offset = 0;
+            }
+            KeyCode::End => {
+                self.scroll_offset = 1_000_000; // will be clamped in rendering
             }
             KeyCode::Esc => {
                 self.should_quit = true;
@@ -191,6 +260,10 @@ impl App {
             // Add to history if not duplicate of last entry
             if self.history.last() != Some(&input) {
                 self.history.push(input.clone());
+                // Keep history bounded
+                if self.history.len() > MAX_HISTORY_ITEMS {
+                    self.history.remove(0);
+                }
             }
             self.history_index = None;
             self.input_buffer.clear();
@@ -453,17 +526,32 @@ pub async fn run_tui(
 
         // Handle input events
         if event::poll(std::time::Duration::from_millis(50))? {
-            if let Event::Key(key) = event::read()? {
-                app.handle_key(&key);
-                if app.should_quit {
-                    break;
-                }
-                if let Some(input) = app.submit_input() {
-                    app.add_user_message(input.clone());
-                    if let Err(e) = input_tx.send(input).await {
-                        eprintln!("Failed to send input: {}", e);
+            match event::read()? {
+                Event::Key(key) => {
+                    app.handle_key(&key);
+                    if app.should_quit {
+                        break;
+                    }
+                    if let Some(input) = app.submit_input() {
+                        app.add_user_message(input.clone());
+                        if let Err(e) = input_tx.send(input).await {
+                            eprintln!("Failed to send input: {}", e);
+                        }
                     }
                 }
+                Event::Mouse(mouse_event) => {
+                    use crossterm::event::MouseEventKind;
+                    match mouse_event.kind {
+                        MouseEventKind::ScrollUp => {
+                            app.scroll_offset = app.scroll_offset.saturating_sub(3);
+                        }
+                        MouseEventKind::ScrollDown => {
+                            app.scroll_offset += 3;
+                        }
+                        _ => {}
+                    }
+                }
+                _ => {}
             }
         }
 
@@ -477,6 +565,8 @@ pub async fn run_tui(
     }
 
     disable_raw_mode()?;
+    // Save history before exit
+    app.save_history();
     let mut stdout = io::stdout();
     stdout.write_all(b"\x1b[?1049l")?; // Leave alternate screen
     stdout.flush()?;
