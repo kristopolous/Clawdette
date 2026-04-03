@@ -515,6 +515,9 @@ fn wrap_text(text: &Text, max_width: u16) -> Vec<Line<'static>> {
 }
 
 pub fn ui(frame: &mut Frame, app: &mut App) {
+    // Clear entire screen first to prevent any ghost characters
+    frame.render_widget(Clear, frame.area());
+
     let outer_margin = 1;
     let inner_padding = 1;
     let chunks = Layout::default()

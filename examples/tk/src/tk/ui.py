@@ -1111,13 +1111,17 @@ class MainWindow:
     def _add_user_bubble(self, text: str):
         wrapper = tk.Frame(self.chat_inner, bg="#f5f5f5", highlightthickness=0, borderwidth=0)
         wrapper.pack(fill=tk.X, pady=2, padx=10)
+        spacer = tk.Frame(wrapper, bg="#f5f5f5")
+        spacer.pack(side=tk.LEFT, fill=tk.X, expand=True)
         bubble = tk.Text(wrapper, bg="#0078d4", fg="white",
                          font=("TkDefaultFont", 10), wrap=tk.WORD,
-                         height=1, borderwidth=0, relief=tk.FLAT,
+                         height=1, width=55, borderwidth=0, relief=tk.FLAT,
                          highlightthickness=0, padx=12, pady=8)
         bubble.insert("1.0", text)
         bubble.configure(state=tk.DISABLED)
-        bubble.pack(side=tk.RIGHT, fill=tk.X, expand=True)
+        bubble.tag_configure("right", justify="right")
+        bubble.tag_add("right", "1.0", "end")
+        bubble.pack(side=tk.RIGHT, anchor=tk.E)
         self._message_widgets.append(wrapper)
 
     def _add_assistant_bubble(self, text: str):
@@ -1125,11 +1129,11 @@ class MainWindow:
         wrapper.pack(fill=tk.X, pady=2, padx=10)
         bubble = tk.Text(wrapper, bg="#e8e8e8", fg="#222222",
                          font=("TkDefaultFont", 10), wrap=tk.WORD,
-                         height=1, borderwidth=0, relief=tk.FLAT,
+                         height=1, width=55, borderwidth=0, relief=tk.FLAT,
                          highlightthickness=0, padx=12, pady=8)
         bubble.insert("1.0", text)
         bubble.configure(state=tk.DISABLED)
-        bubble.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        bubble.pack(side=tk.LEFT, anchor=tk.W)
         self._message_widgets.append(wrapper)
 
     def _add_tool_bubble(self, text: str):

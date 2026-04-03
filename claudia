@@ -13,6 +13,7 @@ if (args.includes('--help') || args.includes('-h')) {
 
     Make a custom claudette ... more ... custom
 
+
         .{{}}}}}}.
        {{{{{}}}}}}}. 
       {{{{  }}}}}}}}}     
@@ -23,7 +24,8 @@ if (args.includes('--help') || args.includes('-h')) {
    {{{{{{{;.___.;}}}}}}}  
     {{{{{{{)   (}}}}}}}'
      \`""'"':   :'"'"'\`   
-            \`@' 
+      jgs   \`@' 
+
 
     Usage: ./claudia [options]
 
