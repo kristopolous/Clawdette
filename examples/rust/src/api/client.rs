@@ -99,6 +99,7 @@ struct AnthropicTool {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct AnthropicResponse {
     id: String,
     role: String,
@@ -166,6 +167,7 @@ struct OpenAIFunctionCall {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct OpenAIResponse {
     id: String,
     model: String,
@@ -175,6 +177,7 @@ struct OpenAIResponse {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct OpenAIChoice {
     message: OpenAIResponseMessage,
     #[serde(default)]
@@ -182,6 +185,7 @@ struct OpenAIChoice {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct OpenAIResponseMessage {
     #[serde(default)]
     role: Option<String>,
@@ -194,6 +198,7 @@ struct OpenAIResponseMessage {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct OpenAIResponseToolCall {
     id: String,
     #[serde(rename = "type")]

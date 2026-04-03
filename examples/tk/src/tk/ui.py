@@ -122,21 +122,220 @@ class CostDialog:
         self.dialog.wait_window()
 
 
+class ConnectionDialog:
+    def __init__(self, parent, config, query_engine):
+        self.config = config
+        self.query_engine = query_engine
+        self.result = False
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("Connection Settings")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        self.dialog.resizable(False, False)
+        self.dialog.withdraw()
+
+        self._build_ui()
+        self._sync_to_ui()
+
+        self.dialog.update_idletasks()
+        w = min(self.dialog.winfo_reqwidth() + 40, parent.winfo_screenwidth() - 100)
+        h = min(self.dialog.winfo_reqheight() + 40, parent.winfo_screenheight() - 100)
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"{w}x{h}+{x}+{y}")
+        self.dialog.deiconify()
+
+        self.dialog.wait_window()
+
+    def _build_ui(self):
+        self.dialog.columnconfigure(1, weight=1)
+
+        frame = ttk.Frame(self.dialog, padding=20)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(1, weight=1)
+
+        row = 0
+
+        ttk.Label(frame, text="Host Preset:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        self.host_var = tk.StringVar()
+        self.host_combo = ttk.Combobox(frame, textvariable=self.host_var, values=list(HOST_PRESETS.keys()), width=40, state="readonly")
+        self.host_combo.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+        self.host_combo.bind("<<ComboboxSelected>>", self._on_host_selected)
+
+        row += 1
+
+        ttk.Label(frame, text="API Base URL:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        url_frame = ttk.Frame(frame)
+        url_frame.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+        url_frame.columnconfigure(0, weight=1)
+
+        self.base_url_var = tk.StringVar()
+        self.base_url_entry = ttk.Entry(url_frame, textvariable=self.base_url_var, width=50)
+        self.base_url_entry.grid(row=0, column=0, sticky=tk.EW, padx=(0, 5))
+
+        self.get_models_btn = ttk.Button(url_frame, text="Get Models", command=self._fetch_models, width=12)
+        self.get_models_btn.grid(row=0, column=1)
+
+        row += 1
+
+        ttk.Label(frame, text="Model:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        self.model_var = tk.StringVar()
+        self.model_combo = ttk.Combobox(frame, textvariable=self.model_var, width=40)
+        self.model_combo.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+
+        row += 1
+
+        ttk.Label(frame, text="API Key:").grid(row=row, column=0, sticky=tk.W, pady=8)
+        key_frame = ttk.Frame(frame)
+        key_frame.grid(row=row, column=1, sticky=tk.EW, pady=8, padx=(10, 0))
+        key_frame.columnconfigure(0, weight=1)
+
+        self.key_var = tk.StringVar()
+        self.key_entry = ttk.Entry(key_frame, textvariable=self.key_var, show="*")
+        self.key_entry.grid(row=0, column=0, sticky=tk.EW, padx=(0, 5))
+
+        self.toggle_btn = ttk.Button(key_frame, text="Show", width=6, command=self._toggle_key)
+        self.toggle_btn.grid(row=0, column=1)
+
+        row += 1
+
+        self.status_label = ttk.Label(frame, text="", foreground="gray", font=("TkDefaultFont", 9))
+        self.status_label.grid(row=row, column=0, columnspan=2, pady=(10, 0))
+
+        row += 1
+
+        btn_frame = ttk.Frame(frame)
+        btn_frame.grid(row=row, column=0, columnspan=2, pady=(20, 0))
+        ttk.Button(btn_frame, text="Apply", command=self._apply, width=12).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Cancel", command=self.dialog.destroy, width=12).pack(side=tk.LEFT, padx=5)
+
+    def _sync_to_ui(self):
+        base = self.config.api_base.rstrip("/")
+        host_name = "Custom"
+        for name, url in HOST_PRESETS.items():
+            if url and url.rstrip("/") == base:
+                host_name = name
+                break
+        self.host_var.set(host_name)
+        self.base_url_var.set(base)
+        self.model_var.set(self.config.model)
+        self.key_var.set(self.config.api_key or "")
+        self._update_model_dropdown(base)
+
+    def _update_model_dropdown(self, base_url):
+        base_url = base_url.rstrip("/")
+        models = MODEL_PRESETS.get(base_url, [])
+        self.model_combo.configure(values=models)
+
+    def _on_host_selected(self, event=None):
+        name = self.host_var.get()
+        url = HOST_PRESETS.get(name, "")
+        if name == "Custom":
+            self.base_url_entry.configure(state=tk.NORMAL)
+        else:
+            self.base_url_entry.configure(state=tk.DISABLED)
+            self.base_url_var.set(url)
+        self._update_model_dropdown(url)
+
+    def _toggle_key(self):
+        showing = self.key_entry.cget("show") == ""
+        self.key_entry.configure(show="" if showing else "*")
+        self.toggle_btn.configure(text="Hide" if showing else "Show")
+
+    def _apply(self):
+        host_url = self.base_url_var.get().strip()
+        model = self.model_var.get().strip()
+        api_key = self.key_var.get().strip()
+
+        if not host_url:
+            self.status_label.configure(text="Error: API Base URL is required", foreground="red")
+            return
+        if not model:
+            self.status_label.configure(text="Error: Model is required", foreground="red")
+            return
+        if not api_key:
+            self.status_label.configure(text="Error: API Key is required", foreground="red")
+            return
+
+        self.config.set_api_base(host_url)
+        self.config.set_model(model)
+        self.config.set_api_key(api_key)
+
+        self.query_engine.api_client.base_url = host_url.rstrip("/")
+        self.query_engine.api_client.provider = detect_provider(host_url)
+        self.query_engine.api_client.model = model
+        self.query_engine.api_client.api_key = api_key
+
+        self.status_label.configure(text="Settings applied successfully", foreground="green")
+        self.result = True
+
+    def _fetch_models(self):
+        base_url = self.base_url_var.get().strip()
+        api_key = self.key_var.get().strip()
+
+        if not base_url:
+            self.status_label.configure(text="Enter an API base URL first", foreground="red")
+            return
+
+        self.status_label.configure(text="Fetching models...", foreground="gray")
+        self.get_models_btn.configure(state=tk.DISABLED)
+
+        def do_fetch():
+            try:
+                import httpx
+                url = base_url.rstrip("/") + "/models"
+                headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
+                resp = httpx.get(url, headers=headers, timeout=15.0)
+                resp.raise_for_status()
+                data = resp.json()
+                models = []
+                if isinstance(data, dict) and "data" in data:
+                    for item in data["data"]:
+                        if isinstance(item, dict):
+                            models.append(item.get("id", ""))
+                elif isinstance(data, list):
+                    for item in data:
+                        if isinstance(item, dict):
+                            models.append(item.get("id", str(item)))
+                        else:
+                            models.append(str(item))
+                models = [m for m in models if m]
+                models.sort()
+                self.dialog.after(0, lambda: self._on_models_fetched(models))
+            except Exception as e:
+                self.dialog.after(0, lambda: self._on_models_fetch_failed(str(e)))
+
+        threading.Thread(target=do_fetch, daemon=True).start()
+
+    def _on_models_fetched(self, models):
+        self.model_combo.configure(values=models)
+        self.status_label.configure(text=f"Found {len(models)} models", foreground="green")
+        self.get_models_btn.configure(state=tk.NORMAL)
+
+    def _on_models_fetch_failed(self, error):
+        self.status_label.configure(text=f"Failed to fetch models: {error[:100]}", foreground="red")
+        self.get_models_btn.configure(state=tk.NORMAL)
+
+
 class ToolsDialog:
-    def __init__(self, parent, tool_registry):
+    def __init__(self, parent, tool_registry, mcp_manager=None):
         self.registry = tool_registry
+        self.mcp_manager = mcp_manager
         self.result = False
         self.dialog = tk.Toplevel(parent)
         self.dialog.title("Tools")
         self.dialog.transient(parent)
         self.dialog.grab_set()
-        self.dialog.geometry("450x400")
-
-        x = parent.winfo_x() + 50
-        y = parent.winfo_y() + 50
-        self.dialog.geometry(f"+{x}+{y}")
+        self.dialog.resizable(False, False)
 
         self._build_ui()
+
+        self.dialog.update_idletasks()
+        w = min(self.dialog.winfo_reqwidth() + 40, parent.winfo_screenwidth() - 100)
+        h = min(self.dialog.winfo_reqheight() + 40, parent.winfo_screenheight() - 100)
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"{w}x{h}+{x}+{y}")
 
         self.dialog.wait_window()
 
@@ -149,32 +348,55 @@ class ToolsDialog:
         frame.columnconfigure(0, weight=1)
         frame.rowconfigure(0, weight=1)
 
-        ttk.Label(frame, text="Built-in Tools", font=("TkDefaultFont", 11, "bold")).grid(row=0, column=0, sticky=tk.W, pady=(0, 10))
+        ttk.Label(frame, text="Built-in Tools", font=("TkDefaultFont", 11, "bold")).grid(row=0, column=0, sticky=tk.W, pady=(0, 5))
 
-        list_frame = ttk.Frame(frame)
-        list_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 15))
-        list_frame.columnconfigure(0, weight=1)
-        list_frame.rowconfigure(0, weight=1)
+        builtin_frame = ttk.Frame(frame)
+        builtin_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 10))
+        builtin_frame.columnconfigure(0, weight=1)
+        builtin_frame.rowconfigure(0, weight=1)
 
         columns = ("name", "status")
-        self.tree = ttk.Treeview(list_frame, columns=columns, show="headings", height=10)
+        self.tree = ttk.Treeview(builtin_frame, columns=columns, show="headings", height=6)
         self.tree.heading("name", text="Tool")
         self.tree.heading("status", text="Status")
         self.tree.column("name", width=200)
         self.tree.column("status", width=100)
 
-        scrollbar = ttk.Scrollbar(list_frame, orient=tk.VERTICAL, command=self.tree.yview)
+        scrollbar = ttk.Scrollbar(builtin_frame, orient=tk.VERTICAL, command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
         self.tree.grid(row=0, column=0, sticky="nsew")
         scrollbar.grid(row=0, column=1, sticky="ns")
 
-        self._populate_tools()
+        ttk.Separator(frame, orient=tk.HORIZONTAL).grid(row=2, column=0, sticky="ew", pady=5)
+
+        ttk.Label(frame, text="MCP Tools", font=("TkDefaultFont", 11, "bold")).grid(row=3, column=0, sticky=tk.W, pady=(5, 5))
+
+        mcp_frame = ttk.Frame(frame)
+        mcp_frame.grid(row=4, column=0, sticky="nsew", pady=(0, 10))
+        mcp_frame.columnconfigure(0, weight=1)
+        mcp_frame.rowconfigure(0, weight=1)
+
+        self.mcp_tree = ttk.Treeview(mcp_frame, columns=("name", "server", "status"), show="headings", height=6)
+        self.mcp_tree.heading("name", text="Tool")
+        self.mcp_tree.heading("server", text="Server")
+        self.mcp_tree.heading("status", text="Status")
+        self.mcp_tree.column("name", width=180)
+        self.mcp_tree.column("server", width=120)
+        self.mcp_tree.column("status", width=100)
+
+        mcp_scrollbar = ttk.Scrollbar(mcp_frame, orient=tk.VERTICAL, command=self.mcp_tree.yview)
+        self.mcp_tree.configure(yscrollcommand=mcp_scrollbar.set)
+        self.mcp_tree.grid(row=0, column=0, sticky="nsew")
+        mcp_scrollbar.grid(row=0, column=1, sticky="ns")
 
         btn_frame = ttk.Frame(frame)
-        btn_frame.grid(row=2, column=0)
+        btn_frame.grid(row=5, column=0)
         ttk.Button(btn_frame, text="Enable All", command=self._enable_all).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Disable All", command=self._disable_all).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Close", command=self.dialog.destroy).pack(side=tk.LEFT, padx=5)
+
+        self._populate_tools()
+        self._populate_mcp_tools()
 
     def _populate_tools(self):
         for item in self.tree.get_children():
@@ -182,6 +404,52 @@ class ToolsDialog:
         for tool_name, enabled in self.registry.get_tool_states().items():
             status = "Enabled" if enabled else "Disabled"
             self.tree.insert("", tk.END, values=(tool_name, status))
+
+    def _populate_mcp_tools(self):
+        for item in self.mcp_tree.get_children():
+            self.mcp_tree.delete(item)
+        if self.mcp_manager:
+            for server in self.mcp_manager.get_servers():
+                server_name = server.get("name", "")
+                tools = self.mcp_manager.get_server_tools(server_name)
+                if tools:
+                    for t in tools:
+                        self.mcp_tree.insert("", tk.END, values=(t.display_name or t.name, server_name, "Available"))
+                else:
+                    self.mcp_tree.insert("", tk.END, values=("(not connected)", server_name, "Disconnected"))
+        else:
+            self.mcp_tree.insert("", tk.END, values=("(no MCP servers configured)", "", ""))
+
+    def _enable_all(self):
+        self.registry.enable_all()
+        self._populate_tools()
+
+    def _disable_all(self):
+        self.registry.disable_all()
+        self._populate_tools()
+        self._populate_mcp_tools()
+
+    def _populate_tools(self):
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        for tool_name, enabled in self.registry.get_tool_states().items():
+            status = "Enabled" if enabled else "Disabled"
+            self.tree.insert("", tk.END, values=(tool_name, status))
+
+    def _populate_mcp_tools(self):
+        for item in self.mcp_tree.get_children():
+            self.mcp_tree.delete(item)
+        if self.mcp_manager:
+            for server in self.mcp_manager.get_servers():
+                server_name = server.get("name", "")
+                tools = self.mcp_manager.get_server_tools(server_name)
+                if tools:
+                    for t in tools:
+                        self.mcp_tree.insert("", tk.END, values=(t.display_name or t.name, server_name, "Available"))
+                else:
+                    self.mcp_tree.insert("", tk.END, values=("(not connected)", server_name, "Disconnected"))
+        else:
+            self.mcp_tree.insert("", tk.END, values=("(no MCP servers configured)", "", ""))
 
     def _enable_all(self):
         self.registry.enable_all()
@@ -200,13 +468,16 @@ class McpServersDialog:
         self.dialog.title("MCP Servers")
         self.dialog.transient(parent)
         self.dialog.grab_set()
-        self.dialog.geometry("600x450")
-
-        x = parent.winfo_x() + 50
-        y = parent.winfo_y() + 50
-        self.dialog.geometry(f"+{x}+{y}")
+        self.dialog.resizable(False, False)
 
         self._build_ui()
+
+        self.dialog.update_idletasks()
+        w = min(self.dialog.winfo_reqwidth() + 40, parent.winfo_screenwidth() - 100)
+        h = min(self.dialog.winfo_reqheight() + 40, parent.winfo_screenheight() - 100)
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"{w}x{h}+{x}+{y}")
 
         self.dialog.wait_window()
 
@@ -250,6 +521,7 @@ class McpServersDialog:
 
         btn_frame = ttk.Frame(frame)
         btn_frame.grid(row=2, column=0)
+        ttk.Button(btn_frame, text="Connect", command=self._connect_server).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Edit", command=self._edit_server).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Remove", command=self._remove_server).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Refresh", command=self._refresh).pack(side=tk.LEFT, padx=5)
@@ -267,6 +539,44 @@ class McpServersDialog:
                 server.get("status", "disconnected"),
                 str(server.get("tool_count", 0)),
             ))
+
+    def _connect_server(self):
+        sel = self.tree.selection()
+        if not sel:
+            return
+        item = self.tree.item(sel[0])
+        name = item["values"][0]
+        server = self.manager.get_server(name)
+        if not server:
+            return
+
+        self.status_var = tk.StringVar(value="Connecting...")
+        status_lbl = ttk.Label(self.dialog, textvariable=self.status_var, foreground="gray")
+        status_lbl.pack(pady=5)
+
+        def do_connect():
+            try:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                result = loop.run_until_complete(self.manager.connect_server(server))
+                loop.close()
+                self.dialog.after(0, lambda: self._on_connected(result, status_lbl))
+            except Exception as e:
+                self.dialog.after(0, lambda: self._on_connect_failed(str(e), status_lbl))
+
+        threading.Thread(target=do_connect, daemon=True).start()
+
+    def _on_connected(self, result, label):
+        label.destroy()
+        self._populate_servers()
+        color = "green" if "Connected" in result else "red"
+        self.status_var = tk.StringVar(value=result)
+        ttk.Label(self.dialog, textvariable=self.status_var, foreground=color).pack(pady=5)
+
+    def _on_connect_failed(self, error, label):
+        label.destroy()
+        self.status_var = tk.StringVar(value=f"Error: {error}")
+        ttk.Label(self.dialog, textvariable=self.status_var, foreground="red").pack(pady=5)
 
     def _add_server(self):
         dlg = AddMcpServerDialog(self.dialog)
@@ -303,111 +613,87 @@ class McpServersDialog:
 
 
 class AddMcpServerDialog:
+    TEMPLATE = json.dumps({
+        "name": "my-server",
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/dir"],
+        "env": {
+            "API_KEY": "",
+        },
+    }, indent=2)
+
     def __init__(self, parent):
         self.result = None
         self.dialog = tk.Toplevel(parent)
         self.dialog.title("Add MCP Server")
         self.dialog.transient(parent)
         self.dialog.grab_set()
-        self.dialog.geometry("450x350")
-        self.dialog.resizable(False, False)
-
-        x = parent.winfo_x() + 50
-        y = parent.winfo_y() + 50
-        self.dialog.geometry(f"+{x}+{y}")
+        self.dialog.resizable(True, True)
 
         self._build_ui()
+
+        self.dialog.update_idletasks()
+        w = min(self.dialog.winfo_reqwidth() + 40, 650)
+        h = min(self.dialog.winfo_reqheight() + 40, 500)
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"{w}x{h}+{x}+{y}")
+
         self.dialog.wait_window()
 
     def _build_ui(self):
-        frame = ttk.Frame(self.dialog, padding=20)
-        frame.pack(fill=tk.BOTH, expand=True)
-        frame.columnconfigure(1, weight=1)
+        self.dialog.columnconfigure(0, weight=1)
+        self.dialog.rowconfigure(0, weight=1)
 
-        row = 0
+        frame = ttk.Frame(self.dialog, padding=15)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(0, weight=1)
+        frame.rowconfigure(0, weight=1)
 
-        ttk.Label(frame, text="Name:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.name_var = tk.StringVar()
-        ttk.Entry(frame, textvariable=self.name_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+        ttk.Label(frame, text="Server Configuration (JSON)", font=("TkDefaultFont", 10, "bold")).grid(row=0, column=0, sticky=tk.W, pady=(0, 5))
 
-        row += 1
+        self.text = tk.Text(frame, font=("TkFixedFont", 10), wrap=tk.NONE, height=15, width=60)
+        self.text.insert("1.0", self.TEMPLATE)
+        self.text.grid(row=1, column=0, sticky="nsew", pady=(0, 10))
 
-        ttk.Label(frame, text="Transport:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.transport_var = tk.StringVar(value="stdio")
-        transport_combo = ttk.Combobox(frame, textvariable=self.transport_var, values=["stdio", "sse", "http", "ws"], state="readonly", width=15)
-        transport_combo.grid(row=row, column=1, sticky=tk.W, pady=6, padx=(10, 0))
-        transport_combo.bind("<<ComboboxSelected>>", self._on_transport_change)
+        text_scroll = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.text.yview)
+        text_scroll.grid(row=1, column=1, sticky="ns", pady=(0, 10))
+        self.text.configure(yscrollcommand=text_scroll.set)
 
-        row += 1
-
-        ttk.Label(frame, text="Command:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.command_var = tk.StringVar()
-        ttk.Entry(frame, textvariable=self.command_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
-
-        row += 1
-
-        ttk.Label(frame, text="Args:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.args_var = tk.StringVar()
-        ttk.Entry(frame, textvariable=self.args_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
-        ttk.Label(frame, text="(space-separated)", font=("TkDefaultFont", 8), foreground="gray").grid(row=row, column=2, sticky=tk.W, padx=(5, 0))
-
-        row += 1
-
-        self.url_label = ttk.Label(frame, text="URL:")
-        self.url_label.grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.url_var = tk.StringVar()
-        self.url_entry = ttk.Entry(frame, textvariable=self.url_var)
-        self.url_entry.grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
-        self.url_label.grid_remove()
-        self.url_entry.grid_remove()
-
-        row += 1
+        self.error_label = ttk.Label(frame, text="", foreground="red", font=("TkDefaultFont", 9))
+        self.error_label.grid(row=2, column=0, sticky=tk.W)
 
         btn_frame = ttk.Frame(frame)
-        btn_frame.grid(row=row, column=0, columnspan=2, pady=(15, 0))
+        btn_frame.grid(row=3, column=0, sticky=tk.E)
         ttk.Button(btn_frame, text="Add", command=self._ok, width=10).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Cancel", command=self.dialog.destroy, width=10).pack(side=tk.LEFT, padx=5)
 
-        self._on_transport_change()
-
-    def _on_transport_change(self, event=None):
-        is_local = self.transport_var.get() in ("stdio",)
-        self.command_var.set("" if is_local else self.command_var.get())
-        for w in frame_children(self.dialog):
-            pass
-        if is_local:
-            self.url_label.grid_remove()
-            self.url_entry.grid_remove()
-        else:
-            self.url_label.grid()
-            self.url_entry.grid()
-
     def _ok(self):
-        name = self.name_var.get().strip()
-        if not name:
-            messagebox.showwarning("Warning", "Name is required")
+        raw = self.text.get("1.0", tk.END).strip()
+        try:
+            config = json.loads(raw)
+        except json.JSONDecodeError as e:
+            self.error_label.configure(text=f"Invalid JSON: {e}")
             return
 
-        transport = self.transport_var.get()
-        server = {"name": name, "transport": transport, "enabled": True}
+        if not config.get("name"):
+            self.error_label.configure(text="'name' is required")
+            return
+        if not config.get("transport"):
+            self.error_label.configure(text="'transport' is required (stdio, sse, or http)")
+            return
 
-        if transport == "stdio":
-            cmd = self.command_var.get().strip()
-            if not cmd:
-                messagebox.showwarning("Warning", "Command is required for stdio transport")
-                return
-            server["command"] = cmd
-            args = self.args_var.get().strip()
-            if args:
-                server["args"] = args.split()
-        else:
-            url = self.url_var.get().strip()
-            if not url:
-                messagebox.showwarning("Warning", "URL is required")
-                return
-            server["url"] = url
+        transport = config["transport"]
+        if transport == "stdio" and not config.get("command"):
+            self.error_label.configure(text="'command' is required for stdio transport")
+            return
+        if transport in ("sse", "http") and not config.get("url"):
+            self.error_label.configure(text="'url' is required for {transport} transport")
+            return
 
-        self.result = server
+        config.setdefault("enabled", True)
+        self.result = config
         self.dialog.destroy()
 
 
@@ -419,105 +705,148 @@ class EditMcpServerDialog:
         self.dialog.title("Edit MCP Server")
         self.dialog.transient(parent)
         self.dialog.grab_set()
-        self.dialog.geometry("450x350")
-        self.dialog.resizable(False, False)
-
-        x = parent.winfo_x() + 50
-        y = parent.winfo_y() + 50
-        self.dialog.geometry(f"+{x}+{y}")
+        self.dialog.resizable(True, True)
 
         self._build_ui()
+
+        self.dialog.update_idletasks()
+        w = min(self.dialog.winfo_reqwidth() + 40, 650)
+        h = min(self.dialog.winfo_reqheight() + 40, 500)
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"{w}x{h}+{x}+{y}")
+
         self.dialog.wait_window()
 
     def _build_ui(self):
-        frame = ttk.Frame(self.dialog, padding=20)
-        frame.pack(fill=tk.BOTH, expand=True)
-        frame.columnconfigure(1, weight=1)
+        self.dialog.columnconfigure(0, weight=1)
+        self.dialog.rowconfigure(0, weight=1)
 
-        row = 0
+        frame = ttk.Frame(self.dialog, padding=15)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(0, weight=1)
+        frame.rowconfigure(0, weight=1)
 
-        ttk.Label(frame, text="Name:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.name_var = tk.StringVar(value=self.server.get("name", ""))
-        ttk.Entry(frame, textvariable=self.name_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
+        ttk.Label(frame, text="Server Configuration (JSON)", font=("TkDefaultFont", 10, "bold")).grid(row=0, column=0, sticky=tk.W, pady=(0, 5))
 
-        row += 1
+        self.text = tk.Text(frame, font=("TkFixedFont", 10), wrap=tk.NONE, height=15, width=60)
+        display = {k: v for k, v in self.server.items() if k not in ("status", "tool_count")}
+        self.text.insert("1.0", json.dumps(display, indent=2))
+        self.text.grid(row=1, column=0, sticky="nsew", pady=(0, 10))
 
-        ttk.Label(frame, text="Transport:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.transport_var = tk.StringVar(value=self.server.get("transport", "stdio"))
-        transport_combo = ttk.Combobox(frame, textvariable=self.transport_var, values=["stdio", "sse", "http", "ws"], state="readonly", width=15)
-        transport_combo.grid(row=row, column=1, sticky=tk.W, pady=6, padx=(10, 0))
+        text_scroll = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.text.yview)
+        text_scroll.grid(row=1, column=1, sticky="ns", pady=(0, 10))
+        self.text.configure(yscrollcommand=text_scroll.set)
 
-        row += 1
-
-        ttk.Label(frame, text="Command:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.command_var = tk.StringVar(value=self.server.get("command", ""))
-        ttk.Entry(frame, textvariable=self.command_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
-
-        row += 1
-
-        ttk.Label(frame, text="Args:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        args = self.server.get("args", [])
-        self.args_var = tk.StringVar(value=" ".join(args) if isinstance(args, list) else str(args))
-        ttk.Entry(frame, textvariable=self.args_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
-
-        row += 1
-
-        ttk.Label(frame, text="URL:").grid(row=row, column=0, sticky=tk.W, pady=6)
-        self.url_var = tk.StringVar(value=self.server.get("url", ""))
-        ttk.Entry(frame, textvariable=self.url_var).grid(row=row, column=1, sticky=tk.EW, pady=6, padx=(10, 0))
-
-        row += 1
-
-        self.enabled_var = tk.BooleanVar(value=self.server.get("enabled", True))
-        ttk.Checkbutton(frame, text="Enabled", variable=self.enabled_var).grid(row=row, column=0, columnspan=2, sticky=tk.W, pady=6)
-
-        row += 1
+        self.error_label = ttk.Label(frame, text="", foreground="red", font=("TkDefaultFont", 9))
+        self.error_label.grid(row=2, column=0, sticky=tk.W)
 
         btn_frame = ttk.Frame(frame)
-        btn_frame.grid(row=row, column=0, columnspan=2, pady=(15, 0))
+        btn_frame.grid(row=3, column=0, sticky=tk.E)
         ttk.Button(btn_frame, text="Save", command=self._ok, width=10).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Cancel", command=self.dialog.destroy, width=10).pack(side=tk.LEFT, padx=5)
 
     def _ok(self):
-        name = self.name_var.get().strip()
-        if not name:
-            messagebox.showwarning("Warning", "Name is required")
+        raw = self.text.get("1.0", tk.END).strip()
+        try:
+            config = json.loads(raw)
+        except json.JSONDecodeError as e:
+            self.error_label.configure(text=f"Invalid JSON: {e}")
             return
 
-        server = {
-            "name": name,
-            "transport": self.transport_var.get(),
-            "command": self.command_var.get().strip(),
-            "args": self.args_var.get().strip().split() if self.args_var.get().strip() else [],
-            "url": self.url_var.get().strip(),
-            "enabled": self.enabled_var.get(),
-        }
-        self.result = server
+        if not config.get("name"):
+            self.error_label.configure(text="'name' is required")
+            return
+
+        config.setdefault("enabled", True)
+        self.result = config
         self.dialog.destroy()
 
 
-def frame_children(widget):
-    return widget.winfo_children()
-
-
-class ConnectionDialog:
-    def __init__(self, parent, config, query_engine):
-        self.config = config
-        self.query_engine = query_engine
-        self.result = False
+class EditMcpServerDialog:
+    def __init__(self, parent, server: dict):
+        self.server = server
+        self.result = None
         self.dialog = tk.Toplevel(parent)
-        self.dialog.title("Connection Settings")
+        self.dialog.title("Edit MCP Server")
         self.dialog.transient(parent)
         self.dialog.grab_set()
         self.dialog.resizable(True, True)
-        self.dialog.geometry("600x400")
-
-        x = parent.winfo_x() + 50
-        y = parent.winfo_y() + 50
-        self.dialog.geometry(f"+{x}+{y}")
 
         self._build_ui()
-        self._sync_to_ui()
+
+        self.dialog.update_idletasks()
+        w = min(self.dialog.winfo_reqwidth() + 40, 650)
+        h = min(self.dialog.winfo_reqheight() + 40, 500)
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"{w}x{h}+{x}+{y}")
+
+        self.dialog.wait_window()
+
+    def _build_ui(self):
+        self.dialog.columnconfigure(0, weight=1)
+        self.dialog.rowconfigure(0, weight=1)
+
+        frame = ttk.Frame(self.dialog, padding=15)
+        frame.grid(row=0, column=0, sticky="nsew")
+        frame.columnconfigure(0, weight=1)
+        frame.rowconfigure(0, weight=1)
+
+        ttk.Label(frame, text="Server Configuration (JSON)", font=("TkDefaultFont", 10, "bold")).grid(row=0, column=0, sticky=tk.W, pady=(0, 5))
+
+        self.text = tk.Text(frame, font=("TkFixedFont", 10), wrap=tk.NONE, height=15, width=60)
+        display = {k: v for k, v in self.server.items() if k not in ("status", "tool_count")}
+        self.text.insert("1.0", json.dumps(display, indent=2))
+        self.text.grid(row=1, column=0, sticky="nsew", pady=(0, 10))
+
+        text_scroll = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.text.yview)
+        text_scroll.grid(row=1, column=1, sticky="ns", pady=(0, 10))
+        self.text.configure(yscrollcommand=text_scroll.set)
+
+        self.error_label = ttk.Label(frame, text="", foreground="red", font=("TkDefaultFont", 9))
+        self.error_label.grid(row=2, column=0, sticky=tk.W)
+
+        btn_frame = ttk.Frame(frame)
+        btn_frame.grid(row=3, column=0, sticky=tk.E)
+        ttk.Button(btn_frame, text="Save", command=self._ok, width=10).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Cancel", command=self.dialog.destroy, width=10).pack(side=tk.LEFT, padx=5)
+
+    def _ok(self):
+        raw = self.text.get("1.0", tk.END).strip()
+        try:
+            config = json.loads(raw)
+        except json.JSONDecodeError as e:
+            self.error_label.configure(text=f"Invalid JSON: {e}")
+            return
+
+        if not config.get("name"):
+            self.error_label.configure(text="'name' is required")
+            return
+
+        config.setdefault("enabled", True)
+        self.result = config
+        self.dialog.destroy()
+
+
+class EditMcpServerDialog:
+    def __init__(self, parent, server: dict):
+        self.server = server
+        self.result = None
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("Edit MCP Server")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        self.dialog.resizable(False, False)
+
+        self._build_ui()
+
+        self.dialog.update_idletasks()
+        w = min(self.dialog.winfo_reqwidth() + 40, parent.winfo_screenwidth() - 100)
+        h = min(self.dialog.winfo_reqheight() + 40, parent.winfo_screenheight() - 100)
+        x = parent.winfo_x() + 50
+        y = parent.winfo_y() + 50
+        self.dialog.geometry(f"{w}x{h}+{x}+{y}")
 
         self.dialog.wait_window()
 
@@ -864,7 +1193,7 @@ class MainWindow:
 
     def _show_tools(self):
         if self.tool_registry:
-            ToolsDialog(self.root, self.tool_registry)
+            ToolsDialog(self.root, self.tool_registry, self.mcp_manager)
 
     def _show_mcp(self):
         if self.mcp_manager:

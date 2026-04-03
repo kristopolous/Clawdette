@@ -17,6 +17,7 @@ class QueryEngine:
         tool_registry: ToolRegistry,
         cost_tracker: CostTracker,
         config,
+        mcp_manager=None,
         cwd: str | None = None,
         on_text: Optional[Callable[[str], None]] = None,
         on_tool_start: Optional[Callable[[str, dict], None]] = None,
@@ -27,6 +28,7 @@ class QueryEngine:
     ):
         self.api_client = api_client
         self.tool_registry = tool_registry
+        self.mcp_manager = mcp_manager
         self.cost_tracker = cost_tracker
         self.config = config
         self.cwd = cwd or os.getcwd()
@@ -66,9 +68,17 @@ class QueryEngine:
                 current_tool_name = None
                 current_tool_json = ""
 
+                tools = self.tool_registry.get_definitions()
+                if self.mcp_manager:
+                    tools = tools + self.mcp_manager.get_all_tool_definitions()
+
+                tools = self.tool_registry.get_definitions()
+                if self.mcp_manager:
+                    tools = tools + self.mcp_manager.get_all_tool_definitions()
+
                 stream = self.api_client.stream_chat(
                     messages=self.messages,
-                    tools=self.tool_registry.get_definitions(),
+                    tools=tools,
                     max_tokens=self.config.max_tokens,
                     temperature=self.config.temperature,
                 )
@@ -144,9 +154,17 @@ class QueryEngine:
 
                                 for tc in pending_tool_calls:
                                     self.on_tool_start(tc["name"], tc["arguments"])
-                                    result = await self.tool_registry.execute(
-                                        tc["name"], tc["arguments"], cwd=self.cwd
-                                    )
+                                    if tc["name"].startswith("mcp:"):
+                                        parts = tc["name"].split(":", 2)
+                                        server_name = parts[1] if len(parts) > 1 else ""
+                                        raw_name = parts[2] if len(parts) > 2 else tc["name"]
+                                        result = await self.mcp_manager.execute_mcp_tool(
+                                            server_name, raw_name, tc["arguments"]
+                                        )
+                                    else:
+                                        result = await self.tool_registry.execute(
+                                            tc["name"], tc["arguments"], cwd=self.cwd
+                                        )
                                     self.on_tool_result(tc["name"], result.content)
                                     self.messages.append(Message(
                                         role="tool",

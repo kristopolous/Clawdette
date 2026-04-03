@@ -74,6 +74,7 @@ Examples:
     from tk.tools import create_tool_registry
     from tk.models import CostTracker
     from tk.query import QueryEngine
+    from tk.mcp_manager import McpManager
 
     config = Config()
 
@@ -97,6 +98,7 @@ Examples:
     )
 
     tool_registry = create_tool_registry()
+    mcp_manager = McpManager()
 
     cost_tracker = CostTracker(
         input_cost_per_million=config.input_cost_per_million,
@@ -108,6 +110,7 @@ Examples:
     query_engine = QueryEngine(
         api_client=api_client,
         tool_registry=tool_registry,
+        mcp_manager=mcp_manager,
         cost_tracker=cost_tracker,
         config=config,
         cwd=args.cwd,
@@ -118,7 +121,7 @@ Examples:
         return
 
     from tk.ui import MainWindow
-    app = MainWindow(config=config, query_engine=query_engine, tool_registry=tool_registry)
+    app = MainWindow(config=config, query_engine=query_engine, tool_registry=tool_registry, mcp_manager=mcp_manager)
     app.run()
 
 

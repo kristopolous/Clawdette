@@ -277,12 +277,12 @@ async fn main() -> Result<()> {
     let client = LlmClient::new(config);
 
     // Load settings for permission and read-only mode
-    let settings = load_settings().await.unwrap_or_default();
-    let mode = match settings.permission_mode.as_str() {
-        "auto" => PermissionMode::Auto,
-        "bypass" => PermissionMode::Bypass,
-        _ => PermissionMode::Default,
-    };
+     let settings = load_settings().await.unwrap_or_default();
+     let mode = match settings.permission_mode.as_str() {
+         "auto" => PermissionMode::Auto,
+         "bypass" => PermissionMode::Bypass,
+         _ => PermissionMode::Auto,
+     };
     let mut permission_ctx = PermissionContext::new(mode);
     for tool in &settings.always_allow {
         permission_ctx.add_always_allow(tool);

@@ -6,3 +6,4 @@ pub mod commands;
 pub mod context;
 pub mod mcp;
 pub mod utils;
+pub mod markdown;

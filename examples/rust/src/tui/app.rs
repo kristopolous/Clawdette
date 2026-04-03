@@ -1,11 +1,12 @@
+use crate::markdown::render_markdown;
 use crate::types::{StreamEvent, Usage};
 use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyModifiers};
-use crossterm::terminal::{enable_raw_mode, disable_raw_mode};
+use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
 use ratatui::{
     backend::CrosstermBackend,
     layout::{Constraint, Direction, Layout, Position},
     style::{Color, Modifier, Style},
-    text::{Line, Text},
+    text::{Line, Span, Text},
     widgets::{Block, Borders, Paragraph, Wrap},
     Frame, Terminal,
 };
@@ -271,17 +272,21 @@ impl App {
         match event {
             StreamEvent::StreamStart => {
                 self.is_loading = true;
+                self.scroll_offset = 1_000_000; // auto-scroll to bottom
             }
             StreamEvent::TextDelta { delta } => {
                 self.current_response.push_str(delta);
+                self.scroll_offset = 1_000_000; // keep following stream
             }
             StreamEvent::ToolUseStart { name, .. } => {
                 self.current_response
                     .push_str(&format!("\n🔧 Using tool: {}...\n", name));
+                self.scroll_offset = 1_000_000;
             }
             StreamEvent::ToolUseEnd { name, .. } => {
                 self.current_response
                     .push_str(&format!("\n✅ Tool '{}' completed\n", name));
+                self.scroll_offset = 1_000_000;
             }
             StreamEvent::MessageEnd { message } => {
                 if !self.current_response.is_empty() {
@@ -293,13 +298,13 @@ impl App {
                 self.current_response.clear();
                 self.usage.accumulate(&message.usage);
                 self.is_loading = false;
-                // Auto-scroll to bottom (newest message) - set a large offset
-                self.scroll_offset = 1_000_000;
+                self.scroll_offset = 1_000_000; // ensure we're at bottom
             }
             StreamEvent::Error { message, .. } => {
                 self.current_response
                     .push_str(&format!("\n❌ Error: {}", message));
                 self.is_loading = false;
+                self.scroll_offset = 1_000_000;
             }
             _ => {}
         }
@@ -310,7 +315,7 @@ impl App {
             role: "user".to_string(),
             content: text,
         });
-        self.scroll_offset = 0;
+        self.scroll_offset = 1_000_000; // scroll to bottom to show new message
     }
 }
 
@@ -332,42 +337,28 @@ pub fn ui(frame: &mut Frame, app: &App) {
         .split(frame.area());
 
     // Build all lines from messages and current response
-    let mut lines: Vec<Line<'_>> = Vec::new();
+    let mut lines: Vec<Line<'static>> = Vec::new();
 
-    // Helper to add styled lines from a message
-    let add_message = |lines: &mut Vec<Line<'_>>, role: &str, content: &str| {
-        let prefix = match role {
-            "user" => "> ",
-            _ => "",
-        };
-        let base_style = match role {
-            "user" => Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD),
-            _ => Style::default(),
-        };
-        let mut first = true;
-        for line in content.lines() {
-            let line_str = if first {
-                format!("{}{}", prefix, line)
-            } else {
-                let indent = " ".repeat(prefix.len());
-                format!("{}{}", indent, line)
-            };
-            first = false;
-
-            // Determine style based on line content
-            let line_style = if line.starts_with("🔧") {
-                Style::default().fg(Color::Yellow)
-            } else if line.starts_with("✅") {
-                Style::default().fg(Color::Green)
-            } else if line.starts_with("❌") {
-                Style::default().fg(Color::Red)
-            } else if line.starts_with("<thinking>") || line.starts_with("</thinking>") {
-                Style::default().fg(Color::DarkGray)
-            } else {
-                base_style
-            };
-            lines.push(Line::styled(line_str, line_style));
+    // Helper to add styled message lines with markdown rendering
+    let add_message = |lines: &mut Vec<Line<'static>>, role: &str, content: &str| {
+        // Render markdown content to styled text
+        let marked = render_markdown(content);
+        let mut lines_iter = marked.lines.into_iter();
+        if let Some(mut first_line) = lines_iter.next() {
+            // Prepend "> " prefix for user messages
+            if role == "user" {
+                let prefix_span = Span::styled(
+                    "> ",
+                    Style::default()
+                        .fg(Color::Cyan)
+                        .add_modifier(Modifier::BOLD),
+                );
+                first_line.spans.insert(0, prefix_span);
+            }
+            lines.push(first_line);
         }
+        // Append remaining lines
+        lines.extend(lines_iter);
     };
 
     // Add all previous messages
@@ -468,6 +459,7 @@ pub async fn run_tui(
                     break;
                 }
                 if let Some(input) = app.submit_input() {
+                    app.add_user_message(input.clone());
                     if let Err(e) = input_tx.send(input).await {
                         eprintln!("Failed to send input: {}", e);
                     }

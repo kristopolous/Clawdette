@@ -39,6 +39,8 @@ class ToolDefinition:
     name: str
     description: str
     parameters: dict
+    display_name: str = ""
+    server_name: str = ""
 
 
 @dataclass

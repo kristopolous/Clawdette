@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react'
 
 interface ApiKeyInputProps {
   onSubmit: (apiKey: string, model: string, baseUrl: string) => void
+  defaultValues: { apiKey?: string; model?: string; baseUrl?: string }
 }
 
-export default function ApiKeyInput({ onSubmit }: ApiKeyInputProps) {
-  const [apiKey, setApiKey] = useState('')
-  const [baseUrl, setBaseUrl] = useState('https://api.openai.com/v1')
-  const [model, setModel] = useState('')
+export default function ApiKeyInput({ onSubmit, defaultValues }: ApiKeyInputProps) {
+  const [apiKey, setApiKey] = useState(defaultValues.apiKey || '')
+  const [baseUrl, setBaseUrl] = useState(defaultValues.baseUrl || 'https://api.openai.com/v1')
+  const [model, setModel] = useState(defaultValues.model || '')
   const [models, setModels] = useState<string[]>([])
   const [loadingModels, setLoadingModels] = useState(false)
   const [modelError, setModelError] = useState('')

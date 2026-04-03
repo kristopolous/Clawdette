@@ -6,7 +6,6 @@ use anyhow::Result;
 use futures::StreamExt;
 use reqwest_eventsource::Event;
 use serde_json;
-use std::collections::{HashMap, HashSet};
 use tokio_util::sync::CancellationToken;
 use tracing::{debug, info};
 
