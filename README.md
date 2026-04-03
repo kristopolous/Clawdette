@@ -35,4 +35,4 @@ Because why not?
 
 ### Yours
 
-TBD ... Go do it!
+Go do it!
