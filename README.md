@@ -22,7 +22,7 @@ Peak in the `examples/` directory for three Claudettes.
 
 Yes they all work. Yes you can use them with any model and any server. 
 
-Yes you can make your own, easily, with Claudette and Claudia. 
+And yes you can make your own, easily, with Claudette and Claudia. 
 
 ### Tkinter
 A 1990s vintage way to toolcall, mcp and sub-agent.
