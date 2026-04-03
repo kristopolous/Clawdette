@@ -469,6 +469,17 @@ class EditMcpServerDialog:
         if not config.get("name"):
             self.error_label.configure(text="'name' is required")
             return
+        if not config.get("transport"):
+            self.error_label.configure(text="'transport' is required (stdio, sse, or http)")
+            return
+
+        transport = config["transport"]
+        if transport == "stdio" and not config.get("command"):
+            self.error_label.configure(text="'command' is required for stdio transport")
+            return
+        if transport in ("sse", "http") and not config.get("url"):
+            self.error_label.configure(text=f"'url' is required for {transport} transport")
+            return
 
         config.setdefault("enabled", True)
         self.result = config

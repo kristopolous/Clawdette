@@ -86,7 +86,8 @@ class BashTool(BaseTool):
                 command,
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
-                cwd=cwd,
+                cwd=cwd or os.getcwd(),
+                env=os.environ,
             )
             stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=timeout)
             output = ""
