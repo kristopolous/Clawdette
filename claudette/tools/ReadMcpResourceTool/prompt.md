@@ -1,4 +1,4 @@
-# tools/ReadMcpResourceTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 Provides the description and prompt text for the Read MCP Resource tool that reads resources from MCP servers.

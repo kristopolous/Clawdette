@@ -1,4 +1,4 @@
-# AskUserQuestionTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 

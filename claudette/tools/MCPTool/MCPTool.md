@@ -1,4 +1,4 @@
-# tools/MCPTool/MCPTool.ts
+# ```MCPTool```
 
 ## Purpose
 Placeholder tool for MCP (Model Context Protocol) tool invocations, with actual implementation delegated to MCP clients.

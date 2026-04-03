@@ -1,7 +1,7 @@
 # applySettingsChange
 
 ## Purpose
-Applies a settings change to app state by re-reading settings from disk, reloading permissions and hooks, and pushing the new state. Used by both interactive (AppState.tsx via useSettingsChange) and headless/SDK (print.ts direct subscribe) paths so managed-settings/policy changes are fully applied in both modes.
+Applies a settings change to app state by re-reading settings from disk, reloading permissions and hooks, and pushing the new state. Used by both interactive ([```AppState```](../../state/AppState.md) via useSettingsChange) and headless/SDK ([```print```](../../cli/print.md) direct subscribe) paths so managed-settings/policy changes are fully applied in both modes.
 
 ## Imports
 - **Internal**: `../../state/AppState.js` (AppState), `../debug.js` (logForDebugging), `../hooks/hooksConfigSnapshot.js` (updateHooksConfigSnapshot), `../permissions/permissionSetup.js` (createDisabledBypassPermissionsContext, findOverlyBroadBashPermissions, isBypassPermissionsModeDisabled, removeDangerousPermissions, transitionPlanAutoMode), `../permissions/permissions.js` (syncPermissionRulesFromDisk), `../permissions/permissionsLoader.js` (loadAllPermissionRulesFromDisk), `./constants.js` (SettingSource), `./settings.js` (getInitialSettings)

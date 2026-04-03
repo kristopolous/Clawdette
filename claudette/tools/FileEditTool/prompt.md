@@ -1,4 +1,4 @@
-# FileEditTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 

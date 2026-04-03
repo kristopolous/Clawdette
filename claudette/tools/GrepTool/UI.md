@@ -1,4 +1,4 @@
-# tools/GrepTool/UI.tsx
+# ```UI```
 
 ## Purpose
 UI components for rendering Grep tool usage and result messages.

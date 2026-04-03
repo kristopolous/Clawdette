@@ -1,7 +1,7 @@
 # utils/secureStorage/macOsKeychainHelpers
 
 ## Purpose
-Lightweight helpers for macOS keychain operations shared between keychainPrefetch.ts and macOsKeychainStorage.ts. Must not import heavy dependencies (execa, etc.) to avoid defeating keychain prefetch optimization.
+Lightweight helpers for macOS keychain operations shared between [```keychainPrefetch```](keychainPrefetch.md) and [```macOsKeychainStorage```](macOsKeychainStorage.md). Must not import heavy dependencies (execa, etc.) to avoid defeating keychain prefetch optimization.
 
 ## Imports
 - **Stdlib**: `crypto` (createHash), `os` (userInfo)

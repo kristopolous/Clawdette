@@ -1,4 +1,4 @@
-# ExitPlanModeTool/constants.ts
+# ```constants```
 
 ## Purpose
 

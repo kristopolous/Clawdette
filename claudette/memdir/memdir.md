@@ -138,7 +138,7 @@ The memory system uses a four-type taxonomy defined in `memoryTypes`:
 
 MEMORY.md is an index file (not a memory itself). Each entry should be one line under ~150 characters:
 ```
-- [Title](file.md) — one-line hook
+- Title — one-line hook
 ```
 
 Individual memories are stored in separate topic files with frontmatter.
@@ -153,7 +153,7 @@ Individual memories are stored in separate topic files with frontmatter.
 
 ## See Also
 
-- [memoryTypes.md](./memoryTypes.md) - Memory type definitions and examples
-- [paths.md](./paths.md) - Memory path resolution
-- [teamMemPaths.md](./teamMemPaths.md) - Team memory path utilities
-- [teamMemPrompts.md](./teamMemPrompts.md) - Combined memory prompt builder
+- [``memoryTypes.md``](./memoryTypes.md) - Memory type definitions and examples
+- [``paths.md``](./paths.md) - Memory path resolution
+- [``teamMemPaths.md``](./teamMemPaths.md) - Team memory path utilities
+- [``teamMemPrompts.md``](./teamMemPrompts.md) - Combined memory prompt builder

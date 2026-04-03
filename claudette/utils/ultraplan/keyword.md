@@ -9,7 +9,7 @@ Detects `ultraplan` and `ultrareview` keyword trigger positions in user text, wi
 ## Logic
 1. `findKeywordTriggerPositions` is the core algorithm. It finds keyword positions while skipping false positives:
    - **Paired delimiters**: Skips occurrences inside backticks, double quotes, angle brackets (tag-like only), curly braces, square brackets, and single quotes (with apostrophe detection — opening quote must be preceded by non-word char).
-   - **Path/identifier context**: Skips if preceded or followed by `/`, `\`, or `-`, or followed by `.` + word char (file extension). Prevents `src/ultraplan/foo.ts`, `ultraplan.tsx`, `--ultraplan-mode` from triggering.
+   - **Path/identifier context**: Skips if preceded or followed by `/`, `\`, or `-`, or followed by `.` + word char (file extension). Prevents `src/ultraplan/foo.ts`, `[```ultraplan```](../../commands/ultraplan.md)`, `--ultraplan-mode` from triggering.
    - **Question mark**: Skips if followed by `?` (a question about the feature shouldn't invoke it).
    - **Slash commands**: Returns empty if text starts with `/` (slash command input, not keyword detection).
 2. Delimiter pairing uses a single-pass scan tracking `openQuote` state. Innermost bracket matching for `[` (handles `[Pasted text #N]` placeholders).

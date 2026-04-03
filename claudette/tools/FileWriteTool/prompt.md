@@ -1,4 +1,4 @@
-# FileWriteTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 

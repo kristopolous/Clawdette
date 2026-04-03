@@ -23,7 +23,7 @@ Fig-spec-driven command prefix extraction. Walks a @withfig/autocomplete spec to
    - For subcommands: checks subcommand's args (isCommand→3, isVariadic→2, nested subcommands→4, no args declared→2, otherwise→3)
    - For top-level args: isCommand→2-3, isVariadic→1, required first arg→2, isDangerous→3, default→2
 7. `shouldStopAtArg(arg, args, spec)` - returns true for flags, files (has `/` or extension), and URLs. Exception: module names after `-m` flag are not stopped at.
-8. Pure over `(string, string[], CommandSpec)` — no parser dependency. Extracted from src/utils/bash/prefix.ts so PowerShell's extractor can reuse it.
+8. Pure over `(string, string[], CommandSpec)` — no parser dependency. Extracted from [```prefix```](../bash/prefix.md) so PowerShell's extractor can reuse it.
 
 ## Exports
 - `DEPTH_RULES` - Record<string, number> of hardcoded depth overrides for commands without runtime fig specs

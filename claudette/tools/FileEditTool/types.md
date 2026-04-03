@@ -1,4 +1,4 @@
-# FileEditTool/types.ts
+# ```types```
 
 ## Purpose
 

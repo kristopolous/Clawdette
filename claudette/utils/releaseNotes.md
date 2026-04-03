@@ -14,7 +14,7 @@ Provides release notes fetching, caching, and parsing utilities. Fetches changel
 3. Changelog is fetched from GitHub (not bundled) because Ink's static rendering makes dynamic updates difficult
 4. Flow: user updates → fetch changelog in background → store in cache file → available on next startup
 5. `getChangelogCachePath` - returns ~/.claude/cache/changelog.md
-6. `changelogMemoryCache` - in-memory cache populated by async reads; sync callers (React render) read from this after setup.ts awaits checkForReleaseNotes()
+6. `changelogMemoryCache` - in-memory cache populated by async reads; sync callers (React render) read from this after [```setup```](../setup.md) awaits checkForReleaseNotes()
 7. `migrateChangelogFromConfig` - migrates from old config-based storage (cachedChangelog field) to file-based storage; called once at startup before any other config saves
 8. `fetchAndStoreChangelog` - fetches changelog from GitHub; skips in non-interactive sessions and when essential-traffic-only mode is enabled; skips write if content unchanged; updates changelogLastFetched timestamp in config
 9. `getStoredChangelog` - async reader that populates in-memory cache from file; returns empty string on failure

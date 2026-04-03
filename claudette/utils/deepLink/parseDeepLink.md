@@ -25,4 +25,4 @@ Constants: `MAX_QUERY_LENGTH` = 5000, `MAX_CWD_LENGTH` = 4096, `REPO_SLUG_PATTER
 - `buildDeepLink` - builds a `claude-cli://open` URL string from a `DeepLinkAction`
 
 ## Source
-`claude-code/src/utils/deepLink/parseDeepLink.ts`
+`claude-```parseDeepLink````

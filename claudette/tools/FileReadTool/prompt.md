@@ -1,4 +1,4 @@
-# FileReadTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 

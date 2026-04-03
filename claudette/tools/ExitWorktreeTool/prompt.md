@@ -1,4 +1,4 @@
-# ExitWorktreeTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 

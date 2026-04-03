@@ -1,4 +1,4 @@
-# tools/PowerShellTool/pathValidation.ts
+# ```pathValidation```
 
 ## Purpose
 Validates file system paths in PowerShell commands, extracting paths from AST and enforcing permission rules while handling PowerShell-specific syntax and security edge cases.

@@ -17,4 +17,4 @@ Parses `@agent-name message` syntax for direct team member messaging and sends m
 - `sendDirectMemberMessage` - async function sending a message to a team member, returns `DirectMessageResult`
 
 ## Source
-`claude-code/src/utils/directMemberMessage.ts`
+`claude-```directMemberMessage````

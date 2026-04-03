@@ -1,4 +1,4 @@
-# tools/ScheduleCronTool/CronDeleteTool.ts
+# ```CronDeleteTool```
 
 ## Purpose
 Cancels a previously scheduled cron job by its ID, with validation for job existence and teammate ownership.

@@ -7,7 +7,7 @@ Initializes error log and analytics sinks, draining any events queued before att
 - **Internal**: ../services/analytics/sink (initializeAnalyticsSink), ./errorLogSink (initializeErrorLogSink)
 
 ## Logic
-Calls `initializeErrorLogSink()` and `initializeAnalyticsSink()` in sequence. Both inits are idempotent. This is a leaf module kept out of setup.ts to avoid an import cycle: setup → commands → bridge → setup.
+Calls `initializeErrorLogSink()` and `initializeAnalyticsSink()` in sequence. Both inits are idempotent. This is a leaf module kept out of [```setup```](../setup.md) to avoid an import cycle: setup → commands → bridge → setup.
 
 ## Exports
 - `initSinks()` - Void function that attaches both sinks.

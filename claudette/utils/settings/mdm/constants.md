@@ -1,7 +1,7 @@
 # constants (mdm)
 
 ## Purpose
-Shared constants and path builders for MDM (Mobile Device Management) settings modules. Has zero heavy imports (only `os` and `path`) so it is safe to import from `rawRead.ts` during early startup.
+Shared constants and path builders for MDM (Mobile Device Management) settings modules. Has zero heavy imports (only `os` and `path`) so it is safe to import from `[```rawRead```](rawRead.md)` during early startup.
 
 ## Imports
 - **Stdlib**: `os` (homedir, userInfo), `path` (join)

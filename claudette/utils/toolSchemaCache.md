@@ -9,8 +9,8 @@ Session-scoped cache of rendered tool schemas. Tool schemas render at server pos
 ## Logic
 1. A single module-level `Map<string, CachedSchema>` stores schemas keyed by tool name.
 2. `CachedSchema` extends `BetaTool` with optional `strict` and `eager_input_streaming` fields.
-3. Lives in a leaf module so `auth.ts` can clear it without importing `api.ts` (which would create a circular dependency via plans→settings→file→growthbook→config→bridgeEnabled→auth).
+3. Lives in a leaf module so `[```auth```](../cli/handlers/auth.md)` can clear it without importing `[```api```](api.md)` (which would create a circular dependency via plans→settings→file→growthbook→config→bridgeEnabled→auth).
 
 ## Exports
 - `getToolSchemaCache()` — returns the session-scoped Map of cached schemas
-- `clearToolSchemaCache()` — clears all cached schemas (called by auth.ts on session changes)
+- `clearToolSchemaCache()` — clears all cached schemas (called by [```auth```](../cli/handlers/auth.md) on session changes)

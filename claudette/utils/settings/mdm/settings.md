@@ -10,9 +10,9 @@ MDM (Mobile Device Management) profile enforcement for managed settings. Parses 
 
 ## Logic
 Architecture split across three files:
-- `constants.ts` — shared constants and plist path builder (zero heavy imports)
-- `rawRead.ts` — subprocess I/O only (fires at main.tsx evaluation)
-- `settings.ts` — parsing, caching, first-source-wins logic (this file)
+- `[```constants```](../../swarm/constants.md)` — shared constants and plist path builder (zero heavy imports)
+- `[```rawRead```](rawRead.md)` — subprocess I/O only (fires at [```main```](../../../main.md) evaluation)
+- `[```settings```](../settings.md)` — parsing, caching, first-source-wins logic (this file)
 
 **Startup flow**: `startMdmSettingsLoad()` kicks off async reads early. Uses the startup raw read if already fired, otherwise fires a fresh one. Results are parsed and cached.
 

@@ -1,4 +1,4 @@
-# tools/ReadMcpResourceTool/UI.tsx
+# ```UI```
 
 ## Purpose
 Renders the user-facing UI messages for the Read MCP Resource tool, displaying tool use and result information in the terminal interface.

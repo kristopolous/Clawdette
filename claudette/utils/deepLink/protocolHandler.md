@@ -17,4 +17,4 @@ Entry point for `claude --handle-uri <url>`. When the OS invokes claude with a `
 - `handleUrlSchemeLaunch` - async function for macOS bundle URL launches, returns exit code or null (Promise<number | null>)
 
 ## Source
-`claude-code/src/utils/deepLink/protocolHandler.ts`
+`claude-```protocolHandler````

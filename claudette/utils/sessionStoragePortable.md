@@ -1,7 +1,7 @@
 # utils/sessionStoragePortable
 
 ## Purpose
-Portable session storage utilities — pure Node.js with no internal dependencies on logging, experiments, or feature flags. Shared between the CLI (`src/utils/sessionStorage.ts`) and the VS Code extension (`packages/claude-vscode/src/common-host/sessionStorage.ts`). Provides JSONL file I/O, UUID validation, JSON field extraction, path sanitization, project directory discovery, and chunked transcript reading with compact boundary handling.
+Portable session storage utilities — pure Node.js with no internal dependencies on logging, experiments, or feature flags. Shared between the CLI (`[```sessionStorage```](sessionStorage.md)`) and the VS Code extension (`packages/claude-vscode/src/common-[```sessionStorage```](sessionStorage.md)`). Provides JSONL file I/O, UUID validation, JSON field extraction, path sanitization, project directory discovery, and chunked transcript reading with compact boundary handling.
 
 ## Imports
 - **Stdlib**: `crypto` (UUID), `fs/promises` (open, readdir, realpath, stat), `path` (join)

@@ -11,7 +11,7 @@ Captures the current terminal from `TERM_PROGRAM` during interactive startup and
 2. Reads `TERM_PROGRAM` env var and maps it to the app name used by `launchMacosTerminal` via `TERM_PROGRAM_TO_APP` mapping (e.g., `"iTerm.app"` → `"iTerm"`, `"Apple_Terminal"` → `"Terminal"`).
 3. If the mapped app differs from the stored `deepLinkTerminal` config, saves it via `saveGlobalConfig`.
 4. Called fire-and-forget from interactive startup (same pattern as `updateGithubRepoPathMapping`).
-5. Separate module from `terminalLauncher.ts` so `interactiveHelpers.tsx` can import it without pulling the full launcher into the startup path (preserves LODESTONE tree-shaking).
+5. Separate module from `[```terminalLauncher```](terminalLauncher.md)` so `[```interactiveHelpers```](../../interactiveHelpers.md)` can import it without pulling the full launcher into the startup path (preserves LODESTONE tree-shaking).
 
 Mapping: `iterm`/`iterm.app` → `iTerm`, `ghostty` → `Ghostty`, `kitty` → `kitty`, `alacritty` → `Alacritty`, `wezterm` → `WezTerm`, `apple_terminal` → `Terminal`.
 
@@ -19,4 +19,4 @@ Mapping: `iterm`/`iterm.app` → `iTerm`, `ghostty` → `Ghostty`, `kitty` → `
 - `updateDeepLinkTerminalPreference` - void function, captures and stores terminal preference from `TERM_PROGRAM`
 
 ## Source
-`claude-code/src/utils/deepLink/terminalPreference.ts`
+`claude-```terminalPreference````

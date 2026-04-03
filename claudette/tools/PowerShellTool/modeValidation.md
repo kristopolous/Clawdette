@@ -1,4 +1,4 @@
-# tools/PowerShellTool/modeValidation.ts
+# ```modeValidation```
 
 ## Purpose
 Implements permission mode validation for PowerShellTool's acceptEdits mode, auto-allowing filesystem-modifying cmdlets while rejecting complex or dangerous constructs.

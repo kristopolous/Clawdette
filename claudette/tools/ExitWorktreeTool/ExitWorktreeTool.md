@@ -1,4 +1,4 @@
-# ExitWorktreeTool/ExitWorktreeTool.ts
+# ```ExitWorktreeTool```
 
 ## Purpose
 

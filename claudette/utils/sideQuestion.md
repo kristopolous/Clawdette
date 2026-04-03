@@ -17,7 +17,7 @@ Side Question ("/btw") feature — allows asking quick questions without interru
    - Does NOT override thinkingConfig (thinking is part of the API cache key; diverging busts the prompt cache)
    - `querySource: 'side_question'`, `forkLabel: 'side_question'`
 4. `extractSideQuestionResponse(messages)` - extracts display string from forked agent messages:
-   - Flattens all assistant content blocks across per-block messages (claude.ts yields one AssistantMessage per content block, not per API response)
+   - Flattens all assistant content blocks across per-block messages ([```claude```](../services/api/claude.md) yields one AssistantMessage per content block, not per API response)
    - Concatenates text blocks via `extractTextContent`
    - If no text but model tried tool_use → returns error message suggesting rephrasing
    - If no assistant content (API error exhausted retries) → surfaces the first system api_error message

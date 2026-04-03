@@ -1,4 +1,4 @@
-# tools/ReadMcpResourceTool/ReadMcpResourceTool.ts
+# ```ReadMcpResourceTool```
 
 ## Purpose
 Tool for reading a specific resource from an MCP server by URI, handling both text and binary content.

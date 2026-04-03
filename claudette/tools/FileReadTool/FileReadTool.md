@@ -1,4 +1,4 @@
-# FileReadTool/FileReadTool.ts
+# ```FileReadTool```
 
 ## Purpose
 Tool for reading files with support for text, images, PDFs, and Jupyter notebooks, including token validation, caching, and security checks.

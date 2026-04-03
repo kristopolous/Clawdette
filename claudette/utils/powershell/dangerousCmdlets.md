@@ -1,7 +1,7 @@
 # dangerousCmdlets
 
 ## Purpose
-Shared constants for PowerShell cmdlets that execute arbitrary code. Consumed by both the permission-engine validators (powershellSecurity.ts) and the UI suggestion gate (staticPrefix.ts). Centralized to avoid sync drift.
+Shared constants for PowerShell cmdlets that execute arbitrary code. Consumed by both the permission-engine validators ([```powershellSecurity```](../../tools/PowerShellTool/powershellSecurity.md)) and the UI suggestion gate ([```staticPrefix```](staticPrefix.md)). Centralized to avoid sync drift.
 
 ## Imports
 - **Internal**: ../permissions/dangerousPatterns, ./parser

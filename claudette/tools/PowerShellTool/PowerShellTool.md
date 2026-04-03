@@ -1,4 +1,4 @@
-# tools/PowerShellTool/PowerShellTool.tsx
+# ```PowerShellTool```
 
 ## Purpose
 Tool for executing Windows PowerShell commands with comprehensive security, sandboxing, and background task management.

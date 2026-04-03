@@ -7,7 +7,7 @@ Provides utilities for agent swarm coordination: identity resolution, team membe
 - **Internal**: ../state/AppState.js, ./envUtils.js, ./teammateContext.js
 
 ## Logic
-1. Re-exports in-process teammate utilities from teammateContext.ts
+1. Re-exports in-process teammate utilities from [```teammateContext```](teammateContext.md)
 2. Identity resolution follows priority: AsyncLocalStorage (in-process) > dynamicTeamContext (tmux via CLI args) > env vars / AppState
 3. `dynamicTeamContext` is a module-level variable set when a tmux-spawned teammate joins at runtime; cleared when leaving
 4. `isTeammate()` requires both agentId AND teamName for tmux teammates (in-process teammates always return true)

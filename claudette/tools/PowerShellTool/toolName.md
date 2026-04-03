@@ -1,4 +1,4 @@
-# tools/PowerShellTool/toolName.ts
+# ```toolName```
 
 ## Purpose
 Provides PowerShell tool name constant to break circular dependency.

@@ -1,4 +1,4 @@
-# tools/REPLTool/constants.ts
+# ```constants```
 
 ## Purpose
 Defines constants and configuration for REPL mode, including which tools are hidden from direct inference provider use.

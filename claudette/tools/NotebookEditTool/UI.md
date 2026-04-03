@@ -1,4 +1,4 @@
-# tools/NotebookEditTool/UI.tsx
+# ```UI```
 
 ## Purpose
 UI components for rendering NotebookEdit tool usage and result messages for Jupyter notebook cell modifications.

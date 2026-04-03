@@ -1,4 +1,4 @@
-# tools/NotebookEditTool/constants.ts
+# ```constants```
 
 ## Purpose
 Defines the tool name constant for the NotebookEdit tool.

@@ -1,4 +1,4 @@
-# ExitPlanModeTool/ExitPlanModeV2Tool.ts
+# ```ExitPlanModeV2Tool```
 
 ## Purpose
 

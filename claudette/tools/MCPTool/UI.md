@@ -1,4 +1,4 @@
-# tools/MCPTool/UI.tsx
+# ```UI```
 
 ## Purpose
 Renders the user-facing UI for MCP tool messages including tool use, progress updates, and results with rich text formatting and smart output strategies.

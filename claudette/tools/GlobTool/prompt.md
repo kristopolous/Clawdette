@@ -1,4 +1,4 @@
-# tools/GlobTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 Defines the name and description for the Glob tool that performs fast file pattern matching.

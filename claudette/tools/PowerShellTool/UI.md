@@ -1,4 +1,4 @@
-# tools/PowerShellTool/UI.tsx
+# ```UI```
 
 ## Purpose
 Renders PowerShell tool UI messages for tool use, progress, queued, result, and error states in the terminal interface.

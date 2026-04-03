@@ -1,4 +1,4 @@
-# tools/PowerShellTool/powershellSecurity.ts
+# ```powershellSecurity```
 
 ## Purpose
 Performs AST-based security analysis on PowerShell commands, detecting dangerous patterns like code injection, download cradles, privilege escalation, and dynamic execution.

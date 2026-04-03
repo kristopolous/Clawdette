@@ -1,7 +1,7 @@
 # internalWrites
 
 ## Purpose
-Tracks timestamps of in-process settings-file writes so the chokidar file watcher can ignore its own echoes, breaking a circular dependency between settings.ts and changeDetector.ts.
+Tracks timestamps of in-process settings-file writes so the chokidar file watcher can ignore its own echoes, breaking a circular dependency between [```settings```](settings.md) and [```changeDetector```](changeDetector.md).
 
 ## Imports
 - **Stdlib**: (none)

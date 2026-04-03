@@ -1,4 +1,4 @@
-# tools/NotebookEditTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 Provides tool name, description, and prompt for NotebookEdit, used to replace cell contents in Jupyter notebooks.

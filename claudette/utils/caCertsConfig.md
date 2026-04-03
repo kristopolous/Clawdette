@@ -11,7 +11,7 @@ Applies NODE_EXTRA_CA_CERTS from settings/config before TLS connections.
 ## Logic
 1. Split from caCerts to avoid circular dependency bloat
 2. config → file → permissions/filesystem → commands pulls ~5300 modules
-3. proxy.ts/mtls must NOT depend on that graph (Agent SDK bundle bloat)
+3. [```proxy```](proxy.md)/mtls must NOT depend on that graph (Agent SDK bundle bloat)
 4. getCACertificates() only reads process.env.NODE_EXTRA_CA_CERTS
 5. This module populates env var at CLI startup
 6. Only init imports this file

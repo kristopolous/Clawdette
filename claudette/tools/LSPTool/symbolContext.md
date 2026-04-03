@@ -1,4 +1,4 @@
-# tools/LSPTool/symbolContext.ts
+# ```symbolContext```
 
 ## Purpose
 

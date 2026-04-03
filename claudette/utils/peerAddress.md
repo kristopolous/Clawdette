@@ -1,7 +1,7 @@
 # peerAddress
 
 ## Purpose
-Parses peer address strings into a scheme + target tuple. Kept separate from `peerRegistry.ts` so that `SendMessageTool` can import `parseAddress` without transitively loading the bridge (axios) and UDS (fs, net) modules at tool-enumeration time.
+Parses peer address strings into a scheme + target tuple. Kept separate from ``peerRegistry`` so that `SendMessageTool` can import `parseAddress` without transitively loading the bridge (axios) and UDS (fs, net) modules at tool-enumeration time.
 
 ## Imports
 - (none)

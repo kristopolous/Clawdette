@@ -1,7 +1,7 @@
 # gitSettings
 
 ## Purpose
-Git-related behaviors that depend on user settings. Lives outside git.ts to avoid pulling settings.ts (which transitively requires @opentelemetry/api + undici, forbidden in vscode) into the vscode extension's dep graph, and to break a cycle: settings.ts → git/gitignore.ts → git.ts → settings.ts.
+Git-related behaviors that depend on user settings. Lives outside [```git```](git.md) to avoid pulling [```settings```](settings/settings.md) (which transitively requires @opentelemetry/api + undici, forbidden in vscode) into the vscode extension's dep graph, and to break a cycle: [```settings```](settings/settings.md) → [```gitignore```](git/gitignore.md) → [```git```](git.md) → [```settings```](settings/settings.md).
 
 ## Imports
 - **Stdlib**: (none)

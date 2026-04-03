@@ -1,4 +1,4 @@
-# tools/PowerShellTool/commonParameters.ts
+# ```commonParameters```
 
 ## Purpose
 Defines the set of PowerShell Common Parameters that are available on all cmdlets, used for validating allowed parameters in PowerShellTool.

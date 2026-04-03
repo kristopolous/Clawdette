@@ -21,4 +21,4 @@ Constants: `STALE_FETCH_WARN_MS` = 7 days, `LONG_PREFILL_THRESHOLD` = 1000 chars
 - `readLastFetchTime` - async function returning the FETCH_HEAD mtime (or undefined) for a given cwd
 
 ## Source
-`claude-code/src/utils/deepLink/banner.ts`
+`claude-```banner````

@@ -1,7 +1,7 @@
 # pluginBlocklist
 
 ## Purpose
-Detects plugins that have been delisted (removed) from their marketplaces and auto-uninstalls them. Shared between interactive mode (useManagePlugins) and headless mode (main.tsx print path).
+Detects plugins that have been delisted (removed) from their marketplaces and auto-uninstalls them. Shared between interactive mode (useManagePlugins) and headless mode ([```main```](../../main.md) print path).
 
 ## Imports
 - **Stdlib**: None

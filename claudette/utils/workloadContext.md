@@ -1,7 +1,7 @@
 # workloadContext
 
 ## Purpose
-Turn-scoped workload tag via AsyncLocalStorage. Used to mark background/async work (e.g. cron jobs) so downstream code can identify the workload context. Isolated from bootstrap/state.ts to avoid pulling async_hooks into the browser SDK bundle.
+Turn-scoped workload tag via AsyncLocalStorage. Used to mark background/async work (e.g. cron jobs) so downstream code can identify the workload context. Isolated from [```state```](../bootstrap/state.md) to avoid pulling async_hooks into the browser SDK bundle.
 
 ## Imports
 - **Stdlib**: `async_hooks` (AsyncLocalStorage)

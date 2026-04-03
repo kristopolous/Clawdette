@@ -1,4 +1,4 @@
-# ExitWorktreeTool/constants.ts
+# ```constants```
 
 ## Purpose
 

@@ -31,4 +31,4 @@ Constants: `MACOS_TERMINALS` (6 entries with bundle IDs), `LINUX_TERMINALS` (10 
 - `launchInTerminal` - async function taking `claudePath` and action object (`query?`, `cwd?`, `repo?`, `lastFetchMs?`), returns boolean success
 
 ## Source
-`claude-code/src/utils/deepLink/terminalLauncher.ts`
+`claude-```terminalLauncher````

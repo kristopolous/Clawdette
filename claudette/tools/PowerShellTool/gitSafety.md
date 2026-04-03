@@ -1,4 +1,4 @@
-# tools/PowerShellTool/gitSafety.ts
+# ```gitSafety```
 
 ## Purpose
 Prevents git-based sandbox escape attacks by detecting when PowerShell arguments reference git internal paths (hooks, objects, refs) that could lead to arbitrary code execution.

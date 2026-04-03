@@ -1,7 +1,7 @@
 # rawRead (mdm)
 
 ## Purpose
-Minimal module for firing MDM subprocess reads without blocking the event loop. Designed for early startup use — fires at main.tsx module evaluation with minimal imports.
+Minimal module for firing MDM subprocess reads without blocking the event loop. Designed for early startup use — fires at [```main```](../../../main.md) module evaluation with minimal imports.
 
 ## Imports
 - **Stdlib**: `child_process` (execFile), `fs` (existsSync)

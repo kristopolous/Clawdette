@@ -1,4 +1,4 @@
-# tools/LSPTool/LSPTool.ts
+# ```LSPTool```
 
 ## Purpose
 Tool for performing Language Server Protocol (LSP) operations including go-to-definition, find-references, hover, document symbols, workspace symbols, call hierarchy, and implementation lookup.

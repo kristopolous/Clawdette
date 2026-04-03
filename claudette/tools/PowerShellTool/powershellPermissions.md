@@ -1,4 +1,4 @@
-# tools/PowerShellTool/powershellPermissions.ts
+# ```powershellPermissions```
 
 ## Purpose
 PowerShell-specific permission checking that evaluates commands against user permission rules, integrating exact/prefix matching, mode validation, and path constraints.

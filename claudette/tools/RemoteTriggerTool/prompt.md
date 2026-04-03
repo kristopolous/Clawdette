@@ -1,4 +1,4 @@
-# tools/RemoteTriggerTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 Provides the description and prompt text for the Remote Trigger tool that manages scheduled remote Claudette agents via the claude.ai CCR API.

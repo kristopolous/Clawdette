@@ -1,7 +1,7 @@
 # utils/classifierApprovalsHook
 
 ## Purpose
-Provides UI hook for classifierApprovals store without pulling React into print.ts.
+Provides UI hook for classifierApprovals store without pulling React into [```print```](../cli/print.md).
 
 ## Imports
 - **Stdlib**: (none)

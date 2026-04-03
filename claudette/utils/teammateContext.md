@@ -16,7 +16,7 @@ Provides AsyncLocalStorage-based runtime context for in-process teammates, enabl
 
 Relationship with other identity mechanisms:
 - Env vars (`CLAUDE_CODE_AGENT_ID`): process-based teammates spawned via tmux
-- `dynamicTeamContext` (teammate.ts): process-based teammates joining at runtime
+- `dynamicTeamContext` ([```teammate```](teammate.md)): process-based teammates joining at runtime
 - `TeammateContext` (this file): in-process teammates via AsyncLocalStorage
 
 ## Exports

@@ -1,4 +1,4 @@
-# tools/GrepTool/prompt.ts
+# ```prompt```
 
 ## Purpose
 Provides tool name, description, and usage instructions for the Grep tool (ripgrep-based search).

@@ -1,7 +1,7 @@
 # userAgent
 
 ## Purpose
-User-Agent string helper. Kept dependency-free so SDK-bundled code (bridge, cli/transports) can import without pulling in `auth.ts` and its transitive dependency tree.
+User-Agent string helper. Kept dependency-free so SDK-bundled code (bridge, cli/transports) can import without pulling in `[```auth```](../cli/handlers/auth.md)` and its transitive dependency tree.
 
 ## Imports
 - (none)

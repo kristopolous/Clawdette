@@ -1,4 +1,4 @@
-# tools/GlobTool/UI.tsx
+# ```UI```
 
 ## Purpose
 Provides UI rendering functions for the Glob tool, including user-facing messages, error handling, and result summaries.

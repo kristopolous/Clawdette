@@ -1,4 +1,4 @@
-# tools/PowerShellTool/destructiveCommandWarning.ts
+# ```destructiveCommandWarning```
 
 ## Purpose
 Detects potentially destructive PowerShell commands and returns human-readable warnings for display in permission dialogs.

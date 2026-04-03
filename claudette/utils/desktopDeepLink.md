@@ -31,4 +31,4 @@ Constants: `MIN_DESKTOP_VERSION` = `'1.1.2396'`.
 - `openCurrentSessionInDesktop` - async function returning `{ success: boolean; error?: string; deepLinkUrl?: string }`
 
 ## Source
-`claude-code/src/utils/desktopDeepLink.ts`
+`claude-```desktopDeepLink````

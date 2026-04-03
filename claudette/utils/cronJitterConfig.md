@@ -1,7 +1,7 @@
 # cronJitterConfig
 
 ## Purpose
-GrowthBook-backed cron jitter configuration. Separated from cronScheduler.ts so the scheduler can be bundled in the Agent SDK public build without pulling in analytics/growthbook.ts and its large transitive dependency set. Used via `getJitterConfig` callback in createCronScheduler (REPL contexts); daemon/SDK callers omit it and get defaults.
+GrowthBook-backed cron jitter configuration. Separated from [```cronScheduler```](cronScheduler.md) so the scheduler can be bundled in the Agent SDK public build without pulling in [```growthbook```](../services/analytics/growthbook.md) and its large transitive dependency set. Used via `getJitterConfig` callback in createCronScheduler (REPL contexts); daemon/SDK callers omit it and get defaults.
 
 ## Imports
 - **Stdlib**: `zod/v4` (z)

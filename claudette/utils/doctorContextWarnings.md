@@ -21,4 +21,4 @@ Thresholds: `MCP_TOOLS_THRESHOLD` = 25,000 tokens, `AGENT_DESCRIPTIONS_THRESHOLD
 - `checkContextWarnings` - async function taking `tools`, `agentInfo`, and `getToolPermissionContext`, returns `ContextWarnings`
 
 ## Source
-`claude-code/src/utils/doctorContextWarnings.ts`
+`claude-```doctorContextWarnings````

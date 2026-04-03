@@ -1,4 +1,4 @@
-# tools/ScheduleCronTool/CronListTool.ts
+# ```CronListTool```
 
 ## Purpose
 Lists all scheduled cron jobs, filtering by teammate context when applicable.

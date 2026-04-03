@@ -1,4 +1,4 @@
-# tools/ScheduleCronTool/CronCreateTool.ts
+# ```CronCreateTool```
 
 ## Purpose
 Schedules a prompt to run at a future time, supporting both recurring cron schedules and one-shot reminders with optional disk persistence.

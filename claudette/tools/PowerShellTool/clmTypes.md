@@ -1,4 +1,4 @@
-# tools/PowerShellTool/clmTypes.ts
+# ```clmTypes```
 
 ## Purpose
 Defines the allowlist of .NET types safe for PowerShell Constrained Language Mode (CLM) and provides validation functions to check if a type is allowed.

@@ -1,4 +1,4 @@
-# tools/PowerShellTool/commandSemantics.ts
+# ```commandSemantics```
 
 ## Purpose
 Provides command-specific exit code interpretation for external executables invoked from PowerShell, preventing false errors for tools with non-standard success codes.

@@ -15,7 +15,7 @@ Defines built-in agent definitions that ship with Claudette.
 4. One-shot agents skip agentId/SendMessage/usage trailer (~135 chars savings)
 5. 34M Explore runs/week benefit from token savings
 6. Parent never SendMessages back to continue one-shot agents
-7. Built-in agents loaded from builtInAgents.ts/tsx
+7. Built-in agents loaded from ```builtInAgents```/tsx
 8. Registered in agent registry at startup
 9. Not editable by users (unlike user/project/local agents)
 10. Source marked as 'built-in' for display grouping

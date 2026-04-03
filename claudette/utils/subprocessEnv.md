@@ -15,7 +15,7 @@ Returns a sanitized copy of `process.env` for subprocesses (Bash tool, shell sna
 4. **Preserved vars**: `GITHUB_TOKEN` and `GH_TOKEN` are intentionally NOT scrubbed — wrapper scripts need them to call the GitHub API. These are job-scoped and expire with the workflow.
 
 ## Exports
-- `registerUpstreamProxyEnvFn` - wires up a function that returns proxy env vars (called from init.ts after lazy-loading the upstreamproxy module)
+- `registerUpstreamProxyEnvFn` - wires up a function that returns proxy env vars (called from [```init```](../entrypoints/init.md) after lazy-loading the upstreamproxy module)
 - `subprocessEnv` - returns a copy of process.env with secrets stripped (when gated) and proxy vars injected
 
 ## Source

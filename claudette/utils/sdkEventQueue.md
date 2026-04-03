@@ -14,7 +14,7 @@ Queue for SDK events emitted during non-interactive (headless/streaming) session
 3. `queue` - module-level array of SdkEvent
 4. `enqueueSdkEvent(event)` - only enqueues in non-interactive sessions (TUI mode would accumulate and never read); drops oldest if queue is full
 5. `drainSdkEvents()` - splices all events from queue and enriches each with uuid (randomUUID) and session_id; returns empty array if queue is empty
-6. `emitTaskTerminatedSdk(taskId, status, opts?)` - convenience for emitting task_notification terminal events; closing bookend to registerTask()'s task_started; called from exit paths that don't go through print.ts XML notification parser
+6. `emitTaskTerminatedSdk(taskId, status, opts?)` - convenience for emitting task_notification terminal events; closing bookend to registerTask()'s task_started; called from exit paths that don't go through [```print```](../cli/print.md) XML notification parser
 
 ## Exports
 - `SdkEvent` - union type of all SDK event types

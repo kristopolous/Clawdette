@@ -13,7 +13,7 @@ Normalizes camelCase `requestId` to snake_case `request_id` on incoming control 
 2. Recursively handles the nested `response.requestId` → `response.request_id` the same way
 3. If both `request_id` and `requestId` are present, snake_case wins (no mutation)
 4. Mutates the object in place; returns the same object
-5. Without this shim, `isSDKControlRequest` in replBridge.ts rejects the message (it checks `'request_id' in value`), and structuredIO.ts reads `message.response.request_id` as undefined
+5. Without this shim, `isSDKControlRequest` in [```replBridge```](../bridge/replBridge.md) rejects the message (it checks `'request_id' in value`), and [```structuredIO```](../cli/structuredIO.md) reads `message.response.request_id` as undefined
 
 ## Exports
 - `normalizeControlMessageKeys(obj: unknown): unknown` - normalizes key naming on control message objects in place

@@ -1,7 +1,7 @@
 # getWorktreePathsPortable
 
 ## Purpose
-Portable worktree detection using only `child_process` — no analytics, no bootstrap deps, no execa. Used by `listSessionsImpl.ts` (SDK) and anywhere that needs worktree paths without pulling in the CLI dependency chain.
+Portable worktree detection using only `child_process` — no analytics, no bootstrap deps, no execa. Used by `[```listSessionsImpl```](listSessionsImpl.md)` (SDK) and anywhere that needs worktree paths without pulling in the CLI dependency chain.
 
 ## Imports
 - **Stdlib**: `child_process` (`execFile`), `util` (`promisify`)

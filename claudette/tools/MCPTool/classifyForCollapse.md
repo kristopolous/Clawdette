@@ -1,4 +1,4 @@
-# tools/MCPTool/classifyForCollapse.ts
+# ```classifyForCollapse```
 
 ## Purpose
 Classifies MCP tools as search or read operations for UI collapsing behavior, using explicit allowlists of common MCP server tool names.
