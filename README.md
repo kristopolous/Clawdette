@@ -21,7 +21,7 @@ Peak in the `examples/` directory for three Claudettes.
 ### Tkinter
 A 1990s vintage way to toolcall, mcp and sub-agent.
 
-<img width="500" lt="tk" src="https://github.com/user-attachments/assets/5491e0b9-580b-4adb-8fd7-98098a9627a4" />
+<img width="500" alt="claudette" src="https://github.com/user-attachments/assets/de886a0b-d4ef-4701-acdc-01f65503836b" />
 
 ### Web
 Includes jsh and virtual file systems.
