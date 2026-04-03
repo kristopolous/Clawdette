@@ -9,7 +9,7 @@ const AVAILABLE_MODELS = [
 ]
 
 export const modelCommand: Command = {
-  name: '/model',
+  name: 'model',
   aliases: [],
   description: 'Switch the AI model',
   category: 'model',

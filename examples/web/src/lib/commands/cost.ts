@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const costCommand: Command = {
-  name: '/cost',
-  aliases: ['/usage'],
+  name: 'cost',
+  aliases: ['usage'],
   description: 'Show current session cost',
   category: 'session',
   execute: async (_args: string, context: CommandContext): Promise<CommandResult> => {

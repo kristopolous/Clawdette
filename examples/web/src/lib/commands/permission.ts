@@ -3,8 +3,8 @@ import { Command, CommandContext, CommandResult } from '../../types'
 const VALID_MODES = ['ask', 'auto', 'yolo']
 
 export const permissionCommand: Command = {
-  name: '/permission',
-  aliases: ['/perm'],
+  name: 'permission',
+  aliases: ['perm'],
   description: 'Set permission mode',
   category: 'config',
   requiresArg: true,

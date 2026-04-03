@@ -1,34 +1,42 @@
 import { Message } from '../../types'
 
+type ApiMessage = Record<string, unknown>
+
+function msgContent(msg: ApiMessage | Message): string {
+  const c = (msg as any).content
+  return typeof c === 'string' ? c : JSON.stringify(c)
+}
+
+function msgRole(msg: ApiMessage | Message): string {
+  return (msg as any).role || 'unknown'
+}
+
 export function estimateTokenCount(text: string): number {
   return Math.ceil(text.length / 4)
 }
 
-export function shouldCompact(messages: Message[], modelMaxTokens: number): boolean {
+export function shouldCompact(messages: ApiMessage[], modelMaxTokens: number): boolean {
   const totalTokens = messages.reduce((sum, msg) => {
-    const content = typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)
-    return sum + estimateTokenCount(content)
+    return sum + estimateTokenCount(msgContent(msg))
   }, 0)
   return totalTokens > modelMaxTokens * 0.8
 }
 
-export function compactMessages(messages: Message[], maxTokens: number): Message[] {
+export function compactMessages(messages: ApiMessage[], maxTokens: number): ApiMessage[] {
   if (messages.length === 0) return []
 
-  const systemMessages = messages.filter((m) => m.role === 'system')
-  const conversationMessages = messages.filter((m) => m.role !== 'system')
+  const systemMessages = messages.filter((m) => msgRole(m) === 'system')
+  const conversationMessages = messages.filter((m) => msgRole(m) !== 'system')
 
-  const compacted: Message[] = [...systemMessages]
+  const compacted: ApiMessage[] = [...systemMessages]
 
   let currentTokens = compacted.reduce((sum, msg) => {
-    const content = typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)
-    return sum + estimateTokenCount(content)
+    return sum + estimateTokenCount(msgContent(msg))
   }, 0)
 
   for (let i = conversationMessages.length - 1; i >= 0; i--) {
     const msg = conversationMessages[i]
-    const content = typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)
-    const msgTokens = estimateTokenCount(content)
+    const msgTokens = estimateTokenCount(msgContent(msg))
 
     if (currentTokens + msgTokens <= maxTokens) {
       compacted.push(msg)
@@ -59,7 +67,6 @@ export async function summarizeConversation(messages: Message[]): Promise<Messag
   const assistantMessages = conversationMessages.filter((m) => m.role === 'assistant')
 
   const summaryParts: string[] = []
-
   summaryParts.push('Conversation summary:')
 
   for (let i = 0; i < userMessages.length; i++) {

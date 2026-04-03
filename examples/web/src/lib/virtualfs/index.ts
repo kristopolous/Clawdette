@@ -223,6 +223,25 @@ export class VirtualFSImpl implements VirtualFS {
     walk(this.root, '')
     return results
   }
+
+  exportAll(): Array<{ path: string; content: string }> {
+    const results: Array<{ path: string; content: string }> = []
+
+    const walk = (node: VirtualFSNode, currentPath: string) => {
+      const fullPath = currentPath ? `${currentPath}/${node.name}` : node.name
+      if (node.type === 'file' && node.content !== undefined) {
+        results.push({ path: fullPath === '/' ? node.name : fullPath, content: node.content })
+      }
+      if (node.type === 'directory' && node.children) {
+        for (const child of node.children.values()) {
+          walk(child, fullPath === '/' ? '' : fullPath)
+        }
+      }
+    }
+
+    walk(this.root, '')
+    return results
+  }
 }
 
 export function createVirtualFS(): VirtualFS {

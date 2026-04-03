@@ -3,25 +3,30 @@ import { getSession } from '../chat/route'
 
 function buildTree(vfs: any, path: string): any {
   const isDir = vfs.isDir(path)
-  const node: any = { name: path.split('/').pop() || '/', path, type: isDir ? 'directory' : 'file' }
+  const name = path.split('/').filter(Boolean).pop() || '/'
+  const node: any = { name, path, type: isDir ? 'directory' : 'file' }
   if (isDir) {
     const entries = vfs.list(path)
-    node.children = entries.map((entry: string) => buildTree(vfs, `${path}/${entry}`))
+    node.children = entries.map((entry: string) => {
+      const childPath = path === '/' ? `/${entry}` : `${path}/${entry}`
+      return buildTree(vfs, childPath)
+    })
   }
   return node
 }
 
-function collectFiles(vfs: any, path: string): Array<{ path: string; content: string }> {
+async function collectFiles(vfs: any, path: string): Promise<Array<{ path: string; content: string }>> {
   const results: Array<{ path: string; content: string }> = []
   if (vfs.isDir(path)) {
     const entries = vfs.list(path)
     for (const entry of entries) {
-      const childPath = `${path}/${entry}`
-      results.push(...collectFiles(vfs, childPath))
+      const childPath = path === '/' ? `/${entry}` : `${path}/${entry}`
+      results.push(...await collectFiles(vfs, childPath))
     }
   } else {
     try {
-      results.push({ path, content: vfs.readSync ? vfs.readSync(path) : '' })
+      const content = await vfs.read(path)
+      results.push({ path, content: typeof content === 'string' ? content : '' })
     } catch {
       // skip unreadable files
     }
@@ -46,7 +51,7 @@ export async function GET(request: NextRequest) {
   }
 
   if (export_) {
-    const files = collectFiles(session.vfs, '/')
+    const files = await collectFiles(session.vfs, '/')
     return new Response(JSON.stringify({ files }))
   }
 

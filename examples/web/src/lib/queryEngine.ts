@@ -16,10 +16,6 @@ const MODEL_MAX_TOKENS: Record<string, number> = {
   'gpt-4o-mini': 128000,
 }
 
-function estimateTokens(text: string): number {
-  return Math.ceil(text.length / 4)
-}
-
 function buildApiMessages(history: Message[], systemPrompt: string): Array<Record<string, unknown>> {
   const messages: Array<Record<string, unknown>> = [
     { role: 'system', content: systemPrompt },
@@ -170,6 +166,8 @@ export class QueryEngine {
       usage: this.usage,
       skills: this.skills,
       agents: this.agents,
+      memoryStore: this.memoryStore,
+      permissionContext: this.permissionContext,
     }
 
     const result = await cmd.execute(args, ctx)
@@ -226,7 +224,7 @@ export class QueryEngine {
 
     this.abortController = new AbortController()
 
-    let allTools = [...this.tools]
+    const allTools = [...this.tools]
 
     const systemPrompt = buildSystemPrompt({
       tools: allTools,
@@ -291,8 +289,9 @@ export class QueryEngine {
         let buffer = ''
         let fullContent = ''
         let toolCalls: Array<{ id: string; name: string; argumentsStr: string }> = []
+        let finished = false
 
-        while (true) {
+        while (!finished) {
           const { done, value } = await reader.read()
           if (done) break
 
@@ -302,7 +301,10 @@ export class QueryEngine {
 
           for (const line of lines) {
             const trimmed = line.trim()
-            if (!trimmed || trimmed === 'data: [DONE]') continue
+            if (!trimmed || trimmed === 'data: [DONE]') {
+              finished = true
+              continue
+            }
             if (!trimmed.startsWith('data: ')) continue
 
             try {
@@ -342,7 +344,7 @@ export class QueryEngine {
                   this.usage.add(json.usage)
                   yield { type: 'usage', usage: json.usage }
                 }
-                break
+                finished = true
               }
             } catch {
               // skip malformed SSE

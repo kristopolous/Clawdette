@@ -1,7 +1,7 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const skillsCommand: Command = {
-  name: '/skills',
+  name: 'skills',
   aliases: [],
   description: 'List available skills',
   category: 'help',

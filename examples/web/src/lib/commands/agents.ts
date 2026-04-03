@@ -1,7 +1,7 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const agentsCommand: Command = {
-  name: '/agents',
+  name: 'agents',
   aliases: [],
   description: 'List available agents',
   category: 'help',

@@ -5,9 +5,9 @@ use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
 use dirs;
 use ratatui::{
     backend::CrosstermBackend,
-    layout::{Constraint, Direction, Layout, Position},
+    layout::{Alignment, Constraint, Direction, Layout, Position, Rect},
     style::{Color, Modifier, Style},
-    text::{Line, Span, Text},
+    text::Text,
     widgets::{Block, Borders, Paragraph, Wrap},
     Frame, Terminal,
 };
@@ -403,60 +403,70 @@ pub fn ui(frame: &mut Frame, app: &App) {
         ])
         .split(frame.area());
 
-    // Build all lines from messages and current response
-    let mut lines: Vec<Line<'static>> = Vec::new();
-
-    // Helper to add styled message lines with markdown rendering
-    let add_message = |lines: &mut Vec<Line<'static>>, role: &str, content: &str| {
-        // Render markdown content to styled text
-        let marked = render_markdown(content);
-        let mut lines_iter = marked.lines.into_iter();
-        if let Some(mut first_line) = lines_iter.next() {
-            // Prepend "> " prefix for user messages
-            if role == "user" {
-                let prefix_span = Span::styled(
-                    "> ",
-                    Style::default()
-                        .fg(Color::Cyan)
-                        .add_modifier(Modifier::BOLD),
-                );
-                first_line.spans.insert(0, prefix_span);
-            }
-            lines.push(first_line);
-        }
-        // Append remaining lines
-        lines.extend(lines_iter);
-    };
-
-    // Add all previous messages
-    for msg in &app.messages {
-        add_message(&mut lines, &msg.role, &msg.content);
-    }
-    // Add current streaming response, if any
-    if !app.current_response.is_empty() {
-        add_message(&mut lines, "assistant", &app.current_response);
-    }
-
-    let text = Text::from(lines);
-
-    // Calculate available inner height for messages (subtract block borders)
-    let area = chunks[0];
-    let inner_height = area.height.saturating_sub(2) as usize;
-    let total_lines = text.lines.len();
-    let max_scroll = total_lines.saturating_sub(inner_height);
-    let scroll_offset = app.scroll_offset.min(max_scroll);
-
+    // Render messages with alignment
+    let message_area = chunks[0];
     let message_block = Block::default()
         .title(format!("Messages{}", if app.is_loading { " [thinking...]" } else { "" }))
         .borders(Borders::ALL)
         .style(Style::default());
+    frame.render_widget(message_block, message_area);
 
-    let paragraph = Paragraph::new(text)
-        .block(message_block)
-        .wrap(Wrap { trim: false })
-        .scroll((scroll_offset as u16, 0));
+    // Inner area (inside borders)
+    let inner = Rect::new(
+        message_area.x + 1,
+        message_area.y + 1,
+        message_area.width.saturating_sub(2),
+        message_area.height.saturating_sub(2),
+    );
 
-    frame.render_widget(paragraph, chunks[0]);
+    // Pre-render all messages and current response
+    let mut message_texts: Vec<(String, Text<'static>)> = Vec::new();
+    for msg in &app.messages {
+        let text = render_markdown(&msg.content);
+        message_texts.push((msg.role.clone(), text));
+    }
+    if !app.current_response.is_empty() {
+        let text = render_markdown(&app.current_response);
+        message_texts.push(("assistant".to_string(), text));
+    }
+
+    // Compute total height for scroll bounds
+    let total_height: usize = message_texts.iter().map(|(_, text)| text.lines.len() + 1).sum();
+    let max_scroll = if total_height > inner.height as usize {
+        total_height - inner.height as usize
+    } else {
+        0
+    };
+    let scroll_offset = app.scroll_offset.min(max_scroll);
+
+    // Render visible messages with appropriate alignment
+    let mut y: usize = 0;
+    for (role, text) in message_texts {
+        let msg_height = text.lines.len() + 1; // +1 for spacing
+
+        // Skip messages entirely above the viewport
+        if y + msg_height <= scroll_offset {
+            y += msg_height;
+            continue;
+        }
+        // Stop if we've scrolled past the viewport bottom
+        if y >= scroll_offset + inner.height as usize {
+            break;
+        }
+
+        let render_y = inner.y + (y as u16).saturating_sub(scroll_offset as u16);
+        let available = inner.height.saturating_sub(render_y - inner.y);
+        let render_height = std::cmp::min(msg_height as u16, available);
+
+        let area = Rect::new(inner.x, render_y, inner.width, render_height);
+        let alignment = if role == "user" { Alignment::Right } else { Alignment::Left };
+        let para = Paragraph::new(text.clone())
+            .alignment(alignment)
+            .wrap(Wrap { trim: true });
+        frame.render_widget(para, area);
+
+        y += msg_height;
+    }
 
     // Input area
     let input_block = Block::default()

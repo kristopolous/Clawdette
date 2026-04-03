@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const configCommand: Command = {
-  name: '/config',
-  aliases: ['/set'],
+  name: 'config',
+  aliases: ['set'],
   description: 'Show or set configuration',
   category: 'config',
   execute: async (args: string, context: CommandContext): Promise<CommandResult> => {

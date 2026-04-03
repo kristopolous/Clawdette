@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const todosCommand: Command = {
-  name: '/todos',
-  aliases: ['/tasks'],
+  name: 'todos',
+  aliases: ['tasks'],
   description: 'Show current todos from conversation',
   category: 'session',
   execute: async (_args: string, context: CommandContext): Promise<CommandResult> => {

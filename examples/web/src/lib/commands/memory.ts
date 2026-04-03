@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const memoryCommand: Command = {
-  name: '/memory',
-  aliases: ['/memories'],
+  name: 'memory',
+  aliases: ['memories'],
   description: 'Search or show memories',
   category: 'session',
   execute: async (args: string, _context: CommandContext): Promise<CommandResult> => {

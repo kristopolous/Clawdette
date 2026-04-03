@@ -28,7 +28,7 @@ export class McpManager {
         tools.push({
           name: `${name}_${mcpTool.name}`,
           description: mcpTool.description,
-          input_schema: mcpTool.inputSchema as Tool['input_schema'],
+          input_schema: mcpTool.inputSchema as unknown as Tool['input_schema'],
           execute: async (input: Record<string, unknown>, _context: ToolUseContext) => {
             return callMcpTool(connection, mcpTool.name, input)
           },

@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const exportCommand: Command = {
-  name: '/export',
-  aliases: ['/download'],
+  name: 'export',
+  aliases: ['download'],
   description: 'Export project files',
   category: 'session',
   execute: async (_args: string, context: CommandContext): Promise<CommandResult> => {

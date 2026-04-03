@@ -153,41 +153,39 @@ export default function ChatUI({ apiKey, model, baseUrl }: { apiKey: string; mod
                 return updated
               }
 
-              if (lastMsg?.type === 'assistant') {
-                const assistant = { ...lastMsg }
-
-                if (event.type === 'text' && event.text) {
-                  assistant.text += event.text
-                } else if (event.type === 'tool_use' && event.tool_use) {
-                  assistant.toolUses = [
-                    ...assistant.toolUses,
-                    {
-                      id: event.tool_use.id,
-                      name: event.tool_use.name,
-                      input: event.tool_use.input,
-                      running: true,
-                    },
-                  ]
-                } else if (event.type === 'tool_result' && event.tool_result) {
-                  assistant.toolUses = assistant.toolUses.map(tu =>
-                    tu.id === event.tool_result!.tool_use_id
-                      ? { ...tu, result: event.tool_result!.content, running: false }
-                      : tu
-                  )
-                  // Refresh file explorer after tool result
-                  setFileRefreshKey(k => k + 1)
-                  // Refresh file explorer after tool result
-                  setFileRefreshKey(k => k + 1)
-                } else if (event.type === 'error' && event.error) {
-                  assistant.text += `\n\nError: ${event.error}`
-                  assistant.isStreaming = false
-                } else if (event.type === 'done') {
-                  assistant.isStreaming = false
-                }
-
-                updated[updated.length - 1] = assistant
+              if (lastMsg?.type !== 'assistant') {
+                return updated
               }
 
+              const assistant = { ...lastMsg }
+
+              if (event.type === 'text' && event.text) {
+                assistant.text += event.text
+              } else if (event.type === 'tool_use' && event.tool_use) {
+                assistant.toolUses = [
+                  ...assistant.toolUses,
+                  {
+                    id: event.tool_use.id,
+                    name: event.tool_use.name,
+                    input: event.tool_use.input,
+                    running: true,
+                  },
+                ]
+              } else if (event.type === 'tool_result' && event.tool_result) {
+                assistant.toolUses = assistant.toolUses.map(tu =>
+                  tu.id === event.tool_result!.tool_use_id
+                    ? { ...tu, result: event.tool_result!.content, running: false }
+                    : tu
+                )
+                setFileRefreshKey(k => k + 1)
+              } else if (event.type === 'error' && event.error) {
+                assistant.text += `\n\nError: ${event.error}`
+                assistant.isStreaming = false
+              } else if (event.type === 'done') {
+                assistant.isStreaming = false
+              }
+
+              updated[updated.length - 1] = assistant
               return updated
             })
 

@@ -2,7 +2,7 @@ import { Command, CommandContext, CommandResult } from '../../types'
 import { getCommands } from './registry'
 
 export const helpCommand: Command = {
-  name: '/help',
+  name: 'help',
   aliases: [],
   description: 'List all available commands',
   category: 'help',

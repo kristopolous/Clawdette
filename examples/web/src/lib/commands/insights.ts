@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const insightsCommand: Command = {
-  name: '/insights',
-  aliases: ['/summary'],
+  name: 'insights',
+  aliases: ['summary'],
   description: 'Extract session insights',
   category: 'session',
   execute: async (_args: string, _context: CommandContext): Promise<CommandResult> => {

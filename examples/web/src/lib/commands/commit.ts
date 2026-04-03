@@ -1,7 +1,7 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const commitCommand: Command = {
-  name: '/commit',
+  name: 'commit',
   aliases: [],
   description: 'Generate a git commit message',
   category: 'review',

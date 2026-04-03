@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const statusCommand: Command = {
-  name: '/status',
-  aliases: ['/info'],
+  name: 'status',
+  aliases: ['info'],
   description: 'Show session status',
   category: 'session',
   execute: async (_args: string, context: CommandContext): Promise<CommandResult> => {

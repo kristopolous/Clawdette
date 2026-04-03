@@ -1,8 +1,8 @@
 import { Command, CommandContext, CommandResult } from '../../types'
 
 export const securityCommand: Command = {
-  name: '/security-review',
-  aliases: ['/sec'],
+  name: 'security-review',
+  aliases: ['sec'],
   description: 'Perform a security review',
   category: 'review',
   execute: async (_args: string, _context: CommandContext): Promise<CommandResult> => {
