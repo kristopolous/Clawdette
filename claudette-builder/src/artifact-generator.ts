@@ -9,6 +9,7 @@ export interface ArtifactSet {
   tasks: string;
   checklist: string;
   instructions: string;
+  stepByStep: string;
 }
 
 export function generateArtifacts(
@@ -31,6 +32,7 @@ export function generateArtifacts(
     tasks: generateTasks(now, featureDescriptions),
     checklist: generateChecklist(now),
     instructions: generateInstructions(now, featureDescriptions),
+    stepByStep: generateStepByStep(now, featureDescriptions),
   };
 }
 
@@ -982,5 +984,104 @@ Do NOT implement any of these:
 - Run individual tests: \`pytest tests/test_specific.py -v\`
 - Check test fixtures are set up correctly
 - Verify async tests use pytest-asyncio
+`;
+}
+
+function generateStepByStep(now: string, features: { id: string; label: string; description: string; fileCount: number }[]): string {
+  const featureList = features.map(f => `- [ ] ${f.label}: ${f.description}`).join('\n');
+
+  return `# How to Build Claudette — Step by Step
+
+**Generated**: ${now}
+**Features**: ${features.length} selected
+
+---
+
+## Step 1: Read the Build Kit
+
+Open these files in order. Spend time on each one.
+
+1. **CONSTITUTION.md** — The rules. Non-negotiable principles.
+2. **SPEC.md** — What you're building. User stories, requirements, success criteria.
+3. **PLAN.md** — How to build it. Architecture, file structure, tech stack.
+4. **START-HERE.md** — The technology map. Every ALL-CAPS token maps to a capability.
+5. **TASKS.md** — Your checklist. Do tasks in order.
+6. **INSTRUCTIONS.md** — Detailed workflow guidance.
+7. **docs/** — Behavioral specifications. Reference as you implement each task.
+
+---
+
+## Step 2: Set Up the Project
+
+\`\`\`bash
+mkdir claudette-python && cd claudette-python
+# Create file structure from PLAN.md
+# Create pyproject.toml
+pip install -e ".[dev]"
+python -c "import claudette; print('OK')"
+\`\`\`
+
+---
+
+## Step 3: Work Through Tasks
+
+Open TASKS.md. Start at Phase 1. For **each task**:
+
+1. **Read** the task description and note the file path
+2. **Read** relevant docs in docs/
+3. **Write tests first** — tests that fail because the feature doesn't exist
+4. **Run tests** — confirm they fail
+5. **Implement** the feature
+6. **Run tests** — confirm they pass
+7. **Run linting**: \`ruff check src/\`
+8. **Run type checking**: \`mypy src/\`
+9. **Mark complete**: change \`[ ]\` to \`[x]\` in TASKS.md
+10. **Commit**: \`git add . && git commit -m "T###: <description>"\`
+
+---
+
+## Step 4: Phase Order
+
+| Phase | What | Verify |
+|-------|------|--------|
+| **1. Foundation** | Project setup, CLI, config, state | \`python -c "import claudette; print('OK')"\` |
+| **2. Core Loop** | API client, query engine, query loop | Mock API, test loop |
+| **3. Tools** | Bash, Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Agent | Test each tool |
+| **4. Prompts** | System prompt assembly, templates | Verify prompt assembles |
+| **5. REPL UI** | Terminal interface, rendering, input | Test REPL cycle |
+| **6. Permissions** | Permission system, path validation | Test always/ask/never |
+| **7. Additional** | Commands, memory, compaction, cost, MCP, skills | Test each feature |
+| **N. Verification** | End-to-end tests, quality gates | All checklist items pass |
+
+---
+
+## Step 5: Final Verification
+
+\`\`\`bash
+pytest tests/ -v          # All tests pass
+ruff check src/           # No errors
+mypy src/                 # No type errors
+python -m claudette       # Works with real API
+\`\`\`
+
+Then run through CHECKLIST.md — every item must pass.
+
+---
+
+## Key Rules
+
+1. **Write tests before implementation** — not optional
+2. **Run tests after each task** — don't accumulate broken code
+3. **Follow the task order** — dependencies are intentional
+4. **Don't skip features** — if docs describe it, implement it
+5. **Commit after each task** — one commit minimum per task
+6. **Read the docs** — docs/ has detailed specifications
+7. **Use the jargon** — ALL-CAPS tokens map to capabilities in START-HERE.md
+
+---
+
+## Features for This Build
+
+${featureList}
 `;
 }

@@ -394,6 +394,7 @@ async function packageAndSave(
   await writeFile(join(targetDir, 'CHECKLIST.md'), artifacts.checklist);
   await writeFile(join(targetDir, 'CONSTITUTION.md'), artifacts.constitution);
   await writeFile(join(targetDir, 'INSTRUCTIONS.md'), artifacts.instructions);
+  await writeFile(join(targetDir, 'STEP-BY-STEP.md'), artifacts.stepByStep);
   await copyFile(join(claudetteDir, 'IMPLEMENTATION_CHECKLIST.md'), join(targetDir, 'IMPLEMENTATION_CHECKLIST.md'));
   await copyFile(join(claudetteDir, 'START-HERE.md'), join(targetDir, 'START-HERE.md'));
 }

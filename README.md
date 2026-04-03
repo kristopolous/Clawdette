@@ -3,7 +3,7 @@
 <br/><b>Clawdette - Vibe your own Claude Code</b>
 </p>
 
-**1,961 skills to vibe a Claude clone derived from the source. Make tokens go burr**
+**A blueprint containing 1,961 skills to vibe a Claude clone derived from the source. Make tokens go burr**
 
 -----
 
