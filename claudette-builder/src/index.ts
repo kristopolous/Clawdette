@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text, useApp, useInput, useStdout, render } from 'ink';
 import { buildFeatureTree, resolveFeaturePaths, FeatureNode } from './feature-tree.js';
-import { flattenTree, getAllDescendantIds, getSelectedFiles, getRequiredIds } from './tree-utils.js';
+import { flattenTree, getAllDescendantIds, getAllIds, getSelectedFiles, getRequiredIds } from './tree-utils.js';
 import { generateArtifacts, ArtifactSet } from './artifact-generator.js';
 import { mkdir, writeFile, cp, readdir, stat as fsStat, copyFile } from 'node:fs/promises';
 import { join, relative, extname } from 'node:path';
@@ -179,9 +179,9 @@ function App({ rootNodes }: { rootNodes: FeatureNode[] }) {
         const targetPath = pathInput || './claudette-output';
         setStatus('Packaging...');
         setIsPackaging(true);
-        packageAndSave(targetPath, rootNodes, selectedIds)
+        packageBlueprint(targetPath, rootNodes, selectedIds)
           .then(() => { setStatus('Done! Press any key to exit.'); setIsPackaging(false); setPhase('done'); })
-          .catch((err) => { setStatus(`Error: ${err.message}`); setIsPackaging(false); });
+          .catch((err: Error) => { setStatus(`Error: ${err.message}`); setIsPackaging(false); });
       } else if ((input === '\r' && pathBtnIdx === 1) || key.escape) {
         setPhase('select');
         setSelectBtnIdx(0);
@@ -361,11 +361,11 @@ async function copyPath(srcPath: string, destPath: string): Promise<void> {
   }
 }
 
-async function packageAndSave(
+async function packageBlueprint(
   outputPath: string,
   rootNodes: FeatureNode[],
   selectedIds: Set<string>,
-) {
+): Promise<{ filesCopied: number; artifacts: number; totalFiles: number }> {
   const targetDir = join(process.cwd(), outputPath);
   const claudetteDir = join(process.cwd(), 'claudette');
   await mkdir(targetDir, { recursive: true });
@@ -385,7 +385,6 @@ async function packageAndSave(
     }
   }
 
-  // Generate all spec-kit artifacts
   const artifacts = generateArtifacts(actuallyCopied, rootNodes, selectedIds, claudetteDir);
   await writeFile(join(targetDir, 'PRD.md'), artifacts.prd);
   await writeFile(join(targetDir, 'SPEC.md'), artifacts.spec);
@@ -397,17 +396,49 @@ async function packageAndSave(
   await writeFile(join(targetDir, 'STEP-BY-STEP.md'), artifacts.stepByStep);
   await copyFile(join(claudetteDir, 'IMPLEMENTATION_CHECKLIST.md'), join(targetDir, 'IMPLEMENTATION_CHECKLIST.md'));
   await copyFile(join(claudetteDir, 'START-HERE.md'), join(targetDir, 'START-HERE.md'));
+
+  return {
+    filesCopied: actuallyCopied.length,
+    artifacts: Object.keys(artifacts).length,
+    totalFiles: actuallyCopied.length + 11,
+  };
 }
 
 async function main() {
+  const args = process.argv.slice(2);
+  const outputFlag = args.find(a => a.startsWith('--output='));
+  const allFlag = args.includes('--all');
+
   const claudetteDir = join(process.cwd(), 'claudette');
   if (!existsSync(claudetteDir)) {
     console.error('Error: claudette/ directory not found');
+    console.error('');
+    console.error('Usage:');
+    console.error('  npx clawdia                    Interactive feature picker');
+    console.error('  npx clawdia --output <dir>     Generate blueprint to directory');
+    console.error('  npx clawdia --all              Generate blueprint with all features');
     process.exit(1);
   }
 
   const rawTree = await buildFeatureTree(claudetteDir);
   const rootNodes = await resolveFeaturePaths(rawTree, claudetteDir);
+
+  if (outputFlag || allFlag) {
+    const outputPath = outputFlag ? outputFlag.split('=')[1] : 'clawdia-output';
+    const selectedIds = allFlag
+      ? new Set(getAllIds(rootNodes))
+      : new Set(getRequiredIds(rootNodes));
+
+    console.log(`Generating blueprint to ${outputPath}/...`);
+    const result = await packageBlueprint(outputPath, rootNodes, selectedIds);
+    console.log(`Done! ${result.totalFiles} files (${result.filesCopied} docs + ${result.artifacts} artifacts)`);
+    console.log('');
+    console.log('Next steps:');
+    console.log('  1. Read STEP-BY-STEP.md for the workflow');
+    console.log('  2. Read TASKS.md for your task checklist');
+    console.log('  3. Feed the blueprint to your AI coding agent');
+    return;
+  }
 
   render(React.createElement(App, { rootNodes }), {
     exitOnCtrlC: true,

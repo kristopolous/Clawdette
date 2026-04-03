@@ -66,3 +66,16 @@ export function getRequiredIds(nodes) {
     }
     return ids;
 }
+export function getAllIds(nodes) {
+    const ids = [];
+    function walk(node) {
+        ids.push(node.id);
+        for (const child of node.children) {
+            walk(child);
+        }
+    }
+    for (const node of nodes) {
+        walk(node);
+    }
+    return ids;
+}

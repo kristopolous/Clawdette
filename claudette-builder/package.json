@@ -1,10 +1,10 @@
 {
-  "name": "claudette-builder",
+  "name": "clawdia",
   "version": "1.0.0",
-  "description": "Interactive feature picker for Claudette documentation",
+  "description": "Generate a spec-kit blueprint for building a Claude Code clone in any language",
   "type": "module",
   "bin": {
-    "claudette": "./dist/index.js"
+    "clawdia": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",

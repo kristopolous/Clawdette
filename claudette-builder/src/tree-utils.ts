@@ -96,3 +96,17 @@ export function getRequiredIds(nodes: FeatureNode[]): string[] {
   }
   return ids;
 }
+
+export function getAllIds(nodes: FeatureNode[]): string[] {
+  const ids: string[] = [];
+  function walk(node: FeatureNode) {
+    ids.push(node.id);
+    for (const child of node.children) {
+      walk(child);
+    }
+  }
+  for (const node of nodes) {
+    walk(node);
+  }
+  return ids;
+}

@@ -11,3 +11,4 @@ export declare function flattenTree(nodes: FeatureNode[], expandedIds: Set<strin
 export declare function getAllDescendantIds(node: FeatureNode): string[];
 export declare function getSelectedFiles(nodes: FeatureNode[], selectedIds: Set<string>): string[];
 export declare function getRequiredIds(nodes: FeatureNode[]): string[];
+export declare function getAllIds(nodes: FeatureNode[]): string[];
