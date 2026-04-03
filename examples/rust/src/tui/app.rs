@@ -345,21 +345,17 @@ impl App {
         match event {
             StreamEvent::StreamStart => {
                 self.is_loading = true;
-                self.scroll_offset = 1_000_000; // auto-scroll to bottom
             }
             StreamEvent::TextDelta { delta } => {
                 self.current_response.push_str(delta);
-                self.scroll_offset = 1_000_000; // keep following stream
             }
             StreamEvent::ToolUseStart { name, .. } => {
                 self.current_response
                     .push_str(&format!("\n🔧 Using tool: {}...\n", name));
-                self.scroll_offset = 1_000_000;
             }
             StreamEvent::ToolUseEnd { name, .. } => {
                 self.current_response
                     .push_str(&format!("\n✅ Tool '{}' completed\n", name));
-                self.scroll_offset = 1_000_000;
             }
             StreamEvent::MessageEnd { message } => {
                 if !self.current_response.is_empty() {
@@ -371,13 +367,11 @@ impl App {
                 self.current_response.clear();
                 self.usage.accumulate(&message.usage);
                 self.is_loading = false;
-                self.scroll_offset = 1_000_000; // ensure we're at bottom
             }
             StreamEvent::Error { message, .. } => {
                 self.current_response
                     .push_str(&format!("\n❌ Error: {}", message));
                 self.is_loading = false;
-                self.scroll_offset = 1_000_000;
             }
             _ => {}
         }

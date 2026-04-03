@@ -28,20 +28,3 @@ export const memoryCommand: Command = {
     }
   },
 }
-    }
-    const parts = trimmed.split(/\s+/)
-    const action = parts[0]
-    if (action === 'search') {
-      const query = parts.slice(1).join(' ')
-      if (!query) {
-        return { output: 'Usage: /memory search <term>' }
-      }
-      return {
-        output: `Searching memory for: "${query}"\n\nNote: Memory search requires a memoryStore in CommandContext.`,
-      }
-    }
-    return {
-      output: `Unknown memory action: ${action}\n\nAvailable actions:\n  search <term>`,
-    }
-  },
-}

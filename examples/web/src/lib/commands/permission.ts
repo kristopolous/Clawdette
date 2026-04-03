@@ -20,9 +20,3 @@ export const permissionCommand: Command = {
     }
   },
 }
-    }
-    return {
-      output: `Permission mode set to: ${mode}\n\nNote: Permission changes are handled by the UI.`,
-    }
-  },
-}

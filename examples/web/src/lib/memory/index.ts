@@ -1,0 +1,1 @@
+export { createMemoryStore } from './store'

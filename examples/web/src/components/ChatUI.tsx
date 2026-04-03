@@ -12,12 +12,13 @@ import UsageDisplay, { calculateCost } from './UsageDisplay'
 import SettingsPanel from './SettingsPanel'
 
 interface StreamEvent {
-  type: 'text' | 'tool_use' | 'tool_result' | 'error' | 'done' | 'stream_request_start' | 'usage'
+  type: 'text' | 'tool_use' | 'tool_result' | 'error' | 'done' | 'stream_request_start' | 'usage' | 'command_result'
   text?: string
   tool_use?: { id: string; name: string; input: Record<string, unknown> }
   tool_result?: { tool_use_id: string; content: string }
   error?: string
   usage?: { prompt_tokens: number; completion_tokens: number; total_tokens: number }
+  command_result?: { command: string; output: string }
   sessionId?: string
 }
 
@@ -49,7 +50,13 @@ interface UsageStats {
   requests: number
 }
 
-type Message = UserMessage | AssistantMessage
+interface CommandMessage {
+  type: 'command'
+  command: string
+  output: string
+}
+
+type Message = UserMessage | AssistantMessage | CommandMessage
 
 type Panel = 'chat' | 'files' | 'viewer'
 
@@ -135,6 +142,16 @@ export default function ChatUI({ apiKey, model, baseUrl }: { apiKey: string; mod
             setMessages(prev => {
               const updated = [...prev]
               const lastMsg = updated[updated.length - 1]
+
+              if (event.type === 'command_result' && event.command_result) {
+                const cmdMsg: CommandMessage = {
+                  type: 'command',
+                  command: event.command_result.command,
+                  output: event.command_result.output,
+                }
+                updated.push(cmdMsg)
+                return updated
+              }
 
               if (lastMsg?.type === 'assistant') {
                 const assistant = { ...lastMsg }
@@ -364,7 +381,15 @@ export default function ChatUI({ apiKey, model, baseUrl }: { apiKey: string; mod
             <div className="max-w-4xl mx-auto">
               {messages.map((msg, i) => (
                 <div key={i}>
-                  {msg.type === 'user' ? (
+                  {msg.type === 'command' ? (
+                    <div className="my-2 border border-[#58a6ff33] rounded-lg bg-[#161b22] overflow-hidden">
+                      <div className="px-3 py-1.5 bg-[#58a6ff22] border-b border-[#58a6ff33] flex items-center gap-2">
+                        <span className="text-xs font-mono text-[#58a6ff]">/{msg.command}</span>
+                        <span className="text-xs text-[#8b949e]">command</span>
+                      </div>
+                      <div className="px-3 py-2 text-sm text-[#c9d1d9] whitespace-pre-wrap">{msg.output}</div>
+                    </div>
+                  ) : msg.type === 'user' ? (
                     <MessageBubble role="user" content={msg.text} />
                   ) : (
                     <>
