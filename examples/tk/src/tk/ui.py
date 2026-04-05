@@ -1121,17 +1121,11 @@ class MainWindow:
 
     def _add_user_bubble(self, text: str):
         wrapper = tk.Frame(self.chat_inner, bg="#f5f5f5", highlightthickness=0, borderwidth=0)
-        wrapper.pack(fill=tk.X, pady=2, padx=10)
-        spacer = tk.Frame(wrapper, bg="#f5f5f5")
-        spacer.pack(side=tk.LEFT, fill=tk.X, expand=True)
-        bubble = tk.Text(wrapper, bg="#0078d4", fg="white",
-                         font=("TkDefaultFont", 10), wrap=tk.WORD,
-                         height=1, width=55, borderwidth=0, relief=tk.FLAT,
-                         highlightthickness=0, padx=12, pady=8)
-        bubble.insert("1.0", text)
-        bubble.configure(state=tk.DISABLED)
-        bubble.tag_configure("right", justify="right")
-        bubble.tag_add("right", "1.0", "end")
+        wrapper.pack(anchor=tk.E, pady=2, padx=10)
+        bubble = tk.Label(wrapper, text=text, bg="#0078d4", fg="white",
+                          font=("TkDefaultFont", 10),
+                          padx=12, pady=4, justify=tk.RIGHT,
+                          anchor=tk.E, wraplength=400)
         bubble.pack(side=tk.RIGHT, anchor=tk.E)
         self._message_widgets.append(wrapper)
 
